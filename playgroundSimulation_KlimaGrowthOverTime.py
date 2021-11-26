@@ -599,14 +599,9 @@ def stakingRewardsProjection(desiredKlimaUSDC, desiredKlimaUnit, desiredDailyRew
     # incooomForcastData_df = pd.DataFrame(incooomForcastData, columns=['Forcast', 'Results'])
     # incooomForcastDataDataTable = incooomForcastData_df.to_dict('rows')
 
-    rewardsUSD = 2
-    rewardsKLIMA = 3
-    rewardsDaily = 4
-    rewardsWeekly = 5
-    requiredOHMDailyIncooom = 6
-    requiredOHMWeeklyIncooom = 7
 
-    return rewardsUSD, rewardsKLIMA, rewardsDaily, requiredOHMDailyIncooom, rewardsWeekly, requiredOHMWeeklyIncooom
+    return forcastUSDTarget, forcastOHMTarget, forcastDailyIncooom, requiredOHMDailyIncooom, forcastWeeklyIncooom, \
+           requiredOHMWeeklyIncooom
 
 
 if __name__ == '__main__':
