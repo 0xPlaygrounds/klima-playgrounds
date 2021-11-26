@@ -452,7 +452,7 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
         totalklimas_minOIPRate.append(
             klimaStakedGrowth_minOIPRate)  # populate the empty array with calculated values each iteration
         klimaStakedGrowth_minOIPRate = klimaStakedGrowth_minOIPRate * (
-                    1 + minOIPYield)  # compound the total amount of klimas
+                1 + minOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Min_klimaGrowth'] = totalklimas_minOIPRate  # Clean up and add the new array to the main data frame
 
     totalklimas_maxOIPRate = []
@@ -463,7 +463,7 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
         totalklimas_maxOIPRate.append(
             klimaStakedGrowth_maxOIPRate)  # populate the empty array with calculated values each iteration
         klimaStakedGrowth_maxOIPRate = klimaStakedGrowth_maxOIPRate * (
-                    1 + maxOIPYield)  # compound the total amount of klimas
+                1 + maxOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Max_klimaGrowth'] = totalklimas_maxOIPRate  # Clean up and add the new array to the main data frame
     # ================================================================================
 
@@ -599,9 +599,8 @@ def stakingRewardsProjection(desiredKlimaUSDC, desiredKlimaUnit, desiredDailyRew
     # incooomForcastData_df = pd.DataFrame(incooomForcastData, columns=['Forcast', 'Results'])
     # incooomForcastDataDataTable = incooomForcastData_df.to_dict('rows')
 
-
     return forcastUSDTarget, forcastOHMTarget, forcastDailyIncooom, requiredOHMDailyIncooom, forcastWeeklyIncooom, \
-           requiredOHMWeeklyIncooom
+           requiredOHMWeeklyIncooom  # noqa: E127
 
 
 if __name__ == '__main__':
