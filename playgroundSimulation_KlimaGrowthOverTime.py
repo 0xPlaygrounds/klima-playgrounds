@@ -4,7 +4,6 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
@@ -265,7 +264,7 @@ app.layout = dbc.Container([
                     ], outline=True, color='success', style={"height": "600px"}), className='w-50'),
             ], className='mb-5'),
             dbc.Row([
-                dbc.Col(dcc.Markdown(''' 
+                dbc.Col(dcc.Markdown('''
                 ## Explanations
                 ---
                 '''))
@@ -278,7 +277,7 @@ app.layout = dbc.Container([
             The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
             on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
 
-            The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to 
+            The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
             sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
 
             The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
@@ -492,15 +491,14 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     annualROI = (1 + rewardYield) ** (365 * 3) - 1  # Equation to calculate your annual ROI based on reward Yield
     annualROI = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
     # ================================================================================
-
+    # TODO:
     # Let's create a nice looking table to view the results of our calculations.
     # The table will contain the ROIs and the percentages
-    roiData = [['Daily', dailyROI],
-               ['5 Day', fivedayROI],
-               ['7 Day', sevendayROI],
-               ['1 Month', monthlyROI],
-               ['1 Year', annualROI]]
-    # TODO:
+    # roiData = [['Daily', dailyROI],
+    #            ['5 Day', fivedayROI],
+    #            ['7 Day', sevendayROI],
+    #            ['1 Month', monthlyROI],
+    #            ['1 Year', annualROI]]
     # roiTabulated_df = pd.DataFrame(roiData, columns=['Cadence', 'Percentage'])
 
     dailyROI = '{} %'.format(dailyROI)
@@ -589,17 +587,16 @@ def stakingRewardsProjection(desiredKlimaUSDC, desiredKlimaUnit, desiredDailyRew
     # requiredUSDForWeeklyIncooom = requiredOHMWeeklyIncooom * priceKlima
 
     # ================================================================================
+    # TODO:
     # Let's create a nice looking table to view the results of our calculations.
     # The table will contain the ROIs and the percentages
-    incooomForcastData = [['USD Target($)', forcastUSDTarget],
-                          ['OHM Target(OHM)', forcastOHMTarget],
-                          ['Required OHM for desired daily incooom', requiredOHMDailyIncooom],
-                          ['Days until desired daily incooom goal', forcastDailyIncooom],
-                          ['Required OHM for weekly incooom goal', requiredOHMWeeklyIncooom],
-                          ['Days until desired weekly incooom goal', forcastWeeklyIncooom]]
-
-    incooomForcastData_df = pd.DataFrame(incooomForcastData, columns=['Forcast', 'Results'])
-    # TODO:
+    # incooomForcastData = [['USD Target($)', forcastUSDTarget],
+    #                       ['OHM Target(OHM)', forcastOHMTarget],
+    #                       ['Required OHM for desired daily incooom', requiredOHMDailyIncooom],
+    #                       ['Days until desired daily incooom goal', forcastDailyIncooom],
+    #                       ['Required OHM for weekly incooom goal', requiredOHMWeeklyIncooom],
+    #                       ['Days until desired weekly incooom goal', forcastWeeklyIncooom]]
+    # incooomForcastData_df = pd.DataFrame(incooomForcastData, columns=['Forcast', 'Results'])
     # incooomForcastDataDataTable = incooomForcastData_df.to_dict('rows')
 
     rewardsUSD = 2
