@@ -1,234 +1,246 @@
+# Import all required packages for this page
 import dash
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-import dash_table
 from dash.dependencies import Input, Output
 import plotly.express as px
 import plotly.graph_objects as go
-
 import pandas as pd
 import numpy as np
+import math
 from millify import millify
 
-app = dash.Dash(__name__,external_stylesheets=[dbc.themes.SLATE])
-card = dbc.Card([dbc.CardHeader("Header"), dbc.CardBody("Body")])
+# Create link to CSS style sheet
+app = dash.Dash(__name__,external_stylesheets=[dbc.themes.DARKLY],
+                meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}])
 
+# Build the layout for the app. Using dash bootstrap container here instead of the standard html div. Container looks better
 app.layout = dbc.Container([
-    html.H2("Playground: Staking"),
+    dbc.Row([
+        dbc.Col(html.H2("Playground: Staking", className='text-center, mb-4'))
+    ]),
+    # Create a tab so we can have two sections for the klima growth/rewards simulation
     dcc.Tabs([
         dcc.Tab(label = 'Klima growth over time', children = [
-            dcc.Markdown(''' 
-            
-            ## Predicted Growth
-            ___
-            '''),
-          dbc.Row([
+            dbc.Row([
+                dbc.Col(dcc.Markdown('''
+                ## Predicted Growth
+                ---
+                '''))
+            ],className='mb-5'),
+            dbc.Row([
               dbc.Col(dbc.Card([
-                  dbc.CardHeader('Klima growth simulation results'),
+                  dbc.CardHeader('Klima growth simulation results: Charts'),
                   dbc.CardBody([
                       dcc.Graph(id='graph1'),
                       html.Div(id='table')
                   ])
-              ],outline=True, color='success',style={"height": "600px"} ),width=10),
-
+              ],outline=True,color='success',style={"height": "600px"} ),className='w-50'),
               dbc.Col(dbc.Card([
                   dbc.CardHeader('Simulation controls'),
                   dbc.CardBody([
-                          dbc.Row([
-                              html.Label('Days'),
-                              dcc.Input(
-                              id = 'growthDays',
-                              placeholder = '365',
-                              type = 'number',
-                              min = 1,
-                              value = 365,style={'width':'100%'}
-                          )]),
-                          dbc.Row([
-                              html.Label('Starting Klima (Units)'),
-                              dcc.Input(
-                              id = 'initialKlima',
-                              placeholder = '1.0',
-                              type = 'number',
-                              min = 1,
-                              value = 1,style={'width':'100%'}
-                          )]),
-                          dbc.Row([
-                              html.Label('Current APY(%): '),
-                              dcc.Input(
-                              id = 'currentAPY',
-                              placeholder = '40000',
-                              type = 'number',
-                              min = 1,
-                              value = 40000,style={'width':'100%'}
-                          )]),
-                          dbc.Row([
-                              html.Label('percentSale'),
-                              dcc.Input(
-                              id='percentSale',
-                              placeholder='5',
-                              type='number',
-                              min=1,
-                              value=5,style={'width':'100%'}
-                          )]),
-                          dbc.Row([
-                              html.Label('sellDays'),
-                              dcc.Input(
-                                  id='sellDays',
-                                  placeholder='30',
-                                  type='number',
-                                  min=1,
-                                  value=30,style={'width':'100%'}
-                              )
-                          ]),
-                          dbc.Row([
-                              html.Label('klimaPrice_DCA'),
-                              dcc.Input(
-                                  id='klimaPrice_DCA',
-                                  placeholder='1000',
-                                  type='number',
-                                  min=1,
-                                  value=1000,style={'width':'100%'}
-                              )
-                          ]),
-                          dbc.Row([
-                              html.Label('valBuy'),
-                              dcc.Input(
-                                  id='valBuy',
-                                  placeholder='1000',
-                                  type='number',
-                                  min=1,
-                                  value=1000,style={'width':'100%'}
-                              )
-                          ]),
-                          dbc.Row([
-                              html.Label('buyDays'),
-                              dcc.Input(
-                                  id='buyDays',
-                                  placeholder='30',
-                                  type='number',
-                                  min=1,
-                                  value=30,style={'width':'100%'}
-                              )
-                          ]),
-                          dbc.Row([
-                              html.Label('Gas (gwei)'),
-                              dcc.Input(
-                                  id='gwei',
-                                  placeholder='1',
-                                  type='number',
-                                  min=1,
-                                  value=1,style={'width':'100%'}
-                              )
-                          ]),
-                          dbc.Row([
-                              html.Label('priceofETH'),
-                              dcc.Input(
-                                  id='priceofETH',
-                                  placeholder='10',
-                                  type='number',
-                                  min=1,
-                                  value=10,style={'width':'100%'}
-                              )
-                          ]),
+                      dbc.Form([
+
+                          dbc.Card(
+                              dbc.CardBody([
+                                  dbc.Row([
+                                      dbc.Label('Growth over time'),
+                                      dbc.Col([
+                                            dcc.Slider(
+                                            id = 'growthDays',
+                                            min = 1,
+                                            max = 1000,
+                                            value = 365,
+                                            tooltip={'placement':'top', 'always_visible':True}),],width= '12')]),
+                                  dbc.Row([
+                                      dbc.Col([
+                                          #dbc.Label('Initial Klima'),
+                                            dcc.Input(
+                                            id='initialKlima',
+                                            placeholder='1.0',
+                                            type='number',
+                                            min=1,
+                                            value=1,style={'width':'100%'})]),
+                                      dbc.Col([
+                                          #dbc.Label('Simulated APY(%)'),
+                                            dcc.Input(
+                                              id = 'currentAPY',
+                                              placeholder = '40000',
+                                              type = 'number',
+                                              min = 1,
+                                              value = 40000,style={'width':'100%'})]),
+                                  ],className="g-2"),
+                              ]),className='w-100'),
+                          dbc.Card(
+                              dbc.CardBody([
+                                  dbc.Row([
+                                      dbc.Label('Profit taking controls'),
+                                      dbc.Col([
+                                          dcc.Input(
+                                              id='percentSale',
+                                              placeholder='5',
+                                              type='number',
+                                              min=1,
+                                              value=5,
+                                              style={'width':'100%'}),
+                                              ]),
+                                      dbc.Col([
+                                          dcc.Input(
+                                              id='sellDays',
+                                              placeholder='30',
+                                              type='number',
+                                              min=1,
+                                              value=30,
+                                              style={'width':'100%'}),
+                                              ])
+                                  ],className="g-2")]),className='w-100'),
+
+                          dbc.Card(
+                              dbc.CardBody([
+                                  dbc.Row([
+                                      dbc.Label('Dollar cost averaging'),
+                                      dbc.Col([
+                                          dcc.Input(
+                                              id='klimaPrice_DCA',
+                                              placeholder='1000',
+                                              type='number',
+                                              min=1,
+                                              value=1000,style={'width':'100%'})]),
+                                      dbc.Col([
+                                              dcc.Input(
+                                                  id='valBuy',
+                                                  placeholder='1000',
+                                                  type='number',
+                                                  min=1,
+                                                  value=1000, style={'width': '100%'})]),
+                                      dbc.Col([
+                                              dcc.Input(
+                                                    id='buyDays',
+                                                    placeholder='30',
+                                                    type='number',
+                                                    min=1,
+                                                    value=30,style={'width':'100%'})]),
+                                  ],className="g-2")]),className='w-100'),
+
+                          dbc.Card(
+                              dbc.CardBody([
+                                  dbc.Row([
+                                      dbc.Label('Staking rewards controls'),
+                                      dbc.Col([
+                                          dcc.Input(
+                                              id='priceKlima',
+                                              placeholder='1000',
+                                              type='number',
+                                              min=1,
+                                              value=1000,style={'width':'100%'}
+                                          )]),
+                                      dbc.Col([
+                                          dcc.Input(
+                                              id='priceofETH',
+                                              placeholder='10',
+                                              type='number',
+                                              min=1,
+                                              value=10, style={'width': '100%'}
+                                              ),
+                                      ]),
+                                  ],className="g-2")]),className='w-100'),
+                      ]),
                   ])
-              ],outline=True,color='success',style={"height": "600px"} ),width=2),
-          ],
-          className="mb-4",),
+              ],outline=True,color='success',style={"height": "600px"} ),className='w-50'),
+            ],className="mb-5",),
+            dbc.Row([
+                dbc.Col([
+                    dbc.Card([
+                        dbc.CardHeader('Klima growth simulation results: ROI'),
+                        dbc.CardBody([
+                            dbc.Row([
+                                dbc.Col([
+                                    dbc.Card([
+                                        dbc.Label('Daily', style={'color': 'white', 'fontSize': 15}),
+                                        dbc.CardBody([
+                                            html.Div(style={'color': 'white', 'fontSize': 50}, id='dailyROI')
+                                        ])
+                                    ])
+                                ], width=2),
+                                dbc.Col([
+                                    dbc.Card([
+                                        dbc.Label('Five day', style={'color': 'white', 'fontSize': 15}),
+                                        dbc.CardBody([
+                                            html.Div(style={'color': 'white', 'fontSize': 50}, id='fivedayROI')
+                                        ])
+                                    ])
+                                ], width=2),
+                                dbc.Col([
+                                    dbc.Card([
+                                        dbc.Label('Seven day', style={'color': 'white', 'fontSize': 15}),
+                                        dbc.CardBody([
+                                            html.Div(style={'color': 'white', 'fontSize': 50}, id='sevendayROI')
+                                        ])
+                                    ])
+                                ], width=2),
+                                dbc.Col([
+                                    dbc.Card([
+                                        dbc.Label('Monthly', style={'color': 'white', 'fontSize': 15}),
+                                        dbc.CardBody([
+                                            html.Div(style={'color': 'white', 'fontSize': 50}, id='monthlyROI')
+                                        ])
+                                    ])
+                                ], width=2),
+                                dbc.Col([
+                                    dbc.Card([
+                                        dbc.Label('Annual', style={'color': 'white', 'fontSize': 15}),
+                                        dbc.CardBody([
+                                            html.Div(style={'color': 'white', 'fontSize': 50}, id='annualROI')
+                                        ])
+                                    ])
+                                ], width=2),
+                            ], className="g-2",justify='center'),
+                        ]),
+                    ], outline=True, color='success', style={"height": "250px"}), ]),
+                ],className="mb-5", ),
+
+
 
             dbc.Row([
-                dcc.Markdown(''' 
-                ## Predicted ROI
-                ___
-                '''),
-                dbc.Col([
-                    dbc.Card([
-                        dbc.CardHeader('Daily ROI',style={'color': 'white', 'fontSize': 15}),
-                        dbc.CardBody([
-                            html.Div(style={'color': 'green', 'fontSize': 50},id='dailyROI')
-                        ])
-                    ])
-                ], width=2),
-                dbc.Col([
-                    dbc.Card([
-                        dbc.CardHeader('Five day ROI',style={'color': 'white', 'fontSize': 15}),
-                        dbc.CardBody([
-                            html.Div(style={'color': 'green', 'fontSize': 50},id='fivedayROI')
-                        ])
-                    ])
-                ], width=2),
-                dbc.Col([
-                    dbc.Card([
-                        dbc.CardHeader('Seven day ROI',style={'color': 'white', 'fontSize': 15}),
-                        dbc.CardBody([
-                            html.Div(style={'color': 'green', 'fontSize': 50},id='sevendayROI')
-                        ])
-                    ])
-                ], width=2),
-                dbc.Col([
-                    dbc.Card([
-                        dbc.CardHeader('Monthly day ROI',style={'color': 'white', 'fontSize': 15}),
-                        dbc.CardBody([
-                            html.Div(style={'color': 'green', 'fontSize': 50},id='monthlyROI')
-                        ])
-                    ])
-                ], width=2),
-                dbc.Col([
-                    dbc.Card([
-                        dbc.CardHeader('Annual ROI',style={'color': 'white', 'fontSize': 15}),
-                        dbc.CardBody([
-                            html.Div(style={'color': 'green', 'fontSize': 50},id='annualROI')
-                        ])
-                    ])
-                ], width=2),
-            ]),
-
+                dbc.Col(dcc.Markdown(''' 
+                ## Explanation
+                ---
+                '''))
+                ],className='mb-5'),
             dbc.Row([
-                dcc.Markdown(''' 
-                                ## Explanation
-                                ___
-                                '''),
-                dbc.Col([
-                    dbc.Card([
+                dbc.Col(dbc.Card([
                         dbc.CardHeader('Explanation'),
                         dbc.CardBody([
                             dcc.Markdown('''
-                            The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
-                            on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
-                            
-                            The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to 
-                            sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
-                            
-                            The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
-                            of the current dictated KIP-3 Reward Rate Framework.
-                            
-                            The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
-                            of the current dictated KIP-3 Reward Rate Framework.
-                            ''')
+            The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
+            on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
+
+            The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to 
+            sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
+
+            The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
+            of the current dictated KIP-3 Reward Rate Framework.
+
+            The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
+            of the current dictated KIP-3 Reward Rate Framework.
+            ''')
                         ])
-                    ])
-                ], width=10)
-            ])
+                    ],outline=True,color='success' ),className='w-50')
+            ],className="mb-5", )
 
 
-
-
-
-
-        ]),
-
-
-
+            ]),
         dcc.Tab(label = 'Klima staking rewards', children = [
             dbc.Row([
-                dbc.Col([
-                    dbc.Card([
-                        dbc.CardHeader('Days until desired USD value in rewards', style={'color': 'white', 'fontSize': 15}),
-                        dbc.CardBody([
-                            html.Div(style={'color': 'green', 'fontSize': 50}, id='rewardsUSD')
-                        ])
-                    ])
-                ], width=3),
+                #dbc.Col([
+                    #dbc.Card([
+                        #dbc.CardHeader('Days until desired USD value in rewards', style={'color': 'white', 'fontSize': 15}),
+                        #dbc.CardBody([
+                            #html.Div(style={'color': 'green', 'fontSize': 50}, id='rewardsUSD')
+                        #])
+                    #])
+                #], width=2),
                 dbc.Col([
                     dbc.Card([
                         dbc.CardHeader('Days until desired KLIMA balance in rewards', style={'color': 'white', 'fontSize': 15}),
@@ -253,14 +265,53 @@ app.layout = dbc.Container([
                         ])
                     ])
                 ], width=3),
+                dbc.Col([dbc.Card([
+                    dbc.CardHeader('Staking rewards forecast controls'),
+                    dbc.CardBody([
+                        dbc.Row([
+                            html.Label('Desired KLIMA Value (USDC)'),
+                            dcc.Input(
+                                id='desiredKlimaUSDC',
+                                placeholder='10000',
+                                type='number',
+                                min=1000,
+                                value=10000, style={'width': '100%'}
+                            )]),
+                        dbc.Row([
+                            html.Label('Desired amount of KLIMA (Units)'),
+                            dcc.Input(
+                                id='desiredKlimaUnit',
+                                placeholder='500.0',
+                                type='number',
+                                min=1,
+                                value=500, style={'width': '100%'}
+                            )]),
+                        dbc.Row([
+                            html.Label('Desired daily staking rewards (USDC)'),
+                            dcc.Input(
+                                id='desiredDailyRewardsUSDC',
+                                placeholder='5000',
+                                type='number',
+                                min=1,
+                                value=5000, style={'width': '100%'}
+                            )]),
+                        dbc.Row([
+                            html.Label('Desired weekly staking rewards (USDC)'),
+                            dcc.Input(
+                                id='desiredWeeklyRewardsUSDC',
+                                placeholder='5000',
+                                type='number',
+                                min=1,
+                                value=5000, style={'width': '100%'}
+                            )]),
+              ]),
+            ])],width=3)
+     ]),
+        ],className='mb-4'),
+    ])
+],fluid=True)
 
-            ]),
-
-              ])
-            ]),
-])
-
-@app.callback(
+@app.callback([
     Output(component_id='graph1', component_property='figure'),
     Output(component_id='dailyROI', component_property='children'),
     Output(component_id='fivedayROI', component_property='children'),
@@ -275,10 +326,11 @@ app.layout = dbc.Container([
     Input(component_id='klimaPrice_DCA', component_property='value'),
     Input(component_id='valBuy', component_property='value'),
     Input(component_id='buyDays', component_property='value'),
-    Input(component_id='gwei', component_property='value'),
+    Input(component_id='priceKlima', component_property='value'),
     Input(component_id='priceofETH', component_property='value'),
-)
-def klimaGrowth_Projection(growthDays,initialKlima,currentAPY,percentSale, sellDays, klimaPrice_DCA, valBuy, buyDays, gwei, priceofETH):
+])
+
+def klimaGrowth_Projection(growthDays,initialKlima,currentAPY,percentSale, sellDays, klimaPrice_DCA, valBuy, buyDays, priceKlima, priceofETH):
     # Data frame to hold all required data point. Data required would be Epochs since rebase are distributed every Epoch
     klimaGrowthEpochs = (growthDays * 3)+1
     sellEpochs = sellDays * 3
@@ -290,6 +342,7 @@ def klimaGrowth_Projection(growthDays,initialKlima,currentAPY,percentSale, sellD
     userAPY = currentAPY/100
     minAPY = 1000/100
     maxAPY = 10000/100
+    gwei = 1
 
 
     stakingGasFee = 179123 * ((gwei * priceofETH) / (10 ** 9))
@@ -438,6 +491,70 @@ def klimaGrowth_Projection(growthDays,initialKlima,currentAPY,percentSale, sellD
     klimaGrowth_Chart.layout.legend.font.color = 'white'
 
     return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI
+
+
+@app.callback([
+    Output(component_id='rewardsKLIMA', component_property='children'),
+    Output(component_id='rewardsDaily', component_property='children'),
+    Output(component_id='rewardsWeekly', component_property='children'),
+    Input(component_id='desiredKlimaUSDC', component_property='value'),
+    Input(component_id='desiredKlimaUnit', component_property='value'),
+    Input(component_id='desiredDailyRewardsUSDC', component_property='value'),
+    Input(component_id='desiredWeeklyRewardsUSDC', component_property='value'),
+])
+
+def stakingRewardsProjection(desiredKlimaUSDC,desiredKlimaUnit, desiredDailyRewardsUSDC,desiredWeeklyRewardsUSDC):
+
+    initialKlima = 1
+    userAPY = 40000 / 100
+    rewardYield = ((1 + userAPY) ** (1 / float(1095))) - 1
+    rewardYield = round(rewardYield, 5)
+    rebaseConst = 1 + rewardYield
+    priceKlima = 1000
+    dailyROI = 1.7/100
+    sevendayROI = 12.2/100
+    # current staking %APY. Need to make this read from a source or user entry
+
+    # ================================================================================
+    # Days until you reach target USD by staking only
+    forcastUSDTarget = round((math.log(desiredKlimaUSDC / (initialKlima * priceKlima), rebaseConst) /3))
+    # ================================================================================
+    # Days until you reach target OHM by staking only
+    forcastOHMTarget = round(math.log(desiredKlimaUnit / (initialKlima), rebaseConst) / 3)
+    # ================================================================================
+    # Daily Incooom calculations
+    # Required OHMs until you are earning your desired daily incooom
+    requiredOHMDailyIncooom = round((desiredDailyRewardsUSDC / dailyROI) / priceKlima)
+    # Days until you are earning your desired daily incooom from your current initial staked OHM amount
+    forcastDailyIncooom = round(math.log((requiredOHMDailyIncooom / initialKlima), rebaseConst) / 3)
+    requiredUSDForDailyIncooom = requiredOHMDailyIncooom * priceKlima
+    # ================================================================================
+    # Weekly Incooom calculations
+    # Required OHMs until you are earning your desired weekly incooom
+    requiredOHMWeeklyIncooom = round((desiredWeeklyRewardsUSDC / sevendayROI) / priceKlima)
+    # Days until you are earning your desired weekly incooom from your current initial staked OHM amount
+    forcastWeeklyIncooom = round(math.log((requiredOHMWeeklyIncooom / initialKlima), rebaseConst) / 3)
+    requiredUSDForWeeklyIncooom = requiredOHMWeeklyIncooom * priceKlima
+    # ================================================================================
+    # Let's create a nice looking table to view the results of our calculations. The table will contain the ROIs and the percentages
+    incooomForcastData = [['USD Target($)', forcastUSDTarget],
+                          ['OHM Target(OHM)', forcastOHMTarget],
+                          ['Required OHM for desired daily incooom', requiredOHMDailyIncooom],
+                          ['Days until desired daily incooom goal', forcastDailyIncooom],
+                          ['Required OHM for weekly incooom goal', requiredOHMWeeklyIncooom],
+                          ['Days until desired weekly incooom goal', forcastWeeklyIncooom]]
+
+    incooomForcastData_df = pd.DataFrame(incooomForcastData, columns=['Forcast', 'Results'])
+    incooomForcastDataDataTable = incooomForcastData_df.to_dict('rows')
+    columns = [{'name': i,'id': i,} for i in (incooomForcastData_df.columns)]
+
+    rewardsKLIMA = 3
+    rewardsDaily = 4
+    rewardsWeekly = 5
+
+
+
+    return rewardsKLIMA, rewardsDaily, rewardsWeekly
 
 
 if __name__ == '__main__':
