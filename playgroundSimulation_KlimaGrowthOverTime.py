@@ -15,7 +15,8 @@ from millify import millify
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY],
                 meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}])
 
-# Build the layout for the app. Using dash bootstrap container here instead of the standard html div. Container looks better
+# Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
+# Container looks better
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col(html.H2("Playground: Staking", className='text-center, mb-4'))
@@ -435,10 +436,12 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     klimaGrowth_df['Total_klimas'] = totalklimas  # Clean up and add the new array to the main data frame
     klimaGrowth_df['Profit_Adjusted_Total_klimas'] = pA_totalklimas
     klimaGrowth_df['DCA_Adjusted_Total_klimas'] = dcA_totalklimas
+    # Python is funny so let's round up our numbers . 1 decimal place for days",
     klimaGrowth_df.Days = np.around(klimaGrowth_df.Days,
-                                    decimals=1)  # Python is funny so let's round up our numbers . 1 decimal place for days",
+                                    decimals=1)
+    # Python is funny so let's round up our numbers . 3 decimal place for klimas"
     klimaGrowth_df.Total_klimas = np.around(klimaGrowth_df.Total_klimas,
-                                            decimals=3)  # Python is funny so let's round up our numbers . 3 decimal place for klimas"
+                                            decimals=3)
     klimaGrowth_df.Profit_Adjusted_Total_klimas = np.around(klimaGrowth_df.Profit_Adjusted_Total_klimas, decimals=3)
     klimaGrowth_df.DCA_Adjusted_Total_klimas = np.around(klimaGrowth_df.DCA_Adjusted_Total_klimas, decimals=3)
 
@@ -448,7 +451,7 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     # Initialize the for loop to have loops equal to number of rows or number of epochs
     for elements in klimaGrowth_df.Epochs:
         totalklimas_minOIPRate.append(
-            klimaStakedGrowth_minOIPRate)  # populate the empty array with calclated values each iteration
+            klimaStakedGrowth_minOIPRate)  # populate the empty array with calculated values each iteration
         klimaStakedGrowth_minOIPRate = klimaStakedGrowth_minOIPRate * (
                     1 + minOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Min_klimaGrowth'] = totalklimas_minOIPRate  # Clean up and add the new array to the main data frame
@@ -459,14 +462,14 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     # Initialize the for loop to have loops equal to number of rows or number of epochs
     for elements in klimaGrowth_df.Epochs:
         totalklimas_maxOIPRate.append(
-            klimaStakedGrowth_maxOIPRate)  # populate the empty array with calclated values each iteration
+            klimaStakedGrowth_maxOIPRate)  # populate the empty array with calculated values each iteration
         klimaStakedGrowth_maxOIPRate = klimaStakedGrowth_maxOIPRate * (
                     1 + maxOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Max_klimaGrowth'] = totalklimas_maxOIPRate  # Clean up and add the new array to the main data frame
     # ================================================================================
 
     # Let's get some ROI Outputs starting with the daily
-    dailyROI = dailyROI = (1 + rewardYield) ** 3 - 1  # Equation to calculate your daily ROI based on reward Yield
+    dailyROI = (1 + rewardYield) ** 3 - 1  # Equation to calculate your daily ROI based on reward Yield
     dailyROI = round(dailyROI * 100, 1)  # daily ROI in Percentage
     # ================================================================================
 
@@ -490,13 +493,15 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     annualROI = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
     # ================================================================================
 
-    # Let's create a nice looking table to view the results of our calculations. The table will contain the ROIs and the percentages
+    # Let's create a nice looking table to view the results of our calculations.
+    # The table will contain the ROIs and the percentages
     roiData = [['Daily', dailyROI],
                ['5 Day', fivedayROI],
                ['7 Day', sevendayROI],
                ['1 Month', monthlyROI],
                ['1 Year', annualROI]]
-    roiTabulated_df = pd.DataFrame(roiData, columns=['Cadence', 'Percentage'])
+    # TODO:
+    # roiTabulated_df = pd.DataFrame(roiData, columns=['Cadence', 'Percentage'])
 
     dailyROI = '{} %'.format(dailyROI)
     fivedayROI = '{} %'.format(fivedayROI)
@@ -505,7 +510,6 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     annualROI = '{} %'.format(millify(annualROI, precision=1))
     # ================================================================================
 
-    fig = px.scatter(klimaGrowth_df, x=klimaGrowth_df.Days, y=klimaGrowth_df.Total_klimas)
     klimaGrowth_Chart = go.Figure()
     klimaGrowth_Chart.add_trace(
         go.Scatter(x=klimaGrowth_df.Days, y=klimaGrowth_df.Total_klimas, name='(3,3) ROI', fill=None))
@@ -548,7 +552,8 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
 ])
 # This function will calculate the user desired staking rewards. Output will be number of days until user achieves goals
 def stakingRewardsProjection(desiredKlimaUSDC, desiredKlimaUnit, desiredDailyRewardsUSDC, desiredWeeklyRewardsUSDC):
-    # Some variables are still hard coded i.e initial klime, user apy etc. this will be changed in the next update once chained callbacks are implemented
+    # Some variables are still hard coded i.e initial klime, user apy etc.
+    # this will be changed in the next update once chained callbacks are implemented
     initialKlima = 1
     userAPY = 40000 / 100
     rewardYield = ((1 + userAPY) ** (1 / float(1095))) - 1
@@ -571,16 +576,21 @@ def stakingRewardsProjection(desiredKlimaUSDC, desiredKlimaUnit, desiredDailyRew
     requiredOHMDailyIncooom = round((desiredDailyRewardsUSDC / dailyROI) / priceKlima)
     # Days until you are earning your desired daily incooom from your current initial staked OHM amount
     forcastDailyIncooom = round(math.log((requiredOHMDailyIncooom / initialKlima), rebaseConst) / 3)
-    requiredUSDForDailyIncooom = requiredOHMDailyIncooom * priceKlima
+    # TODO:
+    # requiredUSDForDailyIncooom = requiredOHMDailyIncooom * priceKlima
     # ================================================================================
     # Weekly Incooom calculations
     # Required OHMs until you are earning your desired weekly incooom
     requiredOHMWeeklyIncooom = round((desiredWeeklyRewardsUSDC / sevendayROI) / priceKlima)
     # Days until you are earning your desired weekly incooom from your current initial staked OHM amount
     forcastWeeklyIncooom = round(math.log((requiredOHMWeeklyIncooom / initialKlima), rebaseConst) / 3)
-    requiredUSDForWeeklyIncooom = requiredOHMWeeklyIncooom * priceKlima
+
+    # TODO: Re-enable when controls are migrated from second tab
+    # requiredUSDForWeeklyIncooom = requiredOHMWeeklyIncooom * priceKlima
+
     # ================================================================================
-    # Let's create a nice looking table to view the results of our calculations. The table will contain the ROIs and the percentages
+    # Let's create a nice looking table to view the results of our calculations.
+    # The table will contain the ROIs and the percentages
     incooomForcastData = [['USD Target($)', forcastUSDTarget],
                           ['OHM Target(OHM)', forcastOHMTarget],
                           ['Required OHM for desired daily incooom', requiredOHMDailyIncooom],
@@ -589,8 +599,8 @@ def stakingRewardsProjection(desiredKlimaUSDC, desiredKlimaUnit, desiredDailyRew
                           ['Days until desired weekly incooom goal', forcastWeeklyIncooom]]
 
     incooomForcastData_df = pd.DataFrame(incooomForcastData, columns=['Forcast', 'Results'])
-    incooomForcastDataDataTable = incooomForcastData_df.to_dict('rows')
-    columns = [{'name': i, 'id': i, } for i in (incooomForcastData_df.columns)]
+    # TODO:
+    # incooomForcastDataDataTable = incooomForcastData_df.to_dict('rows')
 
     rewardsUSD = 2
     rewardsKLIMA = 3
