@@ -40,6 +40,7 @@ app.layout = dbc.Container([
               dbc.Col(dbc.Card([
                   dbc.CardHeader('Simulation controls'),
                   dbc.CardBody([
+                      # use form for controls 
                       dbc.Form([
 
                           dbc.Card(
@@ -233,6 +234,8 @@ app.layout = dbc.Container([
             ]),
         dcc.Tab(label = 'Klima staking rewards', children = [
             dbc.Row([
+
+                #commenting this out because we might not want to provide direct usd output..financial advice risk
                 #dbc.Col([
                     #dbc.Card([
                         #dbc.CardHeader('Days until desired USD value in rewards', style={'color': 'white', 'fontSize': 15}),
@@ -309,7 +312,9 @@ app.layout = dbc.Container([
      ]),
         ],className='mb-4'),
     ])
-],fluid=True)
+],fluid=True) # Responsive ui control
+
+# call back for klima growth controls
 
 @app.callback([
     Output(component_id='graph1', component_property='figure'),
@@ -330,6 +335,7 @@ app.layout = dbc.Container([
     Input(component_id='priceofETH', component_property='value'),
 ])
 
+# function to calculate klima growth over user specified number of days
 def klimaGrowth_Projection(growthDays,initialKlima,currentAPY,percentSale, sellDays, klimaPrice_DCA, valBuy, buyDays, priceKlima, priceofETH):
     # Data frame to hold all required data point. Data required would be Epochs since rebase are distributed every Epoch
     klimaGrowthEpochs = (growthDays * 3)+1
@@ -492,7 +498,7 @@ def klimaGrowth_Projection(growthDays,initialKlima,currentAPY,percentSale, sellD
 
     return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI
 
-
+# call backs for desired staking rewards controls
 @app.callback([
     Output(component_id='rewardsKLIMA', component_property='children'),
     Output(component_id='rewardsDaily', component_property='children'),
@@ -503,8 +509,10 @@ def klimaGrowth_Projection(growthDays,initialKlima,currentAPY,percentSale, sellD
     Input(component_id='desiredWeeklyRewardsUSDC', component_property='value'),
 ])
 
+# This function will calculate the user desired staking rewards. Output will be number of days until user achieves goals
 def stakingRewardsProjection(desiredKlimaUSDC,desiredKlimaUnit, desiredDailyRewardsUSDC,desiredWeeklyRewardsUSDC):
 
+# Some variables are still hard coded i.e initial klime, user apy etc. this will be changed in the next update once chained callbacks are implemented
     initialKlima = 1
     userAPY = 40000 / 100
     rewardYield = ((1 + userAPY) ** (1 / float(1095))) - 1
