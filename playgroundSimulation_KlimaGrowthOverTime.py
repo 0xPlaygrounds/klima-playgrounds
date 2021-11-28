@@ -284,7 +284,7 @@ app.layout = dbc.Container([
                                                     value=500, style={'width': '100%'}
                                                 )
                                             ])
-                                        ],style={'padding': '25px'}),
+                                        ], style={'padding': '25px'}),
                                         dbc.Row([
                                             dbc.Col([
                                                 dbc.Label('Desired daily staking rewards (USDC)'),
@@ -293,7 +293,7 @@ app.layout = dbc.Container([
                                                     placeholder='5000',
                                                     type='number',
                                                     min=1,
-                                                    value=5000, style={'width':'100%'}
+                                                    value=5000, style={'width': '100%'}
                                                 )
                                             ]),
                                             dbc.Col([
@@ -306,7 +306,7 @@ app.layout = dbc.Container([
                                                     value=50000, style={'width': '100%'}
                                                 )
                                             ])
-                                        ],style={'padding': '25px'})
+                                        ], style={'padding': '25px'})
                                     ])
                                 )
                             ])
@@ -528,17 +528,17 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     requiredKlimaDailyIncooom = round((desired_daily_rewards_usdc / dailyROI) / priceKlima)
     # Days until you are earning your desired daily incooom from your current initial staked Klima amount
     forcastDailyIncooom = round(math.log((requiredKlimaDailyIncooom / initialKlima), rebaseConst) / 3)
-    requiredUSDForDailyIncooom = requiredKlimaDailyIncooom * priceKlima
+    # requiredUSDForDailyIncooom = requiredKlimaDailyIncooom * priceKlima
     # ================================================================================
     # Weekly Incooom calculations
     # Required Klimas until you are earning your desired weekly incooom
     requiredKlimaWeeklyIncooom = round((desired_weekly_rewards_usdc / sevendayROI) / priceKlima)
     # Days until you are earning your desired weekly incooom from your current initial staked Klima amount
     forcastWeeklyIncooom = round(math.log((requiredKlimaWeeklyIncooom / initialKlima), rebaseConst) / 3)
-    #forcastWeeklyIncooom = math.log((requiredKlimaWeeklyIncooom / initialKlima), rebaseConst) / 3
-    requiredUSDForWeeklyIncooom = requiredKlimaWeeklyIncooom * priceKlima
+    # forcastWeeklyIncooom = math.log((requiredKlimaWeeklyIncooom / initialKlima), rebaseConst) / 3
+    # requiredUSDForWeeklyIncooom = requiredKlimaWeeklyIncooom * priceKlima
 
-    #=============================OUTPUT FORMATTING===================================
+    # =============================OUTPUT FORMATTING===================================
 
     klimaGrowth_Chart = go.Figure()
     klimaGrowth_Chart.add_trace(
@@ -569,8 +569,10 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     monthlyROI = '{} %'.format(monthlyROI)
     annualROI = '{} %'.format(millify(annualROI, precision=1))
 
-    return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI, forcastUSDTarget, forcastKlimaTarget, forcastDailyIncooom, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
+    return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI, forcastUSDTarget,\
+           forcastKlimaTarget, forcastDailyIncooom, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
+
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8051)
