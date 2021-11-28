@@ -24,8 +24,7 @@ app.layout = dbc.Container([
     dcc.Tabs([
         dcc.Tab(label='Klima rewards simulator',
                 selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
-                style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
-                children=[
+                style={'color': 'green', 'fontSize': '30px', 'height': '70px'}, children=[
             dbc.Row([
                 dbc.Col(dcc.Markdown('''
                 ## Predicted Growth
@@ -66,7 +65,8 @@ app.layout = dbc.Container([
                                                 placeholder='1.0',
                                                 type='number',
                                                 min=1,
-                                                value=1, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
+                                                value=1, style={'background-color': '#222222', 'color': 'white',
+                                                                'width': '100%'})]),
                                         dbc.Col([
                                             dbc.Label('Simulated APY(%)'),
                                             dbc.Input(
@@ -74,7 +74,8 @@ app.layout = dbc.Container([
                                                 placeholder='40000',
                                                 type='number',
                                                 min=1,
-                                                value=40000, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
+                                                value=40000, style={'background-color': '#222222', 'color': 'white',
+                                                                    'width': '100%'})]),
                                     ], className="g-2"),
                                 ]), className='w-100'),
                             dbc.Card(
@@ -89,7 +90,8 @@ app.layout = dbc.Container([
                                                 type='number',
                                                 min=1,
                                                 value=5,
-                                                style={'background-color': '#222222', 'color': 'white', 'width': '100%'}),
+                                                style={'background-color': '#222222', 'color': 'white',
+                                                       'width': '100%'}),
                                         ]),
                                         dbc.Col([
                                             dbc.Label('Profit taking cadence (Days)'),
@@ -99,7 +101,8 @@ app.layout = dbc.Container([
                                                 type='number',
                                                 min=1,
                                                 value=30,
-                                                style={'background-color': '#222222', 'color': 'white', 'width': '100%'}),
+                                                style={'background-color': '#222222', 'color': 'white',
+                                                       'width': '100%'}),
                                         ])
                                     ], className="g-2")]), className='w-100'),
 
@@ -114,7 +117,8 @@ app.layout = dbc.Container([
                                                 placeholder='1000',
                                                 type='number',
                                                 min=1,
-                                                value=1000, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
+                                                value=1000, style={'background-color': '#222222', 'color': 'white',
+                                                                   'width': '100%'})]),
                                         dbc.Col([
                                             dbc.Label('USDC worth to buy'),
                                             dbc.Input(
@@ -122,7 +126,8 @@ app.layout = dbc.Container([
                                                 placeholder='1000',
                                                 type='number',
                                                 min=1,
-                                                value=1000, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
+                                                value=1000, style={'background-color': '#222222', 'color': 'white',
+                                                                   'width': '100%'})]),
                                         dbc.Col([
                                             dbc.Label('Dollar cost averaging cadence (Days)'),
                                             dbc.Input(
@@ -130,7 +135,8 @@ app.layout = dbc.Container([
                                                 placeholder='30',
                                                 type='number',
                                                 min=1,
-                                                value=30, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
+                                                value=30, style={'background-color': '#222222', 'color': 'white',
+                                                                 'width': '100%'})]),
                                     ], className="g-2")]), className='w-100'),
                         ]),
                     ])
