@@ -27,9 +27,9 @@ app.layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'}, children=[
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
-                ## Predicted Growth
-                ---
-                '''))
+                        ## Predicted Growth
+                        ---
+                        '''))
                     ], className='mb-5'),
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -44,7 +44,6 @@ app.layout = dbc.Container([
                             dbc.CardBody([
                                 # use form for controls
                                 dbc.Form([
-
                                     dbc.Card(
                                         dbc.CardBody([
                                             dbc.Row([
@@ -107,7 +106,6 @@ app.layout = dbc.Container([
                                                                'width': '100%'}),
                                                 ])
                                             ], className="g-2")]), className='w-100'),
-
                                     dbc.Card(
                                         dbc.CardBody([
                                             dbc.Row([
@@ -199,9 +197,9 @@ app.layout = dbc.Container([
                     ], className="mb-5"),
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
-                    ## Rewards Strategizer
-                    ---
-                    '''))
+                        ## Rewards Strategizer
+                        ---
+                        '''))
                     ], className='mb-5'),
                     dbc.Row([
                         dbc.Col(
@@ -344,24 +342,24 @@ app.layout = dbc.Container([
                     ], className='mb-5'),
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
-                    ## Explanations
-                    ---
-                    '''))
+                        ## Explanations
+                        ---
+                        '''))
                     ], className='mb-5'),
                     dbc.Row([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Chart Explanation'),
                             dbc.CardBody([
                                 dcc.Markdown('''
-                - The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
-                on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
-                - The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
-                sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
-                - The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
-                of the current dictated KIP-3 Reward Rate Framework.
-                - The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
-                of the current dictated KIP-3 Reward Rate Framework.
-                ''')
+                    - The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
+                    on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
+                    - The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
+                    sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
+                    - The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
+                    of the current dictated KIP-3 Reward Rate Framework.
+                    - The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
+                    of the current dictated KIP-3 Reward Rate Framework.
+                    ''')
                             ])
                         ], outline=True, color='success'), className='w-50')
                     ], className="mb-5"),
@@ -372,14 +370,12 @@ app.layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
                     dbc.Row([
-                        dbc.Col([
-                            dbc.Card([
-                                dbc.CardHeader('What is (3,3)?')
-                            ])
-                        ])
-                    ])
-                ], className='mb-4'),
-    ])
+                        html.Div(html.Img(src=app.get_asset_url('New_Klima_staking_page-01.png'),
+                                          style={'height': '100%',
+                                                 'width': '100%',
+                                                 'padding': '50px'}))], className='w-100')
+                ])
+    ], className='mb-4'),
 ], fluid=True)  # Responsive ui control
 
 
