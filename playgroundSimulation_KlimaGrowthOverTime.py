@@ -353,16 +353,13 @@ app.layout = dbc.Container([
                             dbc.CardHeader('Chart Explanation'),
                             dbc.CardBody([
                                 dcc.Markdown('''
-                The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
+                - The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
                 on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
-    
-                The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
+                - The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
                 sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
-    
-                The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
+                - The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
                 of the current dictated KIP-3 Reward Rate Framework.
-    
-                The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
+                - The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
                 of the current dictated KIP-3 Reward Rate Framework.
                 ''')
                             ])
