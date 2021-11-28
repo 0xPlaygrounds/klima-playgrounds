@@ -27,9 +27,9 @@ app.layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'}, children=[
                 dbc.Row([
                     dbc.Col(dcc.Markdown('''
-                    ## Predicted Growth
-                    ---
-                    '''))
+                ## Predicted Growth
+                ---
+                '''))
                 ], className='mb-5'),
                 dbc.Row([
                     dbc.Col(dbc.Card([
@@ -56,7 +56,8 @@ app.layout = dbc.Container([
                                                     min=1,
                                                     max=1000,
                                                     value=365,
-                                                    tooltip={'placement': 'top', 'always_visible': True}), ], width='12')]),
+                                                    tooltip={'placement': 'top', 'always_visible': True}), ],
+                                                width='12')]),
                                         dbc.Row([
                                             dbc.Col([
                                                 dbc.Label('Initial Klima'),
@@ -194,9 +195,9 @@ app.layout = dbc.Container([
                 ], className="mb-5"),
                 dbc.Row([
                     dbc.Col(dcc.Markdown('''
-                    ## Rewards Strategizer
-                    ---
-                    '''))
+                ## Rewards Strategizer
+                ---
+                '''))
                 ], className='mb-5'),
                 dbc.Row([
                     dbc.Col(
@@ -206,7 +207,8 @@ app.layout = dbc.Container([
                                 dbc.Row([
                                     dbc.Col([
                                         dbc.Card([
-                                            dbc.Label('Days until USDC Value', style={'color': 'white', 'fontSize': 15}),
+                                            dbc.Label('Days until USDC Value',
+                                                      style={'color': 'white', 'fontSize': 15}),
                                             dbc.CardBody([
                                                 html.Div(style={'color': 'white', 'fontSize': 50}, id='rewardsUSD'),
                                             ])
@@ -214,7 +216,8 @@ app.layout = dbc.Container([
                                     ], className='w-100'),
                                     dbc.Col([
                                         dbc.Card([
-                                            dbc.Label('Days until KLIMA amount', style={'color': 'white', 'fontSize': 15}),
+                                            dbc.Label('Days until KLIMA amount',
+                                                      style={'color': 'white', 'fontSize': 15}),
                                             dbc.CardBody([
                                                 html.Div(style={'color': 'white', 'fontSize': 50}, id='rewardsKLIMA'),
                                             ])
@@ -262,8 +265,9 @@ app.layout = dbc.Container([
                                                         placeholder='1000',
                                                         type='number',
                                                         min=1,
-                                                        value=1000, style={'background-color': '#222222', 'color': 'white',
-                                                                           'width': '100%'}
+                                                        value=1000,
+                                                        style={'background-color': '#222222', 'color': 'white',
+                                                               'width': '100%'}
                                                     )
                                                 ], className='w-100'),
                                                 dbc.Col([
@@ -273,8 +277,9 @@ app.layout = dbc.Container([
                                                         placeholder='10',
                                                         type='number',
                                                         min=1,
-                                                        value=10, style={'background-color': '#222222', 'color': 'white',
-                                                                         'width': '100%'}
+                                                        value=10,
+                                                        style={'background-color': '#222222', 'color': 'white',
+                                                               'width': '100%'}
                                                     )
                                                 ], className='w-100'),
                                             ], style={'padding': '25px'}),
@@ -330,39 +335,39 @@ app.layout = dbc.Container([
                 ], className='mb-5'),
                 dbc.Row([
                     dbc.Col(dcc.Markdown('''
-                    ## Explanations
-                    ---
-                    '''))
+                ## Explanations
+                ---
+                '''))
                 ], className='mb-5'),
                 dbc.Row([
                     dbc.Col(dbc.Card([
                         dbc.CardHeader('Chart Explanation'),
                         dbc.CardBody([
                             dcc.Markdown('''
-                The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
-                on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
-    
-                The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
-                sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
-    
-                The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
-                of the current dictated KIP-3 Reward Rate Framework.
-    
-                The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
-                of the current dictated KIP-3 Reward Rate Framework.
-                ''')
+            The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
+            on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
+
+            The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
+            sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
+
+            The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
+            of the current dictated KIP-3 Reward Rate Framework.
+
+            The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
+            of the current dictated KIP-3 Reward Rate Framework.
+            ''')
                         ])
                     ], outline=True, color='success'), className='w-50')
                 ], className="mb-5"),
             ]),
 
-            dcc.Tab(label='Rewards Simulator guide',
-                    selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
-                    style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
-                    children=[
+        dcc.Tab(label='Rewards Simulator guide',
+                selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+                style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+                children=[
 
-            ], className='mb-4'),
-        ])
+                ], className='mb-4'),
+    ])
 ], fluid=True)  # Responsive ui control
 
 
@@ -587,7 +592,7 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     monthlyROI = '{} %'.format(monthlyROI)
     annualROI = '{} %'.format(millify(annualROI, precision=1))
 
-    return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI, forcastUSDTarget,\
+    return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI, forcastUSDTarget, \
            forcastKlimaTarget, forcastDailyIncooom, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
 
