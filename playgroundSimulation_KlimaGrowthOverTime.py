@@ -260,6 +260,56 @@ app.layout = dbc.Container([
                     dbc.Card([
                         dbc.CardHeader('Rewards strategizer controls'),
                         dbc.CardBody([
+                            dbc.Form([
+                                dbc.Card(
+                                    dbc.CardBody([
+                                        dbc.Row([
+                                            dbc.Col([
+                                                dbc.Label('Desired KLIMA Value (USDC)'),
+                                                dbc.Input(
+                                                    id='desired_klima_usdc',
+                                                    placeholder='500.0',
+                                                    type='number',
+                                                    min=1,
+                                                    value=10000, style={'width': '100%'}
+                                                )
+                                            ]),
+                                            dbc.Col([
+                                                dbc.Label('Desired KLIMA Amount (Units)'),
+                                                dbc.Input(
+                                                    id='desired_klima_unit',
+                                                    placeholder='500.0',
+                                                    type='number',
+                                                    min=1,
+                                                    value=500, style={'width': '100%'}
+                                                )
+                                            ])
+                                        ],style={'padding': '25px'}),
+                                        dbc.Row([
+                                            dbc.Col([
+                                                dbc.Label('Desired daily staking rewards (USDC)'),
+                                                dbc.Input(
+                                                    id='desired_daily_rewards_usdc',
+                                                    placeholder='5000',
+                                                    type='number',
+                                                    min=1,
+                                                    value=5000, style={'width':'100%'}
+                                                )
+                                            ]),
+                                            dbc.Col([
+                                                dbc.Label('Desired daily staking rewards (USDC)'),
+                                                dbc.Input(
+                                                    id='desired_weekly_rewards_usdc',
+                                                    placeholder='5000',
+                                                    type='number',
+                                                    min=1,
+                                                    value=50000, style={'width': '100%'}
+                                                )
+                                            ])
+                                        ],style={'padding': '25px'})
+                                    ])
+                                )
+                            ])
                         ])
                     ], outline=True, color='success', style={"height": "600px"}), className='w-50'),
             ], className='mb-5'),
@@ -292,50 +342,6 @@ app.layout = dbc.Container([
         ]),
 
         dcc.Tab(label='Klima staking rewards', children=[
-            dbc.Row([
-
-                dbc.Col([dbc.Card([
-                    dbc.CardHeader('Staking rewards forecast controls'),
-                    dbc.CardBody([
-                        dbc.Row([
-                            html.Label('Desired KLIMA Value (USDC)'),
-                            dcc.Input(
-                                id='desiredKlimaUSDC',
-                                placeholder='10000',
-                                type='number',
-                                min=1000,
-                                value=10000, style={'width': '100%'}
-                            )]),
-                        dbc.Row([
-                            html.Label('Desired amount of KLIMA (Units)'),
-                            dcc.Input(
-                                id='desiredKlimaUnit',
-                                placeholder='500.0',
-                                type='number',
-                                min=1,
-                                value=500, style={'width': '100%'}
-                            )]),
-                        dbc.Row([
-                            html.Label('Desired daily staking rewards (USDC)'),
-                            dcc.Input(
-                                id='desiredDailyRewardsUSDC',
-                                placeholder='5000',
-                                type='number',
-                                min=1,
-                                value=5000, style={'width': '100%'}
-                            )]),
-                        dbc.Row([
-                            html.Label('Desired weekly staking rewards (USDC)'),
-                            dcc.Input(
-                                id='desiredWeeklyRewardsUSDC',
-                                placeholder='5000',
-                                type='number',
-                                min=1,
-                                value=5000, style={'width': '100%'}
-                            )]),
-                    ]),
-                ])], width=3)
-            ]),
         ], className='mb-4'),
     ])
 ], fluid=True)  # Responsive ui control
@@ -350,6 +356,12 @@ app.layout = dbc.Container([
     Output(component_id='sevendayROI', component_property='children'),
     Output(component_id='monthlyROI', component_property='children'),
     Output(component_id='annualROI', component_property='children'),
+    Output(component_id='rewardsUSD', component_property='children'),
+    Output(component_id='rewardsKLIMA', component_property='children'),
+    Output(component_id='rewardsDaily', component_property='children'),
+    Output(component_id='requiredDaily', component_property='children'),
+    Output(component_id='rewardsWeekly', component_property='children'),
+    Output(component_id='requiredWeekly', component_property='children'),
     Input(component_id='growthDays', component_property='value'),
     Input(component_id='initialKlima', component_property='value'),
     Input(component_id='currentAPY', component_property='value'),
@@ -360,11 +372,17 @@ app.layout = dbc.Container([
     Input(component_id='buyDays', component_property='value'),
     Input(component_id='priceKlima', component_property='value'),
     Input(component_id='priceofETH', component_property='value'),
+    Input(component_id='desired_klima_usdc', component_property='value'),
+    Input(component_id='desired_klima_unit', component_property='value'),
+    Input(component_id='desired_daily_rewards_usdc', component_property='value'),
+    Input(component_id='desired_weekly_rewards_usdc', component_property='value'),
 ])
 # function to calculate klima growth over user specified number of days
 def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, sellDays, klimaPrice_DCA, valBuy, buyDays,
-                           priceKlima, priceofETH):
-    # Data frame to hold all required data point. Data required would be Epochs since rebase are distributed every Epoch
+                           priceKlima, priceofETH, desired_klima_usdc, desired_klima_unit, desired_daily_rewards_usdc,
+                           desired_weekly_rewards_usdc):
+    # ===========================Variable definitions and prep===============================
+    # In this section we take the input variables and do any kind of prep work
     klimaGrowthEpochs = (growthDays * 3) + 1
     sellEpochs = sellDays * 3
     buyEpochs = buyDays * 3
@@ -372,16 +390,22 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     cadenceConst_BUY = buyEpochs
     dcaAmount = valBuy / klimaPrice_DCA
     percentSale = percentSale / 100
-    userAPY = currentAPY / 100
+    currentAPY = currentAPY / 100
     minAPY = 1000 / 100
     maxAPY = 10000 / 100
     gwei = 1
+    rewardYield = ((1 + currentAPY) ** (1 / float(1095))) - 1
+    rewardYield = round(rewardYield, 5)
+    rebaseConst = 1 + rewardYield
+    priceKlima = 1000
 
+    # In this section, we calculate the staking and unstaking fees. Not required for klima
     stakingGasFee = 179123 * ((gwei * priceofETH) / (10 ** 9))
     stakingGasFee_klimaAmount = stakingGasFee / klimaPrice_DCA
     # unstakingGasFee = 89654 * ((gwei * priceofETH) / (10 ** 9))
 
-    rewardYield = ((1 + userAPY) ** (1 / float(1095))) - 1
+    # In this section we calculate the reward yield from the users speculated APY
+    rewardYield = ((1 + currentAPY) ** (1 / float(1095))) - 1
     minOIPYield = ((1 + minAPY) ** (1 / float(1095))) - 1
     maxOIPYield = ((1 + maxAPY) ** (1 / float(1095))) - 1
 
@@ -394,8 +418,9 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
 
     dollarCostAVG_klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
     dollarCostAVG_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3
+    # ===========================Variable definitions and prep===============================
 
-    # To Calculate the klima growth over 3000 Epochs or 1000 days,
+    # ============================ USER APY, DCA, PROFIT ADJUSTED PROJECTION =====
     # we loop through the exponential klima growth equation every epoch
     totalklimas = []  # create an empty array that will hold the componded rewards
     pA_totalklimas = []
@@ -405,7 +430,6 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     klimaStakedGrowth = initialKlima  # Initial staked klimas used to project growth over time
     pA_klimaStakedGrowth = initialKlima
     dcA_klimaStakedGrowth = initialKlima
-
     # Initialize the for loop to have loops equal to number of rows or number of epochs
     for elements in klimaGrowth_df.Epochs:
         totalklimas.append(klimaStakedGrowth)  # populate the empty array with calclated values each iteration
@@ -418,17 +442,13 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
 
         if elements == sellEpochs:
             sellEpochs = sellEpochs + cadenceConst
-            # print(totalklimas[-1] - (totalklimas[-1] * percentSale))
             pA_klimaStakedGrowth = pA_totalklimas[-1] - (pA_totalklimas[-1] * percentSale)
         else:
             pass
 
         if elements == buyEpochs:
             buyEpochs = buyEpochs + cadenceConst_BUY
-            # print(dcA_klimaStakedGrowth)
             dcA_klimaStakedGrowth = (dcA_klimaStakedGrowth + (dcaAmount - stakingGasFee_klimaAmount))
-            # st.write(stakingGasFee_klimaAmount)
-            # print(dcA_klimaStakedGrowth)
         else:
             pass
 
@@ -443,7 +463,9 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
                                             decimals=3)
     klimaGrowth_df.Profit_Adjusted_Total_klimas = np.around(klimaGrowth_df.Profit_Adjusted_Total_klimas, decimals=3)
     klimaGrowth_df.DCA_Adjusted_Total_klimas = np.around(klimaGrowth_df.DCA_Adjusted_Total_klimas, decimals=3)
+    # ============================ USER APY, DCA, PROFIT ADJUSTED PROJECTION =====
 
+    # ============================ MIN APY PROJECTION ============================
     totalklimas_minOIPRate = []
     minOIPYield = round(minOIPYield, 5)
     klimaStakedGrowth_minOIPRate = initialKlima  # Initial staked klimas used to project growth over time
@@ -454,7 +476,9 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
         klimaStakedGrowth_minOIPRate = klimaStakedGrowth_minOIPRate * (
                 1 + minOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Min_klimaGrowth'] = totalklimas_minOIPRate  # Clean up and add the new array to the main data frame
+    # ============================ MIN APY PROJECTION ============================
 
+    # ============================ MAX APY PROJECTION ============================
     totalklimas_maxOIPRate = []
     maxOIPYield = round(maxOIPYield, 5)
     klimaStakedGrowth_maxOIPRate = initialKlima  # Initial staked klimas used to project growth over time
@@ -465,7 +489,7 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
         klimaStakedGrowth_maxOIPRate = klimaStakedGrowth_maxOIPRate * (
                 1 + maxOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Max_klimaGrowth'] = totalklimas_maxOIPRate  # Clean up and add the new array to the main data frame
-    # ================================================================================
+    # ============================ MAX APY PROJECTION ============================
 
     # Let's get some ROI Outputs starting with the daily
     dailyROI = (1 + rewardYield) ** 3 - 1  # Equation to calculate your daily ROI based on reward Yield
@@ -491,22 +515,30 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
     annualROI = (1 + rewardYield) ** (365 * 3) - 1  # Equation to calculate your annual ROI based on reward Yield
     annualROI = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
     # ================================================================================
-    # TODO:
-    # Let's create a nice looking table to view the results of our calculations.
-    # The table will contain the ROIs and the percentages
-    # roiData = [['Daily', dailyROI],
-    #            ['5 Day', fivedayROI],
-    #            ['7 Day', sevendayROI],
-    #            ['1 Month', monthlyROI],
-    #            ['1 Year', annualROI]]
-    # roiTabulated_df = pd.DataFrame(roiData, columns=['Cadence', 'Percentage'])
 
-    dailyROI = '{} %'.format(dailyROI)
-    fivedayROI = '{} %'.format(fivedayROI)
-    sevendayROI = '{} %'.format(sevendayROI)
-    monthlyROI = '{} %'.format(monthlyROI)
-    annualROI = '{} %'.format(millify(annualROI, precision=1))
     # ================================================================================
+    # Days until you reach target USD by staking only
+    forcastUSDTarget = round((math.log(desired_klima_usdc / (initialKlima * priceKlima), rebaseConst) / 3))
+    # ================================================================================
+    # Days until you reach target Klima by staking only
+    forcastKlimaTarget = round(math.log(desired_klima_unit / (initialKlima), rebaseConst) / 3)
+    # ================================================================================
+    # Daily Incooom calculations
+    # Required Klimas until you are earning your desired daily incooom
+    requiredKlimaDailyIncooom = round((desired_daily_rewards_usdc / dailyROI) / priceKlima)
+    # Days until you are earning your desired daily incooom from your current initial staked Klima amount
+    forcastDailyIncooom = round(math.log((requiredKlimaDailyIncooom / initialKlima), rebaseConst) / 3)
+    requiredUSDForDailyIncooom = requiredKlimaDailyIncooom * priceKlima
+    # ================================================================================
+    # Weekly Incooom calculations
+    # Required Klimas until you are earning your desired weekly incooom
+    requiredKlimaWeeklyIncooom = round((desired_weekly_rewards_usdc / sevendayROI) / priceKlima)
+    # Days until you are earning your desired weekly incooom from your current initial staked Klima amount
+    forcastWeeklyIncooom = round(math.log((requiredKlimaWeeklyIncooom / initialKlima), rebaseConst) / 3)
+    #forcastWeeklyIncooom = math.log((requiredKlimaWeeklyIncooom / initialKlima), rebaseConst) / 3
+    requiredUSDForWeeklyIncooom = requiredKlimaWeeklyIncooom * priceKlima
+
+    #=============================OUTPUT FORMATTING===================================
 
     klimaGrowth_Chart = go.Figure()
     klimaGrowth_Chart.add_trace(
@@ -529,79 +561,16 @@ def klimaGrowth_Projection(growthDays, initialKlima, currentAPY, percentSale, se
                                    gridwidth=0.01, mirror=True)
     klimaGrowth_Chart.update_yaxes(showline=True, linewidth=0.1, linecolor='#31333F', color='white', showgrid=False,
                                    gridwidth=0.01, mirror=True, zeroline=False)
-
     klimaGrowth_Chart.layout.legend.font.color = 'white'
 
-    return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI
+    dailyROI = '{} %'.format(dailyROI)
+    fivedayROI = '{} %'.format(fivedayROI)
+    sevendayROI = '{} %'.format(sevendayROI)
+    monthlyROI = '{} %'.format(monthlyROI)
+    annualROI = '{} %'.format(millify(annualROI, precision=1))
 
-
-# call backs for desired staking rewards controls
-@app.callback([
-    Output(component_id='rewardsUSD', component_property='children'),
-    Output(component_id='rewardsKLIMA', component_property='children'),
-    Output(component_id='rewardsDaily', component_property='children'),
-    Output(component_id='requiredDaily', component_property='children'),
-    Output(component_id='rewardsWeekly', component_property='children'),
-    Output(component_id='requiredWeekly', component_property='children'),
-    Input(component_id='desiredKlimaUSDC', component_property='value'),
-    Input(component_id='desiredKlimaUnit', component_property='value'),
-    Input(component_id='desiredDailyRewardsUSDC', component_property='value'),
-    Input(component_id='desiredWeeklyRewardsUSDC', component_property='value'),
-])
-# This function will calculate the user desired staking rewards. Output will be number of days until user achieves goals
-def stakingRewardsProjection(desiredKlimaUSDC, desiredKlimaUnit, desiredDailyRewardsUSDC, desiredWeeklyRewardsUSDC):
-    # Some variables are still hard coded i.e initial klime, user apy etc.
-    # this will be changed in the next update once chained callbacks are implemented
-    initialKlima = 1
-    userAPY = 40000 / 100
-    rewardYield = ((1 + userAPY) ** (1 / float(1095))) - 1
-    rewardYield = round(rewardYield, 5)
-    rebaseConst = 1 + rewardYield
-    priceKlima = 1000
-    dailyROI = 1.7 / 100
-    sevendayROI = 12.2 / 100
-    # current staking %APY. Need to make this read from a source or user entry
-
-    # ================================================================================
-    # Days until you reach target USD by staking only
-    forcastUSDTarget = round((math.log(desiredKlimaUSDC / (initialKlima * priceKlima), rebaseConst) / 3))
-    # ================================================================================
-    # Days until you reach target OHM by staking only
-    forcastOHMTarget = round(math.log(desiredKlimaUnit / (initialKlima), rebaseConst) / 3)
-    # ================================================================================
-    # Daily Incooom calculations
-    # Required OHMs until you are earning your desired daily incooom
-    requiredOHMDailyIncooom = round((desiredDailyRewardsUSDC / dailyROI) / priceKlima)
-    # Days until you are earning your desired daily incooom from your current initial staked OHM amount
-    forcastDailyIncooom = round(math.log((requiredOHMDailyIncooom / initialKlima), rebaseConst) / 3)
-    # TODO:
-    # requiredUSDForDailyIncooom = requiredOHMDailyIncooom * priceKlima
-    # ================================================================================
-    # Weekly Incooom calculations
-    # Required OHMs until you are earning your desired weekly incooom
-    requiredOHMWeeklyIncooom = round((desiredWeeklyRewardsUSDC / sevendayROI) / priceKlima)
-    # Days until you are earning your desired weekly incooom from your current initial staked OHM amount
-    forcastWeeklyIncooom = round(math.log((requiredOHMWeeklyIncooom / initialKlima), rebaseConst) / 3)
-
-    # TODO: Re-enable when controls are migrated from second tab
-    # requiredUSDForWeeklyIncooom = requiredOHMWeeklyIncooom * priceKlima
-
-    # ================================================================================
-    # TODO:
-    # Let's create a nice looking table to view the results of our calculations.
-    # The table will contain the ROIs and the percentages
-    # incooomForcastData = [['USD Target($)', forcastUSDTarget],
-    #                       ['OHM Target(OHM)', forcastOHMTarget],
-    #                       ['Required OHM for desired daily incooom', requiredOHMDailyIncooom],
-    #                       ['Days until desired daily incooom goal', forcastDailyIncooom],
-    #                       ['Required OHM for weekly incooom goal', requiredOHMWeeklyIncooom],
-    #                       ['Days until desired weekly incooom goal', forcastWeeklyIncooom]]
-    # incooomForcastData_df = pd.DataFrame(incooomForcastData, columns=['Forcast', 'Results'])
-    # incooomForcastDataDataTable = incooomForcastData_df.to_dict('rows')
-
-    return forcastUSDTarget, forcastOHMTarget, forcastDailyIncooom, requiredOHMDailyIncooom, forcastWeeklyIncooom, \
-           requiredOHMWeeklyIncooom  # noqa: E127
-
+    return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI, forcastUSDTarget, forcastKlimaTarget, forcastDailyIncooom, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
+           requiredKlimaWeeklyIncooom  # noqa: E127
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8051)
