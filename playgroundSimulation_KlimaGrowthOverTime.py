@@ -22,7 +22,10 @@ app.layout = dbc.Container([
     ]),
     # Create a tab so we can have two sections for the klima growth/rewards simulation
     dcc.Tabs([
-        dcc.Tab(label='Klima growth over time', children=[
+        dcc.Tab(label='Klima rewards simulator',
+                selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+                style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+                children=[
             dbc.Row([
                 dbc.Col(dcc.Markdown('''
                 ## Predicted Growth
@@ -36,7 +39,7 @@ app.layout = dbc.Container([
                         dcc.Graph(id='graph1'),
                         html.Div(id='table')
                     ])
-                ], outline=True, color='success', style={"height": "600px"}), className='w-50'),
+                ], outline=True, color='success', style={"height": "570px"}), className='w-50'),
                 dbc.Col(dbc.Card([
                     dbc.CardHeader('Simulation controls'),
                     dbc.CardBody([
@@ -46,8 +49,9 @@ app.layout = dbc.Container([
                             dbc.Card(
                                 dbc.CardBody([
                                     dbc.Row([
-                                        dbc.Label('Growth over time'),
+                                        # dbc.Label('Growth over time'),
                                         dbc.Col([
+                                            dbc.Label('Days'),
                                             dcc.Slider(
                                                 id='growthDays',
                                                 min=1,
@@ -56,21 +60,21 @@ app.layout = dbc.Container([
                                                 tooltip={'placement': 'top', 'always_visible': True}), ], width='12')]),
                                     dbc.Row([
                                         dbc.Col([
-                                            # dbc.Label('Initial Klima'),
-                                            dcc.Input(
+                                            dbc.Label('Initial Klima'),
+                                            dbc.Input(
                                                 id='initialKlima',
                                                 placeholder='1.0',
                                                 type='number',
                                                 min=1,
-                                                value=1, style={'width': '100%'})]),
+                                                value=1, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
                                         dbc.Col([
-                                            # dbc.Label('Simulated APY(%)'),
-                                            dcc.Input(
+                                            dbc.Label('Simulated APY(%)'),
+                                            dbc.Input(
                                                 id='currentAPY',
                                                 placeholder='40000',
                                                 type='number',
                                                 min=1,
-                                                value=40000, style={'width': '100%'})]),
+                                                value=40000, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
                                     ], className="g-2"),
                                 ]), className='w-100'),
                             dbc.Card(
@@ -78,77 +82,59 @@ app.layout = dbc.Container([
                                     dbc.Row([
                                         dbc.Label('Profit taking controls'),
                                         dbc.Col([
-                                            dcc.Input(
+                                            dbc.Label('Profit taking amount (%)'),
+                                            dbc.Input(
                                                 id='percentSale',
                                                 placeholder='5',
                                                 type='number',
                                                 min=1,
                                                 value=5,
-                                                style={'width': '100%'}),
+                                                style={'background-color': '#222222', 'color': 'white', 'width': '100%'}),
                                         ]),
                                         dbc.Col([
-                                            dcc.Input(
+                                            dbc.Label('Profit taking cadence (Days)'),
+                                            dbc.Input(
                                                 id='sellDays',
                                                 placeholder='30',
                                                 type='number',
                                                 min=1,
                                                 value=30,
-                                                style={'width': '100%'}),
+                                                style={'background-color': '#222222', 'color': 'white', 'width': '100%'}),
                                         ])
                                     ], className="g-2")]), className='w-100'),
 
                             dbc.Card(
                                 dbc.CardBody([
                                     dbc.Row([
-                                        dbc.Label('Dollar cost averaging'),
+                                        dbc.Label('Dollar cost averaging controls'),
                                         dbc.Col([
-                                            dcc.Input(
+                                            dbc.Label('Dollar cost averaging price (USDC)'),
+                                            dbc.Input(
                                                 id='klimaPrice_DCA',
                                                 placeholder='1000',
                                                 type='number',
                                                 min=1,
-                                                value=1000, style={'width': '100%'})]),
+                                                value=1000, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
                                         dbc.Col([
-                                            dcc.Input(
+                                            dbc.Label('USDC worth to buy'),
+                                            dbc.Input(
                                                 id='valBuy',
                                                 placeholder='1000',
                                                 type='number',
                                                 min=1,
-                                                value=1000, style={'width': '100%'})]),
+                                                value=1000, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
                                         dbc.Col([
-                                            dcc.Input(
+                                            dbc.Label('Dollar cost averaging cadence (Days)'),
+                                            dbc.Input(
                                                 id='buyDays',
                                                 placeholder='30',
                                                 type='number',
                                                 min=1,
-                                                value=30, style={'width': '100%'})]),
-                                    ], className="g-2")]), className='w-100'),
-
-                            dbc.Card(
-                                dbc.CardBody([
-                                    dbc.Row([
-                                        dbc.Label('Staking rewards controls'),
-                                        dbc.Col([
-                                            dcc.Input(
-                                                id='priceKlima',
-                                                placeholder='1000',
-                                                type='number',
-                                                min=1,
-                                                value=1000, style={'width': '100%'}
-                                            )]),
-                                        dbc.Col([
-                                            dcc.Input(
-                                                id='priceofETH',
-                                                placeholder='10',
-                                                type='number',
-                                                min=1,
-                                                value=10, style={'width': '100%'}
-                                            ),
-                                        ]),
+                                                value=30, style={'background-color': '#222222', 'color': 'white', 'width': '100%'})]),
                                     ], className="g-2")]), className='w-100'),
                         ]),
                     ])
-                ], outline=True, color='success', style={"height": "600px"}), className='w-50'),
+                ], outline=True, color='success', style={"height": "auto"}), className='w-50'),
             ], className="mb-5"),
             dbc.Row([
                 dbc.Col([
@@ -253,7 +239,6 @@ app.layout = dbc.Container([
                                     ])
                                 ], className='w-100')
                             ], style={'padding': '25px'})
-
                         ])
                     ], outline=True, color='success', style={"height": "600px"}), className='w-50'),
                 dbc.Col(
@@ -265,6 +250,30 @@ app.layout = dbc.Container([
                                     dbc.CardBody([
                                         dbc.Row([
                                             dbc.Col([
+                                                dbc.Label('Price of Klima (USDC)'),
+                                                dbc.Input(
+                                                    id='priceKlima',
+                                                    placeholder='1000',
+                                                    type='number',
+                                                    min=1,
+                                                    value=1000, style={'background-color': '#222222', 'color': 'white',
+                                                                       'width': '100%'}
+                                                )
+                                            ], className='w-100'),
+                                            dbc.Col([
+                                                dbc.Label('Price of Matic(USDC)'),
+                                                dbc.Input(
+                                                    id='priceofETH',
+                                                    placeholder='10',
+                                                    type='number',
+                                                    min=1,
+                                                    value=10, style={'background-color': '#222222', 'color': 'white',
+                                                                     'width': '100%'}
+                                                )
+                                            ], className='w-100'),
+                                        ], style={'padding': '25px'}),
+                                        dbc.Row([
+                                            dbc.Col([
                                                 dbc.Label('Desired KLIMA Value (USDC)'),
                                                 dbc.Input(
                                                     id='desired_klima_usdc',
@@ -273,7 +282,7 @@ app.layout = dbc.Container([
                                                     min=1,
                                                     value=10000, style={'color': 'white', 'width': '100%'}
                                                 )
-                                            ]),
+                                            ], className='w-100'),
                                             dbc.Col([
                                                 dbc.Label('Desired KLIMA Amount (Units)'),
                                                 dbc.Input(
@@ -283,7 +292,7 @@ app.layout = dbc.Container([
                                                     min=1,
                                                     value=500, style={'color': 'white', 'width': '100%'}
                                                 )
-                                            ])
+                                            ], className='w-100')
                                         ], style={'padding': '25px'}),
                                         dbc.Row([
                                             dbc.Col([
@@ -295,7 +304,7 @@ app.layout = dbc.Container([
                                                     min=1,
                                                     value=5000, style={'color': 'white', 'width': '100%'}
                                                 )
-                                            ]),
+                                            ], className='w-100'),
                                             dbc.Col([
                                                 dbc.Label('Desired daily staking rewards (USDC)'),
                                                 dbc.Input(
@@ -305,9 +314,9 @@ app.layout = dbc.Container([
                                                     min=1,
                                                     value=50000, style={'color': 'white', 'width': '100%'}
                                                 )
-                                            ])
+                                            ], className='w-100')
                                         ], style={'padding': '25px'})
-                                    ])
+                                    ]), style={'padding': '25px'}
                                 )
                             ])
                         ])
@@ -341,14 +350,16 @@ app.layout = dbc.Container([
             ], className="mb-5"),
         ]),
 
-        dcc.Tab(label='Klima staking rewards', children=[
+        dcc.Tab(label='Rewards Simulator guide',
+                selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+                style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+                children=[
+
         ], className='mb-4'),
     ])
 ], fluid=True)  # Responsive ui control
 
-
 # call back for klima growth controls
-
 @app.callback([
     Output(component_id='graph1', component_property='figure'),
     Output(component_id='dailyROI', component_property='children'),
