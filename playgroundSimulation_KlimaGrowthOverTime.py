@@ -377,7 +377,7 @@ app.layout = dbc.Container([
 ], fluid=True)  # Responsive ui control
 
 
-# call back for klima growth controls
+# call back for klima growth controls and strategizer
 @app.callback([
     Output(component_id='graph1', component_property='figure'),
     Output(component_id='dailyROI', component_property='children'),
