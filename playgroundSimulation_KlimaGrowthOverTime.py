@@ -371,7 +371,13 @@ app.layout = dbc.Container([
                 selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
-
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader('What is (3,3)?')
+                            ])
+                        ])
+                    ])
                 ], className='mb-4'),
     ])
 ], fluid=True)  # Responsive ui control
