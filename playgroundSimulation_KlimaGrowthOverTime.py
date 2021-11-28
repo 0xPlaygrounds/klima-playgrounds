@@ -271,7 +271,7 @@ app.layout = dbc.Container([
                                                     placeholder='500.0',
                                                     type='number',
                                                     min=1,
-                                                    value=10000, style={'width': '100%'}
+                                                    value=10000, style={'color': 'white', 'width': '100%'}
                                                 )
                                             ]),
                                             dbc.Col([
@@ -281,7 +281,7 @@ app.layout = dbc.Container([
                                                     placeholder='500.0',
                                                     type='number',
                                                     min=1,
-                                                    value=500, style={'width': '100%'}
+                                                    value=500, style={'color': 'white', 'width': '100%'}
                                                 )
                                             ])
                                         ], style={'padding': '25px'}),
@@ -293,7 +293,7 @@ app.layout = dbc.Container([
                                                     placeholder='5000',
                                                     type='number',
                                                     min=1,
-                                                    value=5000, style={'width': '100%'}
+                                                    value=5000, style={'color': 'white', 'width': '100%'}
                                                 )
                                             ]),
                                             dbc.Col([
@@ -303,7 +303,7 @@ app.layout = dbc.Container([
                                                     placeholder='5000',
                                                     type='number',
                                                     min=1,
-                                                    value=50000, style={'width': '100%'}
+                                                    value=50000, style={'color': 'white', 'width': '100%'}
                                                 )
                                             ])
                                         ], style={'padding': '25px'})
