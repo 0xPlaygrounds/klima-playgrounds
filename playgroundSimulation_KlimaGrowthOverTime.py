@@ -370,7 +370,7 @@ app.layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
                     dbc.Row([
-                        html.Div(html.Img(src=app.get_asset_url('New_Klima_staking_page-01.png'),
+                        html.Div(html.Img(src=app.get_asset_url('Klima_staking_page-01.png'),
                                           style={'height': '100%',
                                                  'width': '100%',
                                                  'padding': '50px'}))], className='w-100')

@@ -18,29 +18,29 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY],
 # Container looks better
 app.layout = dbc.Container([
     dbc.Row([
-        dbc.Col(html.H2("Playground: Staking", className='text-center, mb-4'))
+        dbc.Col(html.H2("Playground: Bonding", className='text-center, mb-4'))
     ]),
     # Create a tab so we can have two sections for the klima growth/rewards simulation
     dcc.Tabs([
-        dcc.Tab(label='Klima rewards simulator',
+        dcc.Tab(label='Klima (4,4) Simulator)',
                 selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'}, children=[
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
-                        ## Predicted Growth
+                        ## (4,4) Growth
                         ---
                         '''))
                     ], className='mb-5'),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Klima growth simulation results: Charts'),
+                            dbc.CardHeader('(3,3) and (4,4) Growth comparison'),
                             dbc.CardBody([
-                                dcc.Graph(id='graph1'),
-                                html.Div(id='table')
+                                dcc.Graph(id='graph2'),
+                                html.Div(id='table2')
                             ])
                         ], outline=True, color='success', style={"height": "570px"}), className='w-50'),
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Simulation controls'),
+                            dbc.CardHeader('(4,4) Simulation parameters'),
                             dbc.CardBody([
                                 # use form for controls
                                 dbc.Form([
@@ -370,10 +370,14 @@ app.layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
                     dbc.Row([
-                        html.Div(html.Img(src=app.get_asset_url('New_Klima_staking_page-01.png'),
+                        html.Div(html.Img(src=app.get_asset_url('Klima_staking_page-01.png'),
                                           style={'height': '100%',
                                                  'width': '100%',
                                                  'padding': '50px'}))], className='w-100')
                 ])
     ], className='mb-4'),
 ], fluid=True)  # Responsive ui control
+
+
+if __name__ == '__main__':
+    app.run_server(debug=True, port=8052)
