@@ -7,8 +7,6 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
-# import math
-# from millify import millify
 
 # Create link to CSS style sheet
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY],
