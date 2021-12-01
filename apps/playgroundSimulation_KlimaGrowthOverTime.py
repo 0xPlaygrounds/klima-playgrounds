@@ -11,15 +11,14 @@ import math
 from millify import millify
 from app import app
 
-# Create link to CSS style sheet
-# app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY],
-#                meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}])
-
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
 layout = dbc.Container([
     dbc.Row([
-        dbc.Col(html.H2("Playground: Staking", className='text-center, mb-4'))
+        html.Div(html.Img(src=app.get_asset_url('playgroundsStakingLogo.png'),
+                          style={'height': '100%',
+                                 'width': '30%',
+                                 'padding': '10px'}))
     ]),
     # Create a tab so we can have two sections for the klima growth/rewards simulation
     dcc.Tabs([
@@ -39,7 +38,7 @@ layout = dbc.Container([
                                 dcc.Graph(id='graph1'),
                                 html.Div(id='table')
                             ])
-                        ], outline=True, color='success', style={"height": "570px"}), className='w-50'),
+                        ], outline=True, color='success', style={"height": "100%"}), className='w-50'),
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Simulation controls'),
                             dbc.CardBody([
@@ -371,11 +370,10 @@ layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
                     dbc.Row([
-                        #html.Div(html.Img(src=app.get_asset_url('New_Klima_staking_page-01.png'),
-                        #                  style={'height': '100%',
-                        #                         'width': '100%',
-                        #                         'padding': '50px'}))], className='w-100'
-                    ])
+                        html.Div(html.Img(src=app.get_asset_url('New_Klima_staking_page-01.png'),
+                                          style={'height': '100%',
+                                                 'width': '100%',
+                                                 'padding': '50px'}))], className='w-100')
                 ])
     ], className='mb-4'),
 ], fluid=True)  # Responsive ui control
@@ -607,7 +605,3 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI, forcastUSDTarget, \
            forcastKlimaTarget, forcastDailyIncooom, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
-
-
-# if __name__ == '__main__':
-    # app.run_server(debug=True, port=8051)

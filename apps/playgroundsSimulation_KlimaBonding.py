@@ -7,16 +7,13 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
-
-# Create link to CSS style sheet
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY],
-                meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0'}])
+from app import app
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
-app.layout = dbc.Container([
+layout = dbc.Container([
     dbc.Row([
-        html.Div(html.Img(src=app.get_asset_url('/assets/playgroundsBondingLogo.png'),
+        html.Div(html.Img(src=app.get_asset_url('playgroundsBondingLogo.png'),
                           style={'height': '100%',
                                  'width': '30%',
                                  'padding': '10px'}))
@@ -343,8 +340,4 @@ def bonding_simulation(klima_price, initial_klima, bond_roi, reward_yield):
 
     return stake_bond_chart, stake_bond_roi_chart, maxstake_growth, maxBondGrowth, \
         klimaGained, staking_reward_rate_P, \
-        bond_roi_percent, maxbond_roi
-
-
-if __name__ == '__main__':
-    app.run_server(debug=True, port=8052)
+        bond_roi_percent, maxbond_roi  # noqa: E127
