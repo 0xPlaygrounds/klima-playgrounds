@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="866512d3-7f11-4c8a-b01b-e5fcd5b43e0d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playgroundsSimulation_KlimaBonding.py" beforeDir="false" afterPath="$PROJECT_DIR$/playgroundsSimulation_KlimaBonding.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,6 @@
       <workItem from="1637744724104" duration="18000" />
       <workItem from="1637746090374" duration="627000" />
       <workItem from="1637773897575" duration="31514000" />
-      <workItem from="1638059410040" duration="541000" />
     </task>
     <servers />
   </component>
