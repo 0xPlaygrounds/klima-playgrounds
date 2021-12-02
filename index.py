@@ -2,7 +2,6 @@ from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
-
 from app import app
 from apps import playgroundSimulation_KlimaGrowthOverTime, playgroundsSimulation_KlimaBonding
 
@@ -12,48 +11,51 @@ SIDEBAR_STYLE = {
     "left": 0,
     "right": 0,
     "bottom": 0,
-    "width": "25rem",
-    "padding": "2rem 1rem",
+    "width": "15rem",
+    "height": "100%",
+    "padding": "0.5rem 1rem",
     "background-color": "#20272B",
 }
 
 CONTENT_STYLE = {
     "position": "relative",
-    "margin-right": "5rem",
-    "margin-left": "30rem",
+    "margin-right": "1rem",
+    "margin-left": "1rem",
     "padding": "1rem 1rem"
 }
 
-sidebar = html.Div(
-    [
-        html.H2("Klima Playgrounds", className="display-4"),
-        html.Hr(),
-        html.P(
-            "Welcome to your playground", className="lead"
-        ),
-        dbc.Nav(
-            [
-                dbc.NavLink("Staking Simulator", href='/apps/playgroundSimulation_KlimaGrowthOverTime', active="exact"),
-                dbc.NavLink("Bonding Simulator", href='/apps/playgroundsSimulation_KlimaBonding', active="exact"),
+navbar = dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink("Staking Simulator", href="/apps/playgroundSimulation_KlimaGrowthOverTime")),
+        dbc.NavItem(dbc.NavLink("Bonding Simulator", href="/apps/playgroundsSimulation_KlimaBonding")),
+        dbc.DropdownMenu(
+            children=[
+                dbc.DropdownMenuItem("More pages", header=True),
+                dbc.DropdownMenuItem("Page 2", href="#"),
+                dbc.DropdownMenuItem("Page 3", href="#"),
             ],
-            vertical=True,
-            pills=True,
+            nav=True,
+            in_navbar=True,
+            label="More",
         ),
     ],
-    style=SIDEBAR_STYLE,
+    brand="Klima Playgrounds",
+    brand_href="#",
+    color="#20272B",
+    dark=True,
+    style={"width": "auto"}
 )
 
 content = html.Div(id="page-content", children=[], style=CONTENT_STYLE)
 
 app.layout = html.Div([
     dcc.Location(id="url"),
-    sidebar,
+    navbar,
     content
 ])
 
 
-@app.callback(Output('page-content', 'children'),
-              Input('url', 'pathname'))
+@app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
     if pathname == '/apps/playgroundSimulation_KlimaGrowthOverTime':
         return playgroundSimulation_KlimaGrowthOverTime.layout
