@@ -28,11 +28,18 @@ layout = dbc.Container([
                             dbc.CardBody([
                                 # use form for controls
                                 dbc.Form([
-                                    dbc.Card(
+                                    dbc.Card([
                                         dbc.CardBody([
                                             dbc.Row([
                                                 dbc.Col([
-                                                    dbc.Label('KLIMA Bond Price (USDC)'),
+                                                    dbc.Label('Klima price (USDC)')
+                                                ]),
+                                                dbc.Col([
+                                                    dbc.Label('Starting amount of Klima (Units)')
+                                                ]),
+                                            ]),
+                                            dbc.Row([
+                                                dbc.Col([
                                                     dbc.Input(
                                                         id='klima_price',
                                                         placeholder='1000',
@@ -42,7 +49,6 @@ layout = dbc.Container([
                                                                           'color': 'white',
                                                                           'width': '100%'})]),
                                                 dbc.Col([
-                                                    dbc.Label('Starting amount of KLIMA (Units)'),
                                                     dbc.Input(
                                                         id='initial_klima',
                                                         placeholder='1',
@@ -51,25 +57,30 @@ layout = dbc.Container([
                                                         value=10, style={'background-color': '#222222',
                                                                          'color': 'white',
                                                                          'width': '100%'})]),
-                                            ], className="g-2"),
-                                        ]), className='w-100'),
+                                            ]),
+                                        ])], className='w-100'),
                                     dbc.Card(
                                         dbc.CardBody([
                                             dbc.Row([
                                                 dbc.Col([
                                                     dbc.Label('Bond ROI (%)'),
+                                                ]),
+                                                dbc.Col([
+                                                    dbc.Label('Rebase Rate (%)'),
+                                                ]),
+                                            ]),
+                                            dbc.Row([
+                                                dbc.Col([
                                                     dbc.Input(
                                                         id='bond_roi',
                                                         placeholder='5',
                                                         type='number',
-                                                        min=1,
                                                         value=5,
                                                         style={'background-color': '#222222',
                                                                'color': 'white',
                                                                'width': '100%'}),
                                                 ]),
                                                 dbc.Col([
-                                                    dbc.Label('Rebase Rate (%)'),
                                                     dbc.Input(
                                                         id='reward_yield',
                                                         placeholder='0.5',
@@ -80,75 +91,80 @@ layout = dbc.Container([
                                                                'color': 'white',
                                                                'width': '100%'}),
                                                 ])
-                                            ], className="g-2")]), className='w-100'),
+                                            ])]), className='w-100'),
                                 ]),
                             ])
-                        ], outline=True, color='success', style={"height": "100%"}), className='w-50'),
-                    ], style={'padding': '25px'}),
+                        ], outline=True, color='success', style={"height": "100%", "width": "100%"})),
+                    ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('(3,3) and (4,4) Growth comparison'),
                             dbc.CardBody([
-                                dcc.Graph(id='graph2'),
-                                html.Div(id='table2')
-                            ])
-                        ], outline=True, color='success', style={"height": "570px"}), className='w-50'),
+                                dcc.Graph(id='graph2', style={"height": "100%", "width": "100%"}),
+                            ], style={"height": "100%", "width": "auto"})
+                        ], outline=True, color='success', style={"height": "100%", "width": "100%"}),
+                            style={'padding': '10px'},
+                            xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Growth Comparison Summary'),
                             dbc.CardBody([
-                                dbc.Row([
-                                    dbc.Col([
-                                        dbc.Label('Max (3,3) ROI (%)', style={'color': 'white', 'fontSize': 40}),
-                                        html.Div(style={'color': 'white', 'fontSize': 100},
+                                    dbc.Row([
+                                        dbc.Label('Max (3,3) ROI (Klima)', style={'color': 'white', 'fontSize': 20}),
+                                        html.Div(style={'color': 'white', 'fontSize': 30},
                                                  id='max_33_growth'),
-                                    ], className='w-100'),
-                                    dbc.Col([
-                                        dbc.Label('Max (4,4) ROI (%)', style={'color': 'white', 'fontSize': 40}),
-                                        html.Div(style={'color': 'white', 'fontSize': 100},
+                                        dcc.Markdown('---')
+                                    ], className='text-center'),
+                                    dbc.Row([
+                                        dbc.Label('Max (4,4) ROI (Klima)', style={'color': 'white', 'fontSize': 20}),
+                                        html.Div(style={'color': 'white', 'fontSize': 30},
                                                  id='max_44_growth'),
-                                    ], className='w-100'),
-                                    dbc.Col([
-                                        dbc.Label('Bonus Klima', style={'color': 'white', 'fontSize': 40}),
-                                        html.Div(style={'color': 'white', 'fontSize': 100},
+                                        dcc.Markdown('---')
+                                    ], className='text-center'),
+                                    dbc.Row([
+                                        dbc.Label('Bonus Klima', style={'color': 'white', 'fontSize': 20}),
+                                        html.Div(style={'color': 'white', 'fontSize': 30},
                                                  id='bonus_gained'),
-                                    ], className='w-100')
-                                ], style={'padding': '25px'})
+                                        dcc.Markdown('---')
+                                    ], className='text-center')
                             ])
-                        ], outline=True, color='success', style={"height": "570px"}), className='w-50')
-                    ], style={'padding': '25px'}),
+                        ], outline=True, color='success', style={"height": "100%"}))
+                    ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('(3,3) and (4,4) ROI Comparison'),
                                 dbc.CardBody([
-                                    dcc.Graph(id='graph3'),
-                                    html.Div(id='table3')
-                                ])
-                            ], outline=True, color='success', style={"height": "600px"}), className='w-50'),
-                        dbc.Col(
+                                    dcc.Graph(id='graph3', style={"height": "100%", "width": "100%"}),
+                                ], style={"height": "100%", "width": "auto"})
+                            ], outline=True, color='success', style={"height": "auto", "width": "100%"}),
+                            style={'padding': '10px'},
+                            xs=12, sm=12, md=12, lg=8, xl=8),
+                        dbc.Col([
                             dbc.Card([
                                 dbc.CardHeader('(3,3) and (4,4) ROI Summary'),
                                 dbc.CardBody([
-                                    dbc.Row([
-                                        dbc.Col([
-                                            dbc.Label('(3,3) ROI (%)', style={'color': 'white', 'fontSize': 40}),
-                                            html.Div(style={'color': 'white', 'fontSize': 100},
+                                        dbc.Row([
+                                            dbc.Label('(3,3) ROI (%)', style={'color': 'white', 'fontSize': 20}),
+                                            html.Div(style={'color': 'white', 'fontSize': 30},
                                                      id='33_roi'),
-                                        ], className='w-100'),
-                                        dbc.Col([
-                                            dbc.Label('Bond ROI (%)', style={'color': 'white', 'fontSize': 40}),
-                                            html.Div(style={'color': 'white', 'fontSize': 100},
+                                            dcc.Markdown('---')
+                                        ], className='text-center'),
+                                        dbc.Row([
+                                            dbc.Label('Bond ROI (%)', style={'color': 'white', 'fontSize': 20}),
+                                            html.Div(style={'color': 'white', 'fontSize': 30},
                                                      id='bonding_roi'),
-                                        ], className='w-100'),
-                                        dbc.Col([
-                                            dbc.Label('Max (4,4) ROI (%)', style={'color': 'white', 'fontSize': 40}),
-                                            html.Div(style={'color': 'white', 'fontSize': 100},
+                                            dcc.Markdown('---')
+                                        ], className='text-center'),
+                                        dbc.Row([
+                                            dbc.Label('Max (4,4) ROI (%)', style={'color': 'white', 'fontSize': 20}),
+                                            html.Div(style={'color': 'white', 'fontSize': 30},
                                                      id='max_44_roi'),
-                                        ], className='w-100')
-                                    ], style={'padding': '25px'})
+                                            dcc.Markdown('---')
+                                        ], className='text-center')
                                 ])
-                            ], outline=True, color='success', style={"height": "600px"}), className='w-50'),
-                    ], style={'padding': '25px'}),
+                            ], outline=True, color='success', style={"height": "100%"})
+                        ], style={'padding': '10px'}),
+                    ]),
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
                                     ## Explanations
@@ -176,11 +192,11 @@ layout = dbc.Container([
                                 of the current dictated KIP-3 Reward Rate Framework.
                                 ''')
                             ])
-                        ], outline=True, color='success'), className='w-50')
-                    ], style={'padding': '25px'}),
-                ]),
+                        ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
+                    ], style={'padding': '10px'}),
+                    ]),
 
-        dcc.Tab(label='Rewards Simulator guide',
+        dcc.Tab(label='Guide',
                 selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[

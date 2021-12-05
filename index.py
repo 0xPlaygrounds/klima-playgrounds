@@ -31,8 +31,8 @@ navbar = dbc.NavbarSimple(
         dbc.DropdownMenu(
             children=[
                 dbc.DropdownMenuItem("More pages", header=True),
-                dbc.DropdownMenuItem("Page 2", href="#"),
-                dbc.DropdownMenuItem("Page 3", href="#"),
+                dbc.DropdownMenuItem("KlimaDAO", href="https://www.klimadao.finance/#/stake"),
+                dbc.DropdownMenuItem("Learn More", href="https://docs.klimadao.finance/"),
             ],
             nav=True,
             in_navbar=True,
@@ -62,7 +62,7 @@ def display_page(pathname):
     elif pathname == '/apps/playgroundsSimulation_KlimaBonding':
         return playgroundsSimulation_KlimaBonding.layout
     else:
-        return '404'
+        return 'Home Page under construction. Click on the Staking and bonding simulator links to access those pages'
 
 
 # For Gunicorn to reference
