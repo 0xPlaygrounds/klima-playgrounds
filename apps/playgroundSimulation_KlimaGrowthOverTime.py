@@ -338,7 +338,7 @@ layout = dbc.Container([
                                                                  id='requiredDaily'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], style={'padding': '10px','height': "100%"})
+                                            ], style={'padding': '10px', 'height': "100%"})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6, style={'height': "100%"}),
                                         dbc.Col([
                                             dbc.Card([
