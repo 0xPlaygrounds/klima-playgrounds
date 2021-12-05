@@ -46,7 +46,6 @@ layout = dbc.Container([
                                         dbc.CardHeader('Simulation controls'),
                                         dbc.CardBody([
                                             dbc.Row([
-                                                # dbc.Label('Growth over time'),
                                                 dbc.Col([
                                                     dbc.Label('Days'),
                                                     dcc.Slider(
