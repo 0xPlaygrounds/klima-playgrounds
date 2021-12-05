@@ -277,14 +277,11 @@ layout = dbc.Container([
                             xs=12, sm=12, md=12, lg=12, xl=12),
                     ], className="mb-5"),
                     dbc.Row([
-
-                    ], className="mb-5"),
-                    dbc.Row([
                         dbc.Col(dcc.Markdown('''
                         ## Rewards Strategizer
                         ---
                         '''))
-                    ], className='mb-5'),
+                    ]),
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
@@ -319,7 +316,7 @@ layout = dbc.Container([
                                                 ], className='align-self-center')
                                             ])
                                         ], xs=12, sm=12, md=12, lg=6, xl=6),
-                                    ], style={'padding': '25px'}),
+                                    ], style={'padding': '10px'}),
                                     dbc.Row([
                                         dbc.Col([
                                             dbc.Card([
@@ -341,7 +338,7 @@ layout = dbc.Container([
                                                                  id='requiredDaily'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ])
+                                            ], style={'padding': '10px', 'height': "100%"})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6, style={'height': "100%"}),
                                         dbc.Col([
                                             dbc.Card([
@@ -361,9 +358,9 @@ layout = dbc.Container([
                                                                  id='requiredWeekly'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ])
+                                            ], style={'padding': '10px', 'height': "100%"})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6, style={'height': "100%"})
-                                    ], style={'padding': '25px', 'height': "100%"}, className='align-self-center')
+                                    ])
                                 ])
                             ], outline=True, color='success', style={"height": "auto"}), style={'padding': '10px'}),
                         dbc.Col(
@@ -463,7 +460,7 @@ layout = dbc.Container([
                                                                                 'color': 'white',
                                                                                 'width': '100%',
                                                                                 'padding': '10px'})])])
-                                            ]), style={'padding': '25px'}
+                                            ]), style={'padding': '10px'}
                                         )
                                     ])
                                 ])
@@ -492,7 +489,7 @@ layout = dbc.Container([
                     of the current dictated KIP-3 Reward Rate Framework.
                     ''')
                             ])
-                        ], outline=True, color='success'), xs=10, sm=8, md=5, lg=6, xl=5)
+                        ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
                     ], className="mb-5"),
                 ]),
 
