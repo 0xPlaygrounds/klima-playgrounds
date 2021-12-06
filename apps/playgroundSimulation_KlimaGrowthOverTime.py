@@ -555,7 +555,6 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     reward_yield = ((1 + user_apy) ** (1 / float(1095))) - 1
     reward_yield = round(reward_yield, 5)
     rebase_const = 1 + reward_yield
-    priceKlima = 1000
 
     # In this section, we calculate the staking and unstaking fees. Not required for klima
     staking_gas_fee = 179123 * ((gwei * priceofETH) / (10 ** 9))
@@ -651,27 +650,27 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
 
     # Let's get some ROI Outputs starting with the daily
     dailyROI = (1 + reward_yield) ** 3 - 1  # Equation to calculate your daily ROI based on reward Yield
-    dailyROI = round(dailyROI * 100, 1)  # daily ROI in Percentage
+    dailyROI_P = round(dailyROI * 100, 1)  # daily ROI in Percentage
     # ================================================================================
 
     # 5 day ROI
     fivedayROI = (1 + reward_yield) ** (5 * 3) - 1  # Equation to calculate your 5 day ROI based on reward Yield
-    fivedayROI = round(fivedayROI * 100, 1)  # 5 day ROI in Percentage
+    fivedayROI_P = round(fivedayROI * 100, 1)  # 5 day ROI in Percentage
     # ================================================================================
 
     # 7 day ROI
     sevendayROI = (1 + reward_yield) ** (7 * 3) - 1  # Equation to calculate your 7 day ROI based on reward Yield
-    sevendayROI = round(sevendayROI * 100, 1)  # 7 day ROI in Percentage
+    sevendayROI_P = round(sevendayROI * 100, 1)  # 7 day ROI in Percentage
     # ================================================================================
 
     # 30 day ROI
     monthlyROI = (1 + reward_yield) ** (30 * 3) - 1  # Equation to calculate your 30 day ROI based on reward Yield
-    monthlyROI = round(monthlyROI * 100, 1)  # 30 day ROI in Percentage
+    monthlyROI_P = round(monthlyROI * 100, 1)  # 30 day ROI in Percentage
     # ================================================================================
 
     # Annual ROI
     annualROI = (1 + reward_yield) ** (365 * 3) - 1  # Equation to calculate your annual ROI based on reward Yield
-    annualROI = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
+    annualROI_P = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
     # ================================================================================
 
     # ================================Rewards strategizer=============================
@@ -680,13 +679,14 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     forcastUSDTarget = round((math.log(desired_klima_usdc / (initialKlima * priceKlima), rebase_const) / 3))
     # ================================================================================
     # Days until you reach target Klima by staking only
-    forcastKlimaTarget = round(math.log(desired_klima_unit / initialKlima, rebase_const) / 3)
+    forcastKlimaTarget = round((math.log(desired_klima_unit / initialKlima, rebase_const) / 3))
     # ================================================================================
     # Daily Incooom calculations
     # Required Klimas until you are earning your desired daily incooom
     requiredKlimaDailyIncooom = round((desired_daily_rewards_usdc / dailyROI) / priceKlima)
     # Days until you are earning your desired daily incooom from your current initial staked Klima amount
     forcastDailyIncooom = round(math.log((requiredKlimaDailyIncooom / initialKlima), rebase_const) / 3)
+    rewardsDaily = forcastDailyIncooom
     # requiredUSDForDailyIncooom = requiredKlimaDailyIncooom * priceKlima
     # ================================================================================
     # Weekly Incooom calculations
@@ -694,7 +694,6 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     requiredKlimaWeeklyIncooom = round((desired_weekly_rewards_usdc / sevendayROI) / priceKlima)
     # Days until you are earning your desired weekly incooom from your current initial staked Klima amount
     forcastWeeklyIncooom = round(math.log((requiredKlimaWeeklyIncooom / initialKlima), rebase_const) / 3)
-    # forcastWeeklyIncooom = math.log((requiredKlimaWeeklyIncooom / initialKlima), rebase_const) / 3
     # requiredUSDForWeeklyIncooom = requiredKlimaWeeklyIncooom * priceKlima
     # ================================Rewards strategizer=============================
 
@@ -723,12 +722,11 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
                                    gridwidth=0.01, mirror=True, zeroline=False)
     klimaGrowth_Chart.layout.legend.font.color = 'white'
 
-    dailyROI = '{} %'.format(dailyROI)
-    fivedayROI = '{} %'.format(fivedayROI)
-    sevendayROI = '{} %'.format(sevendayROI)
-    monthlyROI = '{} %'.format(monthlyROI)
-    annualROI = '{} %'.format(millify(annualROI, precision=1))
-
-    return klimaGrowth_Chart, dailyROI, fivedayROI, sevendayROI, monthlyROI, annualROI, forcastUSDTarget, \
-           forcastKlimaTarget, forcastDailyIncooom, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
+    dailyROI_P = '{} %'.format(dailyROI_P)
+    fivedayROI_P = '{} %'.format(fivedayROI_P)
+    sevendayROI_P = '{} %'.format(sevendayROI_P)
+    monthlyROI_P = '{} %'.format(monthlyROI_P)
+    annualROI_P = '{} %'.format(millify(annualROI_P, precision=1))
+    return klimaGrowth_Chart, dailyROI_P, fivedayROI_P, sevendayROI_P, monthlyROI_P, annualROI_P, forcastUSDTarget, \
+           forcastKlimaTarget, rewardsDaily, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
