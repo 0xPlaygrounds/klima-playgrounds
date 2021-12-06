@@ -727,7 +727,6 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     sevendayROI_P = '{} %'.format(sevendayROI_P)
     monthlyROI_P = '{} %'.format(monthlyROI_P)
     annualROI_P = '{} %'.format(millify(annualROI_P, precision=1))
-
     return klimaGrowth_Chart, dailyROI_P, fivedayROI_P, sevendayROI_P, monthlyROI_P, annualROI_P, forcastUSDTarget, \
            forcastKlimaTarget, rewardsDaily, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
