@@ -687,14 +687,14 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     # Days until you are earning your desired daily incooom from your current initial staked Klima amount
     forcastDailyIncooom = round(math.log((requiredKlimaDailyIncooom / initialKlima), rebase_const) / 3)
     rewardsDaily = forcastDailyIncooom
-    requiredUSDForDailyIncooom = requiredKlimaDailyIncooom * priceKlima
+    # requiredUSDForDailyIncooom = requiredKlimaDailyIncooom * priceKlima
     # ================================================================================
     # Weekly Incooom calculations
     # Required Klimas until you are earning your desired weekly incooom
     requiredKlimaWeeklyIncooom = round((desired_weekly_rewards_usdc / sevendayROI) / priceKlima)
     # Days until you are earning your desired weekly incooom from your current initial staked Klima amount
     forcastWeeklyIncooom = round(math.log((requiredKlimaWeeklyIncooom / initialKlima), rebase_const) / 3)
-    requiredUSDForWeeklyIncooom = requiredKlimaWeeklyIncooom * priceKlima
+    # requiredUSDForWeeklyIncooom = requiredKlimaWeeklyIncooom * priceKlima
     # ================================Rewards strategizer=============================
 
     # =============================OUTPUT FORMATTING===================================
@@ -727,7 +727,7 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     sevendayROI_P = '{} %'.format(sevendayROI_P)
     monthlyROI_P = '{} %'.format(monthlyROI_P)
     annualROI_P = '{} %'.format(millify(annualROI_P, precision=1))
-
+    
     return klimaGrowth_Chart, dailyROI_P, fivedayROI_P, sevendayROI_P, monthlyROI_P, annualROI_P, forcastUSDTarget, \
            forcastKlimaTarget, rewardsDaily, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
