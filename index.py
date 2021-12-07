@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
 from app import app
-from apps import playgroundSimulation_KlimaGrowthOverTime, playgroundsSimulation_KlimaBonding
+from apps import playgroundSimulation_KlimaGrowthOverTime, playgroundsSimulation_KlimaBonding, homePage
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -33,6 +33,7 @@ navbar = dbc.NavbarSimple(
                 dbc.DropdownMenuItem("More pages", header=True),
                 dbc.DropdownMenuItem("KlimaDAO", href="https://www.klimadao.finance/#/stake"),
                 dbc.DropdownMenuItem("Learn More", href="https://docs.klimadao.finance/"),
+                dbc.DropdownMenuItem("Feedback", href="https://forms.gle/UTyj7HvCfBNa1rt17")
             ],
             nav=True,
             in_navbar=True,
@@ -62,7 +63,7 @@ def display_page(pathname):
     elif pathname == '/apps/playgroundsSimulation_KlimaBonding':
         return playgroundsSimulation_KlimaBonding.layout
     else:
-        return 'Home Page under construction. Click on the Staking and bonding simulator links to access those pages'
+        return homePage.layout
 
 
 # For Gunicorn to reference

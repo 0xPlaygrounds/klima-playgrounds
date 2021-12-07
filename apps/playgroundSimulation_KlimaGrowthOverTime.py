@@ -167,114 +167,108 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Daily ROI',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 30},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='dailyROI'),
                                                     ),
                                                     dbc.Row(
                                                         dbc.Label('Klima Gained',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div('100', style={'color': 'white', 'fontSize': 30},
+                                                        html.Div('100', style={'color': 'white', 'fontSize': 50,
+                                                                               'textAlign': 'center'},
                                                                  id='dailyKlima'),
                                                     ),
                                                 ], className='align-self-center')
                                             ])
-                                        ], xs=12, sm=12, md=12, lg=2, xl=2),
-                                        dbc.Col([
-                                            dbc.Card([
-                                                dbc.CardBody([
-                                                    dbc.Row(
-                                                        dbc.Label('5 Day ROI',
-                                                                  style={'color': 'white', 'fontSize': 15})
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 30},
-                                                                 id='fivedayROI'),
-                                                    ),
-                                                    dbc.Row(
-                                                        dbc.Label('Klima Gained',
-                                                                  style={'color': 'white', 'fontSize': 15}),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div('100', style={'color': 'white', 'fontSize': 30},
-                                                                 id='fivedayKlima')
-                                                    ),
-                                                ], className='align-self-center')
-                                            ])
-                                        ], xs=12, sm=12, md=12, lg=2, xl=2),
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                    dbc.Row(
                                                        dbc.Label('Seven day',
-                                                                 style={'color': 'white', 'fontSize': 15}),
+                                                                 style={'color': 'white', 'fontSize': 15,
+                                                                        'textAlign': 'center'}),
                                                    ),
                                                    dbc.Row(
-                                                       html.Div(style={'color': 'white', 'fontSize': 30},
+                                                       html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                       'textAlign': 'center'},
                                                                 id='sevendayROI')
                                                     ),
                                                    dbc.Row(
                                                        dbc.Label('Klima Gained',
-                                                                 style={'color': 'white', 'fontSize': 15}),
+                                                                 style={'color': 'white', 'fontSize': 15,
+                                                                        'textAlign': 'center'}),
                                                     ),
                                                    dbc.Row(
-                                                       html.Div('100', style={'color': 'white', 'fontSize': 30},
+                                                       html.Div('100', style={'color': 'white', 'fontSize': 50,
+                                                                              'textAlign': 'center'},
                                                                 id='sevendayKlima')
                                                    ),
                                                 ], className='align-self-center'),
                                             ])
-                                        ], xs=12, sm=12, md=12, lg=2, xl=2),
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row([
-                                                        dbc.Label('Monthly', style={'color': 'white', 'fontSize': 15}),
+                                                        dbc.Label('Monthly', style={'color': 'white', 'fontSize': 15,
+                                                                                    'textAlign': 'center'}),
                                                     ]),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 30},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='monthlyROI')
                                                     ),
                                                     dbc.Row(
                                                         dbc.Label('Klima Gained',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div('100', style={'color': 'white', 'fontSize': 30},
+                                                        html.Div('100', style={'color': 'white', 'fontSize': 50,
+                                                                               'textAlign': 'center'},
                                                                  id='monthlyKlima')
                                                     ),
                                                 ], className='align-self-center')
                                             ])
-                                        ], xs=12, sm=12, md=12, lg=2, xl=2),
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
-                                                        dbc.Label('Annual'),
+                                                        dbc.Label('Annual', style={'color': 'white', 'fontSize': 15,
+                                                                                   'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 30},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='annualROI')
                                                     ),
                                                     dbc.Row(
                                                         dbc.Label('Klima Gained',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div('100', style={'color': 'white', 'fontSize': 30},
+                                                        html.Div('100', style={'color': 'white', 'fontSize': 50,
+                                                                               'textAlign': 'center'},
                                                                  id='annualKlima')
                                                     ),
                                                 ], className='align-self-center')
                                             ])
-                                        ], xs=12, sm=12, md=12, lg=2, xl=2),
-                                    ], className="g-2", justify='center'),
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                    ]),
                                 ]),
                             ], outline=True, color='success', style={"height": "100%"}), ], style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=12, xl=12),
-                    ], className="mb-5"),
+                    ]),
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
                         ## Rewards Strategizer
@@ -292,48 +286,56 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Days until USDC Value',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='rewardsUSD'),
                                                     ),
                                                 ], className='align-self-center'),
-                                            ])
+                                            ], style={'width': '100%', 'padding': '10px'})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Days until KLIMA amount',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='rewardsKLIMA'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ])
+                                            ], style={'width': '100%', 'padding': '10px'})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6),
-                                    ], style={'padding': '10px'}),
+                                    ]),
                                     dbc.Row([
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Days until your desired daily rewards',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='rewardsDaily'),
                                                     ),
                                                     dbc.Row(
                                                         dbc.Label('Required KLIMA for desired daily rewards',
-                                                                  style={'color': 'white', 'fontSize': 15}),
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='requiredDaily'),
                                                     ),
                                                 ], className='align-self-center')
@@ -343,17 +345,25 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
-                                                        dbc.Label('Days until your desired weekly rewards'),
+                                                        dbc.Label('Days until your desired weekly rewards',
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}
+                                                                  ),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='rewardsWeekly'),
                                                     ),
                                                     dbc.Row(
-                                                        dbc.Label('Required KLIMA for desired weekly rewards'),
+                                                        dbc.Label('Required KLIMA for desired weekly rewards',
+                                                                  style={'color': 'white', 'fontSize': 15,
+                                                                         'textAlign': 'center'}
+                                                                  ),
                                                     ),
                                                     dbc.Row(
-                                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                                        html.Div(style={'color': 'white', 'fontSize': 50,
+                                                                        'textAlign': 'center'},
                                                                  id='requiredWeekly'),
                                                     ),
                                                 ], className='align-self-center')
@@ -466,7 +476,7 @@ layout = dbc.Container([
                             ], outline=True, color='success', style={"height": "100%", "width": "100%"}),
                             style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=6, xl=6),
-                    ], className='mb-5'),
+                    ]),
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
                         ## Explanations
@@ -497,10 +507,10 @@ layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
                     dbc.Row([
-                        html.Div(html.Img(src=app.get_asset_url('New_Klima_staking_page-01.png'),
+                        html.Div(html.Img(src=app.get_asset_url('PG_Staking_Learn.png'),
                                           style={'height': '100%',
                                                  'width': '100%',
-                                                 'padding': '50px'}))], className='w-100')
+                                                 'padding': '10px'}))])
                 ])
     ], className='mb-4'),
 ], fluid=True)  # Responsive ui control
@@ -510,10 +520,13 @@ layout = dbc.Container([
 @app.callback([
     Output(component_id='graph1', component_property='figure'),
     Output(component_id='dailyROI', component_property='children'),
-    Output(component_id='fivedayROI', component_property='children'),
+    Output(component_id='dailyKlima', component_property='children'),
     Output(component_id='sevendayROI', component_property='children'),
+    Output(component_id='sevendayKlima', component_property='children'),
     Output(component_id='monthlyROI', component_property='children'),
+    Output(component_id='monthlyKlima', component_property='children'),
     Output(component_id='annualROI', component_property='children'),
+    Output(component_id='annualKlima', component_property='children'),
     Output(component_id='rewardsUSD', component_property='children'),
     Output(component_id='rewardsKLIMA', component_property='children'),
     Output(component_id='rewardsDaily', component_property='children'),
@@ -651,26 +664,30 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     # Let's get some ROI Outputs starting with the daily
     dailyROI = (1 + reward_yield) ** 3 - 1  # Equation to calculate your daily ROI based on reward Yield
     dailyROI_P = round(dailyROI * 100, 1)  # daily ROI in Percentage
+    dailyKlima = initialKlima + (dailyROI * initialKlima)
     # ================================================================================
 
     # 5 day ROI
-    fivedayROI = (1 + reward_yield) ** (5 * 3) - 1  # Equation to calculate your 5 day ROI based on reward Yield
-    fivedayROI_P = round(fivedayROI * 100, 1)  # 5 day ROI in Percentage
+    # fivedayROI = (1 + reward_yield) ** (5 * 3) - 1  # Equation to calculate your 5 day ROI based on reward Yield
+    # fivedayROI_P = round(fivedayROI * 100, 1)  # 5 day ROI in Percentage
     # ================================================================================
 
     # 7 day ROI
     sevendayROI = (1 + reward_yield) ** (7 * 3) - 1  # Equation to calculate your 7 day ROI based on reward Yield
     sevendayROI_P = round(sevendayROI * 100, 1)  # 7 day ROI in Percentage
+    sevendayKlima = initialKlima + (sevendayROI * initialKlima)
     # ================================================================================
 
     # 30 day ROI
     monthlyROI = (1 + reward_yield) ** (30 * 3) - 1  # Equation to calculate your 30 day ROI based on reward Yield
     monthlyROI_P = round(monthlyROI * 100, 1)  # 30 day ROI in Percentage
+    monthlyKlima = initialKlima + (monthlyROI * initialKlima)
     # ================================================================================
 
     # Annual ROI
     annualROI = (1 + reward_yield) ** (365 * 3) - 1  # Equation to calculate your annual ROI based on reward Yield
     annualROI_P = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
+    annualKlima = initialKlima + (annualROI * initialKlima)
     # ================================================================================
 
     # ================================Rewards strategizer=============================
@@ -723,10 +740,14 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     klimaGrowth_Chart.layout.legend.font.color = 'white'
 
     dailyROI_P = '{} %'.format(dailyROI_P)
-    fivedayROI_P = '{} %'.format(fivedayROI_P)
+    dailyKlima = '{0:.2f}'.format(dailyKlima)
     sevendayROI_P = '{} %'.format(sevendayROI_P)
+    sevendayKlima = '{0:.2f}'.format(sevendayKlima)
     monthlyROI_P = '{} %'.format(monthlyROI_P)
+    monthlyKlima = '{0:.2f}'.format(monthlyKlima)
     annualROI_P = '{} %'.format(millify(annualROI_P, precision=1))
-    return klimaGrowth_Chart, dailyROI_P, fivedayROI_P, sevendayROI_P, monthlyROI_P, annualROI_P, forcastUSDTarget, \
+    annualKlima = '{0:.2f}'.format(annualKlima)
+    return klimaGrowth_Chart, dailyROI_P, dailyKlima, sevendayROI_P, sevendayKlima, monthlyROI_P, \
+           monthlyKlima, annualROI_P, annualKlima, forcastUSDTarget, \
            forcastKlimaTarget, rewardsDaily, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
