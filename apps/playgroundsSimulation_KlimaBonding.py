@@ -26,7 +26,6 @@ layout = dbc.Container([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('(4,4) Simulation parameters'),
                             dbc.CardBody([
-                                # use form for controls
                                 dbc.Form([
                                     dbc.Card([
                                         dbc.CardBody([
@@ -58,7 +57,7 @@ layout = dbc.Container([
                                                                          'color': 'white',
                                                                          'width': '100%'})]),
                                             ]),
-                                        ])], className='w-100'),
+                                        ])]),
                                     dbc.Card(
                                         dbc.CardBody([
                                             dbc.Row([
@@ -91,10 +90,10 @@ layout = dbc.Container([
                                                                'color': 'white',
                                                                'width': '100%'}),
                                                 ])
-                                            ])]), className='w-100'),
+                                            ])])),
                                 ]),
                             ])
-                        ], outline=True, color='success', style={"height": "100%", "width": "100%"})),
+                        ], outline=True, color='success', style={"height": "100%"})),
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -102,32 +101,59 @@ layout = dbc.Container([
                             dbc.CardBody([
                                 dcc.Graph(id='graph2', style={"height": "100%", "width": "100%"}),
                             ], style={"height": "100%", "width": "auto"})
-                        ], outline=True, color='success', style={"height": "100%", "width": "100%"}),
-                            style={'padding': '10px'},
+                        ], outline=True, color='success', style={"height": "auto", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Growth Comparison Summary'),
                             dbc.CardBody([
                                     dbc.Row([
-                                        dbc.Label('Max (3,3) ROI (Klima)', style={'color': 'white', 'fontSize': 20}),
-                                        html.Div(style={'color': 'white', 'fontSize': 30},
+                                        dbc.Label('Max (3,3) ROI (Klima)', style={'color': 'white', 'fontSize': 15}),
+                                        html.Div(style={'color': 'white', 'fontSize': 50},
                                                  id='max_33_growth'),
                                         dcc.Markdown('---')
                                     ], className='text-center'),
                                     dbc.Row([
-                                        dbc.Label('Max (4,4) ROI (Klima)', style={'color': 'white', 'fontSize': 20}),
-                                        html.Div(style={'color': 'white', 'fontSize': 30},
+                                        dbc.Label('Max (4,4) ROI (Klima)', style={'color': 'white', 'fontSize': 15}),
+                                        html.Div(style={'color': 'white', 'fontSize': 50},
                                                  id='max_44_growth'),
                                         dcc.Markdown('---')
                                     ], className='text-center'),
                                     dbc.Row([
-                                        dbc.Label('Bonus Klima', style={'color': 'white', 'fontSize': 20}),
-                                        html.Div(style={'color': 'white', 'fontSize': 30},
+                                        dbc.Label('Bonus Klima', style={'color': 'white', 'fontSize': 15}),
+                                        html.Div(style={'color': 'white', 'fontSize': 50},
                                                  id='bonus_gained'),
-                                        dcc.Markdown('---')
                                     ], className='text-center')
                             ])
                         ], outline=True, color='success', style={"height": "100%"}))
+                    ], style={'padding': '10px'}),
+                    dbc.Row([
+                        dbc.Col(dbc.Card([
+                            dbc.CardHeader('Chart Explanation'),
+                            dbc.CardBody([
+                                dcc.Markdown('''
+                                This chart contains two trend lines (3,3) Klima Growth and (4,4) Klima Growth.
+                                The (4,4) Klima growth trend line depicts the Klima growth based on claim/stake
+                                frequency throughout the vesting period.
+                                As we have learned in the Bonding: Learn page, bonding allows to purchase Klima at a
+                                discount from the protocol.
+                                Bonding provides an opportunity to acquire more Klimas when compared to market buying.
+                                This opportunity could be further amplified by claiming/staking vested Klimas as
+                                they become available to you.
+                                Please see the ROI comparison chart for details on the effects of claiming/staking
+                                frequency.
+                                The (3,3) Klima growth trend line depicts Klima growth throughout the same vesting
+                                period.
+                                This chart compares simple staking (3,3) and the claim/stake (4,4) Klima growth
+                                throughout the vesting period
+                                (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
+                                ''')
+                            ])
+                        ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
+                    ], style={'padding': '10px'}),
+                    dbc.Row([
+                        dbc.Col(dcc.Markdown('''
+                        ---
+                        '''))
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(
@@ -137,59 +163,57 @@ layout = dbc.Container([
                                     dcc.Graph(id='graph3', style={"height": "100%", "width": "100%"}),
                                 ], style={"height": "100%", "width": "auto"})
                             ], outline=True, color='success', style={"height": "auto", "width": "100%"}),
-                            style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col([
                             dbc.Card([
                                 dbc.CardHeader('(3,3) and (4,4) ROI Summary'),
                                 dbc.CardBody([
                                         dbc.Row([
-                                            dbc.Label('(3,3) ROI (%)', style={'color': 'white', 'fontSize': 20}),
-                                            html.Div(style={'color': 'white', 'fontSize': 30},
+                                            dbc.Label('(3,3) ROI (%)', style={'color': 'white', 'fontSize': 15}),
+                                            html.Div(style={'color': 'white', 'fontSize': 50},
                                                      id='33_roi'),
                                             dcc.Markdown('---')
                                         ], className='text-center'),
                                         dbc.Row([
-                                            dbc.Label('Bond ROI (%)', style={'color': 'white', 'fontSize': 20}),
-                                            html.Div(style={'color': 'white', 'fontSize': 30},
+                                            dbc.Label('Bond ROI (%)', style={'color': 'white', 'fontSize': 15}),
+                                            html.Div(style={'color': 'white', 'fontSize': 50},
                                                      id='bonding_roi'),
                                             dcc.Markdown('---')
                                         ], className='text-center'),
                                         dbc.Row([
-                                            dbc.Label('Max (4,4) ROI (%)', style={'color': 'white', 'fontSize': 20}),
-                                            html.Div(style={'color': 'white', 'fontSize': 30},
+                                            dbc.Label('Max (4,4) ROI (%)', style={'color': 'white', 'fontSize': 15}),
+                                            html.Div(style={'color': 'white', 'fontSize': 50},
                                                      id='max_44_roi'),
-                                            dcc.Markdown('---')
                                         ], className='text-center')
                                 ])
                             ], outline=True, color='success', style={"height": "100%"})
-                        ], style={'padding': '10px'}),
-                    ]),
+                        ]),
+                    ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
-                                    ## Explanations
                                     ---
                                     '''))
-                    ], style={'padding': '25px'}),
+                    ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Chart Explanation'),
                             dbc.CardBody([
                                 dcc.Markdown('''
-                                - The chart shows you the Klima growth projection over 365.0 days.
-                                Projection is calculated
-                                based
-                                on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and
-                                an initial 1.0 Klima.
-                                - The (3,3) Profit adjusted ROI trend line shows you the adjusted
-                                Klima growth if you decide to
-                                sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
-                                - The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the
-                                minimum APY
-                                of the current dictated KIP-3 Reward Rate Framework.
-                                - The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the
-                                maximum APY
-                                of the current dictated KIP-3 Reward Rate Framework.
+                                This chart contains two trend lines (3,3) ROI and (4,4) ROI.
+                                The (4,4) ROI trend line depicts the bonding ROI based on claim/stake frequency
+                                throughout the vesting period.
+                                For example, depending on the control parameters, the highest ROI could be achieved
+                                by claiming/staking vested
+                                Klima tokens before every epoch, halfway through, or maybe the first four epochs.
+                                There might also be scenarios where it is not profitable for you to claim/stake
+                                at all.
+                                There could be many claim/stake combinations; the chart tries to predict the
+                                best possible combination.
+                                The (3,3) ROI trend line depicts plain staking ROI throughout the same vesting
+                                period.
+                                This chart compares simple staking (3,3) and the claim/stake (4,4) ROIs throughout
+                                the vesting period
+                                (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
                                 ''')
                             ])
                         ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
@@ -201,10 +225,10 @@ layout = dbc.Container([
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
                     dbc.Row([
-                        html.Div(html.Img(src=app.get_asset_url('Klima_staking_page-01.png'),
+                        html.Div(html.Img(src=app.get_asset_url('PG_Bonding_Learn.png'),
                                           style={'height': '100%',
                                                  'width': '100%',
-                                                 'padding': '50px'}))], className='w-100')
+                                                 'padding': '10px'}))])
                 ])
     ], className='mb-4'),
 ], fluid=True)  # Responsive ui control
@@ -224,9 +248,9 @@ layout = dbc.Container([
     Input(component_id='bond_roi', component_property='value'),
     Input(component_id='reward_yield', component_property='value'),
 ])
-# region Description: Function to calculate ohm growth over time
+# region Description: Function to calculate Klima growth over time
 def bonding_simulation(klima_price, initial_klima, bond_roi, reward_yield):
-    # Protocol and ohm calcs:
+    # Protocol and Klima calcs:
     usd_bonded = klima_price * initial_klima
     bond_roi = (bond_roi / 100)
     bond_price = klima_price / (1 + bond_roi)
@@ -247,7 +271,6 @@ def bonding_simulation(klima_price, initial_klima, bond_roi, reward_yield):
     swapping_gas_fee = 225748 * ((gwei * priceofETH) / (10 ** 9)) + ((0.3 / 100) * bonded_klimaValue)
     claim_gas_fee = 80209 * ((gwei * priceofETH) / (10 ** 9))
     bonding_gas_fee = 258057 * ((gwei * priceofETH) / (10 ** 9))
-    # miscFee = 823373 * ((gwei*priceofETH)/(10**9))
     # ================================================================================
 
     claim_stake_gas_fee = staking_gas_fee + claim_gas_fee
@@ -256,11 +279,6 @@ def bonding_simulation(klima_price, initial_klima, bond_roi, reward_yield):
     # (3,3) Rate for the 15 epochs
     staking_reward_rate = (1 + reward_yield) ** 15 - 1
     staking_reward_rate_P = round(staking_reward_rate * 100, 2)
-    # stakingOhmsGained = round(((initOhmValue - staking_gas_fee) * (stakingRate / initOhmValue) - 1),4)
-
-    # (3,3) Ohm gained after 15 epochs
-    # staking_klima_growth = round(staking_reward_rate * bonded_klimaValue / klima_price, 4)
-    # staking_klima_growth = round(staking_klima_growth, 4)
     # ================================================================================
     vested_klima_df = pd.DataFrame(np.arange(1, 16), columns=['Epochs'])
     vested_klima_df['Days'] = vested_klima_df.Epochs / 3
@@ -299,21 +317,12 @@ def bonding_simulation(klima_price, initial_klima, bond_roi, reward_yield):
     cols_to_use = staked_klima_roi_df.columns.difference(vested_klima_df.columns)
     stake_bond_df = pd.merge(vested_klima_df, staked_klima_roi_df[cols_to_use],
                              left_index=True, right_index=True, how='outer')
-    # stake_bond_df = pd.concat([vested_klima_df,staked_klima_roi_df],axis = 1, join = 'inner')
 
     maxbond_roi = round(stake_bond_df.Bond_ROI.max(), 2)
     maxstake_growth = round(stake_bond_df.Stake_Growth.max(), 2)
     maxBondGrowth = round(stake_bond_df.vested_klimas.max(), 2)
     klimaGained = round((stake_bond_df.vested_klimas.max() - stake_bond_df.Stake_Growth.max()), 2)
-    # staking_gas_fee = round(staking_gas_fee, 2)
-    # unstaking_gas_fee = round(unstaking_gas_fee, 2)
-    # swapping_gas_fee = round(swapping_gas_fee, 2)
-    # claim_gas_fee = round(claim_gas_fee, 2)
-    # bonding_gas_fee = round(bonding_gas_fee, 2)
     bond_roi_percent = bond_roi * 100
-
-    # vested_klima_df_CSV = vested_klima_df.to_csv().encode('utf-8')
-    # staked_klima_roi_df_CSV = staked_klima_roi_df.to_csv().encode('utf-8')
 
     stake_bond_chart = go.Figure()
     stake_bond_chart.add_trace(go.Scatter(x=stake_bond_df.Epochs, y=stake_bond_df.vested_klimas,
