@@ -26,6 +26,7 @@ CONTENT_STYLE = {
 
 navbar = dbc.NavbarSimple(
     children=[
+        dbc.NavItem(dbc.NavLink("Home", href="/apps/homePage")),
         dbc.NavItem(dbc.NavLink("Staking Simulator", href="/apps/playgroundSimulation_KlimaGrowthOverTime")),
         dbc.NavItem(dbc.NavLink("Bonding Simulator", href="/apps/playgroundsSimulation_KlimaBonding")),
         dbc.DropdownMenu(
