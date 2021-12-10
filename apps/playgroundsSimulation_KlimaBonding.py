@@ -1,4 +1,3 @@
-# Import all required packages for this page
 from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import html
@@ -6,7 +5,9 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
+
 from app import app
+from components.disclaimer import short_disclaimer_row
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
@@ -231,6 +232,7 @@ layout = dbc.Container([
                                                  'padding': '10px'}))])
                 ])
     ], className='mb-4'),
+    short_disclaimer_row()
 ], fluid=True)  # Responsive ui control
 
 
