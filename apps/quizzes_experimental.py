@@ -1,7 +1,6 @@
 import dash  # pip install dash
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import html
-from dash import dcc
 import dash_extensions as de  # pip install dash-extensions
 
 # Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
