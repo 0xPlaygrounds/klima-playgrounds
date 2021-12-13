@@ -10,6 +10,8 @@ import math
 from millify import millify
 from app import app
 
+from components.disclaimer import short_disclaimer_row
+
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
 layout = dbc.Container([
@@ -513,6 +515,7 @@ layout = dbc.Container([
                                                  'padding': '10px'}))])
                 ])
     ], className='mb-4'),
+    short_disclaimer_row()
 ], fluid=True)  # Responsive ui control
 
 

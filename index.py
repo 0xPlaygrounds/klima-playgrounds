@@ -3,7 +3,9 @@ import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
 from app import app
-from apps import playgroundSimulation_KlimaGrowthOverTime, playgroundsSimulation_KlimaBonding, homePage
+from apps import playgroundSimulation_KlimaGrowthOverTime, \
+                 playgroundsSimulation_KlimaBonding, \
+                 homePage, disclaimerPage
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -34,7 +36,8 @@ navbar = dbc.NavbarSimple(
                 dbc.DropdownMenuItem("More pages", header=True),
                 dbc.DropdownMenuItem("KlimaDAO", href="https://www.klimadao.finance/#/stake"),
                 dbc.DropdownMenuItem("Learn More", href="https://docs.klimadao.finance/"),
-                dbc.DropdownMenuItem("Feedback", href="https://forms.gle/UTyj7HvCfBNa1rt17")
+                dbc.DropdownMenuItem("Feedback", href="https://forms.gle/UTyj7HvCfBNa1rt17"),
+                dbc.DropdownMenuItem("Disclaimer", href="/disclaimer")
             ],
             nav=True,
             in_navbar=True,
@@ -63,6 +66,8 @@ def display_page(pathname):
         return playgroundSimulation_KlimaGrowthOverTime.layout
     elif pathname == '/apps/playgroundsSimulation_KlimaBonding':
         return playgroundsSimulation_KlimaBonding.layout
+    elif pathname == '/disclaimer':
+        return disclaimerPage.layout
     else:
         return homePage.layout
 
@@ -72,4 +77,4 @@ server = app.server
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0')
