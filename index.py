@@ -7,7 +7,6 @@ from app import app
 from apps import playgroundSimulation_KlimaGrowthOverTime, \
                  playgroundsSimulation_KlimaBonding, \
                  homePage, quizzes_experimental, disclaimerPage
-import assets
 
 SIDEBAR_STYLE = {
     "position": "fixed",
