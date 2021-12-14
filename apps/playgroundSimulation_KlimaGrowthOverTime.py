@@ -926,14 +926,14 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     # ================================================================================
     # ================================Real world impact calc =========================
     locked_carbon_tonnes = annualKlima * user_rfv
-    passenger_vehicle_annual = '{}'.format(millify(locked_carbon_tonnes / 4.60), precision=1)
-    passenger_miles_annual = '{}'.format(millify(locked_carbon_tonnes / 0.000398), precision=1)
-    gasoline_consumed_annual = '{}'.format(millify(locked_carbon_tonnes / 0.008887), precision=1)
-    home_energy_annual = '{}'.format(millify(locked_carbon_tonnes / 8.30), precision=1)
-    home_electricity_annual = '{}'.format(millify(locked_carbon_tonnes / 5.505), precision=1)
-    oil_consumed_annual = '{}'.format(millify(locked_carbon_tonnes / 0.43), precision=1)
-    coals_burned_annual = '{}'.format(millify(locked_carbon_tonnes / 0.000905), precision=1)
-    trees_co_captured = '{}'.format(millify(locked_carbon_tonnes / 0.82), precision=1)
+    passenger_vehicle_annual = '{}'.format(millify((locked_carbon_tonnes / 4.60), precision=1))
+    passenger_miles_annual = '{}'.format(millify((locked_carbon_tonnes / 0.000398), precision=1))
+    gasoline_consumed_annual = '{}'.format(millify((locked_carbon_tonnes / 0.008887), precision=1))
+    home_energy_annual = '{}'.format(millify((locked_carbon_tonnes / 8.30), precision=1))
+    home_electricity_annual = '{}'.format(millify((locked_carbon_tonnes / 5.505), precision=1))
+    oil_consumed_annual = '{}'.format(millify((locked_carbon_tonnes / 0.43), precision=1))
+    coals_burned_annual = '{}'.format(millify((locked_carbon_tonnes / 0.000905), precision=1))
+    trees_co_captured = '{}'.format(millify((locked_carbon_tonnes / 0.82), precision=1))
     # ================================Real world impact calc =========================
 
     # ================================Rewards strategizer=============================
