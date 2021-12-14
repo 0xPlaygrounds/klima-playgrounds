@@ -46,7 +46,7 @@ navbar = dbc.NavbarSimple(
             label="More",
         ),
     ],
-    brand="Klima Playgrounds",
+    brand="Playgrounds",
     brand_href="#",
     color="#20272B",
     dark=True,
