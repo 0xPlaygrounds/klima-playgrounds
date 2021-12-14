@@ -3,7 +3,6 @@ from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
-import dash_extensions as de  # pip install dash-extensions
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
@@ -103,8 +102,8 @@ layout = dbc.Container([
                                                         step=0.001,
                                                         debounce=True,
                                                         value=5, style={'background-color': '#222222',
-                                                                            'color': 'white',
-                                                                            'width': '100%'})]),
+                                                                        'color': 'white',
+                                                                        'width': '100%'})]),
                                             ], className="g-2"),
                                         ])], className='w-100'),
                                     dbc.Card([
