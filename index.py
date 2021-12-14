@@ -7,6 +7,7 @@ from app import app
 from apps import playgroundSimulation_KlimaGrowthOverTime, \
                  playgroundsSimulation_KlimaBonding, \
                  homePage, quizzes_experimental, disclaimerPage
+import assets
 
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -46,7 +47,7 @@ navbar = dbc.NavbarSimple(
             label="More",
         ),
     ],
-    brand="Klima Playgrounds",
+    brand="Playgrounds",
     brand_href="#",
     color="#20272B",
     dark=True,

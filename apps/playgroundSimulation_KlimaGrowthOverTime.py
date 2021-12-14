@@ -3,6 +3,7 @@ from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
+import dash_extensions as de  # pip install dash-extensions
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
@@ -12,6 +13,8 @@ from app import app
 
 from components.disclaimer import short_disclaimer_row
 
+url4 = "https://assets10.lottiefiles.com/datafiles/xjh641xEDuQg4qg/data.json"
+options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
 layout = dbc.Container([
@@ -41,11 +44,12 @@ layout = dbc.Container([
                             style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
+                            dbc.CardHeader('Simulation Controls'),
                             dbc.CardBody([
                                 # use form for controls
                                 dbc.Form([
                                     dbc.Card([
-                                        dbc.CardHeader('Simulation controls'),
+                                        dbc.CardHeader('Klima growth forecast controls'),
                                         dbc.CardBody([
                                             dbc.Row([
                                                 dbc.Col([
@@ -63,6 +67,9 @@ layout = dbc.Container([
                                                ),
                                                dbc.Col(
                                                    dbc.Label('APY (%)')
+                                               ),
+                                               dbc.Col(
+                                                   dbc.Label('RFV (BCT)')
                                                )
                                             ]),
                                             dbc.Row([
@@ -85,6 +92,17 @@ layout = dbc.Container([
                                                         step=0.001,
                                                         debounce=True,
                                                         value=40000, style={'background-color': '#222222',
+                                                                            'color': 'white',
+                                                                            'width': '100%'})]),
+                                                dbc.Col([
+                                                    dbc.Input(
+                                                        id='user_rfv',
+                                                        placeholder='5',
+                                                        type='number',
+                                                        min=1,
+                                                        step=0.001,
+                                                        debounce=True,
+                                                        value=5, style={'background-color': '#222222',
                                                                             'color': 'white',
                                                                             'width': '100%'})]),
                                             ], className="g-2"),
@@ -130,7 +148,7 @@ layout = dbc.Container([
                                         dbc.CardHeader('Dollar cost averaging controls'),
                                         dbc.CardBody([
                                             dbc.Row([
-                                                dbc.Label('Price ($)'),
+                                                dbc.Label('Klima Price ($)'),
                                                 dbc.Input(
                                                     id='klimaPrice_DCA',
                                                     placeholder='1000',
@@ -143,7 +161,7 @@ layout = dbc.Container([
                                                                        'width': '100%'})
                                             ]),
                                             dbc.Row([
-                                                dbc.Label('Value ($)'),
+                                                dbc.Label('Purchase Amount ($)'),
                                                 dbc.Input(
                                                     id='valBuy',
                                                     placeholder='1000',
@@ -283,6 +301,182 @@ layout = dbc.Container([
                             ], outline=True, color='success', style={"height": "100%"}), ], style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=12, xl=12),
                     ]),
+                    dbc.Row([
+                        dbc.Col(
+                            dbc.Card([
+                                dbc.CardHeader('Klima to CO2 emissions equivalency result (Annualized)'),
+                                dbc.CardBody([
+                                    dbc.Row([
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Average passenger vehicle driven within one year',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100},
+                                                                     id='passenger_vehicle_annual'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Average miles driven'
+                                                                    ' per passenger vehicle in one year',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100},
+                                                                     id='passenger_miles_annual'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Gallons of gasoline per '
+                                                                    'passenger vehicle in one year',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100},
+                                                                     id='gasoline_consumed_annual'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Avg. home energy used per year',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100},
+                                                                     id='home_energy_annual'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                    ], style={"height": "auto", 'padding': '10px'}),
+                                    dbc.Row([
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Avg. home electricity used per year',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100},
+                                                                     id='home_electricity_annual'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Avg. oil consumption per year',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100},
+                                                                     id='oil_consumed_annual'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Avg. pounds of coal burned per year',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100},
+                                                                     id='coals_burned_annual'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(html.H3('Hectares acres of forest',
+                                                                    className='card-title',
+                                                                    style={'color': 'white', 'fontsize': 15,
+                                                                           'textAlign': 'center'})),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div('100', style={'color': 'white', 'fontSize': 100,
+                                                                                   'textAlign': 'center'},
+                                                                     id='trees_co_captured'),
+                                                        ]),
+                                                    ])
+                                                ], className='align-self-center')
+                                            ], color="success",
+                                                inverse=True,
+                                                outline=False,
+                                                className='mt-3',
+                                                style={'width': '100%', 'height': '100%', 'padding': '25px'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                    ], style={"height": "auto", 'padding': '10px'}),
+                                ])
+                            ])
+                        )
+                    ],  style={"height": "auto", 'padding': '25px'}),
                     dbc.Row([
                         dbc.Col(dcc.Markdown('''
                         ## Rewards Strategizer
@@ -554,6 +748,14 @@ layout = dbc.Container([
     Output(component_id='monthlyKlima', component_property='children'),
     Output(component_id='annualROI', component_property='children'),
     Output(component_id='annualKlima', component_property='children'),
+    Output(component_id='passenger_vehicle_annual', component_property='children'),
+    Output(component_id='passenger_miles_annual', component_property='children'),
+    Output(component_id='gasoline_consumed_annual', component_property='children'),
+    Output(component_id='home_energy_annual', component_property='children'),
+    Output(component_id='home_electricity_annual', component_property='children'),
+    Output(component_id='oil_consumed_annual', component_property='children'),
+    Output(component_id='coals_burned_annual', component_property='children'),
+    Output(component_id='trees_co_captured', component_property='children'),
     Output(component_id='rewardsUSD', component_property='children'),
     Output(component_id='rewardsKLIMA', component_property='children'),
     Output(component_id='rewardsDaily', component_property='children'),
@@ -563,6 +765,7 @@ layout = dbc.Container([
     Input(component_id='growthDays', component_property='value'),
     Input(component_id='initialKlima', component_property='value'),
     Input(component_id='user_apy', component_property='value'),
+    Input(component_id='user_rfv', component_property='value'),
     Input(component_id='percentSale', component_property='value'),
     Input(component_id='sellDays', component_property='value'),
     Input(component_id='klimaPrice_DCA', component_property='value'),
@@ -576,8 +779,13 @@ layout = dbc.Container([
     Input(component_id='desired_weekly_rewards_usdc', component_property='value'),
 ])
 # function to calculate klima growth over user specified number of days
-def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sellDays, klimaPrice_DCA, valBuy, buyDays,
-                           priceKlima, priceofETH, desired_klima_usdc, desired_klima_unit, desired_daily_rewards_usdc,
+def klimaGrowth_Projection(growthDays, initialKlima,
+                           user_apy, user_rfv,
+                           percentSale, sellDays, klimaPrice_DCA,
+                           valBuy, buyDays,
+                           priceKlima, priceofETH,
+                           desired_klima_usdc, desired_klima_unit,
+                           desired_daily_rewards_usdc,
                            desired_weekly_rewards_usdc):
     # ===========================Variable definitions and prep===============================
     # In this section we take the input variables and do any kind of prep work
@@ -716,6 +924,17 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     annualROI_P = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
     annualKlima = initialKlima + (annualROI * initialKlima)
     # ================================================================================
+    # ================================Real world impact calc =========================
+    locked_carbon_tonnes = annualKlima * user_rfv
+    passenger_vehicle_annual = '{}'.format(millify(locked_carbon_tonnes / 4.60), precision=1)
+    passenger_miles_annual = '{}'.format(millify(locked_carbon_tonnes / 0.000398), precision=1)
+    gasoline_consumed_annual = '{}'.format(millify(locked_carbon_tonnes / 0.008887), precision=1)
+    home_energy_annual = '{}'.format(millify(locked_carbon_tonnes / 8.30), precision=1)
+    home_electricity_annual = '{}'.format(millify(locked_carbon_tonnes / 5.505), precision=1)
+    oil_consumed_annual = '{}'.format(millify(locked_carbon_tonnes / 0.43), precision=1)
+    coals_burned_annual = '{}'.format(millify(locked_carbon_tonnes / 0.000905), precision=1)
+    trees_co_captured = '{}'.format(millify(locked_carbon_tonnes / 0.82), precision=1)
+    # ================================Real world impact calc =========================
 
     # ================================Rewards strategizer=============================
     # ================================================================================
@@ -774,7 +993,10 @@ def klimaGrowth_Projection(growthDays, initialKlima, user_apy, percentSale, sell
     monthlyKlima = '{0:.2f}'.format(monthlyKlima)
     annualROI_P = '{} %'.format(millify(annualROI_P, precision=1))
     annualKlima = '{0:.2f}'.format(annualKlima)
+
     return klimaGrowth_Chart, dailyROI_P, dailyKlima, sevendayROI_P, sevendayKlima, monthlyROI_P, \
-           monthlyKlima, annualROI_P, annualKlima, forcastUSDTarget, \
+           monthlyKlima, annualROI_P, annualKlima, passenger_vehicle_annual, passenger_miles_annual,\
+           gasoline_consumed_annual, home_energy_annual, home_electricity_annual, \
+           oil_consumed_annual, coals_burned_annual, trees_co_captured, forcastUSDTarget, \
            forcastKlimaTarget, rewardsDaily, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom  # noqa: E127
