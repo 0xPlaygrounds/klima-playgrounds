@@ -5,8 +5,7 @@ from dash.dependencies import Input, Output
 from app import app
 
 from apps import playgroundSimulation_KlimaGrowthOverTime, \
-                 playgroundsSimulation_KlimaBonding, \
-                 homePage, quizzes_experimental, disclaimerPage
+                 playgroundsSimulation_KlimaBonding, quizzes_experimental, disclaimerPage
 from components.disclaimer import short_disclaimer_row
 
 CONTENT_STYLE = {
