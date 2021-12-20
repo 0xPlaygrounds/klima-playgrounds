@@ -1,7 +1,7 @@
 import dash  # pip install dash
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import html
-import dash_extensions as de  # pip install dash-extensions
+# import dash_extensions as de  # pip install dash-extensions
 
 from components.disclaimer import short_disclaimer_row
 
