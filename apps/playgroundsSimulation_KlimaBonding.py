@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np
 
 from app import app
-from components.disclaimer import short_disclaimer_row
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
