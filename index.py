@@ -1,6 +1,6 @@
 from dash import dcc
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import Input, Output, State, html
 from dash.dependencies import Input, Output
 from app import app
 
@@ -17,14 +17,19 @@ SIDEBAR_STYLE = {
     "width": "15rem",
     "height": "100%",
     "padding": "0.5rem 1rem",
-    "background-color": "#20272B",
+    "background-color": "#00cc33",
 }
 
 CONTENT_STYLE = {
     "position": "relative",
-    "margin-right": "1rem",
-    "margin-left": "1rem",
-    "padding": "1rem 1rem"
+    "margin-right": "0rem",
+    "margin-left": "0rem",
+    "padding": "1rem 1rem",
+    "background-color": "#232b2b"
+}
+
+PAGE_STYLE = {
+    "background-color": "#232b2b"
 }
 
 navbar = dbc.NavbarSimple(
@@ -47,19 +52,83 @@ navbar = dbc.NavbarSimple(
         ),
     ],
     brand="Playgrounds",
-    brand_href="#",
-    color="#20272B",
+    brand_style={"fontSize": "35px", 'padding': '10px'},
+    color="#00cc33",
     dark=True,
-    style={"width": "auto"}
+    style={"width": "auto", "fontSize": "30px", 'font-family': 'Nunito, sans-serif'}
+)
+
+menu_bar = dbc.Row(
+    [
+       dbc.Col(
+           dbc.DropdownMenu(
+               children=[
+                   dbc.DropdownMenuItem("Home",
+                                        href="/apps/homePage"),
+                   dbc.DropdownMenuItem("Staking Simulator",
+                                        href="/apps/playgroundSimulation_KlimaGrowthOverTime"),
+                   dbc.DropdownMenuItem("Bonding Simulator",
+                                        href="/apps/playgroundsSimulation_KlimaBonding"),
+                   dbc.DropdownMenuItem("Learning Hub", href="/apps/quizzes_experimental"),
+                   dbc.DropdownMenuItem("KlimaDAO", href="https://www.klimadao.finance/#/stake"),
+                   dbc.DropdownMenuItem("Learn More", href="https://docs.klimadao.finance/"),
+                   dbc.DropdownMenuItem("Feedback", href="https://forms.gle/UTyj7HvCfBNa1rt17"),
+                   dbc.DropdownMenuItem("Disclaimer", href="/disclaimer"),
+               ],
+               nav=True,
+               in_navbar=True,
+               label="Menu",
+               toggle_style={"color": "#00cc33"},
+               align_end=True,
+               style={"text-align": "right"},
+               className="navbar_link_topic",
+           ),
+       )
+    ],
+    className="g-0 ms-auto flex-nowrap mt-3 mt-md-0",
+    align="center",
+)
+Navbar2 = dbc.Navbar(
+    dbc.Container([
+        html.A(
+            dbc.Row([
+                dbc.Col(html.Img(src=app.get_asset_url('Klima_PG_trans_no_box.png'),
+                                 height="85px")),
+            ],
+                align="center",
+                className="g-0",
+            ),
+        ),
+        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+        dbc.Collapse(
+            menu_bar,
+            id="navbar_collapse",
+            is_open=False,
+            navbar=True
+        ),
+    ], fluid=True),
+    color="dark",
+    dark=True,
 )
 
 content = html.Div(id="page-content", children=[], style=CONTENT_STYLE)
 
 app.layout = html.Div([
     dcc.Location(id="url"),
-    navbar,
+    Navbar2,
     content
 ])
+
+
+@app.callback(
+    Output("navbar_collapse", "is_open"),
+    [Input("navbar-toggler", "n_clicks")],
+    [State("navbar_collapse", "is_open")],
+)
+def toggle_navbar_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
