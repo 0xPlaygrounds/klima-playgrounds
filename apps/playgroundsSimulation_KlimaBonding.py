@@ -7,98 +7,80 @@ import pandas as pd
 import numpy as np
 
 from app import app
-from components.disclaimer import short_disclaimer_row
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
 layout = dbc.Container([
-    dbc.Row([
-        html.Div(html.Img(src=app.get_asset_url('playgroundsBondingLogo.png'),
-                          style={'height': '100%',
-                                 'width': '30%',
-                                 'padding': '10px'}))
-    ]),
-    # Create a tab so we can have two sections for the klima growth/rewards simulation
-    dcc.Tabs([
-        dcc.Tab(label='Klima (4,4) Simulator',
-                selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
-                style={'color': 'green', 'fontSize': '30px', 'height': '70px'}, children=[
+    dbc.Tabs([
+        dbc.Tab(label='Klima (4,4) Simulator',
+                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
+                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                           'fontSize': '30px'},
+                active_tab_style={'color': '#0ba1ff'},
+                active_label_style={'color': '#222222'},
+                children=[
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('(4,4) Simulation parameters'),
+                            dbc.CardHeader('(4,4) Simulation parameters',
+                                           className='enclosure_card_topic'),
                             dbc.CardBody([
-                                dbc.Form([
-                                    dbc.Card([
-                                        dbc.CardBody([
-                                            dbc.Row([
-                                                dbc.Col([
-                                                    dbc.Label('Klima price (USDC)')
-                                                ]),
-                                                dbc.Col([
-                                                    dbc.Label('Starting amount of Klima (Units)')
-                                                ]),
-                                            ]),
-                                            dbc.Row([
-                                                dbc.Col([
-                                                    dbc.Input(
-                                                        id='klima_price',
-                                                        placeholder='1000',
-                                                        type='number',
-                                                        min=1,
-                                                        step=0.001,
-                                                        debounce=True,
-                                                        value=800, style={'background-color': '#222222',
-                                                                          'color': 'white',
-                                                                          'width': '100%'})]),
-                                                dbc.Col([
-                                                    dbc.Input(
-                                                        id='initial_klima',
-                                                        placeholder='1',
-                                                        type='number',
-                                                        min=1,
-                                                        step=0.001,
-                                                        debounce=True,
-                                                        value=10, style={'background-color': '#222222',
-                                                                         'color': 'white',
-                                                                         'width': '100%'})]),
-                                            ]),
-                                        ])]),
-                                    dbc.Card(
-                                        dbc.CardBody([
-                                            dbc.Row([
-                                                dbc.Col([
-                                                    dbc.Label('Bond ROI (%)'),
-                                                ]),
-                                                dbc.Col([
-                                                    dbc.Label('Rebase Rate (%)'),
-                                                ]),
-                                            ]),
-                                            dbc.Row([
-                                                dbc.Col([
-                                                    dbc.Input(
-                                                        id='bond_roi',
-                                                        placeholder='5',
-                                                        type='number',
-                                                        step=0.001,
-                                                        debounce=True,
-                                                        value=5,
-                                                        style={'background-color': '#222222',
-                                                               'color': 'white',
-                                                               'width': '100%'}),
-                                                ]),
-                                                dbc.Col([
-                                                    dbc.Input(
-                                                        id='reward_yield',
-                                                        placeholder='0.5',
-                                                        type='number',
-                                                        step=0.001,
-                                                        debounce=True,
-                                                        value=0.5,
-                                                        style={'background-color': '#222222',
-                                                               'color': 'white',
-                                                               'width': '100%'}),
-                                                ])
-                                            ])])),
+                                dbc.Row([
+                                    dbc.Col([
+                                        dbc.Label('Klima price (USDC)')
+                                    ]),
+                                    dbc.Col([
+                                        dbc.Label('Starting amount of Klima (Units)')
+                                    ]),
+                                ]),
+                                dbc.Row([
+                                    dbc.Col([
+                                        dbc.Input(
+                                            id='klima_price',
+                                            placeholder='1000',
+                                            type='number',
+                                            min=1,
+                                            step=0.001,
+                                            debounce=True,
+                                            value=800, className="input_box_number")]),
+                                    dbc.Col([
+                                        dbc.Input(
+                                            id='initial_klima',
+                                            placeholder='1',
+                                            type='number',
+                                            min=1,
+                                            step=0.001,
+                                            debounce=True,
+                                            value=10, className="input_box_number")]),
+                                ]),
+                                dbc.Row([
+                                    dbc.Col([
+                                        dbc.Label('Bond ROI (%)'),
+                                    ]),
+                                    dbc.Col([
+                                        dbc.Label('Rebase Rate (%)'),
+                                    ]),
+                                ]),
+                                dbc.Row([
+                                    dbc.Col([
+                                        dbc.Input(
+                                            id='bond_roi',
+                                            placeholder='5',
+                                            type='number',
+                                            step=0.001,
+                                            debounce=True,
+                                            value=5,
+                                            className="input_box_number"),
+                                    ]),
+                                    dbc.Col([
+                                        dbc.Input(
+                                            id='reward_yield',
+                                            placeholder='0.5',
+                                            type='number',
+                                            step=0.001,
+                                            debounce=True,
+                                            value=0.5,
+                                            className="input_box_number"),
+                                    ])
                                 ]),
                             ])
                         ], outline=True, color='success', style={"height": "100%"})),
@@ -228,8 +210,7 @@ layout = dbc.Container([
                     ], style={'padding': '10px'}),
                     ]),
 
-        dcc.Tab(label='Guide',
-                selected_style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+        dbc.Tab(label='Guide',
                 style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
                 children=[
                     dbc.Row([
@@ -239,7 +220,6 @@ layout = dbc.Container([
                                                  'padding': '10px'}))])
                 ])
     ], className='mb-4'),
-    short_disclaimer_row()
 ], fluid=True)  # Responsive ui control
 
 

@@ -60,7 +60,7 @@ def short_disclaimer_row():
         dbc.Card([
             dbc.CardBody([
                 html.Div([
-                    html.H4("Disclaimer"),
+                    html.H6("Disclaimer"),
                     html.P(SHORT_DISCLAIMER)
                 ])
             ])

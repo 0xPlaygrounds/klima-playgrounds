@@ -5,20 +5,8 @@ from dash.dependencies import Input, Output
 from app import app
 
 from apps import playgroundSimulation_KlimaGrowthOverTime, \
-                 playgroundsSimulation_KlimaBonding, \
-                 homePage, quizzes_experimental, disclaimerPage
-
-SIDEBAR_STYLE = {
-    "position": "fixed",
-    "top": 0,
-    "left": 0,
-    "right": 0,
-    "bottom": 0,
-    "width": "15rem",
-    "height": "100%",
-    "padding": "0.5rem 1rem",
-    "background-color": "#00cc33",
-}
+                 playgroundsSimulation_KlimaBonding, quizzes_experimental, disclaimerPage
+from components.disclaimer import short_disclaimer_row
 
 CONTENT_STYLE = {
     "position": "relative",
@@ -27,9 +15,14 @@ CONTENT_STYLE = {
     "padding": "1rem 1rem",
     "background-color": "#232b2b"
 }
-
-PAGE_STYLE = {
-    "background-color": "#232b2b"
+FOOTER_STYLE = {
+    "position": "relative",
+    "bottom": 0,
+    "left": 0,
+    "right": 0,
+    "height": "6rem",
+    "padding": "1rem 1rem",
+    "background-color": "#232b2b",
 }
 
 navbar = dbc.NavbarSimple(
@@ -58,13 +51,8 @@ navbar = dbc.NavbarSimple(
     style={"width": "auto", "fontSize": "30px", 'font-family': 'Nunito, sans-serif'}
 )
 
-menu_bar = dbc.Row(
-    [
-       dbc.Col(
-           dbc.DropdownMenu(
+menu_bar = dbc.DropdownMenu(
                children=[
-                   dbc.DropdownMenuItem("Home",
-                                        href="/apps/homePage"),
                    dbc.DropdownMenuItem("Staking Simulator",
                                         href="/apps/playgroundSimulation_KlimaGrowthOverTime"),
                    dbc.DropdownMenuItem("Bonding Simulator",
@@ -83,11 +71,7 @@ menu_bar = dbc.Row(
                style={"text-align": "right"},
                className="navbar_link_topic",
            ),
-       )
-    ],
-    className="g-0 ms-auto flex-nowrap mt-3 mt-md-0",
-    align="center",
-)
+
 Navbar2 = dbc.Navbar(
     dbc.Container([
         html.A(
@@ -101,7 +85,7 @@ Navbar2 = dbc.Navbar(
         ),
         dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
         dbc.Collapse(
-            menu_bar,
+            dbc.Nav(menu_bar, className='ms-auto', navbar=True),
             id="navbar_collapse",
             is_open=False,
             navbar=True
@@ -116,7 +100,9 @@ content = html.Div(id="page-content", children=[], style=CONTENT_STYLE)
 app.layout = html.Div([
     dcc.Location(id="url"),
     Navbar2,
-    content
+    content,
+    html.Footer(short_disclaimer_row(),
+                className='footer_style')
 ])
 
 
@@ -142,7 +128,7 @@ def display_page(pathname):
     elif pathname == '/apps/quizzes_experimental':
         return quizzes_experimental.layout
     else:
-        return homePage.layout
+        return playgroundSimulation_KlimaGrowthOverTime.layout
 
 
 # For Gunicorn to reference
