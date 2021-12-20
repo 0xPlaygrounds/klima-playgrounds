@@ -277,7 +277,8 @@ layout = dbc.Container([
                                                     ),
                                                 ], className='align-self-center')
                                             ], className='emission_card_style')
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6, style={'height': "100%", 'padding': '10px'}),
+                                        ], xs=12, sm=12, md=12, lg=6, xl=6,
+                                            style={'height': "100%", 'padding': '10px'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
@@ -328,7 +329,10 @@ layout = dbc.Container([
                                                         ]),
                                                     ])
                                                 ], className='emission_card_style')
-                                            ], style={"height": "100%%", 'width': '100%', 'border': 0, 'padding': '10px'})
+                                            ], style={"height": "100%%",
+                                                      'width': '100%',
+                                                      'border': 0,
+                                                      'padding': '10px'})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6),
                                         dbc.Col([
                                             dbc.Card([
@@ -342,7 +346,10 @@ layout = dbc.Container([
                                                         ]),
                                                     ])
                                                 ], className='emission_card_style')
-                                            ], style={"height": "100%", 'width': '100%', 'border': 0, 'padding': '10px'})
+                                            ], style={"height": "100%",
+                                                      'width': '100%',
+                                                      'border': 0,
+                                                      'padding': '10px'})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6),
                                     ]),
                                     dbc.Row([
@@ -358,7 +365,10 @@ layout = dbc.Container([
                                                         ]),
                                                     ])
                                                 ], className='emission_card_style')
-                                            ], style={"height": "100%", 'width': '100%', 'border': 0, 'padding': '10px'})
+                                            ], style={"height": "100%",
+                                                      'width': '100%',
+                                                      'border': 0,
+                                                      'padding': '10px'})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6),
                                         dbc.Col([
                                             dbc.Card([
@@ -372,7 +382,10 @@ layout = dbc.Container([
                                                         ]),
                                                     ])
                                                 ], className='emission_card_style')
-                                            ], style={"height": "100%", 'width': '100%', 'border': 0, 'padding': '10px'})
+                                            ], style={"height": "100%",
+                                                      'width': '100%',
+                                                      'border': 0,
+                                                      'padding': '10px'})
                                         ], xs=12, sm=12, md=12, lg=6, xl=6),
                                     ]),
                                 ])
@@ -446,7 +459,8 @@ layout = dbc.Container([
                                                     ),
                                                 ], className='align-self-center')
                                             ], className='emission_card_style')
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6, style={'height': "100%", 'padding': '10px'}),
+                                        ], xs=12, sm=12, md=12, lg=6, xl=6,
+                                            style={'height': "100%", 'padding': '10px'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
