@@ -1,0 +1,84 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
+.emission_card_style{
+  background: linear-gradient(114.38deg, #00CC33 0%, #0BA1FF 126.76%);
+  border-radius: 15px;
+  padding: 10px;
+}
+.emission_card_topic{
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #FFFFFF;
+}
+.emission_card_metric{
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  text-align: right;
+  color: #FFFFFF;
+}
+.enclosure_card_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #FFFFFF;
+  border-radius: 15px 15px 15px 15px;
+}
+.enclosure_card_style{
+  background: #232b2b;
+  mix-blend-mode: normal;
+  border-color: #00CC33;
+  border-radius: 15px;
+}
+/* Rectangle 20 */
+
+.roi_card_style{
+  background: linear-gradient(103.71deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 98.83%);
+  border-radius: 15px;
+}
+.roi_card_topic{
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #FFFFFF;
+}
+.roi_card_metric{
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  color: #FFFFFF;
+}
+.staking_sim_tab_style{
+  width: 238px;
+  height: 51px;
+  left: 57px;
+  top: 217px;background: linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%);
+  border-radius: 15px 15px;
+}
+.page_section_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 96px;
+  color: #FFFFFF;
+}
+.navbar_link_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 54px;
+  text-align: right;
+  color: #00CC33;
+}

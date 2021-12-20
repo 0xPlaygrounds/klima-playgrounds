@@ -1,7 +1,7 @@
 import dash  # pip install dash
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import html
-import dash_extensions as de  # pip install dash-extensions
+# import dash_extensions as de  # pip install dash-extensions
 
 from components.disclaimer import short_disclaimer_row
 
@@ -12,9 +12,10 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 
 layout = dbc.Container([
     dbc.Row([
-        html.Div(de.Lottie(options=options, width="100%", height="100%", url=url, speed=1),
-                 style={'width': '100%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}),
-    ]),
+        html.Div(html.Img(src=app.get_asset_url('Klima_PG_trans_no_box.png'),
+                          style={'width': '50%',
+                                 'height': '100%',
+                                 'padding': '10px'}))]),
     dbc.Row([
         dbc.Col([
             dbc.Card([
