@@ -1,31 +1,71 @@
-import dash  # pip install dash
+from dash import dcc
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
-from dash import html
+from dash import Input, Output, State, html
 import dash_extensions as de  # pip install dash-extensions
+from app import app
 
 # Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
-url = "https://assets1.lottiefiles.com/private_files/lf30_WdTEui.json"
-url2 = "https://assets9.lottiefiles.com/packages/lf20_CYBIbn.json"
-url3 = "https://assets8.lottiefiles.com/packages/lf20_bknKi1.json"
-url4 = "https://assets10.lottiefiles.com/datafiles/xjh641xEDuQg4qg/data.json"
+url_sunlight = "https://assets8.lottiefiles.com/packages/lf20_bknKi1.json"
+url_earth = "https://assets10.lottiefiles.com/datafiles/xjh641xEDuQg4qg/data.json"
 url5 = "https://assets8.lottiefiles.com/packages/lf20_q6y5ptrh.json"
 url6 = "https://assets4.lottiefiles.com/packages/lf20_tN5Ofx.json"
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 
-
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-card_main = dbc.Card(
+learn_card_1 = dbc.Card(
     [
-
         dbc.CardBody(
             [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url3)),
-                html.H4("Introduction to KlimaDAO", className="card-title"),
-                html.H6("Lesson 1:", className="card-subtitle"),
-                html.P(
-                    "Learn about KlimaDAO and its vision to change the world",
-                    className="card-text",
+                dbc.Row(
+                    html.Div(de.Lottie(options=options, width="50%", height="50%", url=url_earth)),
+                ),
+                dbc.Row(
+                    dbc.Label(
+                        "What is KlimaDAO?", className='emission_card_topic',
+                        style={'height': '100%', 'width': '100%'}
+                    ),
+                ),
+                dbc.Row(
+                    dbc.Button(
+                        'Click to learn', id='open_what_klima', n_clicks=0,
+                        style={'height': '100%', 'width': '100%'}
+                    ),
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('What is KlimaDAO?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+                            Klima DAO is a Decentralized Autonomous Organization to drive climate action,
+                            via our carbon-backed, algorithmic currency- the KLIMA token.
+                            As the protocol grows, Klima DAO will solve the critical problems of the carbon markets:
+                            -  Illiquidity: Carbon Credits come in many different varieties; carbon brokers and
+                            middlemen are used by buyers and sellers, fragmenting the total liquidity of the market.
+                            - Opacity: Trades occur often behind closed doors, allowing buyers to underbuy the market.
+                            - Inefficiency: buying and retiring carbon credits comes with friction and barriers,
+                            by utilizing the polygon ecosystem, it removes this friction for all users
+                            In delivery of its objectives, Klima DAO will become the single biggest disruptor of the
+                            carbon markets and set a precedent for a new monetary system backed by carbon.
+                            Klima DAO will serve the web3 ecosystem by offering accountability for those that
+                            contribute, rewards for stakeholders, and a stake in governance for those that participate.
+                            Klima DAO was inspired by Olympus DAO. It was conceptualized and built by a
+                            distributed pseudo-anonymous team.
+                            Klima is DAO-governed by it's community. All decisions are formed by community members on
+                             the forum and made by KLIMA holders through snapshot voting.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_what_klima',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    )
+                ],
+                    id="body_what_klima",
+                    scrollable=True,
+                    is_open=False,
                 ),
             ]
         ),
@@ -36,185 +76,187 @@ card_main = dbc.Card(
     className="mt-3",
     style={'height': '90%', 'padding': "10px"},
 )
-card_main2 = dbc.Card(
+learn_card_2 = dbc.Card(
     [
-
         dbc.CardBody(
             [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url4)),
-                html.H4("KlimaDAO Ecosystem", className="card-title"),
-                html.H6("Lesson 2:", className="card-subtitle"),
-                html.P(
-                    "Learn about the mechanics governing KlimaDAO",
-                    className="card-text",
+                dbc.Row(
+                    html.Div(de.Lottie(options=options, width="50%", height="50%", url=url_earth)),
+                ),
+                dbc.Row(
+                    dbc.Label(
+                        "What is the point of KlimaDAO?", className='emission_card_topic',
+                        style={'height': '100%', 'width': '100%'}
+                    ),
+                ),
+                dbc.Row(
+                    dbc.Button(
+                        'Click to learn', id='open_learn_card_2', n_clicks=0,
+                        style={'height': '100%', 'width': '100%'}
+                    ),
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('What is the point of KlimaDAO?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+                            1. Driven Climate Action:
+                            Klima DAO incentivizes new supply of Base Carbon Tonnes (BCT) on the blockchain
+                            through the KLIMA token. By driving demand into BCT, it incentivizes carbon offset
+                            producers to produce more carbon credits, assisting the adoption of new carbon mitigating
+                            or sequestering technology, and disincentivizes companies wanting to offset their carbon
+                            footprint with only C.Cs, and forces them to perform environmentally friendly actions.
+                            KLIMA is the first building block for unlocking the carbon economy — an economy where more
+                            economic activity leads to an acceleration in planetary regeneration rather than more
+                            amage to our planet. Before, monetary incentives and environmental incentives aren't
+                            typically aligned.
+                            2. Become a Carbon-Based Reserve Currency:
+                            The KLIMA ecosystem and monetary policy are managed by the Klima DAO.
+                            This way we guarantee transparent decision making and long-term stability.
+                            In the long term, we can use this system to optimize stability, to transition to a global
+                            unit of account and medium of exchange. Currently, in the short term, we're focused on
+                            growth and wealth creation, to incentivize users to join the new wave of carbon currency.
+                            3. Facilitate the Climate Market:
+                            The current carbon (and the climate in general) markets are illiquid, fragmented,
+                            inefficient, and opaque. Because of this, we feel that carbon tonnage is heavily
+                             undervalued, and is forced down because of these issues. By eliminating these issues,
+                             the true price can be achieved.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_2',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    )
+                ],
+                    id="body_learn_card_2",
+                    scrollable=True,
+                    is_open=False,
                 ),
             ]
         ),
     ],
-    color="success",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
+    color="success",  # https://bootswatch.com/default/ for more card colors
+    inverse=True,  # change color of text (black or white)
     outline=False,  # True = remove the block colors from the background and header
     className="mt-3",
     style={'height': '90%', 'padding': "10px"},
 )
-card_main3 = dbc.Card(
+learn_card_3 = dbc.Card(
     [
-
         dbc.CardBody(
             [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url5)),
-                html.H4("Carbon offsets and carbon markets", className="card-title"),
-                html.H6("Lesson 3:", className="card-subtitle"),
-                html.P(
-                    "Dive deep into the world of carbon markets",
-                    className="card-text",
+                dbc.Row(
+                    html.Div(de.Lottie(options=options, width="50%", height="50%", url=url_earth)),
                 ),
-            ]
-        )
-    ],
-    color="success",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
-)
-card_main4 = dbc.Card(
-    [
-
-        dbc.CardBody(
-            [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url6)),
-                html.H4("How to participate in KlimaDAO", className="card-title"),
-                html.H6("Lesson 4:", className="card-subtitle"),
-                html.P(
-                    "Learn the step by step process to becoming a Klimate",
-                    className="card-text",
+                dbc.Row(
+                    dbc.Label(
+                        "How do I participate in KlimaDAO?", className='emission_card_topic',
+                        style={'height': '100%', 'width': '100%'}
+                    ),
                 ),
-            ]
-        ),
-    ],
-    color="success",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
-)
-card_main5 = dbc.Card(
-    [
-
-        dbc.CardBody(
-            [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url)),
-                html.H4("Introduction to KlimaDAO", className="card-title"),
-                html.H6("Challenge 1:", className="card-subtitle"),
-                html.P(
-                    "Welcome! let's have some fun reviewing",
-                    className="card-text",
+                dbc.Row(
+                    dbc.Button(
+                        'Click to learn', id='open_learn_card_3', n_clicks=0,
+                        style={'height': '100%', 'width': '100%'}
+                    ),
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('How do I participate in KlimaDAO?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+                            1. Klima DAO development:
+                            Join the  Discord to become a Klimate and hear about Protocol developments.
+                            Those who wish to be involved in Protocol Governance should also join the Discord
+                            to be onboarded by a member of the team.
+                            2. Participation in the carbon economy:
+                            BCTs are the underlying asset within the KlimaDAO treasury and their flow into the treasury
+                             underpins protocol growth. BCTs can be created from real-world Verified Carbon Units (VCUs)
+                              via the Toucan Protocol. Bonders provide BCT LP or BCT tokens in exchange for discounted
+                              KLIMA tokens after a fixed vesting period. Once KLIMA tokens are held, stakers stake
+                              their KLIMA tokens in return for more KLIMA tokens.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_3',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    )
+                ],
+                    id="body_learn_card_3",
+                    scrollable=True,
+                    is_open=False,
                 ),
             ]
         ),
     ],
-    color="secondary",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
+    color="success",  # https://bootswatch.com/default/ for more card colors
+    inverse=True,  # change color of text (black or white)
     outline=False,  # True = remove the block colors from the background and header
     className="mt-3",
     style={'height': '90%', 'padding': "10px"},
 )
-card_main6 = dbc.Card(
-    [
 
-        dbc.CardBody(
-            [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url)),
-                html.H4("Carbon offsets and carbon markets", className="card-title"),
-                html.H6("Challenge 2:", className="card-subtitle"),
-                html.P(
-                    "The carbon market is a curious place. Test your knowledge",
-                    className="card-text",
-                ),
-            ]
-        ),
-    ],
-    color="secondary",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
-)
-card_main7 = dbc.Card(
-    [
 
-        dbc.CardBody(
-            [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url)),
-                html.H4("All about carbon", className="card-title"),
-                html.H6("Challenge 3:", className="card-subtitle"),
-                html.P(
-                    "Deeper challenges on carbon market.",
-                    className="card-text",
-                ),
-            ]
-        ),
-    ],
-    color="secondary",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
-)
-card_main8 = dbc.Card(
+@app.callback(
+    Output('body_what_klima', 'is_open'),
     [
-
-        dbc.CardBody(
-            [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url)),
-                html.H4("How to participate in KlimaDAO", className="card-title"),
-                html.H6("Challenge 4:", className="card-subtitle"),
-                html.P(
-                    "Think you know how to get started? show us!",
-                    className="card-text",
-                ),
-            ]
-        ),
+        Input('open_what_klima', 'n_clicks'),
+        Input('close_what_klima', 'n_clicks'),
     ],
-    color="secondary",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
+    [State('body_what_klima', 'is_open')],
 )
-card_main9 = dbc.Card(
+def toggle_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_2', 'is_open'),
     [
-
-        dbc.CardBody(
-            [
-                html.Div(de.Lottie(options=options, width="50%", height="50%", url=url)),
-                html.H4("How to participate in KlimaDAO", className="card-title"),
-                html.H6("Challenge 4:", className="card-subtitle"),
-                html.P(
-                    "Validate what you've learned",
-                    className="card-text",
-                ),
-            ]
-        ),
-    ],
-    color="success",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
+        Input('open_learn_card_2', 'n_clicks'),
+        Input('close_learn_card_2', 'n_clicks'),
+     ],
+    [State('body_learn_card_2', 'is_open')],
 )
+def toggle_modal1(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_3', 'is_open'),
+    [
+        Input('open_learn_card_3', 'n_clicks'),
+        Input('close_learn_card_3', 'n_clicks'),
+     ],
+    [State('body_learn_card_3', 'is_open')],
+)
+def toggle_modal2(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
 
 
 layout = html.Div([
     dbc.Row([
-        dbc.Col(card_main, width=3),
-        dbc.Col(card_main2, width=3),
-        dbc.Col(card_main3, width=3),
-        dbc.Col(card_main4, width=3),
-        dbc.Col(card_main5, width=3),
-        dbc.Col(card_main6, width=3),
-        dbc.Col(card_main7, width=3),
-        dbc.Col(card_main8, width=3),
+        dbc.Col(dbc.Label('Learning Hub',
+                          className="page_section_topic"))
+    ]),
+    dbc.Row([
+        dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3),
+        dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3),
+        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3)
              ])
 ])
