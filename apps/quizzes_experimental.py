@@ -242,8 +242,7 @@ learn_card_4 = dbc.Card(
                             This increases the amount of carbon assets locked within the treasury, thereby
                             reducing supply on the open market and leading to price appreciation within the
                             Voluntary Carbon Markets.
-                            
-                            In summary: Klima serves two main purposes:
+                            In summary, Klima serves two main purposes:
                             1. It serves as a floating currency and a form of money backed at a 1:1 ratio by voluntary
                             carbon credits.
                             2. It is used to govern the protocol and confer voting power to influence decisions on
