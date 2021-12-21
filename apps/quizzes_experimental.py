@@ -35,20 +35,20 @@ learn_card_1 = dbc.Card(
                     dbc.ModalBody(
                         dcc.Markdown(
                             '''
-                            Klima DAO is a Decentralized Autonomous Organization to drive climate action, 
+                            Klima DAO is a Decentralized Autonomous Organization to drive climate action,
                             via our carbon-backed, algorithmic currency- the KLIMA token.
                             As the protocol grows, Klima DAO will solve the critical problems of the carbon markets:
-                            -  Illiquidity: Carbon Credits come in many different varieties; carbon brokers and 
+                            -  Illiquidity: Carbon Credits come in many different varieties; carbon brokers and
                             middlemen are used by buyers and sellers, fragmenting the total liquidity of the market.
                             - Opacity: Trades occur often behind closed doors, allowing buyers to underbuy the market.
-                            - Inefficiency: buying and retiring carbon credits comes with friction and barriers, 
+                            - Inefficiency: buying and retiring carbon credits comes with friction and barriers,
                             by utilizing the polygon ecosystem, it removes this friction for all users
-                            In delivery of its objectives, Klima DAO will become the single biggest disruptor of the 
-                            carbon markets and set a precedent for a new monetary system backed by carbon. 
-                            Klima DAO will serve the web3 ecosystem by offering accountability for those that 
+                            In delivery of its objectives, Klima DAO will become the single biggest disruptor of the
+                            carbon markets and set a precedent for a new monetary system backed by carbon.
+                            Klima DAO will serve the web3 ecosystem by offering accountability for those that
                             contribute, rewards for stakeholders, and a stake in governance for those that participate.
-                            Klima DAO was inspired by Olympus DAO. It was conceptualized and built by a 
-                            distributed pseudo-anonymous team. 
+                            Klima DAO was inspired by Olympus DAO. It was conceptualized and built by a
+                            distributed pseudo-anonymous team.
                             Klima is DAO-governed by it's community. All decisions are formed by community members on
                              the forum and made by KLIMA holders through snapshot voting.
                             '''
@@ -207,16 +207,14 @@ learn_card_3 = dbc.Card(
 )
 
 
-@app.callback([
+@app.callback(
     Output('body_what_klima', 'is_open'),
-    Input('open_what_klima', 'n_clicks'),
-    Input('close_what_klima', 'n_clicks'),
-],
+    [
+        Input('open_what_klima', 'n_clicks'),
+        Input('close_what_klima', 'n_clicks'),
+    ],
     [State('body_what_klima', 'is_open')],
 )
-
-
-
 def toggle_modal(n1, n2, is_open):
     if n1 or n2:
         return not is_open
