@@ -1,7 +1,6 @@
 from dash import dcc
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import Input, Output, State, html
-import dash_extensions as de  # pip install dash-extensions
 from app import app
 
 # Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
@@ -275,7 +274,7 @@ learn_card_5 = dbc.Card(
 - Staking is the primary profit distribution mechanism of the protocol. It is designed
 to be the primary mechanism of value accural for the majority of users.
 For most, the best thing to do is to simply stake and compound the KLIMA acquired.
-- Whenever the protocol has an excess of reserve per token, the protocol will mint 
+- Whenever the protocol has an excess of reserve per token, the protocol will mint
 and distribute tokens to the stakers. The amount minted and distributed is controlled
 by a variable called the reward rate.
 The reward rate is the % percent supply that is rebased.
