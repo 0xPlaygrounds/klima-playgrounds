@@ -1,4 +1,3 @@
-import dash  # pip install dash
 from dash import dcc
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import Input, Output, State, html
@@ -38,22 +37,18 @@ learn_card_1 = dbc.Card(
                             '''
                             Klima DAO is a Decentralized Autonomous Organization to drive climate action, 
                             via our carbon-backed, algorithmic currency- the KLIMA token.
-                        
                             As the protocol grows, Klima DAO will solve the critical problems of the carbon markets:
                             -  Illiquidity: Carbon Credits come in many different varieties; carbon brokers and 
                             middlemen are used by buyers and sellers, fragmenting the total liquidity of the market.
                             - Opacity: Trades occur often behind closed doors, allowing buyers to underbuy the market.
                             - Inefficiency: buying and retiring carbon credits comes with friction and barriers, 
                             by utilizing the polygon ecosystem, it removes this friction for all users
-                            
                             In delivery of its objectives, Klima DAO will become the single biggest disruptor of the 
                             carbon markets and set a precedent for a new monetary system backed by carbon. 
                             Klima DAO will serve the web3 ecosystem by offering accountability for those that 
                             contribute, rewards for stakeholders, and a stake in governance for those that participate.
-                            
                             Klima DAO was inspired by Olympus DAO. It was conceptualized and built by a 
                             distributed pseudo-anonymous team. 
-                            
                             Klima is DAO-governed by it's community. All decisions are formed by community members on
                              the forum and made by KLIMA holders through snapshot voting.
                             '''
@@ -105,29 +100,26 @@ learn_card_2 = dbc.Card(
                     dbc.ModalBody(
                         dcc.Markdown(
                             '''
-                            1. Driven Climate Action: 
-                            Klima DAO incentivizes new supply of Base Carbon Tonnes (BCT) on the blockchain 
-                            through the KLIMA token. By driving demand into BCT, it incentivizes carbon offset 
+                            1. Driven Climate Action:
+                            Klima DAO incentivizes new supply of Base Carbon Tonnes (BCT) on the blockchain
+                            through the KLIMA token. By driving demand into BCT, it incentivizes carbon offset
                             producers to produce more carbon credits, assisting the adoption of new carbon mitigating
-                             or sequestering technology, and disincentivizes companies wanting to offset their carbon 
-                             footprint with only C.Cs, and forces them to perform environmentally friendly actions.
-                             
-                             KLIMA is the first building block for unlocking the carbon economy — an economy where more
-                              economic activity leads to an acceleration in planetary regeneration rather than more 
-                              damage to our planet. Before, monetary incentives and environmental incentives aren't
-                               typically aligned.
-                               
+                            or sequestering technology, and disincentivizes companies wanting to offset their carbon
+                            footprint with only C.Cs, and forces them to perform environmentally friendly actions.
+                            KLIMA is the first building block for unlocking the carbon economy — an economy where more
+                            economic activity leads to an acceleration in planetary regeneration rather than more
+                            amage to our planet. Before, monetary incentives and environmental incentives aren't
+                            typically aligned.
                             2. Become a Carbon-Based Reserve Currency:
-                            The KLIMA ecosystem and monetary policy are managed by the Klima DAO. 
-                            This way we guarantee transparent decision making and long-term stability. 
-                            In the long term, we can use this system to optimize stability, to transition to a global 
-                            unit of account and medium of exchange. Currently, in the short term, we're focused on 
-                            growth and wealth creation, to incentivize users to join the new wave of carbon currency. 
-                            
+                            The KLIMA ecosystem and monetary policy are managed by the Klima DAO.
+                            This way we guarantee transparent decision making and long-term stability.
+                            In the long term, we can use this system to optimize stability, to transition to a global
+                            unit of account and medium of exchange. Currently, in the short term, we're focused on
+                            growth and wealth creation, to incentivize users to join the new wave of carbon currency.
                             3. Facilitate the Climate Market:
-                            The current carbon (and the climate in general) markets are illiquid, fragmented, 
+                            The current carbon (and the climate in general) markets are illiquid, fragmented,
                             inefficient, and opaque. Because of this, we feel that carbon tonnage is heavily
-                             undervalued, and is forced down because of these issues. By eliminating these issues, 
+                             undervalued, and is forced down because of these issues. By eliminating these issues,
                              the true price can be achieved.
                             '''
                         ),
@@ -178,16 +170,15 @@ learn_card_3 = dbc.Card(
                     dbc.ModalBody(
                         dcc.Markdown(
                             '''
-                            1. Klima DAO development: 
-                            Join the  Discord to become a Klimate and hear about Protocol developments. 
-                            Those who wish to be involved in Protocol Governance should also join the Discord 
-                            to be onboarded by a member of the team. 
-
+                            1. Klima DAO development:
+                            Join the  Discord to become a Klimate and hear about Protocol developments.
+                            Those who wish to be involved in Protocol Governance should also join the Discord
+                            to be onboarded by a member of the team.
                             2. Participation in the carbon economy:
                             BCTs are the underlying asset within the KlimaDAO treasury and their flow into the treasury
                              underpins protocol growth. BCTs can be created from real-world Verified Carbon Units (VCUs)
-                              via the Toucan Protocol. Bonders provide BCT LP or BCT tokens in exchange for discounted 
-                              KLIMA tokens after a fixed vesting period. Once KLIMA tokens are held, stakers stake 
+                              via the Toucan Protocol. Bonders provide BCT LP or BCT tokens in exchange for discounted
+                              KLIMA tokens after a fixed vesting period. Once KLIMA tokens are held, stakers stake
                               their KLIMA tokens in return for more KLIMA tokens.
                             '''
                         ),
