@@ -103,9 +103,9 @@
   font-size: 10px;
 }
 .input_box_number{
-  background: #303030;
   box-shadow: 2px 2px 5px -2px #0BA1FF;
   border-radius: 5px;
+  color: #FFFFFF;
 }
 .rc-slider-track{
   background-color: #0BA1FF;
