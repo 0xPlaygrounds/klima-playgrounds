@@ -21,7 +21,7 @@ learn_card_1 = dbc.Card(
                 ),
                 dbc.Row(
                     dbc.Button(
-                        'Click to learn', id='open_what_klima', n_clicks=0,
+                        'Click to learn', id='open_learn_card_1', n_clicks=0,
                         className='align-self-center'
                     ),
                 ),
@@ -30,35 +30,36 @@ learn_card_1 = dbc.Card(
                     dbc.ModalBody(
                         dcc.Markdown(
                             '''
-                            Klima DAO is a Decentralized Autonomous Organization to drive climate action,
-                            via our carbon-backed, algorithmic currency- the KLIMA token.
-                            As the protocol grows, Klima DAO will solve the critical problems of the carbon markets:
-                            -  Illiquidity: Carbon Credits come in many different varieties; carbon brokers and
-                            middlemen are used by buyers and sellers, fragmenting the total liquidity of the market.
-                            - Opacity: Trades occur often behind closed doors, allowing buyers to underbuy the market.
-                            - Inefficiency: buying and retiring carbon credits comes with friction and barriers,
-                            by utilizing the polygon ecosystem, it removes this friction for all users
-                            In delivery of its objectives, Klima DAO will become the single biggest disruptor of the
-                            carbon markets and set a precedent for a new monetary system backed by carbon.
-                            Klima DAO will serve the web3 ecosystem by offering accountability for those that
-                            contribute, rewards for stakeholders, and a stake in governance for those that participate.
-                            Klima DAO was inspired by Olympus DAO. It was conceptualized and built by a
-                            distributed pseudo-anonymous team.
-                            Klima is DAO-governed by it's community. All decisions are formed by community members on
-                             the forum and made by KLIMA holders through snapshot voting.
+Klima DAO is a Decentralized Autonomous Organization to drive climate action,
+via our carbon-backed, algorithmic currency- the KLIMA token.
+As the protocol grows, Klima DAO will solve the critical problems of the carbon markets:
+- **Illiquidity**: Carbon Credits come in many different varieties; carbon brokers and
+middlemen are used by buyers and sellers, fragmenting the total liquidity of the market.
+- **Opacity**: Trades occur often behind closed doors, allowing buyers to underbuy the market.
+- **Inefficiency**: buying and retiring carbon credits comes with friction and barriers,
+by utilizing the polygon ecosystem, it removes this friction for all users
+
+In delivery of its objectives, Klima DAO will become the single biggest disruptor of the
+carbon markets and set a precedent for a new monetary system backed by carbon.
+Klima DAO will serve the web3 ecosystem by offering accountability for those that
+contribute, rewards for stakeholders, and a stake in governance for those that participate.
+Klima DAO was inspired by Olympus DAO. It was conceptualized and built by a
+distributed pseudo-anonymous team.
+Klima is DAO-governed by it's community. All decisions are formed by community members on
+ the forum and made by KLIMA holders through snapshot voting.
                             '''
                         ),
                     ),
                     dbc.ModalFooter(
                         dbc.Button(
                             'close',
-                            id='close_what_klima',
+                            id='close_learn_card_1',
                             className='ms-auto',
                             n_clicks=0,
                         )
                     )
                 ],
-                    id="body_what_klima",
+                    id="body_learn_card_1",
                     scrollable=True,
                     is_open=False,
                 ),
@@ -161,10 +162,10 @@ learn_card_3 = dbc.Card(
                             to be onboarded by a member of the team.
                             2. Participation in the carbon economy:
                             BCTs are the underlying asset within the KlimaDAO treasury and their flow into the treasury
-                             underpins protocol growth. BCTs can be created from real-world Verified Carbon Units (VCUs)
-                              via the Toucan Protocol. Bonders provide BCT LP or BCT tokens in exchange for discounted
-                              KLIMA tokens after a fixed vesting period. Once KLIMA tokens are held, stakers stake
-                              their KLIMA tokens in return for more KLIMA tokens.
+                            underpins protocol growth. BCTs can be created from real-world Verified Carbon Units (VCUs)
+                            via the Toucan Protocol. Bonders provide BCT LP or BCT tokens in exchange for discounted
+                            KLIMA tokens after a fixed vesting period. Once KLIMA tokens are held, stakers stake
+                            their KLIMA tokens in return for more KLIMA tokens.
                             '''
                         ),
                     ),
@@ -214,6 +215,7 @@ learn_card_4 = dbc.Card(
                             KlimaDAO incentivises new supply of Base Carbon Tonnes (BCT) on the blockchain through
                             bonding with the Protocol. Each KLIMA token is backed at a 1:1 ratio with a BCT in the
                             treasury.
+
                             KlimaDAO leverages the [Toucan Protocol's](https://docs.toucan.earth/protocol/)
                             Carbon Bridge to retire real world Verified Carbon Units (VCUs) and convert them to a
                             tokenized form on the blockchain, VCUs can be verified from reputable carbon markets in a
@@ -222,9 +224,12 @@ learn_card_4 = dbc.Card(
                             This increases the amount of carbon assets locked within the treasury, thereby
                             reducing supply on the open market and leading to price appreciation within the
                             Voluntary Carbon Markets.
+
                             In summary, Klima serves two main purposes:
+
                             1. It serves as a floating currency and a form of money backed at a 1:1 ratio by voluntary
                             carbon credits.
+
                             2. It is used to govern the protocol and confer voting power to influence decisions on
                             various policies including supply expansion mechanics.
                             '''
@@ -484,12 +489,12 @@ learn_card_8 = dbc.Card(
 
 
 @app.callback(
-    Output('body_what_klima', 'is_open'),
+    Output('body_learn_card_1', 'is_open'),
     [
-        Input('open_what_klima', 'n_clicks'),
-        Input('close_what_klima', 'n_clicks'),
+        Input('open_learn_card_1', 'n_clicks'),
+        Input('close_learn_card_1', 'n_clicks'),
     ],
-    [State('body_what_klima', 'is_open')],
+    [State('body_learn_card_1', 'is_open')],
 )
 def toggle_modal1(n1, n2, is_open):
     if n1 or n2:
@@ -601,10 +606,10 @@ layout = html.Div([
                           className="page_section_topic"))
     ]),
     dbc.Row([
-        dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
         dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
         dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
     ]),
     dbc.Row([
         dbc.Col(dbc.Label('Protocol Mechanics',
@@ -616,14 +621,4 @@ layout = html.Div([
         dbc.Col(learn_card_7, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
         dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
     ]),
-    dbc.Row([
-        dbc.Col(dbc.Label('Common Terms',
-                          className="page_section_topic"))
-    ]),
-    dbc.Row([
-        dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
-    ])
 ])
