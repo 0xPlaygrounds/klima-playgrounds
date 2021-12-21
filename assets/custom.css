@@ -118,3 +118,27 @@
   width:100vw;
   z-index:1;
 }
+.bonding_roi_card_style{
+  background: #202020;
+  mix-blend-mode: normal;
+  box-shadow: 0px 0px 10px 3px #00CC33;
+  border-radius: 15px;
+}
+.bonding_roi_card_metrics{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 96px;
+  text-align: center;
+  color: #0BA1FF;
+}
+.bonding_roi_card_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 54px;
+  text-align: center;
+  color: #FFFFFF;
+}

@@ -57,11 +57,16 @@ menu_bar = dbc.DropdownMenu(
                                         href="/apps/playgroundSimulation_KlimaGrowthOverTime"),
                    dbc.DropdownMenuItem("Bonding Simulator",
                                         href="/apps/playgroundsSimulation_KlimaBonding"),
-                   dbc.DropdownMenuItem("Learning Hub", href="/apps/quizzes_experimental"),
-                   dbc.DropdownMenuItem("KlimaDAO", href="https://www.klimadao.finance/#/stake"),
-                   dbc.DropdownMenuItem("Learn More", href="https://docs.klimadao.finance/"),
-                   dbc.DropdownMenuItem("Feedback", href="https://forms.gle/UTyj7HvCfBNa1rt17"),
-                   dbc.DropdownMenuItem("Disclaimer", href="/disclaimer"),
+                   dbc.DropdownMenuItem("Learning Hub",
+                                        href="/apps/quizzes_experimental"),
+                   dbc.DropdownMenuItem("KlimaDAO",
+                                        href="https://www.klimadao.finance/#/stake"),
+                   dbc.DropdownMenuItem("Learn More",
+                                        href="https://docs.klimadao.finance/"),
+                   dbc.DropdownMenuItem("Feedback",
+                                        href="https://forms.gle/UTyj7HvCfBNa1rt17"),
+                   dbc.DropdownMenuItem("Disclaimer",
+                                        href="/disclaimer"),
                ],
                nav=True,
                in_navbar=True,
@@ -72,9 +77,8 @@ menu_bar = dbc.DropdownMenu(
                className="navbar_link_topic",
            ),
 
-Navbar2 = dbc.Navbar(
+navbar2 = dbc.Navbar(
     dbc.Container([
-        html.A(
             dbc.Row([
                 dbc.Col(html.Img(src=app.get_asset_url('Klima_PG_trans_no_box.png'),
                                  height="85px")),
@@ -82,14 +86,13 @@ Navbar2 = dbc.Navbar(
                 align="center",
                 className="g-0",
             ),
-        ),
-        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
-        dbc.Collapse(
-            dbc.Nav(menu_bar, className='ms-auto', navbar=True),
-            id="navbar_collapse",
-            is_open=False,
-            navbar=True
-        ),
+            dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+            dbc.Collapse(
+                dbc.Nav(menu_bar, className='ms-auto', navbar=True),
+                id="navbar_collapse",
+                is_open=False,
+                navbar=True
+            ),
     ], fluid=True),
     color="dark",
     dark=True,
@@ -99,7 +102,7 @@ content = html.Div(id="page-content", children=[], style=CONTENT_STYLE)
 
 app.layout = html.Div([
     dcc.Location(id="url"),
-    Navbar2,
+    navbar2,
     content,
     html.Footer(short_disclaimer_row(),
                 className='footer_style')

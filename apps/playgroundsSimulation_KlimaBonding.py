@@ -87,38 +87,39 @@ layout = dbc.Container([
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('(3,3) and (4,4) Growth comparison'),
+                            dbc.CardHeader('(3,3) and (4,4) Growth comparison', className='enclosure_card_topic'),
                             dbc.CardBody([
                                 dcc.Graph(id='graph2', style={"height": "100%", "width": "100%"}),
-                            ], style={"height": "100%", "width": "auto"})
-                        ], outline=True, color='success', style={"height": "auto", "width": "100%"}),
+                            ], style={"height": "100%", "width": "100%"})
+                        ], outline=False, color='#232b2b', style={"height": "100%", "width": "100%",
+                                                                  'border-color': '#00cc33'}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Growth Comparison Summary'),
+                            dbc.CardHeader('Growth Comparison Summary', className='enclosure_card_topic'),
                             dbc.CardBody([
                                     dbc.Row([
-                                        dbc.Label('Max (3,3) ROI (Klima)', style={'color': 'white', 'fontSize': 15}),
-                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                        dbc.Label('Max (3,3) ROI (Klima)', className='bonding_roi_card_topic'),
+                                        html.Div(className="bonding_roi_card_metrics",
                                                  id='max_33_growth'),
                                         dcc.Markdown('---')
                                     ], className='text-center'),
                                     dbc.Row([
-                                        dbc.Label('Max (4,4) ROI (Klima)', style={'color': 'white', 'fontSize': 15}),
-                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                        dbc.Label('Max (4,4) ROI (Klima)', className="bonding_roi_card_topic"),
+                                        html.Div(className="bonding_roi_card_metrics",
                                                  id='max_44_growth'),
                                         dcc.Markdown('---')
                                     ], className='text-center'),
                                     dbc.Row([
-                                        dbc.Label('Bonus Klima', style={'color': 'white', 'fontSize': 15}),
-                                        html.Div(style={'color': 'white', 'fontSize': 50},
+                                        dbc.Label('Bonus Klima', className="bonding_roi_card_topic"),
+                                        html.Div(className="bonding_roi_card_metrics",
                                                  id='bonus_gained'),
                                     ], className='text-center')
                             ])
-                        ], outline=True, color='success', style={"height": "100%"}))
+                        ], outline=True, color='success', style={"height": "100%", "width": "auto"}))
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Chart Explanation'),
+                            dbc.CardHeader('Chart Explanation', className='enclosure_card_topic'),
                             dbc.CardBody([
                                 dcc.Markdown('''
                                 This chart contains two trend lines (3,3) Klima Growth and (4,4) Klima Growth.
@@ -139,54 +140,63 @@ layout = dbc.Container([
                                 ''')
                             ])
                         ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
-                    ], style={'padding': '10px'}),
-                    dbc.Row([
-                        dbc.Col(dcc.Markdown('''
-                        ---
-                        '''))
-                    ], style={'padding': '10px'}),
+                    ], className="mb-5"),
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
-                                dbc.CardHeader('(3,3) and (4,4) ROI Comparison'),
+                                dbc.CardHeader('(3,3) and (4,4) ROI Comparison', className='enclosure_card_topic'),
                                 dbc.CardBody([
                                     dcc.Graph(id='graph3', style={"height": "100%", "width": "100%"}),
-                                ], style={"height": "100%", "width": "auto"})
-                            ], outline=True, color='success', style={"height": "auto", "width": "100%"}),
+                                ], style={"height": "100%", "width": "100%"})
+                            ], outline=False, color='#232b2b', style={"height": "100%", "width": "100%",
+                                                                      'border-color': '#00cc33'}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col([
                             dbc.Card([
-                                dbc.CardHeader('(3,3) and (4,4) ROI Summary'),
+                                dbc.CardHeader('(3,3) and (4,4) ROI Summary', className='enclosure_card_topic'),
                                 dbc.CardBody([
-                                        dbc.Row([
-                                            dbc.Label('(3,3) ROI (%)', style={'color': 'white', 'fontSize': 15}),
-                                            html.Div(style={'color': 'white', 'fontSize': 50},
-                                                     id='33_roi'),
-                                            dcc.Markdown('---')
-                                        ], className='text-center'),
-                                        dbc.Row([
-                                            dbc.Label('Bond ROI (%)', style={'color': 'white', 'fontSize': 15}),
-                                            html.Div(style={'color': 'white', 'fontSize': 50},
-                                                     id='bonding_roi'),
-                                            dcc.Markdown('---')
-                                        ], className='text-center'),
-                                        dbc.Row([
-                                            dbc.Label('Max (4,4) ROI (%)', style={'color': 'white', 'fontSize': 15}),
-                                            html.Div(style={'color': 'white', 'fontSize': 50},
-                                                     id='max_44_roi'),
-                                        ], className='text-center')
+                                    dbc.Row(
+                                        dbc.Label('(3,3) ROI (%)', className='bonding_roi_card_topic'),
+                                    ),
+                                    dbc.Row(
+                                        html.Div(className="bonding_roi_card_metrics",
+                                                 id='33_roi'),
+                                    ),
+                                    dbc.Row(
+                                        dbc.Row(
+                                            dcc.Markdown('''
+                                            ---
+                                            ''')
+                                        ),
+                                    ),
+                                    dbc.Row(
+                                        dbc.Label('Bond ROI (%)', className="bonding_roi_card_topic"),
+                                    ),
+                                    dbc.Row(
+                                        html.Div(className="bonding_roi_card_metrics",
+                                                 id='bonding_roi'),
+                                    ),
+                                    dbc.Row(
+                                        dbc.Row(
+                                            dcc.Markdown('''
+                                            ---
+                                            ''')
+                                        ),
+                                    ),
+                                    dbc.Row(
+                                        dbc.Label('Max (4,4) ROI (%)', className="bonding_roi_card_topic"),
+                                    ),
+                                    dbc.Row(
+                                        html.Div(className="bonding_roi_card_metrics",
+                                                 id='max_44_roi'),
+                                    ),
                                 ])
-                            ], outline=True, color='success', style={"height": "100%"})
-                        ]),
-                    ], style={'padding': '10px'}),
-                    dbc.Row([
-                        dbc.Col(dcc.Markdown('''
-                                    ---
-                                    '''))
+                            ], outline=True, color='success', style={"height": "100%", "width": "auto"})],
+                            xs=12, sm=12, md=12, lg=4, xl=4),
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Chart Explanation'),
+                            dbc.CardHeader('Chart Explanation', className='enclosure_card_topic'),
                             dbc.CardBody([
                                 dcc.Markdown('''
                                 This chart contains two trend lines (3,3) ROI and (4,4) ROI.
@@ -207,11 +217,14 @@ layout = dbc.Container([
                                 ''')
                             ])
                         ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
-                    ], style={'padding': '10px'}),
+                    ], className="mb-5"),
                     ]),
-
         dbc.Tab(label='Guide',
-                style={'color': 'green', 'fontSize': '30px', 'height': '70px'},
+                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                             'fontSize': '30px'},
+                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
+                active_label_style={'color': '#222222'},
                 children=[
                     dbc.Row([
                         html.Div(html.Img(src=app.get_asset_url('PG_Bonding_Learn.png'),
