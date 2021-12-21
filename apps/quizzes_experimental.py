@@ -1,7 +1,6 @@
 from dash import dcc
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import Input, Output, State, html
-import dash_extensions as de  # pip install dash-extensions
 from app import app
 
 # Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
@@ -16,18 +15,14 @@ learn_card_1 = dbc.Card(
         dbc.CardBody(
             [
                 dbc.Row(
-                    html.Div(de.Lottie(options=options, width="50%", height="50%", url=url_earth)),
-                ),
-                dbc.Row(
                     dbc.Label(
                         "What is KlimaDAO?", className='emission_card_topic',
-                        style={'height': '100%', 'width': '100%'}
                     ),
                 ),
                 dbc.Row(
                     dbc.Button(
                         'Click to learn', id='open_what_klima', n_clicks=0,
-                        style={'height': '100%', 'width': '100%'}
+                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -70,29 +65,24 @@ learn_card_1 = dbc.Card(
             ]
         ),
     ],
-    color="success",   # https://bootswatch.com/default/ for more card colors
-    inverse=True,   # change color of text (black or white)
+    color="success",  # https://bootswatch.com/default/ for more card colors
+    inverse=True,  # change color of text (black or white)
     outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
+    className='emission_card_style',
 )
 learn_card_2 = dbc.Card(
     [
         dbc.CardBody(
             [
                 dbc.Row(
-                    html.Div(de.Lottie(options=options, width="50%", height="50%", url=url_earth)),
-                ),
-                dbc.Row(
                     dbc.Label(
-                        "What is the point of KlimaDAO?", className='emission_card_topic',
-                        style={'height': '100%', 'width': '100%'}
+                        "Why KlimaDAO?", className='emission_card_topic',
                     ),
                 ),
                 dbc.Row(
                     dbc.Button(
                         'Click to learn', id='open_learn_card_2', n_clicks=0,
-                        style={'height': '100%', 'width': '100%'}
+                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -143,26 +133,21 @@ learn_card_2 = dbc.Card(
     color="success",  # https://bootswatch.com/default/ for more card colors
     inverse=True,  # change color of text (black or white)
     outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
+    className='emission_card_style',
 )
 learn_card_3 = dbc.Card(
     [
         dbc.CardBody(
             [
                 dbc.Row(
-                    html.Div(de.Lottie(options=options, width="50%", height="50%", url=url_earth)),
-                ),
-                dbc.Row(
                     dbc.Label(
-                        "How do I participate in KlimaDAO?", className='emission_card_topic',
-                        style={'height': '100%', 'width': '100%'}
+                        "How do I participate?", className='emission_card_topic',
                     ),
                 ),
                 dbc.Row(
                     dbc.Button(
                         'Click to learn', id='open_learn_card_3', n_clicks=0,
-                        style={'height': '100%', 'width': '100%'}
+                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -202,26 +187,21 @@ learn_card_3 = dbc.Card(
     color="success",  # https://bootswatch.com/default/ for more card colors
     inverse=True,  # change color of text (black or white)
     outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
+    className='emission_card_style',
 )
 learn_card_4 = dbc.Card(
     [
         dbc.CardBody(
             [
                 dbc.Row(
-                    html.Div(de.Lottie(options=options, width="50%", height="50%", url=url_earth)),
-                ),
-                dbc.Row(
                     dbc.Label(
                         "What is Klima?", className='emission_card_topic',
-                        style={'height': '100%', 'width': '100%'}
                     ),
                 ),
                 dbc.Row(
                     dbc.Button(
                         'Click to learn', id='open_learn_card_4', n_clicks=0,
-                        style={'height': '100%', 'width': '100%'}
+                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -269,8 +249,237 @@ learn_card_4 = dbc.Card(
     color="success",  # https://bootswatch.com/default/ for more card colors
     inverse=True,  # change color of text (black or white)
     outline=False,  # True = remove the block colors from the background and header
-    className="mt-3",
-    style={'height': '90%', 'padding': "10px"},
+    className='emission_card_style',
+)
+learn_card_5 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row(
+                    dbc.Label(
+                        "What is Staking?", className='emission_card_topic',
+                    ),
+                ),
+                dbc.Row(
+                    dbc.Button(
+                        'Click to learn', id='open_learn_card_5', n_clicks=0,
+                        className='align-self-center'
+                    ),
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('What is Staking?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+- Staking is the primary profit distribution mechanism of the protocol. It is designed
+to be the primary mechanism of value accural for the majority of users.
+For most, the best thing to do is to simply stake and compound the KLIMA acquired.
+- Whenever the protocol has an excess of reserve per token, the protocol will mint
+and distribute tokens to the stakers. The amount minted and distributed is controlled
+by a variable called the reward rate.
+The reward rate is the % percent supply that is rebased.
+
+For a step by step guide on how to stake KLIMA, see the
+[Community guide](https://klima-dao.notion.site/I-m-new-to-KLIMA-How-do-I-participate-bcf8881862e941a5b5550d1179e123f9)
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_5',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    )
+                ],
+                    id="body_learn_card_5",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    color="success",  # https://bootswatch.com/default/ for more card colors
+    inverse=True,  # change color of text (black or white)
+    outline=False,  # True = remove the block colors from the background and header
+    className='emission_card_style',
+)
+learn_card_6 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row(
+                    dbc.Label(
+                        "What is Bonding?", className='emission_card_topic',
+                    ),
+                ),
+                dbc.Row(
+                    dbc.Button(
+                        'Click to learn', id='open_learn_card_6', n_clicks=0,
+                        className='align-self-center'
+                    ),
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('What is Bonding?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+What is Bonding?
+Bonding is the process of trading assets to the protocol for KLIMA. The protocol will quote you an amount of KLIMA
+ for your asset, and the vesting period for the trade. Today, the protocol takes in:
+1. Reserve Assets: BCT (Base Carbon Tonnes)
+2. Liquidity Assets: KLIMA/BCT and BCT/USDC sushiswap LP pairs.
+
+Bonding allows you to buy KLIMA at a lower cost basis. Because the protocol can sell at a discount to the market
+price (as it can mint KLIMA at IV),you are able to more cheaply buy KLIMA
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_6',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    )
+                ],
+                    id="body_learn_card_6",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    color="success",  # https://bootswatch.com/default/ for more card colors
+    inverse=True,  # change color of text (black or white)
+    outline=False,  # True = remove the block colors from the background and header
+    className='emission_card_style',
+)
+learn_card_7 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row(
+                    dbc.Label(
+                        "What is Rebasing?", className='emission_card_topic',
+                    ),
+                ),
+                dbc.Row(
+                    dbc.Button(
+                        'Click to learn', id='open_learn_card_7', n_clicks=0,
+                        className='align-self-center'
+                    ),
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('What is Rebasing?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+                            KLIMA is an algorithmic carbon-backed currency,
+                            inspired by [Olympus DAO](https://www.olympusdao.finance/) and their token mechanics.
+                            KlimaDAO incentivises new supply of Base Carbon Tonnes (BCT) on the blockchain through
+                            bonding with the Protocol. Each KLIMA token is backed at a 1:1 ratio with a BCT in the
+                            treasury.
+                            KlimaDAO leverages the [Toucan Protocol's](https://docs.toucan.earth/protocol/)
+                            Carbon Bridge to retire real world Verified Carbon Units (VCUs) and convert them to a
+                            tokenized form on the blockchain, VCUs can be verified from reputable carbon markets in a
+                            transparent and traceable manner.  The credits are then absorbed through the protocols'
+                            bonding mechanism, building a treasury of verified tokenized carbon reductions.
+                            This increases the amount of carbon assets locked within the treasury, thereby
+                            reducing supply on the open market and leading to price appreciation within the
+                            Voluntary Carbon Markets.
+                            In summary, Klima serves two main purposes:
+                            1. It serves as a floating currency and a form of money backed at a 1:1 ratio by voluntary
+                            carbon credits.
+                            2. It is used to govern the protocol and confer voting power to influence decisions on
+                            various policies including supply expansion mechanics.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_7',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    )
+                ],
+                    id="body_learn_card_7",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    color="success",  # https://bootswatch.com/default/ for more card colors
+    inverse=True,  # change color of text (black or white)
+    outline=False,  # True = remove the block colors from the background and header
+    className='emission_card_style',
+)
+learn_card_8 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row(
+                    dbc.Label(
+                        "Participant Goals?", className='emission_card_topic',
+                    ),
+                ),
+                dbc.Row(
+                    dbc.Button(
+                        'Click to learn', id='open_learn_card_8', n_clicks=0,
+                        className='align-self-center'
+                    ),
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('Participant Goals?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+                            KLIMA is an algorithmic carbon-backed currency,
+                            inspired by [Olympus DAO](https://www.olympusdao.finance/) and their token mechanics.
+                            KlimaDAO incentivises new supply of Base Carbon Tonnes (BCT) on the blockchain through
+                            bonding with the Protocol. Each KLIMA token is backed at a 1:1 ratio with a BCT in the
+                            treasury.
+                            KlimaDAO leverages the [Toucan Protocol's](https://docs.toucan.earth/protocol/)
+                            Carbon Bridge to retire real world Verified Carbon Units (VCUs) and convert them to a
+                            tokenized form on the blockchain, VCUs can be verified from reputable carbon markets in a
+                            transparent and traceable manner.  The credits are then absorbed through the protocols'
+                            bonding mechanism, building a treasury of verified tokenized carbon reductions.
+                            This increases the amount of carbon assets locked within the treasury, thereby
+                            reducing supply on the open market and leading to price appreciation within the
+                            Voluntary Carbon Markets.
+                            In summary, Klima serves two main purposes:
+                            1. It serves as a floating currency and a form of money backed at a 1:1 ratio by voluntary
+                            carbon credits.
+                            2. It is used to govern the protocol and confer voting power to influence decisions on
+                            various policies including supply expansion mechanics.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_8',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    )
+                ],
+                    id="body_learn_card_8",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    color="success",  # https://bootswatch.com/default/ for more card colors
+    inverse=True,  # change color of text (black or white)
+    outline=False,  # True = remove the block colors from the background and header
+    className='emission_card_style',
 )
 
 
@@ -293,7 +502,7 @@ def toggle_modal1(n1, n2, is_open):
     [
         Input('open_learn_card_2', 'n_clicks'),
         Input('close_learn_card_2', 'n_clicks'),
-     ],
+    ],
     [State('body_learn_card_2', 'is_open')],
 )
 def toggle_modal2(n1, n2, is_open):
@@ -307,7 +516,7 @@ def toggle_modal2(n1, n2, is_open):
     [
         Input('open_learn_card_3', 'n_clicks'),
         Input('close_learn_card_3', 'n_clicks'),
-     ],
+    ],
     [State('body_learn_card_3', 'is_open')],
 )
 def toggle_modal3(n1, n2, is_open):
@@ -321,7 +530,7 @@ def toggle_modal3(n1, n2, is_open):
     [
         Input('open_learn_card_4', 'n_clicks'),
         Input('close_learn_card_4', 'n_clicks'),
-     ],
+    ],
     [State('body_learn_card_4', 'is_open')],
 )
 def toggle_modal4(n1, n2, is_open):
@@ -330,15 +539,91 @@ def toggle_modal4(n1, n2, is_open):
     return is_open
 
 
+@app.callback(
+    Output('body_learn_card_5', 'is_open'),
+    [
+        Input('open_learn_card_5', 'n_clicks'),
+        Input('close_learn_card_5', 'n_clicks'),
+    ],
+    [State('body_learn_card_5', 'is_open')],
+)
+def toggle_modal5(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_6', 'is_open'),
+    [
+        Input('open_learn_card_6', 'n_clicks'),
+        Input('close_learn_card_6', 'n_clicks'),
+    ],
+    [State('body_learn_card_6', 'is_open')],
+)
+def toggle_modal6(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_7', 'is_open'),
+    [
+        Input('open_learn_card_7', 'n_clicks'),
+        Input('close_learn_card_7', 'n_clicks'),
+    ],
+    [State('body_learn_card_7', 'is_open')],
+)
+def toggle_modal7(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_8', 'is_open'),
+    [
+        Input('open_learn_card_8', 'n_clicks'),
+        Input('close_learn_card_8', 'n_clicks'),
+    ],
+    [State('body_learn_card_8', 'is_open')],
+)
+def toggle_modal8(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
 layout = html.Div([
     dbc.Row([
-        dbc.Col(dbc.Label('Learning Hub',
+        dbc.Col(dbc.Label('Foundations',
                           className="page_section_topic"))
     ]),
     dbc.Row([
-        dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3),
-        dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3),
-        dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3),
-        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3)
-             ])
+        dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+    ]),
+    dbc.Row([
+        dbc.Col(dbc.Label('Protocol Mechanics',
+                          className="page_section_topic"))
+    ]),
+    dbc.Row([
+        dbc.Col(learn_card_5, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_6, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_7, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+    ]),
+    dbc.Row([
+        dbc.Col(dbc.Label('Common Terms',
+                          className="page_section_topic"))
+    ]),
+    dbc.Row([
+        dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+    ])
 ])
