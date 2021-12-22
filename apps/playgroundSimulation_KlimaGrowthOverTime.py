@@ -9,7 +9,6 @@ import numpy as np
 import math
 from millify import millify
 from app import app
-
 # from components.disclaimer import short_disclaimer_row
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
@@ -81,7 +80,8 @@ layout = dbc.Container([
                                             step=0.001,
                                             debounce=True,
                                             value=1,
-                                            className="input_box_number")]),
+                                            className="input_box_number",
+                                            style={'color': 'white'})]),
                                     dbc.Col([
                                         dbc.Input(
                                             id='user_apy',
@@ -90,7 +90,8 @@ layout = dbc.Container([
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=40000, className="input_box_number")]),
+                                            value=40000, className="input_box_number",
+                                            style={'color': 'white'})]),
                                     dbc.Col([
                                         dbc.Input(
                                             id='user_rfv',
@@ -99,7 +100,7 @@ layout = dbc.Container([
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=5, className="input_box_number")]),
+                                            value=5, className="input_box_number", style={'color': 'white'})]),
                                 ], className="g-2"),
                                 dbc.Row([
                                    dbc.Col([
@@ -128,7 +129,7 @@ layout = dbc.Container([
                                             step=0.001,
                                             debounce=True,
                                             value=5,
-                                            className="input_box_number"),
+                                            className="input_box_number", style={'color': 'white'}),
                                     ]),
                                     dbc.Col([
                                         dbc.Input(
@@ -139,7 +140,7 @@ layout = dbc.Container([
                                             step=0.001,
                                             debounce=True,
                                             value=30,
-                                            className="input_box_number"),
+                                            className="input_box_number", style={'color': 'white'}),
                                     ]),
                                 ]),
                                 dbc.Row([
@@ -160,7 +161,7 @@ layout = dbc.Container([
                                         min=1,
                                         step=0.001,
                                         debounce=True,
-                                        value=1000, className="input_box_number")
+                                        value=1000, className="input_box_number", style={'color': 'white'})
                                 ]),
                                 dbc.Row([
                                     dbc.Label('Purchase Amount ($)'),
@@ -171,7 +172,7 @@ layout = dbc.Container([
                                         min=1,
                                         step=0.001,
                                         debounce=True,
-                                        value=1000, className="input_box_number"),
+                                        value=1000, className="input_box_number", style={'color': 'white'}),
                                 ]),
                                 dbc.Row([
                                     dbc.Label('Cadence (Days)'),
@@ -180,7 +181,7 @@ layout = dbc.Container([
                                         placeholder='30',
                                         type='number',
                                         min=1,
-                                        value=30, className="input_box_number"),
+                                        value=30, className="input_box_number", style={'color': 'white'}),
                                 ])
                             ])
                         ], outline=False, color='#232b2b', style={"height": "100%", "width": "auto",
@@ -188,129 +189,6 @@ layout = dbc.Container([
                             style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=4, xl=4)]),
                     dbc.Row([
-                        dbc.Col([
-                            dbc.Card([
-                                dbc.CardHeader('Klima growth simulation results: ROI',
-                                               className='enclosure_card_topic'),
-                                dbc.CardBody([
-                                    dbc.Row([
-                                        dbc.Col([
-                                            dbc.Card([
-                                                dbc.CardBody([
-                                                    dbc.Row(
-                                                        dbc.Label('Daily ROI',
-                                                                  className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='dailyROI'),
-                                                    ),
-                                                    dbc.Row(
-                                                        dcc.Markdown('''
-                                                        ---
-                                                        ''')
-                                                    ),
-                                                    dbc.Row(
-                                                        dbc.Label('Klima Gained',
-                                                                  className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='dailyKlima'),
-                                                    ),
-                                                ], className='align-self-center')
-                                            ], className='emission_card_style')
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6,
-                                            style={'height': "100%", 'padding': '10px'}),
-                                        dbc.Col([
-                                            dbc.Card([
-                                                dbc.CardBody([
-                                                    dbc.Row(
-                                                        dbc.Label('7 Day ROI',
-                                                                  className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='sevendayROI')
-                                                    ),
-                                                    dbc.Row(
-                                                        dcc.Markdown('''
-                                                        ---
-                                                        ''')
-                                                    ),
-                                                    dbc.Row(
-                                                        dbc.Label('Klima Gained',
-                                                                  className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='sevendayKlima')
-                                                    ),
-                                                ], className='align-self-center'),
-                                            ], className='emission_card_style')
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6, style={'height': "100%", 'padding': '10px'})
-                                    ]),
-                                    dbc.Row([
-                                        dbc.Col([
-                                            dbc.Card([
-                                                dbc.CardBody([
-                                                    dbc.Row(
-                                                        dbc.Label('Monthly ROI',
-                                                                  className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='monthlyROI')
-                                                    ),
-                                                    dbc.Row(
-                                                        dbc.Label('Klima Gained',
-                                                                  className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        dcc.Markdown('''
-                                                        ---
-                                                        ''')
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='monthlyKlima')
-                                                    ),
-                                                ], className='align-self-center')
-                                            ], className='emission_card_style')
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6,
-                                            style={'height': "100%", 'padding': '10px'}),
-                                        dbc.Col([
-                                            dbc.Card([
-                                                dbc.CardBody([
-                                                    dbc.Row(
-                                                        dbc.Label('Annual ROI', className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='annualROI')
-                                                    ),
-                                                    dbc.Row(
-                                                        dcc.Markdown('''
-                                                        ---
-                                                        ''')
-                                                    ),
-                                                    dbc.Row(
-                                                        dbc.Label('Klima Gained',
-                                                                  className='emission_card_topic'),
-                                                    ),
-                                                    dbc.Row(
-                                                        html.Div(className='emission_card_metric',
-                                                                 id='annualKlima')
-                                                    ),
-                                                ], className='align-self-center')
-                                            ], className='emission_card_style')
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6,
-                                            style={'height': "100%", 'padding': '10px'}),
-                                    ]),
-                                ]),
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'})],
-                            style={'padding': '10px', 'height': '100%', 'border': 0},
-                            xs=12, sm=12, md=12, lg=6, xl=6),
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Klima to CO2 emissions equivalency',
@@ -323,75 +201,199 @@ layout = dbc.Container([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
                                                                       className="emission_card_topic")),
                                                     dbc.Row([
+                                                        dbc.Label('This many cars per year',
+                                                                  className="emission_card_topic")
+                                                    ]),
+                                                    dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
                                                                      id='passenger_vehicle_annual'),
                                                         ]),
-                                                    ])
+                                                    ]),
                                                 ], className='emission_card_style')
                                             ], style={"height": "100%%",
-                                                      'width': '100%',
-                                                      'border': 0,
-                                                      'padding': '10px'})
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6),
+                                                      'width': '100%'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
                                                                       className="emission_card_topic")),
+                                                    dbc.Row([
+                                                        dbc.Label('Miles per average passenger vehicle',
+                                                                  className="emission_card_topic")
+                                                    ]),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
                                                                      id='passenger_miles_annual'),
                                                         ]),
-                                                    ])
+                                                    ]),
                                                 ], className='emission_card_style')
                                             ], style={"height": "100%",
-                                                      'width': '100%',
-                                                      'border': 0,
-                                                      'padding': '10px'})
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6),
-                                    ]),
-                                    dbc.Row([
+                                                      'width': '100%'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
                                                                       className="emission_card_topic")),
                                                     dbc.Row([
+                                                        dbc.Label('Gallons of gasoline consumed',
+                                                                  className="emission_card_topic")
+                                                    ]),
+                                                    dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
                                                                      id='gasoline_consumed_annual'),
                                                         ]),
-                                                    ])
+                                                    ]),
                                                 ], className='emission_card_style')
                                             ], style={"height": "100%",
-                                                      'width': '100%',
-                                                      'border': 0,
-                                                      'padding': '10px'})
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6),
+                                                      'width': '100%'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon sequestered by:',
                                                                       className="emission_card_topic")),
                                                     dbc.Row([
+                                                        dbc.Label('Acres of trees',
+                                                                  className="emission_card_topic")
+                                                    ]),
+                                                    dbc.Row([
                                                         dbc.Col([
                                                             html.Div(id='trees_co_captured',
                                                                      className="emission_card_metric"),
                                                         ]),
-                                                    ])
+                                                    ]),
                                                 ], className='emission_card_style')
                                             ], style={"height": "100%",
-                                                      'width': '100%',
-                                                      'border': 0,
-                                                      'padding': '10px'})
-                                        ], xs=12, sm=12, md=12, lg=6, xl=6),
+                                                      'width': '100%'})
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                     ]),
                                 ])
                             ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': '100%'}),
-                            style={'padding': '10px'},
-                            xs=12, sm=12, md=12, lg=6, xl=6)
+                            xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'})
+                    ]),
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardHeader('Klima growth simulation results: ROI',
+                                               className='enclosure_card_topic'),
+                                dbc.CardBody([
+                                    dbc.Row([
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            dbc.Label('Daily ROI',
+                                                                      className='emission_card_topic'),
+                                                        ], style={'text-align': "center"}),
+                                                        dbc.Col([
+                                                            dbc.Label('Klima Gained',
+                                                                      className='emission_card_topic'),
+                                                        ], style={'text-align': "center"}),
+                                                    ]),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='dailyROI'),
+                                                        ], style={'text-align': "center"}),
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='dailyKlima'),
+                                                        ], style={'text-align': "center"})
+                                                    ]),
+                                                ], className='align-self-center'),
+                                            ], className='emission_card_style')
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3,
+                                            style={'height': "100%", 'padding': '10px'}),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            dbc.Label('7 Day ROI',
+                                                                      className='emission_card_topic'),
+                                                        ], style={'text-align': "center"}),
+                                                        dbc.Col([
+                                                            dbc.Label('Klima Gained',
+                                                                      className='emission_card_topic'),
+                                                        ], style={'text-align': "center"}),
+                                                    ]),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='sevendayROI')
+                                                        ], style={'text-align': "center"}),
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='sevendayKlima')
+                                                        ], style={'text-align': "center"}),
+                                                    ]),
+                                                ], className='align-self-center'),
+                                            ], className='emission_card_style')
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3,
+                                            style={'height': "100%", 'padding': '10px'}),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            dbc.Label('Monthly ROI',
+                                                                      className='emission_card_topic'),
+                                                        ], style={'text-align': "center"}),
+                                                        dbc.Col([
+                                                            dbc.Label('Klima Gained',
+                                                                      className='emission_card_topic'),
+                                                        ], style={'text-align': "center"}),
+                                                    ]),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='monthlyROI')
+                                                        ], className='align-self-center'),
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='monthlyKlima')
+                                                        ], className='align-self-center'),
+                                                    ]),
+                                                ], className='align-self-center')
+                                            ], className='emission_card_style')
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3,
+                                            style={'height': "100%", 'padding': '10px'}),
+                                        dbc.Col([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            dbc.Label('Annual ROI', className='emission_card_topic'),
+                                                        ], className='align-self-center'),
+                                                        dbc.Col([
+                                                            dbc.Label('Klima Gained',
+                                                                      className='emission_card_topic'),
+                                                        ], className='align-self-center'),
+                                                    ]),
+                                                    dbc.Row([
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='annualROI')
+                                                        ], className='align-self-center'),
+                                                        dbc.Col([
+                                                            html.Div(className='emission_card_metric',
+                                                                     id='annualKlima')
+                                                        ], className='align-self-center'),
+                                                    ]),
+                                                ], className='align-self-center')
+                                            ], className='emission_card_style')
+                                        ], xs=12, sm=12, md=12, lg=3, xl=3,
+                                            style={'height': "100%", 'padding': '10px'}),
+                                    ]),
+                                ]),
+                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})],
+                            xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'}),
                     ]),
                     dbc.Row([
                         dbc.Col(dbc.Label('Rewards Strategizer',
@@ -515,7 +517,7 @@ layout = dbc.Container([
                                                 step=0.001,
                                                 debounce=True,
                                                 value=1000,
-                                                className="input_box_number")]),
+                                                className="input_box_number", style={'color': 'white'})]),
                                         dbc.Col([
                                             dbc.Input(
                                                 id='priceofETH',
@@ -525,7 +527,7 @@ layout = dbc.Container([
                                                 step=0.001,
                                                 debounce=True,
                                                 value=10,
-                                                className="input_box_number")])
+                                                className="input_box_number", style={'color': 'white'})])
                                     ]),
                                     dbc.Row([
                                         dbc.Col(
@@ -544,7 +546,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=10000, className="input_box_number")]),
+                                                value=10000, className="input_box_number", style={'color': 'white'})]),
                                         dbc.Col([
                                             dbc.Input(
                                                 id='desired_klima_unit',
@@ -553,7 +555,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=500, className="input_box_number")])]),
+                                                value=500, className="input_box_number", style={'color': 'white'})])]),
                                     dbc.Row([
                                         dbc.Col([
                                             dbc.Label('Desired daily staking rewards (USDC)'),
@@ -571,7 +573,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=5000, className="input_box_number")]),
+                                                value=5000, className="input_box_number", style={'color': 'white'})]),
                                         dbc.Col([
                                             dbc.Input(
                                                 id='desired_weekly_rewards_usdc',
@@ -580,7 +582,8 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=50000, className="input_box_number")])]),
+                                                value=50000, className="input_box_number",
+                                                style={'color': 'white'})])]),
                                 ])
                             ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
                             xs=12, sm=12, md=12, lg=6, xl=6),
@@ -590,18 +593,9 @@ layout = dbc.Container([
                     ], className="page_section_topic"),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Chart Explanation'),
+                            dbc.CardHeader('Expanded explanations'),
                             dbc.CardBody([
-                                dcc.Markdown('''
-                    - The chart shows you the Klima growth projection over 365.0 days. Projection is calculated based
-                    on your selected APY of 7000% (Equivalent to a reward yield of 0.5%) and an initial 1.0 Klima.
-                    - The (3,3) Profit adjusted ROI trend line shows you the adjusted Klima growth if you decide to
-                    sell a percentage of your Klima at a fixed interval (For example, 5% every 30 days).
-                    - The Min Growth Rate shows you the estimated Klima growth rate if the APY was on the minimum APY
-                    of the current dictated KIP-3 Reward Rate Framework.
-                    - The Max Growth Rate shows you the estimated Klima growth rate if the APY was on the maximum APY
-                    of the current dictated KIP-3 Reward Rate Framework.
-                    ''')
+                                dcc.Markdown(id='chart_explainer')
                             ])
                         ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
                     ], className="mb-5"),
@@ -645,6 +639,7 @@ layout = dbc.Container([
     Output(component_id='requiredDaily', component_property='children'),
     Output(component_id='rewardsWeekly', component_property='children'),
     Output(component_id='requiredWeekly', component_property='children'),
+    Output(component_id='chart_explainer', component_property='children'),
     Input(component_id='growthDays', component_property='value'),
     Input(component_id='initialKlima', component_property='value'),
     Input(component_id='user_apy', component_property='value'),
@@ -693,7 +688,6 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     # unstaking_gas_fee = 89654 * ((gwei * priceofETH) / (10 ** 9))
 
     # In this section we calculate the reward yield from the users speculated APY
-    reward_yield = ((1 + user_apy) ** (1 / float(1095))) - 1
     minOIPYield = ((1 + minAPY) ** (1 / float(1095))) - 1
     maxOIPYield = ((1 + maxAPY) ** (1 / float(1095))) - 1
 
@@ -714,7 +708,6 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     pA_totalklimas = []
     dcA_totalklimas = []
 
-    reward_yield = round(reward_yield, 5)
     klimaStakedGrowth = initialKlima  # Initial staked klimas used to project growth over time
     pA_klimaStakedGrowth = initialKlima
     dcA_klimaStakedGrowth = initialKlima
@@ -862,6 +855,8 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     klimaGrowth_Chart.update_layout({'paper_bgcolor': 'rgba(0,0,0,0)', 'plot_bgcolor': 'rgba(0, 0, 0, 0)'})
     klimaGrowth_Chart.update_layout(legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01, ), xaxis_title="Days",
                                     yaxis_title="Total klimas")
+    klimaGrowth_Chart.update_layout(hovermode='x unified', hoverlabel_bgcolor='#232b2b', hoverlabel_align='auto',
+                                    hoverlabel_namelength=-1, hoverlabel_font_size=15)
     klimaGrowth_Chart.update_xaxes(showline=True, linewidth=0.1, linecolor='#31333F', color='white', showgrid=False,
                                    gridwidth=0.01, mirror=True)
     klimaGrowth_Chart.update_yaxes(showline=True, linewidth=0.1, linecolor='#31333F', color='white', showgrid=False,
@@ -877,8 +872,45 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     annualROI_P = '{}%'.format(millify(annualROI_P, precision=1))
     annualKlima = '{0:.1f}'.format(annualKlima)
 
+    chart_explainer = f'''
+    #### The Chart:
+    - The chart shows your speculated Klima growth projection over **{growthDays} days**. The
+    Projection is calculated based on your selected APY of **{user_apy * 100} %**
+    which is equivalent to a reward yield of **{reward_yield * 100} %**, and an initial **{initialKlima} KLIMA**
+    - The (3,3) Profit adjusted ROI trend line shows you the adjusted KLIMA growth if you decide to
+    sell **{percentSale} KLIMA** every **{sellDays} days**
+    - The (3,3) Dollar cost averaging (DCA) adjusted ROI trend line shows you the adjusted KLIMA growth if you decide
+    to sell **{valBuy}** worth of KLIMA every **{buyDays}** at a unit price of **{priceKlima}**
+    - The Min Growth Rate shows you the estimated KLIMA growth rate if the APY
+    was on the minimum APY
+    of the current dictated KIP-3 Reward Rate Framework
+    - The Max Growth Rate shows you the estimated Klima growth rate if the APY
+    was on the maximum APY
+    of the current dictated KIP-3 Reward Rate Framework
+
+    #### Klima to CO2 emissions equivalency:
+    Using the speculated KLIMA reward yield of **{reward_yield * 100} %** and speculated RFV of **{user_rfv} BCTs**
+    at the end of your time frame, we can estimate that your earned KLIMA total will be equivalent to the following:
+    - Carbon emissions from **{passenger_vehicle_annual}** cars in a year
+    - Carbon emissions generated from the average passenger vehicle driving **{passenger_miles_annual}** miles
+    - Carbon emissions generated from **{gasoline_consumed_annual}** gallons of gasoline
+    - Carbon captured by **{trees_co_captured}** acres of U.S. forest in one year
+
+    #### Klima growth simulation results ROI:
+    Using the speculated KLIMA reward yield of **{user_apy * 100} %** and initial **{initialKlima} KLIMA**,
+    we can speculate the following returns:
+    - Daily ROI based on your input APY of **{user_apy * 100} %** : **{dailyROI_P} %** which is about **{dailyKlima}**
+    KLIMA per day
+    - Seven day ROI based on your input APY of **{user_apy * 100} %** : **{sevendayROI_P} %** which is
+    about **{sevendayKlima}** KLIMA per week
+    - One month ROI based on your input APY of **{user_apy * 100} %** : **{monthlyROI_P} %** which is about
+    **{monthlyKlima}** KLIMA per month
+    - One year ROI based on your input APY of **{user_apy * 100} %** : **{annualROI_P} %** which is
+    about **{annualKlima}** KLIMA per year
+                      '''
+
     return klimaGrowth_Chart, dailyROI_P, dailyKlima, sevendayROI_P, sevendayKlima, monthlyROI_P, \
            monthlyKlima, annualROI_P, annualKlima, passenger_vehicle_annual, passenger_miles_annual,\
            gasoline_consumed_annual, trees_co_captured, forcastUSDTarget, \
            forcastKlimaTarget, rewardsDaily, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
-           requiredKlimaWeeklyIncooom  # noqa: E127
+           requiredKlimaWeeklyIncooom, chart_explainer  # noqa: E127
