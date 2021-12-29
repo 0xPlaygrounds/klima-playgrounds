@@ -22,6 +22,7 @@ layout = dbc.Container([
                            'fontSize': '30px'},
                 active_tab_style={'color': '#0ba1ff'},
                 active_label_style={'color': '#222222'},
+                tab_id='staking_simulator_tab',
                 children=[
                     dbc.Row([
                         dbc.Col(dbc.Label('Growth Forecaster'))
@@ -32,6 +33,13 @@ layout = dbc.Container([
                                            className='enclosure_card_topic'),
                             dbc.CardBody([
                                 dcc.Graph(id='graph1', style={"height": "100%", "width": "auto"}),
+                                dbc.Tooltip(
+                                    'This chart provides a visual representation of your speculated KLIMA'
+                                    'growth over the selected number of days. It also, shows how dollar'
+                                    'cost averaging and profit taking affects your growth over time',
+                                    target='graph1',
+                                    placement='top',
+                                )
                             ], style={"height": "auto", "width": "auto"})
                         ], outline=False, color='#232b2b', style={"height": "100%", "width": "auto",
                                                                   'border-color': '#00cc33'}),
@@ -50,15 +58,35 @@ layout = dbc.Container([
                                     ]),
                                 ]),
                                 dbc.Row([
+                                    dbc.Col([dbc.Label('Days')],
+                                            width='8'),
+                                    dbc.Col([dbc.Switch(
+                                            id="days_input_selector",
+                                            label="Slider/Input box",
+                                            value=False),
+                                    ],
+                                        width='4')
+                                ]),
+                                dbc.Row([
                                     dbc.Col([
-                                        dbc.Label('Days'),
-                                        dcc.Slider(
-                                            id='growthDays',
-                                            min=1,
-                                            max=1000,
-                                            value=365,
-                                            tooltip={'placement': 'top', 'always_visible': True}), ],
-                                        width='12')]),
+                                        html.Div(
+                                            dcc.Slider(
+                                                id='growthDays',
+                                                min=1,
+                                                max=1000,
+                                                value=365,
+                                                tooltip={'placement': 'top', 'always_visible': True}),
+                                            id='dynamic_days_controls'),
+                                        dbc.Tooltip(
+                                            'Input your simulation time frame in days. Keep in mind that the days'
+                                            ' you use also be used for the profit taking and dollar cost averaging'
+                                            'calculations. Use the toggle switch to choose between a slider or'
+                                            ' standard input box',
+                                            target='dynamic_days_controls',
+                                            placement='top',
+                                        ),
+                                    ])
+                                ], style={'padding': '10px'}),
                                 dbc.Row([
                                    dbc.Col(
                                        dbc.Label('Initial Klima')
@@ -69,7 +97,7 @@ layout = dbc.Container([
                                    dbc.Col(
                                        dbc.Label('RFV (BCT)')
                                    )
-                                ]),
+                                ], style={'padding': '10px'}),
                                 dbc.Row([
                                     dbc.Col([
                                         dbc.Input(
@@ -81,7 +109,15 @@ layout = dbc.Container([
                                             debounce=True,
                                             value=1,
                                             className="input_box_number",
-                                            style={'color': 'white'})]),
+                                            style={'color': 'white'}),
+                                        dbc.Tooltip(
+                                            'Input your desired initial number of Klima for calculation. Keep in mind'
+                                            ' this value is also used to in the profit taking and dollar cost averaging'
+                                            'calculations',
+                                            target='initialKlima',
+                                            placement='top',
+                                        )
+                                    ]),
                                     dbc.Col([
                                         dbc.Input(
                                             id='user_apy',
@@ -91,7 +127,14 @@ layout = dbc.Container([
                                             step=0.001,
                                             debounce=True,
                                             value=40000, className="input_box_number",
-                                            style={'color': 'white'})]),
+                                            style={'color': 'white'}),
+                                        dbc.Tooltip(
+                                            'Input an APY for growth forecasting. APY can be current protocol APY'
+                                            ' or some future APY.',
+                                            target='user_apy',
+                                            placement='top',
+                                        )
+                                    ]),
                                     dbc.Col([
                                         dbc.Input(
                                             id='user_rfv',
@@ -100,8 +143,16 @@ layout = dbc.Container([
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=5, className="input_box_number", style={'color': 'white'})]),
-                                ], className="g-2"),
+                                            value=5, className="input_box_number", style={'color': 'white'}),
+                                        dbc.Tooltip(
+                                            'Input an RFV for risk free value forecasting. '
+                                            'The RFV is used to speculate the minimum amount of BCT you will have '
+                                            'earned at the end of your speculated time frame',
+                                            target='user_rfv',
+                                            placement='top',
+                                        )
+                                    ]),
+                                ], className="g-2",),
                                 dbc.Row([
                                    dbc.Col([
                                        html.Br(),
@@ -112,24 +163,38 @@ layout = dbc.Container([
                                    ])
                                 ]),
                                 dbc.Row([
-                                    dbc.Col(
-                                        dbc.Label('Amount (%)'),
-                                    ),
+                                    dbc.Col([dbc.Switch(
+                                            id='ptc_input_selector',
+                                            label='Amount (Fixed amount <-> % amount)',
+                                            value=True)],
+                                        width='6'),
                                     dbc.Col(
                                         dbc.Label('Cadence (Days)'),
+                                        width='6'
                                     )
-                                ]),
+                                ], style={'padding': '10px'}),
                                 dbc.Row([
                                     dbc.Col([
-                                        dbc.Input(
-                                            id='percentSale',
-                                            placeholder='5',
-                                            type='number',
-                                            min=1,
-                                            step=0.001,
-                                            debounce=True,
-                                            value=5,
-                                            className="input_box_number", style={'color': 'white'}),
+                                        html.Div(
+                                            dbc.Input(
+                                                id='percentSale',
+                                                placeholder='9',
+                                                type='number',
+                                                min=1,
+                                                step=0.001,
+                                                debounce=True,
+                                                value=5,
+                                                className="input_box_number", style={'color': 'white'}),
+                                            id='dynamic_ptc_controls'
+                                        ),
+                                        dbc.Tooltip(
+                                            'Input your desired amount of Klima to sell either as a percentage of '
+                                            'accumulated Klima or a fixed amount. The choice between percentage'
+                                            'and fixed amount if determined by the toggle switch. Blue for percentage'
+                                            'white for fixed amount',
+                                            target='dynamic_ptc_controls',
+                                            placement='top',
+                                        ),
                                     ]),
                                     dbc.Col([
                                         dbc.Input(
@@ -141,8 +206,15 @@ layout = dbc.Container([
                                             debounce=True,
                                             value=30,
                                             className="input_box_number", style={'color': 'white'}),
+                                        dbc.Tooltip(
+                                            'Input the desired sell intervals in days. For example, if you would like '
+                                            'to sell a certain amount of Klima every 30 days, then type 30 in this '
+                                            'box.',
+                                            target='sellDays',
+                                            placement='top',
+                                        ),
                                     ]),
-                                ]),
+                                ], style={'padding': '10px'}),
                                 dbc.Row([
                                    dbc.Col([
                                        html.Br(),
@@ -161,8 +233,14 @@ layout = dbc.Container([
                                         min=1,
                                         step=0.001,
                                         debounce=True,
-                                        value=1000, className="input_box_number", style={'color': 'white'})
-                                ]),
+                                        value=1000, className="input_box_number", style={'color': 'white'}),
+                                    dbc.Tooltip(
+                                        'Input the desired Klima price for your dollar cost averaging plans.'
+                                        ' This should be a price where you will want to buy more Klima.',
+                                        target='klimaPrice_DCA',
+                                        placement='top',
+                                    ),
+                                ], style={'padding': '10px'}),
                                 dbc.Row([
                                     dbc.Label('Purchase Amount ($)'),
                                     dbc.Input(
@@ -173,7 +251,14 @@ layout = dbc.Container([
                                         step=0.001,
                                         debounce=True,
                                         value=1000, className="input_box_number", style={'color': 'white'}),
-                                ]),
+                                    dbc.Tooltip(
+                                        'Input the dollar value you will like to purchase. I.e if you want to buy 500'
+                                        ' USDC every time the price of Klima is around 1000 USDC, then input'
+                                        '500 USDC here. ',
+                                        target='valBuy',
+                                        placement='top',
+                                    ),
+                                ], style={'padding': '10px'}),
                                 dbc.Row([
                                     dbc.Label('Cadence (Days)'),
                                     dbc.Input(
@@ -182,7 +267,15 @@ layout = dbc.Container([
                                         type='number',
                                         min=1,
                                         value=30, className="input_box_number", style={'color': 'white'}),
-                                ])
+                                    dbc.Tooltip(
+                                        'Input your purchase intervals in days. I.e. If you speculate that the price'
+                                        ' of KLima will hover around 1000 USDC for the foreseeable future, and you'
+                                        'want to dollar cost average every 30 days, then type 30 here.',
+                                        target='buyDays',
+                                        placement='top',
+                                    ),
+
+                                ], style={'padding': '10px'})
                             ])
                         ], outline=False, color='#232b2b', style={"height": "100%", "width": "auto",
                                                                   'border-color': '#00cc33'}),
@@ -288,108 +381,137 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row([
                                                         dbc.Col([
-                                                            dbc.Label('Daily ROI',
-                                                                      className='emission_card_topic'),
-                                                        ], style={'text-align': "center"}),
+                                                            dbc.Row([
+                                                                dbc.Label('Daily ROI',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='dailyROI'),
+                                                            ]),
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                         dbc.Col([
-                                                            dbc.Label('Klima Gained',
-                                                                      className='emission_card_topic'),
-                                                        ], style={'text-align': "center"}),
+                                                           html.Div(className='vl')
+                                                        ], xs=2, sm=2, md=2, lg=2, xl=2),
+                                                        dbc.Col([
+                                                            dbc.Row([
+                                                                dbc.Label('Klima Gained',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='dailyKlima'),
+                                                            ]),
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
-                                                    dbc.Row([
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='dailyROI'),
-                                                        ], style={'text-align': "center"}),
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='dailyKlima'),
-                                                        ], style={'text-align': "center"})
-                                                    ]),
-                                                ], className='align-self-center'),
+                                                ]),
                                             ], className='emission_card_style')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
-                                            style={'height': "100%", 'padding': '10px'}),
+                                            style={'height': "100%",
+                                                   'padding': '10px',
+                                                   'justify-content': 'stretch'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row([
                                                         dbc.Col([
-                                                            dbc.Label('7 Day ROI',
-                                                                      className='emission_card_topic'),
-                                                        ], style={'text-align': "center"}),
+                                                            dbc.Row([
+                                                                dbc.Label('7 Day ROI',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='sevendayROI')
+                                                            ]),
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                         dbc.Col([
-                                                            dbc.Label('Klima Gained',
-                                                                      className='emission_card_topic'),
-                                                        ], style={'text-align': "center"}),
+                                                            html.P(className='vl')
+                                                        ], xs=2, sm=2, md=2, lg=2, xl=2),
+                                                        dbc.Col([
+                                                            dbc.Row([
+                                                                dbc.Label('Klima Gained',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='sevendayKlima')
+                                                            ]),
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
-                                                    dbc.Row([
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='sevendayROI')
-                                                        ], style={'text-align': "center"}),
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='sevendayKlima')
-                                                        ], style={'text-align': "center"}),
-                                                    ]),
-                                                ], className='align-self-center'),
+                                                ]),
                                             ], className='emission_card_style')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
-                                            style={'height': "100%", 'padding': '10px'}),
+                                            style={'height': "100%",
+                                                   'padding': '10px',
+                                                   'justify-content': 'stretch'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row([
                                                         dbc.Col([
-                                                            dbc.Label('Monthly ROI',
-                                                                      className='emission_card_topic'),
-                                                        ], style={'text-align': "center"}),
+                                                            dbc.Row([
+                                                                dbc.Label('Monthly ROI',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='monthlyROI')
+                                                            ]),
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                         dbc.Col([
-                                                            dbc.Label('Klima Gained',
-                                                                      className='emission_card_topic'),
-                                                        ], style={'text-align': "center"}),
+                                                            html.P(className='vl')
+                                                        ], xs=2, sm=2, md=2, lg=2, xl=2),
+                                                        dbc.Col([
+                                                            dbc.Row([
+                                                                dbc.Label('Klima Gained',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='monthlyKlima')
+                                                            ])
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
-                                                    dbc.Row([
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='monthlyROI')
-                                                        ], className='align-self-center'),
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='monthlyKlima')
-                                                        ], className='align-self-center'),
-                                                    ]),
-                                                ], className='align-self-center')
+                                                ])
                                             ], className='emission_card_style')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
-                                            style={'height': "100%", 'padding': '10px'}),
+                                            style={'height': "100%",
+                                                   'padding': '10px',
+                                                   'justify-content': 'stretch'}),
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row([
                                                         dbc.Col([
-                                                            dbc.Label('Annual ROI', className='emission_card_topic'),
-                                                        ], className='align-self-center'),
+                                                            dbc.Row([
+                                                                dbc.Label('Annual ROI',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='annualROI')
+                                                            ]),
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                         dbc.Col([
-                                                            dbc.Label('Klima Gained',
-                                                                      className='emission_card_topic'),
-                                                        ], className='align-self-center'),
+                                                            html.P(className='vl')
+                                                        ], xs=2, sm=2, md=2, lg=2, xl=2),
+                                                        dbc.Col([
+                                                            dbc.Row([
+                                                                dbc.Label('Klima Gained',
+                                                                          className='emission_card_topic'),
+                                                            ]),
+                                                            dbc.Row([
+                                                                html.Div(className='emission_card_metric',
+                                                                         id='annualKlima')
+                                                            ]),
+                                                        ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
-                                                    dbc.Row([
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='annualROI')
-                                                        ], className='align-self-center'),
-                                                        dbc.Col([
-                                                            html.Div(className='emission_card_metric',
-                                                                     id='annualKlima')
-                                                        ], className='align-self-center'),
-                                                    ]),
-                                                ], className='align-self-center')
+                                                ])
                                             ], className='emission_card_style')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
-                                            style={'height': "100%", 'padding': '10px'}),
+                                            style={'height': "100%",
+                                                   'padding': '10px',
+                                                   'justify-content': 'stretch'}),
                                     ]),
                                 ]),
                             ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})],
@@ -517,7 +639,13 @@ layout = dbc.Container([
                                                 step=0.001,
                                                 debounce=True,
                                                 value=1000,
-                                                className="input_box_number", style={'color': 'white'})]),
+                                                className="input_box_number", style={'color': 'white'}),
+                                            dbc.Tooltip(
+                                                'Input speculated price of Klima for rewards calculations',
+                                                target='priceKlima',
+                                                placement='top',
+                                            ),
+                                        ]),
                                         dbc.Col([
                                             dbc.Input(
                                                 id='priceofETH',
@@ -527,7 +655,13 @@ layout = dbc.Container([
                                                 step=0.001,
                                                 debounce=True,
                                                 value=10,
-                                                className="input_box_number", style={'color': 'white'})])
+                                                className="input_box_number", style={'color': 'white'}),
+                                            dbc.Tooltip(
+                                                'Input speculated price of Matic for gas fee consideration',
+                                                target='priceofETH',
+                                                placement='top',
+                                            ),
+                                        ])
                                     ]),
                                     dbc.Row([
                                         dbc.Col(
@@ -561,7 +695,7 @@ layout = dbc.Container([
                                             dbc.Label('Desired daily staking rewards (USDC)'),
                                         ]),
                                         dbc.Col([
-                                            dbc.Label('Desired daily staking rewards (USDC)'),
+                                            dbc.Label('Desired weekly staking rewards (USDC)'),
                                         ]),
                                     ], style={'padding': '10px'}),
                                     dbc.Row([
@@ -583,7 +717,7 @@ layout = dbc.Container([
                                                 step=0.001,
                                                 debounce=True,
                                                 value=50000, className="input_box_number",
-                                                style={'color': 'white'})])]),
+                                                style={'color': 'white'})])], style={'padding': '10px'}),
                                 ])
                             ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
                             xs=12, sm=12, md=12, lg=6, xl=6),
@@ -607,15 +741,102 @@ layout = dbc.Container([
                 tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
                 active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
                 active_label_style={'color': '#222222'},
+                tab_id='staking_guide_tab',
                 children=[
                     dbc.Row([
-                        html.Div(html.Img(src=app.get_asset_url('PG_Staking_Learn.png'),
-                                          style={'height': '100%',
-                                                 'width': '100%',
-                                                 'padding': '10px'}))])
+                        dbc.Carousel(
+                            items=[
+                                {'key': '1',
+                                 'src': app.get_asset_url('growth_forecast_chart.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                                {'key': '2',
+                                 'src': app.get_asset_url('simulation_controls_all.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                                {'key': '3',
+                                 'src': app.get_asset_url('profit_taking_controls.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                                {'key': '4',
+                                 'src': app.get_asset_url('dollar_cost_averaging.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                                {'key': '5',
+                                 'src': app.get_asset_url('co2_equivalent_results.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                                {'key': '6',
+                                 'src': app.get_asset_url('growth_results.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                                {'key': '7',
+                                 'src': app.get_asset_url('rewards_strategizer_controls.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                                {'key': '8',
+                                 'src': app.get_asset_url('rewards_strategy_results.png'),
+                                 'header': 'The Growth Frecast Chart',
+                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
+                            ],
+                        )
+                    ])
                 ])
-    ], className='mb-4'),
-], fluid=True)  # Responsive ui control
+    ], id='tabs', active_tab='staking_simulator_tab', className='mb-4'),
+], id='page_content', fluid=True)  # Responsive ui control
+
+
+@app.callback(
+    Output('dynamic_days_controls', 'children'),
+    [Input('days_input_selector', 'value')])
+def generate_control_days(switch):
+    days_choice1 = dcc.Slider(
+        id='growthDays',
+        min=1,
+        max=1000,
+        value=365,
+        tooltip={'placement': 'top', 'always_visible': True})
+    days_choice2 = dbc.Input(
+        id='growthDays',
+        placeholder='500',
+        type='number',
+        min=1,
+        step=1,
+        debounce=True,
+        value=365, className="input_box_number",
+        style={'color': 'white'})
+    if switch:
+        return days_choice1
+    else:
+        return days_choice2
+
+
+@app.callback(
+    Output('dynamic_ptc_controls', 'children'),
+    [Input('ptc_input_selector', 'value')])
+def generate_control_ptc(switch):
+    ptc_choice1 = dbc.Input(
+        id='percentSale',
+        placeholder='5',
+        type='number',
+        min=1,
+        step=0.01,
+        debounce=True,
+        value=5,
+        className='input_box_number', style={'color': 'white'}),
+    ptc_choice2 = dbc.Input(
+        id='percentSale',
+        placeholder='1',
+        type='number',
+        min=1,
+        step=0.01,
+        debounce=True,
+        value=5,
+        className='input_box_number', style={'color': 'white'}),
+    if switch:
+        return ptc_choice1
+    else:
+        return ptc_choice2
 
 
 # call back for klima growth controls and strategizer
@@ -645,6 +866,7 @@ layout = dbc.Container([
     Input(component_id='user_apy', component_property='value'),
     Input(component_id='user_rfv', component_property='value'),
     Input(component_id='percentSale', component_property='value'),
+    Input(component_id='ptc_input_selector', component_property='value'),
     Input(component_id='sellDays', component_property='value'),
     Input(component_id='klimaPrice_DCA', component_property='value'),
     Input(component_id='valBuy', component_property='value'),
@@ -659,7 +881,7 @@ layout = dbc.Container([
 # function to calculate klima growth over user specified number of days
 def klimaGrowth_Projection(growthDays, initialKlima,
                            user_apy, user_rfv,
-                           percentSale, sellDays, klimaPrice_DCA,
+                           percentSale, switch, sellDays, klimaPrice_DCA,
                            valBuy, buyDays,
                            priceKlima, priceofETH,
                            desired_klima_usdc, desired_klima_unit,
@@ -673,7 +895,6 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     cadenceConst = sellEpochs
     cadenceConst_BUY = buyEpochs
     dcaAmount = valBuy / klimaPrice_DCA
-    percentSale = percentSale / 100
     user_apy = user_apy / 100
     minAPY = 1000 / 100
     maxAPY = 10000 / 100
@@ -723,7 +944,11 @@ def klimaGrowth_Projection(growthDays, initialKlima,
 
         if elements == sellEpochs:
             sellEpochs = sellEpochs + cadenceConst
-            pA_klimaStakedGrowth = pA_totalklimas[-1] - (pA_totalklimas[-1] * percentSale)
+            if switch:
+                percentSale = percentSale / 100
+                pA_klimaStakedGrowth = pA_totalklimas[-1] - (pA_totalklimas[-1] * percentSale)
+            else:
+                pA_klimaStakedGrowth = pA_totalklimas[-1] - percentSale
         else:
             pass
 
@@ -863,11 +1088,11 @@ def klimaGrowth_Projection(growthDays, initialKlima,
                                    gridwidth=0.01, mirror=True, zeroline=False)
     klimaGrowth_Chart.layout.legend.font.color = 'white'
 
-    dailyROI_P = '{}%'.format(dailyROI_P)
+    dailyROI_P = '{0:.1f}%'.format(dailyROI_P)
     dailyKlima = '{0:.2f}'.format(dailyKlima)
-    sevendayROI_P = '{}%'.format(sevendayROI_P)
+    sevendayROI_P = '{0:.0f}%'.format(sevendayROI_P)
     sevendayKlima = '{0:.2f}'.format(sevendayKlima)
-    monthlyROI_P = '{}%'.format(monthlyROI_P)
+    monthlyROI_P = '{0:.0f}%'.format(monthlyROI_P)
     monthlyKlima = '{0:.2f}'.format(monthlyKlima)
     annualROI_P = '{}%'.format(millify(annualROI_P, precision=1))
     annualKlima = '{0:.1f}'.format(annualKlima)
