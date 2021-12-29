@@ -334,7 +334,7 @@ learn_card_6 = dbc.Card(
 What is Bonding?
 Bonding is the process of trading assets to the protocol for KLIMA. The protocol will quote you an amount of KLIMA
  for your asset, and the vesting period for the trade. Today, the protocol takes in:
- 
+
 1. Reserve Assets: BCT (Base Carbon Tonnes)
 2. Liquidity Assets: KLIMA/BCT and BCT/USDC sushiswap LP pairs.
 
