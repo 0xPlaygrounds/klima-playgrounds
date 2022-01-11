@@ -1,6 +1,4 @@
 from dash import dcc
-import dash_bootstrap_components as dbc
-from dash import html
 
 how_to_read_growth_chart_intro = dcc.Markdown(
     '''

@@ -1485,7 +1485,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     ],
     [State('what_is_staking_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide0(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1499,7 +1499,7 @@ def staking_guide(n1, n2, is_open):
     ],
     [State('why_should_i_stake_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide1(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1513,7 +1513,7 @@ def staking_guide(n1, n2, is_open):
     ],
     [State('how_can_i_stake_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide2(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1527,7 +1527,7 @@ def staking_guide(n1, n2, is_open):
     ],
     [State('staking_dynamics_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide3(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1541,7 +1541,7 @@ def staking_guide(n1, n2, is_open):
     ],
     [State('how_to_read_growth_chart_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide4(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1555,7 +1555,7 @@ def staking_guide(n1, n2, is_open):
     ],
     [State('how_to_use_sim_controls_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide5(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1569,7 +1569,7 @@ def staking_guide(n1, n2, is_open):
     ],
     [State('how_to_read_co_metrics_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide6(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1583,7 +1583,7 @@ def staking_guide(n1, n2, is_open):
     ],
     [State('how_to_use_strategizer_modal_body', 'is_open')],
 )
-def staking_guide(n1, n2, is_open):
+def staking_guide7(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
