@@ -1,7 +1,7 @@
 # Import all required packages for this page
 from dash import dcc
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import html, State
 from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import pandas as pd
@@ -9,14 +9,401 @@ import numpy as np
 import math
 from millify import millify
 from app import app
-# from components.disclaimer import short_disclaimer_row
+from components import staking_guides as s_g
+from components import playgrounds_guide_staking as p_g_s
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
 layout = dbc.Container([
     # Create a tab so we can have two sections for the klima growth/rewards simulation
     dbc.Tabs([
-        dbc.Tab(label='(3,3) Simulator',
+        dbc.Tab(label='Guide',
+                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                             'fontSize': '30px'},
+                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
+                active_label_style={'color': '#222222'},
+                tab_id='staking_guide_tab',
+                children=[
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Row([
+                                dbc.Col(dbc.Label('Staking',
+                                                  className="page_section_topic"), xs=12, sm=12, md=12, lg=6, xl=6),
+                            ]),
+                            dbc.Row([
+                                dbc.Col(
+                                    dbc.Card([
+                                        dbc.CardHeader('Learn the fundamentals of Staking on KlimaDAO',
+                                                       className='enclosure_card_topic'),
+                                        dbc.CardBody([
+                                            dbc.Row([
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('What is Staking?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(s_g.what_is_staking_intro,
+                                                                        style={'text-align': 'center'}),
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='what_is_staking_btn_open',
+                                                                           n_clicks=0,
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(dbc.ModalTitle('What is Staking?')),
+                                                                dbc.ModalBody([
+                                                                    s_g.what_is_staking
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='what_is_staking_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='what_is_staking_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            ),
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('Why should I Stake?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(
+                                                                    s_g.why_should_i_stake_intro,
+                                                                    style={'text-align': 'center'}
+                                                                )
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='why_should_i_stake_btn_open',
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(dbc.ModalTitle('Why should I stake?')),
+                                                                dbc.ModalBody([
+                                                                    s_g.why_should_i_stake
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='why_should_i_stake_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='why_should_i_stake_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            ),
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('How can I Stake?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col([
+                                                                    s_g.how_can_i_stake_intro
+                                                                ], style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           color='link',
+                                                                           id='how_can_i_stake_btn_open',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle('How can I stake?')),
+                                                                dbc.ModalBody([
+                                                                    s_g.how_can_i_stake
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='how_can_i_stake_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='how_can_i_stake_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            )
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('The dynamics of staking (3,3)',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col([
+                                                                    s_g.staking_dynamics_intro
+                                                                ], style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           color='link',
+                                                                           id='staking_dynamics_btn_open',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle('The dynamics of staking (3,3)')),
+                                                                dbc.ModalBody([
+                                                                    s_g.staking_dynamics
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='staking_dynamics_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='staking_dynamics_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                                size='xl',
+                                                            ),
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                            ])
+                                        ]),
+                                    ]), xs=12, sm=12, md=12, lg=12, xl=12),
+                            ]),
+                        ])
+                    ]),
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Row([
+                                dbc.Col(dbc.Label('Playgrounds',
+                                                  className="page_section_topic"), xs=12, sm=12, md=12, lg=6, xl=6),
+                            ]),
+                            dbc.Row([
+                                dbc.Col(
+                                    dbc.Card([
+                                        dbc.CardHeader('Learn how to use the Staking Simulator',
+                                                       className='enclosure_card_topic'),
+                                        dbc.CardBody([
+                                            dbc.Row([
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('How to read the growth chart',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(p_g_s.how_to_read_growth_chart_intro,
+                                                                        style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='how_to_read_growth_chart_btn_open',
+                                                                           n_clicks=0,
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle('How to read the growth chart')),
+                                                                dbc.ModalBody([
+                                                                    p_g_s.how_to_read_growth_chart
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='how_to_read_growth_chart_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='how_to_read_growth_chart_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            )
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('How to use the Simulation Controls?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(p_g_s.how_to_simulation_controls_intro,
+                                                                        style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='how_to_use_sim_controls_btn_open',
+                                                                           n_clicks=0,
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle(
+                                                                        'How to use the simulation controls')),
+                                                                dbc.ModalBody([
+                                                                    p_g_s.how_to_simulation_controls
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                        dbc.Button(
+                                                                            'close',
+                                                                            id='how_to_use_sim_controls_btn_close',
+                                                                            className='ms-auto',
+                                                                            n_clicks=0,
+                                                                        )
+                                                                    )
+                                                            ],
+                                                                id='how_to_use_sim_controls_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                                size='xl'
+                                                            ),
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2', style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('Interpretation of Carbon emissions',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(p_g_s.how_to_read_co_metrics_intro,
+                                                                        style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='how_to_read_co_metrics_btn_open',
+                                                                           n_clicks=0,
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle(
+                                                                        'How to interpret carbon emissions metrics')),
+                                                                dbc.ModalBody([
+                                                                    p_g_s.how_to_read_co_metrics
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='how_to_read_co_metrics_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='how_to_read_co_metrics_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                                size='xl',
+                                                            )
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2', style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('How to use the Rewards Strategizer?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(p_g_s.how_to_use_strategizer_intro,
+                                                                        style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='how_to_use_strategizer_btn_open',
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle('How to use the rewards strategizer')
+                                                                ),
+                                                                dbc.ModalBody([
+                                                                    p_g_s.how_to_use_strategizer
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='how_to_use_strategizer_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='how_to_use_strategizer_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                                size='lg'
+                                                            )
+                                                        ], className='align-self-center')
+                                                    ], className='emission_card_style_v2', style={'height': '300px'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                            ])
+                                        ]),
+                                    ]), xs=12, sm=12, md=12, lg=12, xl=12),
+                            ]),
+                        ])
+                    ]),
+                ]),
+
+        dbc.Tab(label='Simulator',
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
                 tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                            'fontSize': '30px'},
@@ -24,9 +411,6 @@ layout = dbc.Container([
                 active_label_style={'color': '#222222'},
                 tab_id='staking_simulator_tab',
                 children=[
-                    dbc.Row([
-                        dbc.Col(dbc.Label('Growth Forecaster'))
-                    ], className="page_section_topic"),
                     dbc.Row([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Klima growth simulation results: Charts',
@@ -59,13 +443,13 @@ layout = dbc.Container([
                                 ]),
                                 dbc.Row([
                                     dbc.Col([dbc.Label('Days')],
-                                            width='8'),
+                                            width='6'),
                                     dbc.Col([dbc.Switch(
                                             id="days_input_selector",
                                             label="Slider/Input box",
                                             value=False),
                                     ],
-                                        width='4')
+                                        width='6')
                                 ]),
                                 dbc.Row([
                                     dbc.Col([
@@ -165,7 +549,7 @@ layout = dbc.Container([
                                 dbc.Row([
                                     dbc.Col([dbc.Switch(
                                             id='ptc_input_selector',
-                                            label='Amount (Fixed amount <-> % amount)',
+                                            label='Amount (Fixed or % )',
                                             value=True)],
                                         width='6'),
                                     dbc.Col(
@@ -304,7 +688,7 @@ layout = dbc.Container([
                                                         ]),
                                                     ]),
                                                 ], className='emission_card_style')
-                                            ], style={"height": "100%%",
+                                            ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                         dbc.Col([
@@ -313,7 +697,7 @@ layout = dbc.Container([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
                                                                       className="emission_card_topic")),
                                                     dbc.Row([
-                                                        dbc.Label('Miles per average passenger vehicle',
+                                                        dbc.Label('Miles per average vehicle',
                                                                   className="emission_card_topic")
                                                     ]),
                                                     dbc.Row([
@@ -395,7 +779,7 @@ layout = dbc.Container([
                                                         ], xs=2, sm=2, md=2, lg=2, xl=2),
                                                         dbc.Col([
                                                             dbc.Row([
-                                                                dbc.Label('Klima Gained',
+                                                                dbc.Label('Gain',
                                                                           className='emission_card_topic'),
                                                             ]),
                                                             dbc.Row([
@@ -429,7 +813,7 @@ layout = dbc.Container([
                                                         ], xs=2, sm=2, md=2, lg=2, xl=2),
                                                         dbc.Col([
                                                             dbc.Row([
-                                                                dbc.Label('Klima Gained',
+                                                                dbc.Label('Gain',
                                                                           className='emission_card_topic'),
                                                             ]),
                                                             dbc.Row([
@@ -463,7 +847,7 @@ layout = dbc.Container([
                                                         ], xs=2, sm=2, md=2, lg=2, xl=2),
                                                         dbc.Col([
                                                             dbc.Row([
-                                                                dbc.Label('Klima Gained',
+                                                                dbc.Label('Gain',
                                                                           className='emission_card_topic'),
                                                             ]),
                                                             dbc.Row([
@@ -497,7 +881,7 @@ layout = dbc.Container([
                                                         ], xs=2, sm=2, md=2, lg=2, xl=2),
                                                         dbc.Col([
                                                             dbc.Row([
-                                                                dbc.Label('Klima Gained',
+                                                                dbc.Label('Gain',
                                                                           className='emission_card_topic'),
                                                             ]),
                                                             dbc.Row([
@@ -518,7 +902,7 @@ layout = dbc.Container([
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'}),
                     ]),
                     dbc.Row([
-                        dbc.Col(dbc.Label('Rewards Strategizer',
+                        dbc.Col(dbc.Label('Strategizer',
                                           className="page_section_topic"))
                     ]),
                     dbc.Row([
@@ -723,7 +1107,7 @@ layout = dbc.Container([
                             xs=12, sm=12, md=12, lg=6, xl=6),
                     ]),
                     dbc.Row([
-                        dbc.Col(dbc.Label('Explanations'))
+                        dbc.Col(dbc.Label('Results'))
                     ], className="page_section_topic"),
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -734,55 +1118,7 @@ layout = dbc.Container([
                         ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
                     ], className="mb-5"),
                 ]),
-
-        dbc.Tab(label='Guide',
-                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
-                             'fontSize': '30px'},
-                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
-                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
-                active_label_style={'color': '#222222'},
-                tab_id='staking_guide_tab',
-                children=[
-                    dbc.Row([
-                        dbc.Carousel(
-                            items=[
-                                {'key': '1',
-                                 'src': app.get_asset_url('growth_forecast_chart.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                                {'key': '2',
-                                 'src': app.get_asset_url('simulation_controls_all.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                                {'key': '3',
-                                 'src': app.get_asset_url('profit_taking_controls.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                                {'key': '4',
-                                 'src': app.get_asset_url('dollar_cost_averaging.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                                {'key': '5',
-                                 'src': app.get_asset_url('co2_equivalent_results.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                                {'key': '6',
-                                 'src': app.get_asset_url('growth_results.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                                {'key': '7',
-                                 'src': app.get_asset_url('rewards_strategizer_controls.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                                {'key': '8',
-                                 'src': app.get_asset_url('rewards_strategy_results.png'),
-                                 'header': 'The Growth Frecast Chart',
-                                 'caption': 'This chart shows the forecasted Klima growth over specified days'},
-                            ],
-                        )
-                    ])
-                ])
-    ], id='tabs', active_tab='staking_simulator_tab', className='mb-4'),
+    ], id='tabs', active_tab='staking_guide_tab', className='mb-4'),
 ], id='page_content', fluid=True)  # Responsive ui control
 
 
@@ -1103,7 +1439,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     Projection is calculated based on your selected APY of **{user_apy * 100} %**
     which is equivalent to a reward yield of **{reward_yield * 100} %**, and an initial **{initialKlima} KLIMA**
     - The (3,3) Profit adjusted ROI trend line shows you the adjusted KLIMA growth if you decide to
-    sell **{percentSale} KLIMA** every **{sellDays} days**
+    sell KLIMA** every **{sellDays} days**
     - The (3,3) Dollar cost averaging (DCA) adjusted ROI trend line shows you the adjusted KLIMA growth if you decide
     to sell **{valBuy}** worth of KLIMA every **{buyDays}** at a unit price of **{priceKlima}**
     - The Min Growth Rate shows you the estimated KLIMA growth rate if the APY
@@ -1139,3 +1475,115 @@ def klimaGrowth_Projection(growthDays, initialKlima,
            gasoline_consumed_annual, trees_co_captured, forcastUSDTarget, \
            forcastKlimaTarget, rewardsDaily, requiredKlimaDailyIncooom, forcastWeeklyIncooom, \
            requiredKlimaWeeklyIncooom, chart_explainer  # noqa: E127
+
+
+@app.callback(
+    Output('what_is_staking_modal_body', 'is_open'),
+    [
+        Input('what_is_staking_btn_open', 'n_clicks'),
+        Input('what_is_staking_btn_close', 'n_clicks')
+    ],
+    [State('what_is_staking_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('why_should_i_stake_modal_body', 'is_open'),
+    [
+        Input('why_should_i_stake_btn_open', 'n_clicks'),
+        Input('why_should_i_stake_btn_close', 'n_clicks')
+    ],
+    [State('why_should_i_stake_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('how_can_i_stake_modal_body', 'is_open'),
+    [
+        Input('how_can_i_stake_btn_open', 'n_clicks'),
+        Input('how_can_i_stake_btn_close', 'n_clicks')
+    ],
+    [State('how_can_i_stake_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('staking_dynamics_modal_body', 'is_open'),
+    [
+        Input('staking_dynamics_btn_open', 'n_clicks'),
+        Input('staking_dynamics_btn_close', 'n_clicks')
+    ],
+    [State('staking_dynamics_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('how_to_read_growth_chart_modal_body', 'is_open'),
+    [
+        Input('how_to_read_growth_chart_btn_open', 'n_clicks'),
+        Input('how_to_read_growth_chart_btn_close', 'n_clicks')
+    ],
+    [State('how_to_read_growth_chart_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('how_to_use_sim_controls_modal_body', 'is_open'),
+    [
+        Input('how_to_use_sim_controls_btn_open', 'n_clicks'),
+        Input('how_to_use_sim_controls_btn_close', 'n_clicks')
+    ],
+    [State('how_to_use_sim_controls_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('how_to_read_co_metrics_modal_body', 'is_open'),
+    [
+        Input('how_to_read_co_metrics_btn_open', 'n_clicks'),
+        Input('how_to_read_co_metrics_btn_close', 'n_clicks')
+    ],
+    [State('how_to_read_co_metrics_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('how_to_use_strategizer_modal_body', 'is_open'),
+    [
+        Input('how_to_use_strategizer_btn_open', 'n_clicks'),
+        Input('how_to_use_strategizer_btn_close', 'n_clicks')
+    ],
+    [State('how_to_use_strategizer_modal_body', 'is_open')],
+)
+def staking_guide(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
