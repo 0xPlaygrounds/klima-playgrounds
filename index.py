@@ -13,7 +13,7 @@ CONTENT_STYLE = {
     "margin-right": "0rem",
     "margin-left": "0rem",
     "padding": "1rem 1rem",
-    "background-color": "#232b2b"
+    "background-color": "#202020;"
 }
 FOOTER_STYLE = {
     "position": "relative",
