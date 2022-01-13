@@ -1331,7 +1331,6 @@ def klimaGrowth_Projection(growthDays, initialKlima,
         klimaStakedGrowth_maxOIPRate = klimaStakedGrowth_maxOIPRate * (
                 1 + maxOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Max_klimaGrowth'] = totalklimas_maxOIPRate  # Clean up and add the new array to the main data frame
-
     # ============================ MAX APY PROJECTION ============================
 
     # Let's get some ROI Outputs starting with the daily
