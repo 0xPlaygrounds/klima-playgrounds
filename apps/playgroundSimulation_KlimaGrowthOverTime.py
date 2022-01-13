@@ -505,12 +505,12 @@ layout = dbc.Container([
                                     dbc.Col([
                                         dbc.Input(
                                             id='user_apy',
-                                            placeholder='40000',
+                                            placeholder='27000',
                                             type='number',
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=40000, className="input_box_number",
+                                            value=27000, className="input_box_number",
                                             style={'color': 'white'}),
                                         dbc.Tooltip(
                                             'Input an APY for growth forecasting. APY can be current protocol APY'
@@ -1232,8 +1232,8 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     cadenceConst_BUY = buyEpochs
     dcaAmount = valBuy / klimaPrice_DCA
     user_apy = user_apy / 100
-    minAPY = 1000 / 100
-    maxAPY = 10000 / 100
+    minAPY = 2000 / 100
+    maxAPY = 30000 / 100
     gwei = 1
     reward_yield = ((1 + user_apy) ** (1 / float(1095))) - 1
     reward_yield = round(reward_yield, 5)
@@ -1331,6 +1331,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
         klimaStakedGrowth_maxOIPRate = klimaStakedGrowth_maxOIPRate * (
                 1 + maxOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Max_klimaGrowth'] = totalklimas_maxOIPRate  # Clean up and add the new array to the main data frame
+
     # ============================ MAX APY PROJECTION ============================
 
     # Let's get some ROI Outputs starting with the daily
