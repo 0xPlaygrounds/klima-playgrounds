@@ -11,7 +11,7 @@ what_is_staking = dcc.Markdown(
     '''
     Staking is the primary profit distribution mechanism of the protocol.
     It is designed to be the primary mechanism of value accrual for the majority of users.
-    For most, the best thing to do is to simply stake and compound the KLIMA acquired via rewards.
+    
 
     #### How does it really work?
 
