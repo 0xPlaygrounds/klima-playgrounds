@@ -83,14 +83,14 @@ how_to_simulation_controls = dcc.Markdown(
 how_to_read_co_metrics_intro = dcc.Markdown(
     '''
     The carbon emissions metrics cards are used to emphasize how much carbon emissions each
-    KLIMA you stake and earn offsets
+    KLIMA you bond and earn offsets
 
     Click learn more for an overview on how to read and use the chart
     '''
 )
 how_to_read_co_metrics = dcc.Markdown(
     '''
-    The carbon emissions metrics cards are used to calculate the equivalent carbon emissions offset by your staked KLIMA
+    The carbon emissions metrics cards are used to calculate the equivalent carbon emissions offset by your bondd KLIMA
     on an annual basis.
 
     The calculated carbon emissions equivalencies are as follows:
@@ -113,7 +113,7 @@ how_to_read_co_metrics = dcc.Markdown(
 
     The calculation is as follows, the APY is used to project the growth of your initial KLIMA over a year. Once the
     projection is complete, the calculator then takes the speculated RFV in BCT (Base carbon tonnes) and multiplies your
-    total accumulated KLIMA with the RFV. This yields a total equivalent BCT earned (and staked)
+    total accumulated KLIMA with the RFV. This yields a total equivalent BCT earned (and bondd)
 
     Once the total equivalent BCT earned is determined, we then calculate the equivalent emissions from the average
     passenger vehicle. We used data provided by the
@@ -123,18 +123,18 @@ how_to_read_co_metrics = dcc.Markdown(
 )
 how_to_use_strategizer_intro = dcc.Markdown(
     '''
-    The rewards strategizer is a tool used to calculate potential future staking rewards
+    The rewards strategizer is a tool used to calculate potential future bonding rewards
 
     Click learn more for an overview on how to read and use the chart
     '''
 )
 how_to_use_strategizer = dcc.Markdown(
     '''
-    The rewards strategizer is a tool used to calculate potential future staking rewards. Using the strategizer,
+    The rewards strategizer is a tool used to calculate potential future bonding rewards. Using the strategizer,
     you can predict the following outcomes:
 
-    - Days until your staking rewards has reached a certain USDC value (Highly speculative)
-    - Days until your staking rewards has accumulated to a desired amount
+    - Days until your bonding rewards has reached a certain USDC value (Highly speculative)
+    - Days until your bonding rewards has accumulated to a desired amount
     - Days until you are earning a desired amount of USDC daily and how much KLIMA is required
     - Days until you are earning a desired amount of USDC weekly and how much KLIMA is required
 

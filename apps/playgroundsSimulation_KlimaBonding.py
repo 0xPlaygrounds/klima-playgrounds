@@ -5,14 +5,216 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
-
 from app import app
+from components import bonding_guides as b_g
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
 layout = dbc.Container([
     dbc.Tabs([
-        dbc.Tab(label='Klima (4,4) Simulator',
+        dbc.Tab(label='Guide',
+                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                             'fontSize': '30px'},
+                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
+                active_label_style={'color': '#222222'},
+                children=[
+                    dbc.Row([
+                        dbc.Col([
+                            dbc.Row([
+                                dbc.Col(dbc.Label('Bonding',
+                                                  className="page_section_topic"), xs=12, sm=12, md=12, lg=6, xl=6),
+                            ]),
+                            dbc.Row([
+                                dbc.Col(
+                                    dbc.Card([
+                                        dbc.CardHeader('Learn the fundamentals of Bonding on KlimaDAO',
+                                                       className='enclosure_card_topic'),
+                                        dbc.CardBody([
+                                            dbc.Row([
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('What is bonding?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(b_g.what_is_bonding_intro,
+                                                                        style={'text-align': 'center'}),
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(dbc.ModalTitle('What is bonding?')),
+                                                                dbc.ModalBody([
+                                                                    b_g.what_is_bonding
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='what_is_staking_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='what_is_staking_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            ),
+                                                        ], className='align-self-center'),
+                                                        dbc.CardFooter(
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='what_is_staking_btn_open',
+                                                                           n_clicks=0,
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ), style={'padding': '0px'}
+                                                        )
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '100%'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('Why should I bond?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col(
+                                                                    b_g.why_should_i_bond_intro,
+                                                                    style={'text-align': 'center'}
+                                                                )
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(dbc.ModalTitle('Why should I bond?')),
+                                                                dbc.ModalBody([
+                                                                    b_g.why_should_i_bond
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='why_should_i_stake_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='why_should_i_stake_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            ),
+                                                        ], className='align-self-center'),
+                                                        dbc.CardFooter(
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           id='why_should_i_stake_btn_open',
+                                                                           color='link',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ), style={'padding': '0px'}
+                                                        )
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '100%'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('How can I bond?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col([
+                                                                    b_g.how_can_i_bond_intro
+                                                                ], style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle('How can I bond?')),
+                                                                dbc.ModalBody([
+                                                                    b_g.how_can_i_bond
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='how_can_i_stake_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='how_can_i_stake_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            )
+                                                        ], className='align-self-center'),
+                                                        dbc.CardFooter(
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           color='link',
+                                                                           id='how_can_i_stake_btn_open',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            style={'padding': '0px'}),
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '100%'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                                dbc.Col([
+                                                    dbc.Card([
+                                                        dbc.CardBody([
+                                                            dbc.Row(
+                                                                dbc.Label('Why should the Treasury Bond?',
+                                                                          className='emission_card_topic')
+                                                            ),
+                                                            dbc.Row(
+                                                                dbc.Col([
+                                                                    b_g.why_should_treasury_bond_intro
+                                                                ], style={'text-align': 'center'})
+                                                            ),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader(
+                                                                    dbc.ModalTitle('Why should the Treasury Bond?')),
+                                                                dbc.ModalBody([
+                                                                    b_g.why_should_treasury_bond
+                                                                ]),
+                                                                dbc.ModalFooter(
+                                                                    dbc.Button(
+                                                                        'close',
+                                                                        id='staking_dynamics_btn_close',
+                                                                        className='ms-auto',
+                                                                        n_clicks=0,
+                                                                    )
+                                                                )
+                                                            ],
+                                                                id='staking_dynamics_modal_body',
+                                                                scrollable=True,
+                                                                is_open=False,
+                                                            ),
+                                                        ], className='align-self-center'),
+                                                        dbc.CardFooter(
+                                                            dbc.Row(
+                                                                dbc.Button('Learn more',
+                                                                           color='link',
+                                                                           id='staking_dynamics_btn_open',
+                                                                           style={'color': '#0BA1FF',
+                                                                                  'padding': '10px'}),
+                                                            ),
+                                                            style={'padding': '0px'})
+                                                    ], className='emission_card_style_v2',
+                                                        style={'height': '100%'})
+                                                ], xs=12, sm=12, md=12, lg=3, xl=3),
+                                            ])
+                                        ]),
+                                    ]), xs=12, sm=12, md=12, lg=12, xl=12),
+                            ]),
+                        ])
+                    ])
+                ]),
+        dbc.Tab(label='Simulator',
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
                 tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                            'fontSize': '30px'},
@@ -31,7 +233,7 @@ layout = dbc.Container([
                                     dbc.Col([
                                         dbc.Label('Starting amount of Klima (Units)')
                                     ]),
-                                ]),
+                                ], style={'padding': '0px'}),
                                 dbc.Row([
                                     dbc.Col([
                                         dbc.Input(
@@ -51,7 +253,7 @@ layout = dbc.Container([
                                             step=0.001,
                                             debounce=True,
                                             value=10, className="input_box_number")]),
-                                ]),
+                                ], style={'padding': '0px'}),
                                 dbc.Row([
                                     dbc.Col([
                                         dbc.Label('Bond ROI (%)'),
@@ -59,7 +261,7 @@ layout = dbc.Container([
                                     dbc.Col([
                                         dbc.Label('Rebase Rate (%)'),
                                     ]),
-                                ]),
+                                ], style={'padding-top': '20px'}),
                                 dbc.Row([
                                     dbc.Col([
                                         dbc.Input(
@@ -81,9 +283,9 @@ layout = dbc.Container([
                                             value=0.5,
                                             className="input_box_number"),
                                     ])
-                                ]),
+                                ], style={'margin-top': '0px'}),
                             ])
-                        ], outline=True, color='success', style={"height": "100%"})),
+                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'})),
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -91,31 +293,30 @@ layout = dbc.Container([
                             dbc.CardBody([
                                 dcc.Graph(id='graph2', style={"height": "100%", "width": "100%"}),
                             ], style={"height": "100%", "width": "100%"})
-                        ], outline=False, color='#232b2b', style={"height": "100%", "width": "100%",
-                                                                  'border-color': '#00cc33'}),
+                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Growth Comparison Summary', className='enclosure_card_topic'),
                             dbc.CardBody([
                                     dbc.Row([
                                         dbc.Label('Max (3,3) ROI (Klima)', className='bonding_roi_card_topic'),
-                                        html.Div(className="bonding_roi_card_metrics",
+                                        html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_33_growth'),
                                         dcc.Markdown('---')
                                     ], className='text-center'),
                                     dbc.Row([
                                         dbc.Label('Max (4,4) ROI (Klima)', className="bonding_roi_card_topic"),
-                                        html.Div(className="bonding_roi_card_metrics",
+                                        html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_44_growth'),
                                         dcc.Markdown('---')
                                     ], className='text-center'),
                                     dbc.Row([
                                         dbc.Label('Bonus Klima', className="bonding_roi_card_topic"),
-                                        html.Div(className="bonding_roi_card_metrics",
+                                        html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='bonus_gained'),
                                     ], className='text-center')
                             ])
-                        ], outline=True, color='success', style={"height": "100%", "width": "auto"}))
+                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}))
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -139,7 +340,8 @@ layout = dbc.Container([
                                 (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
                                 ''')
                             ])
-                        ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
+                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                            xs=12, sm=12, md=12, lg=12, xl=12)
                     ], className="mb-5"),
                     dbc.Row([
                         dbc.Col(
@@ -148,8 +350,7 @@ layout = dbc.Container([
                                 dbc.CardBody([
                                     dcc.Graph(id='graph3', style={"height": "100%", "width": "100%"}),
                                 ], style={"height": "100%", "width": "100%"})
-                            ], outline=False, color='#232b2b', style={"height": "100%", "width": "100%",
-                                                                      'border-color': '#00cc33'}),
+                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col([
                             dbc.Card([
@@ -159,7 +360,7 @@ layout = dbc.Container([
                                         dbc.Label('(3,3) ROI (%)', className='bonding_roi_card_topic'),
                                     ),
                                     dbc.Row(
-                                        html.Div(className="bonding_roi_card_metrics",
+                                        html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='33_roi'),
                                     ),
                                     dbc.Row(
@@ -173,7 +374,7 @@ layout = dbc.Container([
                                         dbc.Label('Bond ROI (%)', className="bonding_roi_card_topic"),
                                     ),
                                     dbc.Row(
-                                        html.Div(className="bonding_roi_card_metrics",
+                                        html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='bonding_roi'),
                                     ),
                                     dbc.Row(
@@ -187,11 +388,11 @@ layout = dbc.Container([
                                         dbc.Label('Max (4,4) ROI (%)', className="bonding_roi_card_topic"),
                                     ),
                                     dbc.Row(
-                                        html.Div(className="bonding_roi_card_metrics",
+                                        html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_44_roi'),
                                     ),
                                 ])
-                            ], outline=True, color='success', style={"height": "100%", "width": "auto"})],
+                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'})],
                             xs=12, sm=12, md=12, lg=4, xl=4),
                     ], style={'padding': '10px'}),
                     dbc.Row([
@@ -216,22 +417,10 @@ layout = dbc.Container([
                                 (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
                                 ''')
                             ])
-                        ], outline=True, color='success'), xs=12, sm=12, md=12, lg=12, xl=12)
+                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                            xs=12, sm=12, md=12, lg=12, xl=12)
                     ], className="mb-5"),
                     ]),
-        dbc.Tab(label='Guide',
-                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
-                             'fontSize': '30px'},
-                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
-                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
-                active_label_style={'color': '#222222'},
-                children=[
-                    dbc.Row([
-                        html.Div(html.Img(src=app.get_asset_url('PG_Bonding_Learn.png'),
-                                          style={'height': '100%',
-                                                 'width': '100%',
-                                                 'padding': '10px'}))])
-                ])
     ], className='mb-4'),
 ], fluid=True)  # Responsive ui control
 

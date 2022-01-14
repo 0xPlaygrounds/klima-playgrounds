@@ -2,14 +2,14 @@ from dash import dcc
 
 what_is_staking_intro = dcc.Markdown(
     '''
-    Staking is the primary protocol profit distribution mechanism
+    staking is the primary protocol profit distribution mechanism
 
     Click learn more for an overview on staking
     '''
 )
 what_is_staking = dcc.Markdown(
     '''
-    Staking is the primary profit distribution mechanism of the protocol.
+    staking is the primary profit distribution mechanism of the protocol.
     It is designed to be the primary mechanism of value accrual for the majority of users.
     For most, the best thing to do is to simply stake and compound the KLIMA acquired via rewards.
 
@@ -38,7 +38,7 @@ why_should_i_stake = dcc.Markdown(
     1. Enabling economic activity within the Klima ecosystem which in turn, increases use case for KLIMA and creates
     new incentives for bridging carbon on-chain
 
-    2. Participating in the profit distribution system of klimaDAO. Staking is designed to incentivise long term holding
+    2. Participating in the profit distribution system of klimaDAO. staking is designed to incentivise long term holding
     of KLIMA while giving participant exposure to the increasing price of carbon. The longer you stake, the more KLIMA
     you compound and the more carbon you are exposed to
 
@@ -48,7 +48,7 @@ why_should_i_stake = dcc.Markdown(
 )
 how_can_i_stake_intro = dcc.Markdown(
     '''
-    Staking your KLIMA is a straight forward process. Assuming you already have KLIMA, visit
+    staking your KLIMA is a straight forward process. Assuming you already have KLIMA, visit
     [Klima](https://dapp.klimadao.finance/#/stake) to stake.
 
     Click learn more for a step by step guide
@@ -56,7 +56,7 @@ how_can_i_stake_intro = dcc.Markdown(
 )
 how_can_i_stake = dcc.Markdown(
     '''
-    Staking is the primary method for participating in KlimaDAO.
+    staking is the primary method for participating in KlimaDAO.
 
     It is important to note that all transactions with
     KlimaDAO occurs on the Polygon network and you need to have KLIMA in your wallet before you can stake.
@@ -68,13 +68,13 @@ how_can_i_stake = dcc.Markdown(
     pairing is BCT/KLIMA or USDC/KLIMA
     3. Now that you have KLIMA in your wallet, visit the Klima dAPP and click stake. Make sure your wallet is connected
     to the dAPP by clicking on "Connect wallet" found on the top right of the app interface
-    4. While on the Stake tab, designate the amount of KLIMA you would like to stake, click Stake, and approve
+    4. While on the stake tab, designate the amount of KLIMA you would like to stake, click stake, and approve
     the transaction on your wallet
     '''
 )
 staking_dynamics_intro = dcc.Markdown(
     '''
-    Staking is the best strategy for participating in KlimaDAO. Staking benefits both you the participant
+    staking is the best strategy for participating in KlimaDAO. staking benefits both you the participant
     and the protocol.
 
     Click learn more for an overview of the game theory behind staking
@@ -84,20 +84,20 @@ staking_dynamics = dcc.Markdown(
     '''
 At a high level users have 3 possible actions when interacting with the protocol:
 
-- Stake
-- Bond
+- stake
+- stake
 - Sell
 
 In general, participants are more likely to do the following:
 
 - Buy and stake KLIMA when it's price is increasing
 - Sell when price is decreasing
-- Bond when price is neutral or expected to increase
+- stake when price is neutral or expected to increase
 
-However, it is important to emphasize that regardless of all likely actions, Staking remains the most beneficial action
+However, it is important to emphasize that regardless of all likely actions, staking remains the most beneficial action
 for the protocol and participants
 
-Staking aligns incentives between the protocol and participants.
+staking aligns incentives between the protocol and participants.
 Participants benefit from receiving rewards and the protocol benefits from decreased sell pressure
 
 The Game Theory of staking coined (3,3) illustrates and provides a narrative; *the best strategies are cooperative*
@@ -122,11 +122,11 @@ are worth more than what they are selling for. Klima staker shave a guarantee pr
 the protocol can use reserves to buy below IV to return the price of KLIMA to it’s IV.
 
 An increase in staking is generally preceded by purchases of KLIMA. This increases the price of KLIMA and thus the
-yield for stakers. At the same time, rising prices increase bond discounts and capacity for new bonds. This, in turn,
+yield for stakers. At the same time, rising prices increase stake discounts and capacity for new stakes. This, in turn,
 allows KLIMA to grow its POL and treasury.
 
 This positive price-liquidity feedback loop should serve to create sustainable expansionary periods. However, it works
-both ways. Falling demand decreases staking yield and bond capacity, causing demand to fall further.
+both ways. Falling demand decreases staking yield and stake capacity, causing demand to fall further.
 This is an unavoidable fact of systems like this; even the most established (i.e. Bitcoin) experience
 significant declines after periods of expansion.
 
