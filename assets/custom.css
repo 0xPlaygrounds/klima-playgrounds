@@ -36,7 +36,7 @@
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 54px;
+  font-size: 40px;
   text-align: center;
   padding: 10px;
   color: #FFFFFF;
@@ -149,6 +149,21 @@
   line-height: 54px;
   text-align: center;
   color: #FFFFFF;
+}
+.bonding_roi_card_metrics_secondary{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 96px;
+  text-align: center;
+  color: #FFFFFF;
+  width: 213px;
+  height: 100px;
+  background: #4A4A4A;
+  opacity: 1;
+  border-radius: 15px;
+  margin: auto;
 }
 .vl {
   border-left: 1px solid #FFFFFF;

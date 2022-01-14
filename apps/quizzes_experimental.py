@@ -16,13 +16,7 @@ learn_card_1 = dbc.Card(
             [
                 dbc.Row(
                     dbc.Label(
-                        "What is KlimaDAO?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_1', n_clicks=0,
-                        className='align-self-center'
+                        "What is KlimaDAO?", className='emission_card_topic'
                     ),
                 ),
                 dbc.Modal([
@@ -65,11 +59,22 @@ Klima is DAO-governed by it's community. All decisions are formed by community m
                 ),
             ]
         ),
+        dbc.CardFooter([
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_1',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        ])
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_2 = dbc.Card(
     [
@@ -78,12 +83,6 @@ learn_card_2 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "Why KlimaDAO?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_2', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -130,11 +129,22 @@ learn_card_2 = dbc.Card(
                 ),
             ]
         ),
+        dbc.CardFooter([
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_2',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        ])
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_3 = dbc.Card(
     [
@@ -143,12 +153,6 @@ learn_card_3 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "What is Klima?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_4', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -184,7 +188,7 @@ learn_card_3 = dbc.Card(
                     dbc.ModalFooter(
                         dbc.Button(
                             'close',
-                            id='close_learn_card_4',
+                            id='close_learn_card_3',
                             className='ms-auto',
                             n_clicks=0,
                         )
@@ -196,11 +200,22 @@ learn_card_3 = dbc.Card(
                 ),
             ]
         ),
+        dbc.CardFooter(
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_3',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        )
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_4 = dbc.Card(
     [
@@ -209,12 +224,6 @@ learn_card_4 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "How do I participate?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_3', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -238,23 +247,34 @@ learn_card_4 = dbc.Card(
                     dbc.ModalFooter(
                         dbc.Button(
                             'close',
-                            id='close_learn_card_3',
+                            id='close_learn_card_4',
                             className='ms-auto',
                             n_clicks=0,
                         )
                     )
                 ],
-                    id="body_learn_card_3",
+                    id="body_learn_card_4",
                     scrollable=True,
                     is_open=False,
                 ),
             ]
         ),
+        dbc.CardFooter(
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_4',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        )
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_5 = dbc.Card(
     [
@@ -263,12 +283,6 @@ learn_card_5 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "What is Staking?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_5', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -305,11 +319,22 @@ For a step by step guide on how to stake KLIMA, see the
                 ),
             ]
         ),
+        dbc.CardFooter(
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_5',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        )
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_6 = dbc.Card(
     [
@@ -318,12 +343,6 @@ learn_card_6 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "What is Bonding?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_6', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -358,11 +377,22 @@ price (as it can mint KLIMA at IV),you are able to more cheaply buy KLIMA
                 ),
             ]
         ),
+        dbc.CardFooter(
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_6',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        )
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_7 = dbc.Card(
     [
@@ -371,12 +401,6 @@ learn_card_7 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "What is Rebasing?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_7', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -421,11 +445,22 @@ learn_card_7 = dbc.Card(
                 ),
             ]
         ),
+        dbc.CardFooter(
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_7',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        )
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_8 = dbc.Card(
     [
@@ -434,12 +469,6 @@ learn_card_8 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "Participant Goals?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_8', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -483,11 +512,22 @@ than purchasing KLIMA on the free market.
                 ),
             ]
         ),
+        dbc.CardFooter([
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_8',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        ]),
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_9 = dbc.Card(
     [
@@ -496,12 +536,6 @@ learn_card_9 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "What are Carbon Markets?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_9', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -538,11 +572,22 @@ and more expensive, creating an economic incentive for entities to voluntarily r
                 ),
             ]
         ),
+        dbc.CardFooter([
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_9',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        ])
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_10 = dbc.Card(
     [
@@ -551,12 +596,6 @@ learn_card_10 = dbc.Card(
                 dbc.Row(
                     dbc.Label(
                         "What is a Carbon Offset?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_10', n_clicks=0,
-                        className='align-self-center'
                     ),
                 ),
                 dbc.Modal([
@@ -579,7 +618,7 @@ emit 1 tonne of methane.
                             className='ms-auto',
                             n_clicks=0,
                         )
-                    )
+                    ),
                 ],
                     id="body_learn_card_10",
                     scrollable=True,
@@ -587,11 +626,22 @@ emit 1 tonne of methane.
                 ),
             ]
         ),
+        dbc.CardFooter(
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_10',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        )
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 learn_card_11 = dbc.Card(
     [
@@ -599,13 +649,7 @@ learn_card_11 = dbc.Card(
             [
                 dbc.Row(
                     dbc.Label(
-                        "How are carbon offsets and renewable energy different?", className='emission_card_topic',
-                    ),
-                ),
-                dbc.Row(
-                    dbc.Button(
-                        'Click to learn', id='open_learn_card_11', n_clicks=0,
-                        className='align-self-center'
+                        "Carbon Offsets and Renewable energy", className='emission_card_topic',
                     ),
                 ),
                 dbc.Modal([
@@ -626,7 +670,7 @@ incentive to reduce voluntarily and fund sources of renewable energy.
                             className='ms-auto',
                             n_clicks=0,
                         )
-                    )
+                    ),
                 ],
                     id="body_learn_card_11",
                     scrollable=True,
@@ -634,11 +678,22 @@ incentive to reduce voluntarily and fund sources of renewable energy.
                 ),
             ]
         ),
+        dbc.CardFooter([
+            dbc.Row(
+                dbc.Button(
+                    'Click to learn',
+                    id='open_learn_card_11',
+                    color='link',
+                    n_clicks=0,
+                    className='align-self-center',
+                    style={'color': '#0BA1FF',
+                           'padding': '0px'}
+                ),
+            ),
+        ])
     ],
-    color="success",  # https://bootswatch.com/default/ for more card colors
-    inverse=True,  # change color of text (black or white)
-    outline=False,  # True = remove the block colors from the background and header
-    className='emission_card_style',
+    className='emission_card_style_v2',
+    style={'height': '220px'}
 )
 
 
@@ -802,29 +857,52 @@ layout = html.Div([
                           className="page_section_topic"))
     ]),
     dbc.Row([
-        dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+        dbc.Card([
+            dbc.CardHeader('Learn the fundamentals of KlimaDAO', className='enclosure_card_topic'),
+            dbc.CardBody([
+               dbc.Row([
+                   dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+                   dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+                   dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
+                   dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+               ])
+            ])
+        ]),
     ]),
     dbc.Row([
         dbc.Col(dbc.Label('Protocol Mechanics',
                           className="page_section_topic"))
     ]),
     dbc.Row([
-        dbc.Col(learn_card_5, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_6, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_7, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+        dbc.Card([
+            dbc.CardHeader('Understand the principles of the Klima Protocol'),
+            dbc.CardBody([
+                dbc.Row([
+                    dbc.Col(learn_card_5, xs=12, sm=12, md=12, lg=3, xl=3),
+                    dbc.Col(learn_card_6, xs=12, sm=12, md=12, lg=3, xl=3),
+                    dbc.Col(learn_card_7, xs=12, sm=12, md=12, lg=3, xl=3),
+                    dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3)
+                ])
+            ])
+        ]),
     ]),
     dbc.Row([
         dbc.Col(dbc.Label('Carbon Markets',
                           className="page_section_topic"))
     ]),
     dbc.Row([
-        dbc.Col(learn_card_9, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_10, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_11, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-        dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+        dbc.Card([
+            dbc.CardHeader('Get caught up on the Carbon Market and its significance'),
+            dbc.CardBody([
+                dbc.Row([
+                    dbc.Col(learn_card_9, xs=12, sm=12, md=12, lg=3, xl=3, style={'height': '100%'}),
+                    dbc.Col(learn_card_10, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'height': '100%'}),
+                    dbc.Col(learn_card_11, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'height': '100%'}),
+                    dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3, style={'height': '100%'})
+                ])
+            ])
+        ]),
     ]),
 ])
