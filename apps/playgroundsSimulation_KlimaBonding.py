@@ -243,7 +243,9 @@ layout = dbc.Container([
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=800, className="input_box_number")]),
+                                            value=800,
+                                            className="input_box_number",
+                                            style={'color': 'white'})]),
                                     dbc.Col([
                                         dbc.Input(
                                             id='initial_klima',
@@ -252,7 +254,9 @@ layout = dbc.Container([
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=10, className="input_box_number")]),
+                                            value=10,
+                                            className="input_box_number",
+                                            style={'color': 'white'})]),
                                 ], style={'padding': '0px'}),
                                 dbc.Row([
                                     dbc.Col([
@@ -271,7 +275,8 @@ layout = dbc.Container([
                                             step=0.001,
                                             debounce=True,
                                             value=5,
-                                            className="input_box_number"),
+                                            className="input_box_number",
+                                            style={'color': 'white'}),
                                     ]),
                                     dbc.Col([
                                         dbc.Input(
@@ -281,7 +286,8 @@ layout = dbc.Container([
                                             step=0.001,
                                             debounce=True,
                                             value=0.5,
-                                            className="input_box_number"),
+                                            className="input_box_number",
+                                            style={'color': 'white'}),
                                     ])
                                 ], style={'margin-top': '0px'}),
                             ])
