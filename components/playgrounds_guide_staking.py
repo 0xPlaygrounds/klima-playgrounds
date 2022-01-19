@@ -68,9 +68,9 @@ how_to_simulation_controls = dcc.Markdown(
     do the following:
 
     - Adjust the amount you would like to sell using the input box provided. You can choose between percentage or a fixed
-     amount of KLIMA to sell. 
-     - Adjust the cadence. The cadence is how often you want to take profit. For instance, if you want to sell
-     every 30 days, you will type in 30 days in the cadence input box.
+    amount of KLIMA to sell. 
+    - Adjust the cadence. The cadence is how often you want to take profit. For instance, if you want to sell
+    every 30 days, you will type in 30 days in the cadence input box.
 
     Making these changes will adjust the profit adjusted ROI curve and help visualize the best profit taking strategy
     for you. This is not an endorsement to sell, but a tool if profit taking is part of your strategy.
@@ -81,7 +81,7 @@ how_to_simulation_controls = dcc.Markdown(
 
     - Adjust the KLIMA price. This is your target buy in price.
     - Adjust the purchase amount. This is the USDC value of KLIMA you would like to purchase.
-    - Adjust the cadence. The cadence is how often you want to buy and stake KLIMA. For instance, if you want to buy 
+    - Adjust the cadence. The cadence is how often you want to buy and stake KLIMA. For instance, if you want to buy
     every 30 days, you will type in 30 days in the cadence input box.
     '''
 )
@@ -119,7 +119,7 @@ how_to_read_co_metrics = dcc.Markdown(
     The calculation is as follows, the APY is used to project the growth of your initial KLIMA over a year. Once the
     projection is complete, the calculator then takes the speculated RFV in BCT (Base Carbon Tonnes) and multiplies your
     total accumulated KLIMA with the RFV. This shows the amount of carbon equivalent that is locked.
-     
+
     Once the total carbon equivalent locked is determined, we then calculate the equivalent emissions from the average
     passenger vehicle. We used data provided by the
     [EPA] (https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references)
@@ -129,7 +129,7 @@ how_to_read_co_metrics = dcc.Markdown(
 how_to_use_strategizer_intro = dcc.Markdown(
     '''
     The rewards strategizer is a tool used to calculate potential future staking rewards.
-     
+
     Click for an overview on how to read and use the chart.
     '''
 )
