@@ -9,7 +9,7 @@ what_is_staking_intro = dcc.Markdown(
 )
 what_is_staking = dcc.Markdown(
     '''
-    staking is the primary profit distribution mechanism of the protocol.
+    Staking is the primary profit distribution mechanism of the protocol.
     It is designed to be the primary mechanism of value accrual for the majority of users.
     For most, the best thing to do is to simply stake and compound the KLIMA acquired via rewards.
 
@@ -21,7 +21,7 @@ what_is_staking = dcc.Markdown(
     The amount minted and distributed is controlled by a variable called the reward rate.
 
     The reward rate is the percentage of supply that is rebased. The process of rebasing and rewarding
-    stakers is a pwoerful tool used to maintain system stability and prevent over expansion of supply.
+    stakers is a powerful tool used to maintain system stability and prevent over expansion of supply.
     '''
 )
 why_should_i_stake_intro = dcc.Markdown(
@@ -42,8 +42,8 @@ why_should_i_stake = dcc.Markdown(
     of KLIMA while giving participant exposure to the increasing price of carbon. The longer you stake, the more KLIMA
     you compound and the more carbon you are exposed to
 
-    3. Reducing circulating supply which in turn reduces selling pressure of KLIMA token. This is good for price
-    stability during the expansion phase of the protocol
+    3. Reducing effective circulating supply which in turn reduces selling pressure of KLIMA token.
+    This is good for price stability during the expansion phase of the protocol
     '''
 )
 how_can_i_stake_intro = dcc.Markdown(
@@ -63,7 +63,7 @@ how_can_i_stake = dcc.Markdown(
 
     A quick step by step guide on getting KLIMA staked is as follows:
 
-    1. Make sure your wallet is connected to the Polygon network. If you are using metamask, follow these instructionS
+    1. Make sure your wallet is connected to the Polygon network. If you are using metamask, follow these instructions
     2. Make sure you have KLIMA in your wallet. If you do not have KLIMA, visit sushiswap and purchase some. The best
     pairing is BCT/KLIMA or USDC/KLIMA
     3. Now that you have KLIMA in your wallet, visit the Klima dAPP and click stake. Make sure your wallet is connected
@@ -84,8 +84,8 @@ staking_dynamics = dcc.Markdown(
     '''
 At a high level users have 3 possible actions when interacting with the protocol:
 
-- stake
-- stake
+- Stake
+- Bond
 - Sell
 
 In general, participants are more likely to do the following:

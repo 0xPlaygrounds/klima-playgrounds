@@ -23,6 +23,12 @@
   border-radius: 15px;
   padding: 10px;
 }
+.emission_card_style_v3{
+  background: #303030;
+  border: 2px solid #00CC33;
+  box-sizing: border-box;
+  border-radius: 15px;
+}
 .emission_card_topic{
   font-family: 'Inter', sans-serif;
   font-style: normal;
@@ -36,7 +42,7 @@
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   padding: 10px;
   color: #FFFFFF;

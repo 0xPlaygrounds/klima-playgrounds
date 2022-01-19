@@ -80,8 +80,8 @@ menu_bar = dbc.DropdownMenu(
 navbar2 = dbc.Navbar(
     dbc.Container([
             dbc.Row([
-                dbc.Col(html.Img(src=app.get_asset_url('Klima_PG_trans_no_box.png'),
-                                 height="85px")),
+                dbc.Col(html.Img(src=app.get_asset_url('Klima_logo_v2.svg'),
+                                 height="55px")),
             ],
                 align="center",
                 className="g-0",
