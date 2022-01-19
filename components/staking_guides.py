@@ -64,7 +64,7 @@ how_can_i_stake = dcc.Markdown(
     A quick step by step guide on getting KLIMA staked is as follows:
 
     1. Make sure your wallet is connected to the Polygon network. If you are using Metamask, follow these instructions:
-    2. Make sure you have KLIMA in your wallet. You can add KLIMA, or other relevant tokens, via the contract addresses 
+    2. Make sure you have KLIMA in your wallet. You can add KLIMA, or other relevant tokens, via the contract addresses
     in the dapp under the info tab. If you do not have KLIMA, visit Sushiswap and purchase some. The best
     pairing is BCT/KLIMA or USDC/KLIMA.
     3. Now that you have KLIMA in your wallet, visit the Klima dapp and click stake; make sure your wallet is

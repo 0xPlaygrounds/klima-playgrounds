@@ -67,8 +67,8 @@ how_to_simulation_controls = dcc.Markdown(
     curve shows you the KLIMA growth despite taking profit x number of days. To adjust this curve to suit your needs,
     do the following:
 
-    - Adjust the amount you would like to sell using the input box provided. You can choose between percentage or a fixed
-    amount of KLIMA to sell. 
+    - Adjust the amount you would like to sell using the input box provided. You can choose between percentage or
+    a fixed amount of KLIMA to sell.
     - Adjust the cadence. The cadence is how often you want to take profit. For instance, if you want to sell
     every 30 days, you will type in 30 days in the cadence input box.
 
