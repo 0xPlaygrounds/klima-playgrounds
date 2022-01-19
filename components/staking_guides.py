@@ -42,8 +42,8 @@ why_should_i_stake = dcc.Markdown(
     of KLIMA while giving participant exposure to the increasing price of carbon. The longer you stake, the more KLIMA
     you compound and the more carbon you are exposed to
 
-    3. Reducing effective circulating supply which in turn reduces selling pressure of KLIMA token. This is good for price
-    stability during the expansion phase of the protocol
+    3. Reducing effective circulating supply which in turn reduces selling pressure of KLIMA token.
+    This is good for price stability during the expansion phase of the protocol
     '''
 )
 how_can_i_stake_intro = dcc.Markdown(

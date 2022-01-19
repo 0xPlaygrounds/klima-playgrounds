@@ -89,21 +89,21 @@ how_can_i_bond = dcc.Markdown(
     2. Make sure your wallet is connected to the dAPP by clicking on "Connect wallet"
     3. While on the bond tab, identify the type of bond you will like to participate in. For example, you might be
     interested in the following bonds:
-    
+
     - BCT (Bond your BCT token to get KLIMA in return)
     - BCT/KLIMA LP (Bond your LP token to get KLIMA in return)
     - BCT/USDC LP (Bond your LP token to get KLIMA in return)
     - MCO2 (Bond your MCO2 to get KLIMA in return)
-    
+
     If you do not have the available bond tokens, you can obtain them on Sushiswap, Uniswap or Quickswap.
-    
+
     For single tokens such as BCT and MCO2, you can acquire these on the AMMs listed above.
-    
+
     For LP tokens, you would need to provide liquidity on Sushiswap, Uniswap or Quickswap to obtain the LP. For example,
     providing BCT AND KLIMA liquidity on Sushiswap will get you BCT/KLIMA LP token
-    
+
     4. Once you have the bond tokens you need, you bond them on the KlimaDAO dAPP.
-    
+
     *Remember that when you bond, your KLIMA is released to you on a vest period of 5 days*
     '''
 )
