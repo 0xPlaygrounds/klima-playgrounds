@@ -5,8 +5,7 @@ from dash.dependencies import Input, Output
 from app import app
 
 from apps import playgroundSimulation_KlimaGrowthOverTime, \
-                 playgroundsSimulation_KlimaBonding, quizzes_experimental, disclaimerPage
-from components.disclaimer import short_disclaimer_row
+                 playgroundsSimulation_KlimaBonding, quizzes_experimental, disclaimerPage, homePage
 
 CONTENT_STYLE = {
     "position": "relative",
@@ -25,34 +24,10 @@ FOOTER_STYLE = {
     "background-color": "#232b2b",
 }
 
-navbar = dbc.NavbarSimple(
-    children=[
-        dbc.NavItem(dbc.NavLink("Home", href="/apps/homePage")),
-        dbc.NavItem(dbc.NavLink("Staking Simulator", href="/apps/playgroundSimulation_KlimaGrowthOverTime")),
-        dbc.NavItem(dbc.NavLink("Bonding Simulator", href="/apps/playgroundsSimulation_KlimaBonding")),
-        dbc.DropdownMenu(
-            children=[
-                dbc.DropdownMenuItem("More pages", header=True),
-                dbc.DropdownMenuItem("KlimaDAO", href="https://www.klimadao.finance/#/stake"),
-                dbc.DropdownMenuItem("Learn More", href="https://docs.klimadao.finance/"),
-                dbc.DropdownMenuItem("Classroom", href="/apps/quizzes_experimental"),
-                dbc.DropdownMenuItem("Feedback", href="https://forms.gle/UTyj7HvCfBNa1rt17"),
-                dbc.DropdownMenuItem("Disclaimer", href="/disclaimer"),
-            ],
-            nav=True,
-            in_navbar=True,
-            label="More",
-        ),
-    ],
-    brand="Playgrounds",
-    brand_style={"fontSize": "35px", 'padding': '10px'},
-    color="#00cc33",
-    dark=True,
-    style={"width": "auto", "fontSize": "30px", 'font-family': 'Nunito, sans-serif'}
-)
-
 menu_bar = dbc.DropdownMenu(
                children=[
+                   dbc.DropdownMenuItem("Home Page",
+                                        href="/apps/homePage"),
                    dbc.DropdownMenuItem("Staking Simulator",
                                         href="/apps/playgroundSimulation_KlimaGrowthOverTime"),
                    dbc.DropdownMenuItem("Bonding Simulator",
@@ -77,7 +52,7 @@ menu_bar = dbc.DropdownMenu(
                className="navbar_link_topic",
            ),
 
-navbar2 = dbc.Navbar(
+navbar = dbc.Navbar(
     dbc.Container([
             dbc.Row([
                 dbc.Col(html.Img(src=app.get_asset_url('Klima_logo_v2.svg'),
@@ -102,10 +77,8 @@ content = html.Div(id="page-content", children=[], style=CONTENT_STYLE)
 
 app.layout = html.Div([
     dcc.Location(id="url"),
-    navbar2,
+    navbar,
     content,
-    html.Footer(short_disclaimer_row(),
-                className='footer_style')
 ])
 
 
@@ -122,7 +95,9 @@ def toggle_navbar_collapse(n, is_open):
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
-    if pathname == '/apps/playgroundSimulation_KlimaGrowthOverTime':
+    if pathname == '/apps/homePage':
+        return homePage.layout
+    elif pathname == '/apps/playgroundSimulation_KlimaGrowthOverTime':
         return playgroundSimulation_KlimaGrowthOverTime.layout
     elif pathname == '/apps/playgroundsSimulation_KlimaBonding':
         return playgroundsSimulation_KlimaBonding.layout
@@ -131,7 +106,7 @@ def display_page(pathname):
     elif pathname == '/apps/quizzes_experimental':
         return quizzes_experimental.layout
     else:
-        return playgroundSimulation_KlimaGrowthOverTime.layout
+        return homePage.layout
 
 
 # For Gunicorn to reference
