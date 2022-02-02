@@ -194,7 +194,7 @@ learn_card_3 = dbc.Card(
                         )
                     )
                 ],
-                    id="body_learn_card_4",
+                    id="body_learn_card_3",
                     scrollable=True,
                     is_open=False,
                 ),

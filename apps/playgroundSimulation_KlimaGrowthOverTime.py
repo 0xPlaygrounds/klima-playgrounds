@@ -11,6 +11,7 @@ from millify import millify
 from app import app
 from components import staking_guides as s_g
 from components import playgrounds_guide_staking as p_g_s
+from components.disclaimer import short_disclaimer_row
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
@@ -446,7 +447,7 @@ layout = dbc.Container([
                                     placement='top',
                                 )
                             ], style={"height": "auto", "width": "auto"})
-                        ], outline=False, color='#232b2b', style={"height": "100%", "width": "auto",
+                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
                                                                   'border-color': '#00cc33'}),
                             style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=8, xl=8),
@@ -735,7 +736,7 @@ layout = dbc.Container([
 
                                 ], style={'padding': '10px', 'padding-bottom': '0px'})
                             ])
-                        ], outline=False, color='#232b2b', style={"height": "100%", "width": "auto",
+                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
                                                                   'border-color': '#00cc33'}),
                             style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=4, xl=4)]),
@@ -824,7 +825,8 @@ layout = dbc.Container([
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                     ]),
                                 ])
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': '100%'}),
+                            ], outline=False, color='#202020',
+                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'}),
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'})
                     ]),
                     dbc.Row([
@@ -912,7 +914,8 @@ layout = dbc.Container([
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                     ]),
                                 ])
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': '100%'}),
+                            ], outline=False, color='#202020',
+                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'}),
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'})
                     ]),
                     dbc.Row([
@@ -1060,7 +1063,8 @@ layout = dbc.Container([
                                                    'justify-content': 'stretch'}),
                                     ]),
                                 ]),
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})],
+                            ], outline=False, color='#202020',
+                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})],
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'}),
                     ]),
                     dbc.Row([
@@ -1163,7 +1167,8 @@ layout = dbc.Container([
                                             style={'height': "100%", 'padding': '10px'})
                                     ]),
                                 ])
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})),
+                            ], outline=False, color='#202020',
+                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})),
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Rewards strategizer controls', className='enclosure_card_topic'),
@@ -1266,7 +1271,8 @@ layout = dbc.Container([
                                                 value=50000, className="input_box_number",
                                                 style={'color': 'white'})])], style={'padding': '0px'}),
                                 ])
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                            ], outline=False, color='#202020',
+                                style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
                             xs=12, sm=12, md=12, lg=6, xl=6),
                     ]),
                     dbc.Row([
@@ -1335,11 +1341,13 @@ layout = dbc.Container([
                                                                                  'padding': '10px'}),
                                 ]),
                             ]),
-                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                        ], outline=False, color='#202020',
+                            style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
                             xs=12, sm=12, md=12, lg=12, xl=12)
                     ], className="mb-5"),
                 ]),
     ], id='tabs', active_tab='staking_guide_tab', className='mb-4'),
+    html.Footer(short_disclaimer_row(), className='footer_style')
 ], id='page_content', fluid=True)  # Responsive ui control
 
 
@@ -1658,7 +1666,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
         go.Scatter(x=klimaGrowth_df.Days, y=klimaGrowth_df.Max_klimaGrowth, name='Max Growth Rate  ', fill=None))
 
     klimaGrowth_Chart.update_layout(autosize=True, showlegend=True, margin=dict(l=20, r=30, t=10, b=20))
-    klimaGrowth_Chart.update_layout({'paper_bgcolor': 'rgba(0,0,0,0)', 'plot_bgcolor': 'rgba(0, 0, 0, 0)'})
+    klimaGrowth_Chart.update_layout({'paper_bgcolor': '#202020', 'plot_bgcolor': 'rgba(0, 0, 0, 0)'})
     klimaGrowth_Chart.update_layout(legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01, ), xaxis_title="Days",
                                     yaxis_title="Total klimas")
     # klimaGrowth_Chart.update_layout(hovermode='x unified', hoverlabel_bgcolor='#232b2b', hoverlabel_align='auto',

@@ -119,7 +119,7 @@
 .input_box_number{
   box-shadow: 2px 2px 5px -2px #0BA1FF;
   border-radius: 5px;
-  color: #FFFFFF;
+  color= #3030230;
 }
 .rc-slider-track{
   background-color: #0BA1FF;
@@ -285,4 +285,121 @@ learncardsvg {
 .learncard_card:hover .stroke {
   stroke-dashoffset: 100;
   transition: 0.6s ease-out;
+}
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  font-family: 'Poppins', sans-serif;
+  line-height
+}
+#showcase{
+  background-image:url('/assets/Homepage_2.png');
+  background-size:cover;
+  background-position:center;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding:0 50px;
+  justify-content:center;
+}
+
+#showcase h1{
+  font-size:50px;
+  line-height:1.2;
+}
+
+#showcase p{
+  font-size:20px;
+}
+
+#showcase .button{
+  font-size:18px;
+  text-decoration:none;
+  color:#926239;
+  border:#926239 1px solid;
+  padding:10px 20px;
+  border-radius:10px;
+  margin-top:20px;
+  width: 215px;
+  height: 54px;
+  left: 102px;
+  top: 685px;
+}
+
+#showcase .button:hover{
+  background:#926239;
+  color:#fff;
+}
+
+#section-a{
+  padding:20px;
+  background:#926239;
+  color:#fff;
+  text-align:center;
+}
+
+#section-b{
+  padding:20px;
+  background:#f4f4f4;
+  text-align:center;
+}
+
+#section-c{
+  display:flex;
+}
+
+#section-c div{
+  padding:20px;
+}
+
+#section-c .box-1, #section-c .box-3{
+  background:#926239;
+  color:#fff;
+}
+
+#section-c .box-2{
+  background:#f9f9f9;
+}
+
+.landing_button_enter{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    width: 215px;
+    height: 54px;
+    color: #00CC33;
+    background: #202020;
+    border-radius: 43px;
+    font-size:18px;
+    text-decoration:none;
+    padding:10px 20px;
+    margin-top:20px;
+}
+
+.landing_welcome_topic{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 105.5%;
+    color: #FFFFFF;
+}
+
+.landing_main_topic{
+    font-family: 'Nunito Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 107px;
+    line-height: 105.5%;
+    color: #00CC33;
+}
+
+.landing_main_paragraph1{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 105.5%;
+    color: #FFFFFF;
 }
