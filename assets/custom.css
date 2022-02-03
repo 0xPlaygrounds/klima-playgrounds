@@ -8,7 +8,6 @@
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
 }
 .emission_card_style{
@@ -119,7 +118,7 @@
 .input_box_number{
   box-shadow: 2px 2px 5px -2px #0BA1FF;
   border-radius: 5px;
-  color= #3030230;
+  color : #303030;
 }
 .rc-slider-track{
   background-color: #0BA1FF;
@@ -277,7 +276,7 @@
   transition: 0.6s ease-out;
 }
 
-learncardsvg {
+.learncardsvg {
   fill: #17141d;
   stroke-width: 2px;
 }
@@ -292,12 +291,14 @@ learncardsvg {
 }
 body{
   font-family: 'Poppins', sans-serif;
-  line-height
+  line-height:1.2;
 }
 #showcase{
   background-image:url('/assets/Homepage_2.png');
+  position: relative;
   background-size:cover;
   background-position:center;
+  background-repeat:repeat;
   height:100vh;
   display:flex;
   flex-direction:column;
