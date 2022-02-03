@@ -21,8 +21,9 @@ layout = dbc.Container([
         dbc.Tab(label='Guide',
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                              'fontSize': '30px'},
-                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
-                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
+                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                           'marginLeft': 'auto'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'textTransform': 'uppercase'},
                 active_label_style={'color': '#222222'},
                 tab_id='staking_guide_tab',
                 children=[
@@ -217,7 +218,9 @@ layout = dbc.Container([
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                             ])
                                         ]),
-                                    ]), xs=12, sm=12, md=12, lg=12, xl=12),
+                                    ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                              'border-color': '#00cc33'}),
+                                    xs=12, sm=12, md=12, lg=12, xl=12),
                             ]),
                         ])
                     ]),
@@ -419,7 +422,9 @@ layout = dbc.Container([
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                             ])
                                         ]),
-                                    ]), xs=12, sm=12, md=12, lg=12, xl=12),
+                                    ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                              'border-color': '#00cc33'}),
+                                    xs=12, sm=12, md=12, lg=12, xl=12),
                             ]),
                         ])
                     ]),
@@ -429,7 +434,7 @@ layout = dbc.Container([
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
                 tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                            'fontSize': '30px'},
-                active_tab_style={'color': '#0ba1ff'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'textTransform': 'uppercase'},
                 active_label_style={'color': '#222222'},
                 tab_id='staking_simulator_tab',
                 children=[
