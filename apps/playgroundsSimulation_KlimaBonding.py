@@ -15,8 +15,9 @@ layout = dbc.Container([
         dbc.Tab(label='Guide',
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                              'fontSize': '30px'},
-                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
-                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px'},
+                tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                           'marginLeft': 'auto'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'textTransform': 'uppercase'},
                 active_label_style={'color': '#222222'},
                 children=[
                     dbc.Row([
@@ -209,7 +210,9 @@ layout = dbc.Container([
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                             ])
                                         ]),
-                                    ]), xs=12, sm=12, md=12, lg=12, xl=12),
+                                    ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                              'border-color': '#00cc33'}),
+                                    xs=12, sm=12, md=12, lg=12, xl=12),
                             ]),
                         ])
                     ])
@@ -218,7 +221,7 @@ layout = dbc.Container([
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
                 tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                            'fontSize': '30px'},
-                active_tab_style={'color': '#0ba1ff'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'textTransform': 'uppercase'},
                 active_label_style={'color': '#222222'},
                 children=[
                     dbc.Row([
@@ -291,7 +294,8 @@ layout = dbc.Container([
                                     ])
                                 ], style={'margin-top': '0px'}),
                             ])
-                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'})),
+                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                  'border-color': '#00cc33'})),
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -299,7 +303,8 @@ layout = dbc.Container([
                             dbc.CardBody([
                                 dcc.Graph(id='graph2', style={"height": "100%", "width": "100%"}),
                             ], style={"height": "100%", "width": "100%"})
-                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                  'border-color': '#00cc33'}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Growth Comparison Summary', className='enclosure_card_topic'),
@@ -308,21 +313,23 @@ layout = dbc.Container([
                                         dbc.Label('Max (3,3) ROI (Klima)', className='bonding_roi_card_topic'),
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_33_growth'),
-                                        dcc.Markdown('---')
                                     ], className='text-center'),
+                                    dbc.Row([html.Hr()]),
                                     dbc.Row([
                                         dbc.Label('Max (4,4) ROI (Klima)', className="bonding_roi_card_topic"),
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_44_growth'),
-                                        dcc.Markdown('---')
+                                        html.Hr()
                                     ], className='text-center'),
+                                    dbc.Row([html.Hr()]),
                                     dbc.Row([
                                         dbc.Label('Bonus Klima', className="bonding_roi_card_topic"),
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='bonus_gained'),
                                     ], className='text-center')
                             ])
-                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}))
+                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                  'border-color': '#00cc33'}))
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -346,9 +353,10 @@ layout = dbc.Container([
                                 (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
                                 ''')
                             ])
-                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                  'border-color': '#00cc33'}),
                             xs=12, sm=12, md=12, lg=12, xl=12)
-                    ], className="mb-5"),
+                    ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
@@ -356,7 +364,8 @@ layout = dbc.Container([
                                 dbc.CardBody([
                                     dcc.Graph(id='graph3', style={"height": "100%", "width": "100%"}),
                                 ], style={"height": "100%", "width": "100%"})
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                            ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                      'border-color': '#00cc33'}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col([
                             dbc.Card([
@@ -369,13 +378,7 @@ layout = dbc.Container([
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='33_roi'),
                                     ),
-                                    dbc.Row(
-                                        dbc.Row(
-                                            dcc.Markdown('''
-                                            ---
-                                            ''')
-                                        ),
-                                    ),
+                                    dbc.Row([html.Hr()]),
                                     dbc.Row(
                                         dbc.Label('Bond ROI (%)', className="bonding_roi_card_topic"),
                                     ),
@@ -383,13 +386,7 @@ layout = dbc.Container([
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='bonding_roi'),
                                     ),
-                                    dbc.Row(
-                                        dbc.Row(
-                                            dcc.Markdown('''
-                                            ---
-                                            ''')
-                                        ),
-                                    ),
+                                    dbc.Row([html.Hr()]),
                                     dbc.Row(
                                         dbc.Label('Max (4,4) ROI (%)', className="bonding_roi_card_topic"),
                                     ),
@@ -398,7 +395,8 @@ layout = dbc.Container([
                                                  id='max_44_roi'),
                                     ),
                                 ])
-                            ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'})],
+                            ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                      'border-color': '#00cc33'})],
                             xs=12, sm=12, md=12, lg=4, xl=4),
                     ], style={'padding': '10px'}),
                     dbc.Row([
@@ -423,9 +421,10 @@ layout = dbc.Container([
                                 (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
                                 ''')
                             ])
-                        ], outline=False, style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
+                                                                  'border-color': '#00cc33'}),
                             xs=12, sm=12, md=12, lg=12, xl=12)
-                    ], className="mb-5"),
+                    ], style={'padding': '10px'}),
                     ]),
     ], className='mb-4'),
 ], fluid=True)  # Responsive ui control
