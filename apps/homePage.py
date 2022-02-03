@@ -13,8 +13,14 @@ layout = html.Div([
     html.P('An education and simulation environment for KlimaDAO', className="landing_main_paragraph1"),
     dbc.Row([
         dbc.Col([
-            dbc.Button('Learning Hub', className='landing_button_enter'),
-            dbc.Button('Simulation Hub', className='landing_button_enter')
+            dbc.Button('Learning Hub',
+                       id='landing_page_learn_btn',
+                       href="/apps/quizzes_experimental",
+                       className='landing_button_enter'),
+            dbc.Button('Simulation Hub',
+                       id='landing_page_sim_btn',
+                       href="/apps/playgroundSimulation_KlimaGrowthOverTime",
+                       className='landing_button_enter')
         ], xs=12, sm=12, md=12, lg=6, xl=6),
     ]),
 ], id='showcase')

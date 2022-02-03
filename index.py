@@ -11,7 +11,6 @@ CONTENT_STYLE = {
     "position": "relative",
     "margin-right": "0rem",
     "margin-left": "0rem",
-    "padding": "1rem 1rem",
     "background-color": "#202020;"
 }
 FOOTER_STYLE = {
@@ -54,6 +53,7 @@ menu_bar = dbc.DropdownMenu(
 
 navbar = dbc.Navbar(
     dbc.Container([
+        html.A(
             dbc.Row([
                 dbc.Col(html.Img(src=app.get_asset_url('Klima_logo_v2.svg'),
                                  height="55px")),
@@ -61,8 +61,10 @@ navbar = dbc.Navbar(
                 align="center",
                 className="g-0",
             ),
-            dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
-            dbc.Collapse(
+            href="/apps/homePage"
+        ),
+        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+        dbc.Collapse(
                 dbc.Nav(menu_bar, className='ms-auto', navbar=True),
                 id="navbar_collapse",
                 is_open=False,
