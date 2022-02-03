@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 from app import app
 from components import bonding_guides as b_g
+from components.disclaimer import short_disclaimer_row
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
@@ -427,7 +428,8 @@ layout = dbc.Container([
                     ], style={'padding': '10px'}),
                     ]),
     ], className='mb-4'),
-], fluid=True)  # Responsive ui control
+    html.Footer(short_disclaimer_row(), className='footer_style')
+], id='page_content', fluid=True)  # Responsive ui control
 
 
 @app.callback([
