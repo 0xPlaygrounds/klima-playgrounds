@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Como';
+  src: url('Como.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('Poppins/Poppins-Light.ttf') format('truetype');
+}
 *{
   font-family: 'Poppins', sans-serif;
 }
@@ -108,12 +116,13 @@
   color: #00CC33;
 }
 .footer_style{
-  "padding": "10px",
-  "background-color": "#232b2b",
+  padding: 0px;
   font-family: 'Poppins', sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 10px;
+  height: 0rem;
+  background-color: #202020;
 }
 .input_box_number{
   box-shadow: 2px 2px 5px -2px #0BA1FF;
@@ -292,13 +301,13 @@
 body{
   font-family: 'Poppins', sans-serif;
   line-height:1.2;
+  background-image:url('/assets/Homepage_2.png');
+  background-repeat:repeat;
 }
 #showcase{
-  background-image:url('/assets/Homepage_2.png');
   position: relative;
   background-size:cover;
   background-position:center;
-  background-repeat:repeat;
   height:100vh;
   display:flex;
   flex-direction:column;
@@ -308,11 +317,10 @@ body{
 
 #showcase h1{
   font-size:50px;
+  font-family: 'Como', sans-serif;
+  font-weight: 600;
+  font-style: normal;
   line-height:1.2;
-}
-
-#showcase p{
-  font-size:20px;
 }
 
 #showcase .button{
@@ -334,36 +342,6 @@ body{
   color:#fff;
 }
 
-#section-a{
-  padding:20px;
-  background:#926239;
-  color:#fff;
-  text-align:center;
-}
-
-#section-b{
-  padding:20px;
-  background:#f4f4f4;
-  text-align:center;
-}
-
-#section-c{
-  display:flex;
-}
-
-#section-c div{
-  padding:20px;
-}
-
-#section-c .box-1, #section-c .box-3{
-  background:#926239;
-  color:#fff;
-}
-
-#section-c .box-2{
-  background:#f9f9f9;
-}
-
 .landing_button_enter{
     font-family: 'Poppins', sans-serif;
     font-style: normal;
@@ -379,8 +357,8 @@ body{
 }
 
 .landing_welcome_topic{
-    font-family: 'Poppins', sans-serif;
     font-style: normal;
+    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     font-size: 64px;
     line-height: 105.5%;
@@ -388,9 +366,10 @@ body{
 }
 
 .landing_main_topic{
-    font-family: 'Nunito Sans', sans-serif;
+    font-size:50px;
+    font-family: 'Como', sans-serif;
+    font-weight: 600;
     font-style: normal;
-    font-weight: normal;
     font-size: 107px;
     line-height: 105.5%;
     color: #00CC33;
