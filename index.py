@@ -11,7 +11,7 @@ CONTENT_STYLE = {
     "position": "relative",
     "margin-right": "0rem",
     "margin-left": "0rem",
-    "background-color": "#202020;"
+    "background-image": "url('/assets/Homepage_2.png')",
 }
 FOOTER_STYLE = {
     "position": "relative",
@@ -20,7 +20,7 @@ FOOTER_STYLE = {
     "right": 0,
     "height": "6rem",
     "padding": "1rem 1rem",
-    "background-color": "#232b2b",
+    "background-color": "#202020",
 }
 
 menu_bar = dbc.DropdownMenu(
@@ -47,7 +47,7 @@ menu_bar = dbc.DropdownMenu(
                label="Menu",
                toggle_style={"color": "#00cc33"},
                align_end=True,
-               style={"text-align": "right"},
+               style={"text-align": "right", 'margin-right': '50px'},
                className="navbar_link_topic",
            ),
 
@@ -56,7 +56,7 @@ navbar = dbc.Navbar(
         html.A(
             dbc.Row([
                 dbc.Col(html.Img(src=app.get_asset_url('Klima_logo_v2.svg'),
-                                 height="55px")),
+                                 height="55px", style={'margin-left': '50px'})),
             ],
                 align="center",
                 className="g-0",
@@ -71,7 +71,7 @@ navbar = dbc.Navbar(
                 navbar=True
             ),
     ], fluid=True),
-    color="dark",
+    color="#ffffff00",
     dark=True,
 )
 

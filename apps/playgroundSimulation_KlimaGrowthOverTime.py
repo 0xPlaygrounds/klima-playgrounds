@@ -20,11 +20,11 @@ layout = dbc.Container([
     dbc.Tabs([
         dbc.Tab(label='Guide',
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
-                             'fontSize': '30px'},
+                             'fontSize': '30px', 'color': 'black'},
                 tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                            'marginLeft': 'auto'},
-                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'textTransform': 'uppercase'},
-                active_label_style={'color': '#222222'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'font-weight': 'bold'},
+                active_label_style={'color': '#ffffff'},
                 tab_id='staking_guide_tab',
                 children=[
                     dbc.Row([
@@ -431,11 +431,12 @@ layout = dbc.Container([
                 ]),
 
         dbc.Tab(label='Simulator',
-                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)'},
+                label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                             'fontSize': '30px', 'color': 'black'},
                 tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
                            'fontSize': '30px'},
-                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'textTransform': 'uppercase'},
-                active_label_style={'color': '#222222'},
+                active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'font-weight': 'bold'},
+                active_label_style={'color': '#ffffff'},
                 tab_id='staking_simulator_tab',
                 children=[
                     dbc.Row([
@@ -1352,7 +1353,7 @@ layout = dbc.Container([
                     ], className="mb-5"),
                 ]),
     ], id='tabs', active_tab='staking_guide_tab', className='mb-4'),
-    html.Footer(short_disclaimer_row(), className='footer_style')
+    html.Footer(short_disclaimer_row(), className='footer_style', style={'background-color': '#202020'})
 ], id='page_content', fluid=True)  # Responsive ui control
 
 
