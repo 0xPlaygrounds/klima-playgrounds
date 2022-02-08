@@ -558,7 +558,7 @@ One of the most powerful economic levers we have in the fight against climate ch
 Indirectly, the voluntary carbon market helps price-in the negative externalities of emitting greenhouse gases into
 the atmosphere. As more actors decide to do this, the carbon price will increase steadily and eventually reach a point
 where the price of offsets accurately accounts for economic and social costs. This is the fundamental role of the
-infrastructure which Klima DAO is building. 
+infrastructure which Klima DAO is building.
                             '''
                         ),
                     ),
@@ -581,6 +581,7 @@ infrastructure which Klima DAO is building.
     className='emission_card_style_v2',
     style={'height': '102px'}
 )
+
 
 @app.callback(
     Output('body_learn_card_1', 'is_open'),
@@ -744,7 +745,7 @@ def toggle_modal11(n1, n2, is_open):
     ],
     [State('body_learn_card_12', 'is_open')],
 )
-def toggle_modal11(n1, n2, is_open):
+def toggle_modal12(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
