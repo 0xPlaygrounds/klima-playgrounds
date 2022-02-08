@@ -10,9 +10,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 layout = html.Div([
     html.P('Welcome to your', className="landing_welcome_topic"),
     html.P('playground.', className="landing_main_topic"),
-    html.P('An education and', className="landing_main_paragraph1"),
-    html.P('simulation environment', className="landing_main_paragraph1"),
-    html.P('for KlimaDAO', className="landing_main_paragraph1"),
+    html.P('An education and simulation environment for KlimaDAO', className="landing_main_paragraph1"),
     dbc.Row([
         dbc.Col([
             dbc.Button('Learning Hub',
@@ -22,7 +20,7 @@ layout = html.Div([
             dbc.Button('Simulation Hub',
                        id='landing_page_sim_btn',
                        href="/apps/playgroundSimulation_KlimaGrowthOverTime",
-                       className='landing_button_enter', style={"margin-left": "50px"})
+                       className='landing_button_enter_2', style={"margin-left": "10px"})
         ], xs=12, sm=12, md=12, lg=6, xl=6),
     ]),
 ], id='showcase')

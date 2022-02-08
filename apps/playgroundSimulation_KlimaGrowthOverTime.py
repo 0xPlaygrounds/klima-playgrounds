@@ -31,13 +31,14 @@ layout = dbc.Container([
                         dbc.Col([
                             dbc.Row([
                                 dbc.Col(dbc.Label('Staking',
-                                                  className="page_section_topic"), xs=12, sm=12, md=12, lg=6, xl=6),
+                                                  className="learning_hub_category_topic"),
+                                        xs=12, sm=12, md=12, lg=6, xl=6),
                             ]),
                             dbc.Row([
                                 dbc.Col(
                                     dbc.Card([
                                         dbc.CardHeader('Learn the fundamentals of Staking on KlimaDAO',
-                                                       className='enclosure_card_topic'),
+                                                       className='learning_hub_category_deck_topic'),
                                         dbc.CardBody([
                                             dbc.Row([
                                                 dbc.Col([
@@ -45,7 +46,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('What is Staking?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(s_g.what_is_staking_intro,
@@ -80,7 +81,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ), style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
@@ -88,7 +89,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('Why should I Stake?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(
@@ -124,7 +125,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ), style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
@@ -132,7 +133,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('How can I Stake?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col([
@@ -168,7 +169,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ),
                                                             style={'padding': '0px'}),
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
@@ -176,7 +177,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('The dynamics of staking (3,3)',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col([
@@ -213,7 +214,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ),
                                                             style={'padding': '0px'})
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                             ])
@@ -228,13 +229,14 @@ layout = dbc.Container([
                         dbc.Col([
                             dbc.Row([
                                 dbc.Col(dbc.Label('Playgrounds',
-                                                  className="page_section_topic"), xs=12, sm=12, md=12, lg=6, xl=6),
+                                                  className="learning_hub_category_topic"),
+                                        xs=12, sm=12, md=12, lg=6, xl=6),
                             ]),
                             dbc.Row([
                                 dbc.Col(
                                     dbc.Card([
                                         dbc.CardHeader('Learn how to use the Staking Simulator',
-                                                       className='enclosure_card_topic'),
+                                                       className='learning_hub_category_deck_topic'),
                                         dbc.CardBody([
                                             dbc.Row([
                                                 dbc.Col([
@@ -242,7 +244,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('How to read the growth chart',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(p_g_s.how_to_read_growth_chart_intro,
@@ -280,7 +282,7 @@ layout = dbc.Container([
                                                             ),
                                                             style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
@@ -288,7 +290,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('How to use the Simulation Controls?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(p_g_s.how_to_simulation_controls_intro,
@@ -327,14 +329,14 @@ layout = dbc.Container([
                                                             ),
                                                             style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2', style={'height': '100%'})
+                                                    ], className='learning_hub_card', style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
                                                     dbc.Card([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('Interpretation of Carbon emissions',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(p_g_s.how_to_read_co_metrics_intro,
@@ -373,14 +375,14 @@ layout = dbc.Container([
                                                             ),
                                                             style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2', style={'height': '100%'})
+                                                    ], className='learning_hub_card', style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
                                                     dbc.Card([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('How to use the Rewards Strategizer?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(p_g_s.how_to_use_strategizer_intro,
@@ -418,7 +420,7 @@ layout = dbc.Container([
                                                             ),
                                                             style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2', style={'height': '100%'})
+                                                    ], className='learning_hub_card', style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                             ])
                                         ]),
@@ -442,7 +444,7 @@ layout = dbc.Container([
                     dbc.Row([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Klima growth simulation results: Charts',
-                                           className='enclosure_card_topic'),
+                                           className='simulator_hub_card_topic'),
                             dbc.CardBody([
                                 dcc.Graph(id='graph1', style={"height": "100%", "width": "auto"}),
                                 dbc.Tooltip(
@@ -459,7 +461,7 @@ layout = dbc.Container([
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Simulation Controls',
-                                           className='enclosure_card_topic'),
+                                           className='simulator_hub_card_topic'),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
@@ -750,14 +752,14 @@ layout = dbc.Container([
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Your current KLIMA to CO2 emissions equivalency',
-                                               className='enclosure_card_topic'),
+                                               className='learning_hub_category_deck_topic'),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
@@ -768,7 +770,7 @@ layout = dbc.Container([
                                                         dbc.Label('Cars per year',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -776,7 +778,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
@@ -787,7 +789,7 @@ layout = dbc.Container([
                                                         dbc.Label('Miles per average vehicle',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -795,7 +797,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
@@ -806,7 +808,7 @@ layout = dbc.Container([
                                                         dbc.Label('Gallons of gasoline',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -814,7 +816,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon sequestered by:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(id='current_trees_co_captured',
@@ -825,7 +827,7 @@ layout = dbc.Container([
                                                         dbc.Label('Acres of trees',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -839,14 +841,14 @@ layout = dbc.Container([
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Your future KLIMA to CO2 emissions equivalency',
-                                               className='enclosure_card_topic'),
+                                               className='learning_hub_category_deck_topic'),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
@@ -865,7 +867,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
@@ -876,7 +878,7 @@ layout = dbc.Container([
                                                         dbc.Label('Miles per average vehicle',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -884,7 +886,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon emissions from:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(className="emission_card_metric",
@@ -895,7 +897,7 @@ layout = dbc.Container([
                                                         dbc.Label('Gallons of gasoline',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -903,7 +905,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(dbc.Label('Carbon sequestered by:',
-                                                                      className="emission_card_topic")),
+                                                                      className="learning_hub_category_card_topic")),
                                                     dbc.Row([
                                                         dbc.Col([
                                                             html.Div(id='trees_co_captured',
@@ -914,7 +916,7 @@ layout = dbc.Container([
                                                         dbc.Label('Acres of trees',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -928,7 +930,7 @@ layout = dbc.Container([
                         dbc.Col([
                             dbc.Card([
                                 dbc.CardHeader('Klima growth simulation results: ROI',
-                                               className='enclosure_card_topic'),
+                                               className='learning_hub_category_deck_topic'),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -938,7 +940,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('Daily',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -951,7 +953,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('Total',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -960,7 +962,7 @@ layout = dbc.Container([
                                                         ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
                                                 ]),
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
                                             style={'height': "100%",
                                                    'padding': '10px',
@@ -972,7 +974,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('7 Day',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -985,7 +987,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('Total',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -994,7 +996,7 @@ layout = dbc.Container([
                                                         ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
                                                 ]),
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
                                             style={'height': "100%",
                                                    'padding': '10px',
@@ -1006,7 +1008,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('Monthly',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -1019,7 +1021,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('Total',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -1028,7 +1030,7 @@ layout = dbc.Container([
                                                         ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
                                                 ])
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
                                             style={'height': "100%",
                                                    'padding': '10px',
@@ -1040,7 +1042,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('Annual',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -1053,7 +1055,7 @@ layout = dbc.Container([
                                                         dbc.Col([
                                                             dbc.Row([
                                                                 dbc.Label('Total',
-                                                                          className='emission_card_topic'),
+                                                                          className='learning_hub_category_card_topic'),
                                                             ]),
                                                             dbc.Row([
                                                                 html.Div(className='emission_card_metric',
@@ -1062,7 +1064,7 @@ layout = dbc.Container([
                                                         ], xs=5, sm=5, md=5, lg=5, xl=5),
                                                     ]),
                                                 ])
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=3, xl=3,
                                             style={'height': "100%",
                                                    'padding': '10px',
@@ -1075,12 +1077,13 @@ layout = dbc.Container([
                     ]),
                     dbc.Row([
                         dbc.Col(dbc.Label('Strategizer',
-                                          className="page_section_topic"))
+                                          className="learning_hub_category_topic"))
                     ]),
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
-                                dbc.CardHeader('Rewards strategy results', className='enclosure_card_topic'),
+                                dbc.CardHeader('Rewards strategy results',
+                                               className='learning_hub_category_deck_topic'),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -1088,7 +1091,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Days until USDC Value',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         html.Div(className='emission_card_metric',
@@ -1102,7 +1105,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Days until KLIMA amount',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         html.Div(className='emission_card_metric',
@@ -1118,7 +1121,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Days until desired daily rewards',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         html.Div(className='emission_card_metric',
@@ -1131,7 +1134,7 @@ layout = dbc.Container([
                                                     ),
                                                     dbc.Row(
                                                         dbc.Label('Required KLIMA for desired daily rewards',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         html.Div(className='emission_card_metric',
@@ -1146,7 +1149,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Days until desired weekly rewards',
-                                                                  className='emission_card_topic'
+                                                                  className='learning_hub_category_card_topic'
                                                                   ),
                                                     ),
                                                     dbc.Row(
@@ -1160,7 +1163,7 @@ layout = dbc.Container([
                                                     ),
                                                     dbc.Row(
                                                         dbc.Label('Required KLIMA for desired weekly rewards',
-                                                                  className='emission_card_topic'
+                                                                  className='learning_hub_category_card_topic'
                                                                   ),
                                                     ),
                                                     dbc.Row(
@@ -1177,7 +1180,8 @@ layout = dbc.Container([
                                 style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})),
                         dbc.Col(
                             dbc.Card([
-                                dbc.CardHeader('Rewards strategizer controls', className='enclosure_card_topic'),
+                                dbc.CardHeader('Rewards strategizer controls',
+                                               className='learning_hub_category_deck_topic'),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col(
@@ -1283,10 +1287,10 @@ layout = dbc.Container([
                     ]),
                     dbc.Row([
                         dbc.Col(dbc.Label('Results'))
-                    ], className="page_section_topic"),
+                    ], className="learning_hub_category_topic"),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Expanded explanations', className='enclosure_card_topic'),
+                            dbc.CardHeader('Expanded explanations', className='learning_hub_category_deck_topic'),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
@@ -1295,7 +1299,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('KLIMA growth simulation results chart',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         dcc.Markdown(id='chart_results_explanation'),
@@ -1306,7 +1310,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('KLIMA to CO2 emissions equivalency',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         dcc.Markdown(id='equivalency_results_explanation'),
@@ -1324,7 +1328,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Staked KLIMA growth ROI',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         dcc.Markdown(id='forecast_roi_results_explanation'),
@@ -1335,7 +1339,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Staked KLIMA rewards strategizer',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         dcc.Markdown(id='strategizer_results_explanation'),

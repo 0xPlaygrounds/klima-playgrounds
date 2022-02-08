@@ -1,34 +1,111 @@
+/* Fonts used in the app. To add a new font, it's easier to download the font tff file and import it here */
 @font-face {
   font-family: 'Como';
-  src: url('Como.ttf') format('truetype');
+  src: url('Como/Como.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Poppins';
-  src: url('Poppins/Poppins-Light.ttf') format('truetype');
+  src: url('Poppins/Poppins-Regular.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url('Poppins/Poppins-SemiBold.ttf') format('truetype');
+}
+/* In this section I set the default font to Poppins regular*/
 *{
   font-family: 'Poppins', sans-serif;
 }
-.homepage_image{
-  background-image: url("Homepage.png");
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
+
+/* Staking Simulation App styling*/
+
+/* Staking guide page section*/
+.learning_hub_category_topic{
+  font-family: 'Poppins-SemiBold', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 96px;
+  color: #FFFFFF;
 }
-.emission_card_style{
-  background: linear-gradient(114.38deg, #00CC33 0%, #0BA1FF 126.76%);
+.learning_hub_category_deck_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #FFFFFF;
+  border-radius: 15px 15px 15px 15px;
+}
+.learning_hub_category_card_topic{
+  font-family: 'Poppins-SemiBold', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  justify-content: stretch;
+}
+.learning_hub_card{
+  background: #303030;
+  border: 1px solid #00CC33;
+  box-sizing: border-box;
   border-radius: 15px;
   padding: 10px;
+  justify-content:center;
 }
+
+/* Staking Simulation App styling*/
+
+/* Staking simulator section*/
+.simulator_hub_card{
+  background: #303030;
+  border: 1px solid #00CC33;
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding: 10px;
+  justify-content:center;
+}
+.simulator_hub_card_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  color: #FFFFFF;
+  border-radius: 15px 15px 15px 15px;
+}
+.simulator_hub_co2_metric_topic{
+  font-family: 'Poppins-Semibold', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  color: #FFFFFF;
+  justify-content: stretch;
+}
+.simulator_hub_co2_metric{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+  padding: 10px;
+  color: #FFFFFF;
+}
+.page_section_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 96px;
+  color: #FFFFFF;
+}
+/* In this section, we define the card styling for the co2 emissions equivalencie*/
 .emission_card_style_v2{
   background: #303030;
   border: 1px solid #00CC33;
   box-sizing: border-box;
   border-radius: 15px;
   padding: 10px;
+  justify-content:center;
 }
 .emission_card_style_v3{
   background: #303030;
@@ -44,6 +121,21 @@
   text-align: center;
   color: #FFFFFF;
   justify-content: stretch;
+}
+.emission_card_topic_v2{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 105.5%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  justify-content: center;
+  display:flex;
+  flex-direction:column;
 }
 .emission_card_metric{
   font-family: 'Inter', sans-serif;
@@ -98,14 +190,6 @@
   top: 217px;background: linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%);
   border-radius: 15px 15px;
 }
-.page_section_topic{
-  font-family: 'Poppins', sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 64px;
-  line-height: 96px;
-  color: #FFFFFF;
-}
 .navbar_link_topic{
   font-family: 'Poppins', sans-serif;
   font-style: normal;
@@ -127,7 +211,7 @@
 .input_box_number{
   box-shadow: 2px 2px 5px -2px #0BA1FF;
   border-radius: 5px;
-  color : #303030;
+  background-color: #484444;
 }
 .rc-slider-track{
   background-color: #0BA1FF;
@@ -301,12 +385,14 @@
 body{
   font-family: 'Poppins', sans-serif;
   line-height:1.2;
-  background-image:url('/assets/Homepage_2.png');
-  background-repeat:repeat;
+  background-image:url('/assets/Homepage_2_v2.png');
+  background-repeat:no-repeat;
+  background-size:auto;
+  background-position:center;
 }
 #showcase{
   position: relative;
-  background-size:cover;
+  background-size:auto;
   background-position:center;
   height:100vh;
   display:flex;
@@ -354,24 +440,39 @@ body{
     text-decoration:none;
     padding:10px 20px;
     margin-top:20px;
-}
+    }
+.landing_button_enter_2{
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    width: 215px;
+    height: 54px;
+    color: #00CC33;
+    background: #202020;
+    border-radius: 43px;
+    font-size:18px;
+    text-decoration:none;
+    padding:10px 20px;
+    margin-top:20px;
+    }
 
 .landing_welcome_topic{
+    position: relative;
     font-style: normal;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     font-size: 64px;
-    line-height: 105.5%;
     color: #FFFFFF;
+    line-height: 10pt;
+  width: 1000px;
 }
 
 .landing_main_topic{
+    position: relative;
     font-size:50px;
     font-family: 'Como', sans-serif;
     font-weight: 600;
     font-style: normal;
     font-size: 107px;
-    line-height: 105.5%;
     color: #00CC33;
 }
 
@@ -380,6 +481,17 @@ body{
     font-style: normal;
     font-weight: normal;
     font-size: 36px;
-    line-height: 105.5%;
+    width: 434px;
     color: #FFFFFF;
+}
+.learn_card_btn{
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  color: #FFFFFF;
+  justify-content:center;
 }
