@@ -14,11 +14,9 @@ learn_card_1 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "What is KlimaDAO?", className='emission_card_topic'
-                    ),
-                ),
+                dbc.Row([
+                        html.Button('What is KlimaDAO?', id='open_learn_card_1', className='learn_card_btn'),
+                ]),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is KlimaDAO?')),
                     dbc.ModalBody(
@@ -59,32 +57,17 @@ Klima is DAO-governed by it's community. All decisions are formed by community m
                 ),
             ]
         ),
-        dbc.CardFooter([
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_1',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        ])
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': "102px"}
 )
 learn_card_2 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "Why KlimaDAO?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('Why KlimaDAO?', id='open_learn_card_2', className='learn_card_btn'),
+                ]),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is the point of KlimaDAO?')),
                     dbc.ModalBody(
@@ -129,32 +112,17 @@ learn_card_2 = dbc.Card(
                 ),
             ]
         ),
-        dbc.CardFooter([
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_2',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        ])
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_3 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "What is Klima?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('What is Klima?', id='open_learn_card_3', className='learn_card_btn'),
+                ]),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is Klima?')),
                     dbc.ModalBody(
@@ -200,22 +168,9 @@ learn_card_3 = dbc.Card(
                 ),
             ]
         ),
-        dbc.CardFooter(
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_3',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        )
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_4 = dbc.Card(
     [
@@ -274,7 +229,7 @@ learn_card_4 = dbc.Card(
         )
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_5 = dbc.Card(
     [
@@ -334,7 +289,7 @@ For a step by step guide on how to stake KLIMA, see the
         )
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_6 = dbc.Card(
     [
@@ -392,7 +347,7 @@ price (as it can mint KLIMA at IV),you are able to more cheaply buy KLIMA
         )
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_7 = dbc.Card(
     [
@@ -460,7 +415,7 @@ learn_card_7 = dbc.Card(
         )
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_8 = dbc.Card(
     [
@@ -527,7 +482,7 @@ than purchasing KLIMA on the free market.
         ]),
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_9 = dbc.Card(
     [
@@ -587,7 +542,7 @@ and more expensive, creating an economic incentive for entities to voluntarily r
         ])
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_10 = dbc.Card(
     [
@@ -641,7 +596,7 @@ emit 1 tonne of methane.
         )
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 learn_card_11 = dbc.Card(
     [
@@ -666,7 +621,7 @@ incentive to reduce voluntarily and fund sources of renewable energy.
                     dbc.ModalFooter(
                         dbc.Button(
                             'close',
-                            id='close_learn_card_11',
+                            id='close_learn_card_12',
                             className='ms-auto',
                             n_clicks=0,
                         )
@@ -682,7 +637,7 @@ incentive to reduce voluntarily and fund sources of renewable energy.
             dbc.Row(
                 dbc.Button(
                     'Click to learn',
-                    id='open_learn_card_11',
+                    id='open_learn_card_12',
                     color='link',
                     n_clicks=0,
                     className='align-self-center',
@@ -693,7 +648,7 @@ incentive to reduce voluntarily and fund sources of renewable energy.
         ])
     ],
     className='emission_card_style_v2',
-    style={'height': '220px'}
+    style={'height': '102px'}
 )
 
 

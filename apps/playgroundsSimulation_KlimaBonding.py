@@ -20,18 +20,20 @@ layout = dbc.Container([
                            'marginLeft': 'auto'},
                 active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'font-weight': 'bold'},
                 active_label_style={'color': '#ffffff'},
+                tab_id='bonding_guide_tab',
                 children=[
                     dbc.Row([
                         dbc.Col([
                             dbc.Row([
                                 dbc.Col(dbc.Label('Bonding',
-                                                  className="page_section_topic"), xs=12, sm=12, md=12, lg=6, xl=6),
+                                                  className="learning_hub_category_topic"),
+                                        xs=12, sm=12, md=12, lg=6, xl=6),
                             ]),
                             dbc.Row([
                                 dbc.Col(
                                     dbc.Card([
                                         dbc.CardHeader('Learn the fundamentals of Bonding on KlimaDAO',
-                                                       className='enclosure_card_topic'),
+                                                       className='learning_hub_category_deck_topic'),
                                         dbc.CardBody([
                                             dbc.Row([
                                                 dbc.Col([
@@ -39,7 +41,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('What is bonding?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(b_g.what_is_bonding_intro,
@@ -74,7 +76,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ), style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
@@ -82,7 +84,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('Why should I bond?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col(
@@ -118,7 +120,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ), style={'padding': '0px'}
                                                         )
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
@@ -126,7 +128,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('How can I bond?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col([
@@ -162,7 +164,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ),
                                                             style={'padding': '0px'}),
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                                 dbc.Col([
@@ -170,7 +172,7 @@ layout = dbc.Container([
                                                         dbc.CardBody([
                                                             dbc.Row(
                                                                 dbc.Label('Why should the Treasury Bond?',
-                                                                          className='emission_card_topic')
+                                                                          className='learning_hub_category_card_topic')
                                                             ),
                                                             dbc.Row(
                                                                 dbc.Col([
@@ -206,7 +208,7 @@ layout = dbc.Container([
                                                                                   'padding': '10px'}),
                                                             ),
                                                             style={'padding': '0px'})
-                                                    ], className='emission_card_style_v2',
+                                                    ], className='learning_hub_card',
                                                         style={'height': '100%'})
                                                 ], xs=12, sm=12, md=12, lg=3, xl=3),
                                             ])
@@ -225,6 +227,7 @@ layout = dbc.Container([
                            'fontSize': '30px'},
                 active_tab_style={'background': '#0ba1ff', 'fontSize': '30px', 'font-weight': 'bold'},
                 active_label_style={'color': '#ffffff'},
+                tab_id='bonding_simulator_tab',
                 children=[
                     dbc.Row([
                         dbc.Col(dbc.Card([
@@ -321,7 +324,6 @@ layout = dbc.Container([
                                         dbc.Label('Max (4,4) ROI (Klima)', className="bonding_roi_card_topic"),
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_44_growth'),
-                                        html.Hr()
                                     ], className='text-center'),
                                     dbc.Row([html.Hr()]),
                                     dbc.Row([
@@ -332,32 +334,6 @@ layout = dbc.Container([
                             ])
                         ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
                                                                   'border-color': '#00cc33'}))
-                    ], style={'padding': '10px'}),
-                    dbc.Row([
-                        dbc.Col(dbc.Card([
-                            dbc.CardHeader('Chart Explanation', className='enclosure_card_topic'),
-                            dbc.CardBody([
-                                dcc.Markdown('''
-                                This chart contains two trend lines (3,3) Klima Growth and (4,4) Klima Growth.
-                                The (4,4) Klima growth trend line depicts the Klima growth based on claim/stake
-                                frequency throughout the vesting period.
-                                As we have learned in the Bonding: Learn page, bonding allows to purchase Klima at a
-                                discount from the protocol.
-                                Bonding provides an opportunity to acquire more Klimas when compared to market buying.
-                                This opportunity could be further amplified by claiming/staking vested Klimas as
-                                they become available to you.
-                                Please see the ROI comparison chart for details on the effects of claiming/staking
-                                frequency.
-                                The (3,3) Klima growth trend line depicts Klima growth throughout the same vesting
-                                period.
-                                This chart compares simple staking (3,3) and the claim/stake (4,4) Klima growth
-                                throughout the vesting period
-                                (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
-                                ''')
-                            ])
-                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                  'border-color': '#00cc33'}),
-                            xs=12, sm=12, md=12, lg=12, xl=12)
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(
@@ -402,34 +378,89 @@ layout = dbc.Container([
                             xs=12, sm=12, md=12, lg=4, xl=4),
                     ], style={'padding': '10px'}),
                     dbc.Row([
+                        dbc.Col(dbc.Label('Results'))
+                    ], className='page_section_topic'),
+                    dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Chart Explanation', className='enclosure_card_topic'),
+                            dbc.CardHeader('Expanded explanations', className='enclosure_card_topic'),
                             dbc.CardBody([
-                                dcc.Markdown('''
-                                This chart contains two trend lines (3,3) ROI and (4,4) ROI.
+                                dbc.Row([
+                                    dbc.Col([
+                                        dbc.CardGroup([
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(
+                                                        dbc.Label('Simple staking vs Bond-Stake Growth Chart',
+                                                                  className='emission_card_topic'),
+                                                    ),
+                                                    dbc.Row(
+                                                        dcc.Markdown(
+                                                            ''' 
+                                    This chart contains two trend lines, the simple staking Klima Growth and bond-stake
+                                    strategy Klima Growth throughout the vesting period (In KlimaDAO, the vesting period
+                                    is 15 epochs, equivalent to 5 days).
+
+                                    The bond-stake strategy Klima growth trend line depicts the Klima growth based on 
+                                    claim and stake frequency throughout the vesting period.
+
+                                    As learned on the Bond guide page, bonding allows purchasing Klima at
+                                    a discount from the protocol.
+                                        
+                                    Bonding provides an opportunity to acquire more Klimas when compared to market 
+                                    buying.
+                                    
+                                    Bonding yields can be enhanced by claiming and staking vested Klimas as they become
+                                    available to you.
+                                    
+                                     Please see the ROI comparison chart for details on claiming/staking frequency
+                                     effects. The simple staking Klima growth trend line depicts Klima growth
+                                     throughout the same vesting period.
+                                                            ''', id='chart_results_explanation'),
+                                                    ),
+                                                ], className='align-self-center')
+                                            ], className='emission_card_style_v3'),
+                                            dbc.Card([
+                                                dbc.CardBody([
+                                                    dbc.Row(
+                                                        dbc.Label('Simple staking vs Bond-Stake ROI Comparison',
+                                                                  className='emission_card_topic'),
+                                                    ),
+                                                    dbc.Row(
+                                                        dcc.Markdown(
+                                                            ''' 
+                                This chart contains two trend lines, the simple staking Klima Growth and bond-stake 
+                                strategy Klima ROI throughout the vesting period (In KlimaDAO, the vesting period is
+                                15 epochs, equivalent to 5 days).
+                                
                                 The (4,4) ROI trend line depicts the bonding ROI based on claim/stake frequency
                                 throughout the vesting period.
-                                For example, depending on the control parameters, the highest ROI could be achieved
-                                by claiming/staking vested
-                                Klima tokens before every epoch, halfway through, or maybe the first four epochs.
-                                There might also be scenarios where it is not profitable for you to claim/stake
-                                at all.
-                                There could be many claim/stake combinations; the chart tries to predict the
-                                best possible combination.
-                                The (3,3) ROI trend line depicts plain staking ROI throughout the same vesting
-                                period.
-                                This chart compares simple staking (3,3) and the claim/stake (4,4) ROIs throughout
-                                the vesting period
-                                (In KlimaDAO, the vesting period is 15 epochs, equivalent to 5 days).
-                                ''')
-                            ])
-                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                  'border-color': '#00cc33'}),
+                                
+                                For example, the highest ROI could be achieved by claiming and staking vested depending
+                                on your control parameters.
+                                
+                                There might also be scenarios where it is not profitable to claim and stake at all.
+                                
+                                There could be many claim and stake combinations; the chart predicts the best possible
+                                combination.
+                                
+                                The (3,3) ROI trend line depicts plain staking ROI throughout the same vesting period.
+                                                            ''',
+                                                            id='equivalency_results_explanation'),
+                                                    ),
+                                                ], className='align-self-center')
+                                            ], className='emission_card_style_v3')
+                                        ]),
+                                    ], xs=12, sm=12, md=12, lg=12, xl=12, style={'height': "100%",
+                                                                                 'padding': '10px'}),
+                                ]),
+                            ]),
+                        ], outline=False, color='#202020',
+                            style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
                             xs=12, sm=12, md=12, lg=12, xl=12)
-                    ], style={'padding': '10px'}),
+                    ], className="mb-5"),
                     ]),
-    ], className='mb-4'),
-    html.Footer(short_disclaimer_row(), className='footer_style')
+    ], id='tabs', active_tab='bonding_guide_tab', className='mb-4'),
+    html.Footer(short_disclaimer_row(), className='footer_style', style={'background-color': '#202020'})
 ], id='page_content', fluid=True)  # Responsive ui control
 
 

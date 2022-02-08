@@ -11,7 +11,10 @@ CONTENT_STYLE = {
     "position": "relative",
     "margin-right": "0rem",
     "margin-left": "0rem",
-    "background-image": "url('/assets/Homepage_2.png')",
+    "background-image": "url('/assets/Homepage_2_v2.png')",
+    "background-repeat": "no-repeat",
+    "background-size": "auto",
+    "height": "100vh"
 }
 FOOTER_STYLE = {
     "position": "relative",
