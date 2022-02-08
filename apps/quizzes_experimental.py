@@ -551,7 +551,7 @@ learn_card_12 = dbc.Card(
                         dcc.Markdown(
                             '''
 Offsets are a valuable tool to cover hard-to-abate emissions, i.e., emissions which may be challenging to eliminate
-with current technology. Purchased offsets lead to measurable and accountable emissions reductions. 
+with current technology. Purchased offsets lead to measurable and accountable emissions reductions.
 
 One of the most powerful economic levers we have in the fight against climate change is pricing carbon.
 
