@@ -15,7 +15,8 @@ learn_card_1 = dbc.Card(
         dbc.CardBody(
             [
                 dbc.Row([
-                        html.Button('What is KlimaDAO?', id='open_learn_card_1', className='learn_card_btn')]),
+                        html.Button('What is KlimaDAO?', id='open_learn_card_1', className='learn_card_btn')],
+                        style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is KlimaDAO?')),
                     dbc.ModalBody(
@@ -65,8 +66,8 @@ learn_card_2 = dbc.Card(
         dbc.CardBody(
             [
                 dbc.Row([
-                    html.Button('Why KlimaDAO?', id='open_learn_card_2', className='learn_card_btn'),
-                ]),
+                    html.Button('Why KlimaDAO?', id='open_learn_card_2', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is the point of KlimaDAO?')),
                     dbc.ModalBody(
@@ -120,8 +121,8 @@ learn_card_3 = dbc.Card(
         dbc.CardBody(
             [
                 dbc.Row([
-                    html.Button('What is Klima?', id='open_learn_card_3', className='learn_card_btn'),
-                ]),
+                    html.Button('What is Klima?', id='open_learn_card_3', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is Klima?')),
                     dbc.ModalBody(
@@ -175,11 +176,9 @@ learn_card_4 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "How do I participate?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('How do I participate?', id='open_learn_card_4', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('How do I participate in KlimaDAO?')),
                     dbc.ModalBody(
@@ -213,19 +212,6 @@ learn_card_4 = dbc.Card(
                 ),
             ]
         ),
-        dbc.CardFooter(
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_4',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        )
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -234,11 +220,9 @@ learn_card_5 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "What is Staking?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('What is Staking?', id='open_learn_card_5', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is Staking?')),
                     dbc.ModalBody(
@@ -273,19 +257,6 @@ For a step by step guide on how to stake KLIMA, see the
                 ),
             ]
         ),
-        dbc.CardFooter(
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_5',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        )
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -294,11 +265,9 @@ learn_card_6 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "What is Bonding?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('What is Bonding?', id='open_learn_card_6', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is Bonding?')),
                     dbc.ModalBody(
@@ -331,19 +300,6 @@ price (as it can mint KLIMA at IV),you are able to more cheaply buy KLIMA
                 ),
             ]
         ),
-        dbc.CardFooter(
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_6',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        )
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -352,11 +308,9 @@ learn_card_7 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "What is Rebasing?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('What is Rebasing?', id='open_learn_card_7', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is Rebasing?')),
                     dbc.ModalBody(
@@ -367,6 +321,7 @@ learn_card_7 = dbc.Card(
                             KlimaDAO incentivises new supply of Base Carbon Tonnes (BCT) on the blockchain through
                             bonding with the Protocol. Each KLIMA token is backed at a 1:1 ratio with a BCT in the
                             treasury.
+
                             KlimaDAO leverages the [Toucan Protocol's](https://docs.toucan.earth/protocol/)
                             Carbon Bridge to retire real world Verified Carbon Units (VCUs) and convert them to a
                             tokenized form on the blockchain, VCUs can be verified from reputable carbon markets in a
@@ -375,6 +330,7 @@ learn_card_7 = dbc.Card(
                             This increases the amount of carbon assets locked within the treasury, thereby
                             reducing supply on the open market and leading to price appreciation within the
                             Voluntary Carbon Markets.
+
                             In summary, Klima serves two main purposes:
 
                             1. It serves as a floating currency and a form of money backed at a 1:1 ratio by voluntary
@@ -399,19 +355,6 @@ learn_card_7 = dbc.Card(
                 ),
             ]
         ),
-        dbc.CardFooter(
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_7',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        )
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -420,11 +363,9 @@ learn_card_8 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "Participant Goals?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('Participant Goals?', id='open_learn_card_8', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Participant Goals?')),
                     dbc.ModalBody(
@@ -466,19 +407,6 @@ than purchasing KLIMA on the free market.
                 ),
             ]
         ),
-        dbc.CardFooter([
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_8',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        ]),
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -487,11 +415,9 @@ learn_card_9 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "What are Carbon Markets?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('What are Carbon Markets?', id='open_learn_card_9', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What are Carbon Markets?')),
                     dbc.ModalBody(
@@ -526,19 +452,6 @@ and more expensive, creating an economic incentive for entities to voluntarily r
                 ),
             ]
         ),
-        dbc.CardFooter([
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_9',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        ])
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -547,19 +460,20 @@ learn_card_10 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "What is a Carbon Offset?", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('What are Carbon Offsets?', id='open_learn_card_10', className='learn_card_btn')],
+                    style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is a Carbon Offset?')),
                     dbc.ModalBody(
                         dcc.Markdown(
                             '''
 A carbon offset represents the removal of one tonne of carbon dioxide equivalent from the atmosphere or the avoidance
-of one tonne of emissions. The term “carbon dioxide equivalent” is used because there are multiple greenhouse gasses,
+of one tonne of emissions.
+
+The term “carbon dioxide equivalent” is used because there are multiple greenhouse gasses,
 all with a different Global Warming Potential (GWP), which illustrates impacts of different greenhouse gasses.
+
 For instance methane has a GWP 28 times that of CO2. This means a company would need 28 carbon offsets to
 emit 1 tonne of methane.
                             '''
@@ -580,19 +494,6 @@ emit 1 tonne of methane.
                 ),
             ]
         ),
-        dbc.CardFooter(
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_10',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        )
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -601,19 +502,63 @@ learn_card_11 = dbc.Card(
     [
         dbc.CardBody(
             [
-                dbc.Row(
-                    dbc.Label(
-                        "Carbon Offsets and Renewable energy", className='emission_card_topic',
-                    ),
-                ),
+                dbc.Row([
+                    html.Button('Carbon Offsets and Renewable energy',
+                                id='open_learn_card_11', className='learn_card_btn')],
+                        style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('How are carbon offsets and renewable energy different?')),
                     dbc.ModalBody(
                         dcc.Markdown(
                             '''
 Renewable energy sources produce energy from natural sources, like wind or solar, with little to no carbon emissions.
+
 Carbon offsets create a way to reduce the acceptable levels of current emissions over time, provide economic
 incentive to reduce voluntarily and fund sources of renewable energy.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_11',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    ),
+                ],
+                    id="body_learn_card_11",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    className='emission_card_style_v2',
+    style={'height': '102px'}
+)
+learn_card_12 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row([
+                    html.Button('Carbon offsets and Climate change',
+                                id='open_learn_card_12', className='learn_card_btn')],
+                        style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('How does carbon offsetting fight climate change?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+Offsets are a valuable tool to cover hard-to-abate emissions, i.e., emissions which may be challenging to eliminate
+with current technology. Purchased offsets lead to measurable and accountable emissions reductions.
+
+One of the most powerful economic levers we have in the fight against climate change is pricing carbon.
+
+Indirectly, the voluntary carbon market helps price-in the negative externalities of emitting greenhouse gases into
+the atmosphere. As more actors decide to do this, the carbon price will increase steadily and eventually reach a point
+where the price of offsets accurately accounts for economic and social costs. This is the fundamental role of the
+infrastructure which Klima DAO is building.
                             '''
                         ),
                     ),
@@ -626,25 +571,12 @@ incentive to reduce voluntarily and fund sources of renewable energy.
                         )
                     ),
                 ],
-                    id="body_learn_card_11",
+                    id="body_learn_card_12",
                     scrollable=True,
                     is_open=False,
                 ),
             ]
         ),
-        dbc.CardFooter([
-            dbc.Row(
-                dbc.Button(
-                    'Click to learn',
-                    id='open_learn_card_12',
-                    color='link',
-                    n_clicks=0,
-                    className='align-self-center',
-                    style={'color': '#0BA1FF',
-                           'padding': '0px'}
-                ),
-            ),
-        ])
     ],
     className='emission_card_style_v2',
     style={'height': '102px'}
@@ -805,6 +737,20 @@ def toggle_modal11(n1, n2, is_open):
     return is_open
 
 
+@app.callback(
+    Output('body_learn_card_12', 'is_open'),
+    [
+        Input('open_learn_card_12', 'n_clicks'),
+        Input('close_learn_card_12', 'n_clicks'),
+    ],
+    [State('body_learn_card_12', 'is_open')],
+)
+def toggle_modal12(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
 layout = html.Div([
     dbc.Row([
         dbc.Col(dbc.Label('Foundations',
@@ -854,7 +800,7 @@ layout = html.Div([
                             style={'height': '100%'}),
                     dbc.Col(learn_card_11, xs=12, sm=12, md=12, lg=3, xl=3,
                             style={'height': '100%'}),
-                    dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3, style={'height': '100%'})
+                    dbc.Col(learn_card_12, xs=12, sm=12, md=12, lg=3, xl=3, style={'height': '100%'})
                 ])
             ])
         ]),

@@ -20,7 +20,7 @@ layout = html.Div([
             dbc.Button('Simulation Hub',
                        id='landing_page_sim_btn',
                        href="/apps/playgroundSimulation_KlimaGrowthOverTime",
-                       className='landing_button_enter_2', style={"margin-left": "10px"})
+                       className='landing_button_enter_2', style={"margin-left": "20px"})
         ], xs=12, sm=12, md=12, lg=6, xl=6),
     ]),
 ], id='showcase')
