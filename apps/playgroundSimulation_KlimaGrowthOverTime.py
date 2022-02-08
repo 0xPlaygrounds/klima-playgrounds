@@ -1483,7 +1483,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     minAPY = min_apy / 100
     maxAPY = max_apy / 100
     gwei = 1
-    reward_yield = ((1 + user_apy) ** (1 / float(1095))) - 1
+    reward_yield = ((1 + user_apy) ** (1 / float(1200))) - 1
     reward_yield = round(reward_yield, 5)
     rebase_const = 1 + reward_yield
 
@@ -1493,8 +1493,8 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     # unstaking_gas_fee = 89654 * ((gwei * priceofETH) / (10 ** 9))
 
     # In this section we calculate the reward yield from the users speculated APY
-    minOIPYield = ((1 + minAPY) ** (1 / float(1095))) - 1
-    maxOIPYield = ((1 + maxAPY) ** (1 / float(1095))) - 1
+    minOIPYield = ((1 + minAPY) ** (1 / float(1200))) - 1
+    maxOIPYield = ((1 + maxAPY) ** (1 / float(1200))) - 1
 
     # In this case let's consider 1096 Epochs which is 365 days
     klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])

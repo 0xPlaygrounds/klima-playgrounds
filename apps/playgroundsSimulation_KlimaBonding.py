@@ -321,13 +321,11 @@ layout = dbc.Container([
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_33_growth'),
                                     ], className='text-center'),
-                                    dbc.Row([html.Hr()]),
                                     dbc.Row([
                                         dbc.Label('Max (4,4) ROI (Klima)', className="bonding_roi_card_topic"),
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='max_44_growth'),
                                     ], className='text-center'),
-                                    dbc.Row([html.Hr()]),
                                     dbc.Row([
                                         dbc.Label('Bonus Klima', className="bonding_roi_card_topic"),
                                         html.Div(className="bonding_roi_card_metrics_secondary",
@@ -360,7 +358,6 @@ layout = dbc.Container([
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='33_roi'),
                                     ),
-                                    dbc.Row([html.Hr()]),
                                     dbc.Row(
                                         dbc.Label('Bond ROI (%)', className="bonding_roi_card_topic"),
                                     ),
@@ -368,7 +365,6 @@ layout = dbc.Container([
                                         html.Div(className="bonding_roi_card_metrics_secondary",
                                                  id='bonding_roi'),
                                     ),
-                                    dbc.Row([html.Hr()]),
                                     dbc.Row(
                                         dbc.Label('Max (4,4) ROI (%)', className="bonding_roi_card_topic"),
                                     ),
