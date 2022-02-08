@@ -15,8 +15,7 @@ learn_card_1 = dbc.Card(
         dbc.CardBody(
             [
                 dbc.Row([
-                        html.Button('What is KlimaDAO?', id='open_learn_card_1', className='learn_card_btn'),
-                ]),
+                        html.Button('What is KlimaDAO?', id='open_learn_card_1', className='learn_card_btn')]),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('What is KlimaDAO?')),
                     dbc.ModalBody(

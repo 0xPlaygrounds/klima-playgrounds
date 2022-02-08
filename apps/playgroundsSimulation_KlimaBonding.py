@@ -394,24 +394,23 @@ layout = dbc.Container([
                                                                   className='emission_card_topic'),
                                                     ),
                                                     dbc.Row(
-                                                        dcc.Markdown(
-                                                            ''' 
+                                                        dcc.Markdown('''
                                     This chart contains two trend lines, the simple staking Klima Growth and bond-stake
                                     strategy Klima Growth throughout the vesting period (In KlimaDAO, the vesting period
                                     is 15 epochs, equivalent to 5 days).
 
-                                    The bond-stake strategy Klima growth trend line depicts the Klima growth based on 
+                                    The bond-stake strategy Klima growth trend line depicts the Klima growth based on
                                     claim and stake frequency throughout the vesting period.
 
                                     As learned on the Bond guide page, bonding allows purchasing Klima at
                                     a discount from the protocol.
-                                        
-                                    Bonding provides an opportunity to acquire more Klimas when compared to market 
+
+                                    Bonding provides an opportunity to acquire more Klimas when compared to market
                                     buying.
-                                    
+
                                     Bonding yields can be enhanced by claiming and staking vested Klimas as they become
                                     available to you.
-                                    
+
                                      Please see the ROI comparison chart for details on claiming/staking frequency
                                      effects. The simple staking Klima growth trend line depicts Klima growth
                                      throughout the same vesting period.
@@ -427,22 +426,22 @@ layout = dbc.Container([
                                                     ),
                                                     dbc.Row(
                                                         dcc.Markdown(
-                                                            ''' 
-                                This chart contains two trend lines, the simple staking Klima Growth and bond-stake 
+                                                            '''
+                                This chart contains two trend lines, the simple staking Klima Growth and bond-stake
                                 strategy Klima ROI throughout the vesting period (In KlimaDAO, the vesting period is
                                 15 epochs, equivalent to 5 days).
                                 
                                 The (4,4) ROI trend line depicts the bonding ROI based on claim/stake frequency
                                 throughout the vesting period.
-                                
+
                                 For example, the highest ROI could be achieved by claiming and staking vested depending
                                 on your control parameters.
-                                
+
                                 There might also be scenarios where it is not profitable to claim and stake at all.
-                                
+
                                 There could be many claim and stake combinations; the chart predicts the best possible
                                 combination.
-                                
+
                                 The (3,3) ROI trend line depicts plain staking ROI throughout the same vesting period.
                                                             ''',
                                                             id='equivalency_results_explanation'),
