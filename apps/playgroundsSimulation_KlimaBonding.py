@@ -232,7 +232,7 @@ layout = dbc.Container([
                     dbc.Row([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('(4,4) Simulation parameters',
-                                           className='enclosure_card_topic'),
+                                           className='learning_hub_category_deck_topic'),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
@@ -304,7 +304,8 @@ layout = dbc.Container([
                     ], style={'padding': '10px'}),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('(3,3) and (4,4) Growth comparison', className='enclosure_card_topic'),
+                            dbc.CardHeader('(3,3) and (4,4) Growth comparison',
+                                           className='learning_hub_category_deck_topic'),
                             dbc.CardBody([
                                 dcc.Graph(id='graph2', style={"height": "100%", "width": "100%"}),
                             ], style={"height": "100%", "width": "100%"})
@@ -312,7 +313,8 @@ layout = dbc.Container([
                                                                   'border-color': '#00cc33'}),
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Growth Comparison Summary', className='enclosure_card_topic'),
+                            dbc.CardHeader('Growth Comparison Summary',
+                                           className='learning_hub_category_deck_topic'),
                             dbc.CardBody([
                                     dbc.Row([
                                         dbc.Label('Max (3,3) ROI (Klima)', className='bonding_roi_card_topic'),
@@ -338,7 +340,8 @@ layout = dbc.Container([
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
-                                dbc.CardHeader('(3,3) and (4,4) ROI Comparison', className='enclosure_card_topic'),
+                                dbc.CardHeader('(3,3) and (4,4) ROI Comparison',
+                                               className='learning_hub_category_deck_topic'),
                                 dbc.CardBody([
                                     dcc.Graph(id='graph3', style={"height": "100%", "width": "100%"}),
                                 ], style={"height": "100%", "width": "100%"})
@@ -347,7 +350,8 @@ layout = dbc.Container([
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col([
                             dbc.Card([
-                                dbc.CardHeader('(3,3) and (4,4) ROI Summary', className='enclosure_card_topic'),
+                                dbc.CardHeader('(3,3) and (4,4) ROI Summary',
+                                               className='learning_hub_category_deck_topic'),
                                 dbc.CardBody([
                                     dbc.Row(
                                         dbc.Label('(3,3) ROI (%)', className='bonding_roi_card_topic'),
@@ -378,11 +382,12 @@ layout = dbc.Container([
                             xs=12, sm=12, md=12, lg=4, xl=4),
                     ], style={'padding': '10px'}),
                     dbc.Row([
-                        dbc.Col(dbc.Label('Results'))
-                    ], className='page_section_topic'),
+                        dbc.Col(dbc.Label('Results', className='learning_hub_category_topic'))
+                    ], className='learning_hub_category_topic'),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Expanded explanations', className='enclosure_card_topic'),
+                            dbc.CardHeader('Expanded explanations',
+                                           className='learning_hub_category_deck_topic'),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
@@ -391,7 +396,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Simple staking vs Bond-Stake Growth Chart',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         dcc.Markdown('''
@@ -422,7 +427,7 @@ layout = dbc.Container([
                                                 dbc.CardBody([
                                                     dbc.Row(
                                                         dbc.Label('Simple staking vs Bond-Stake ROI Comparison',
-                                                                  className='emission_card_topic'),
+                                                                  className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
                                                         dcc.Markdown(

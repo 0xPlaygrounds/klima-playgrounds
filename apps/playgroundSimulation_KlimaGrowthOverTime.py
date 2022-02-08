@@ -1120,7 +1120,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
-                                                        dbc.Label('Days until desired daily rewards',
+                                                        dbc.Label('Days to desired daily rewards',
                                                                   className='learning_hub_category_card_topic'),
                                                     ),
                                                     dbc.Row(
@@ -1148,7 +1148,7 @@ layout = dbc.Container([
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
-                                                        dbc.Label('Days until desired weekly rewards',
+                                                        dbc.Label('Days to desired weekly rewards',
                                                                   className='learning_hub_category_card_topic'
                                                                   ),
                                                     ),
@@ -1719,9 +1719,13 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     equivalency_results_explanation = f'''
     Using the speculated KLIMA reward yield of **{reward_yield * 100} %** and speculated RFV of **{user_rfv} BCTs**
     at the end of your time frame, we can estimate that your earned KLIMA total will be equivalent to the following:
+
     - Carbon emissions from **{passenger_vehicle_annual}** cars in a year
+
     - Carbon emissions generated from the average passenger vehicle driving **{passenger_miles_annual}** miles
+
     - Carbon emissions generated from **{gasoline_consumed_annual}** gallons of gasoline
+
     - Carbon captured by **{trees_co_captured}** acres of U.S. forest in one year
     '''
 
