@@ -55,7 +55,7 @@ how_to_simulation_controls = dcc.Markdown(
     your selected APY. To adjust this curve to suite your needs, do the following:
 
     - Adjust the number of days using the slider or input box found on the simulation controls section.
-    - Adjust the initial KLIMA to your desired starting amonut of KLIMA.
+    - Adjust the initial KLIMA to your desired starting amount of KLIMA.
     - Change the APY to the current APY found on KlimaDAO main site or to any speculated APY of your choice.
 
     Making these changes will adjust the (3,3) ROI curve and help with visualizing the potential growth of your KLIMA
