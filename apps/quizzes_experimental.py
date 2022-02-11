@@ -679,7 +679,7 @@ learn_card_15 = dbc.Card(
 1 KLIMA staked on launch date (18 October 2021) would be equal to the value of the Current Index after all
 rebases up to present.
 
-Useful for stakers to note the index they bought in at. 
+Useful for stakers to note the index they bought in at.
 Stakers can track their index-adjusted value by using the index they bought at vs the current index.
 
                             '''
@@ -720,7 +720,7 @@ learn_card_16 = dbc.Card(
 Number of KLIMA staked in the protocol divided by Circulating Supply
 
 At the end of every epoch, a fixed number of KLIMA will be distributed among all stakers.
-When the % of KLIMA staked in the protocol is high, each staker will receive less KLIMA. 
+When the % of KLIMA staked in the protocol is high, each staker will receive less KLIMA.
 Conversely, if the % of KLIMA staked in the protocol is low, each staker will receive more KLIMA.
 
                             '''
@@ -965,7 +965,7 @@ def toggle_modal15(n1, n2, is_open):
     ],
     [State('body_learn_card_16', 'is_open')],
 )
-def toggle_modal15(n1, n2, is_open):
+def toggle_modal16(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
@@ -1052,7 +1052,7 @@ layout = html.Div([
                                 style={'padding': '10px', 'height': '100%'}),
                         dbc.Col(learn_card_16, xs=12, sm=12, md=12, lg=3, xl=3,
                                 style={'padding': '10px', 'height': '100%'})
-                ])
+                    ])
             ])
         ]),
     ]),
