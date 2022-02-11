@@ -511,7 +511,7 @@ layout = dbc.Container([
                                        dbc.Label('Initial Klima')
                                    ),
                                    dbc.Col(
-                                       dbc.Label('RFV (BCT)')
+                                       dbc.Label('RFV (CC)')
                                    )
                                 ], style={'padding-bottom': '0px'}),
                                 dbc.Row([
@@ -584,12 +584,12 @@ layout = dbc.Container([
                                     dbc.Col([
                                         dbc.Input(
                                             id='user_apy',
-                                            placeholder='27000',
+                                            placeholder='8000',
                                             type='number',
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=27000, className="input_box_number",
+                                            value=8000, className="input_box_number",
                                             style={'color': 'white'}),
                                         dbc.Tooltip(
                                             'Input an APY for growth forecasting. APY can be current protocol APY'
@@ -601,12 +601,12 @@ layout = dbc.Container([
                                     dbc.Col([
                                         dbc.Input(
                                             id='max_apy',
-                                            placeholder='30000',
+                                            placeholder='10000',
                                             type='number',
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=30000, className="input_box_number", style={'color': 'white'}),
+                                            value=10000, className="input_box_number", style={'color': 'white'}),
                                         dbc.Tooltip(
                                             'Input the current or future maximum APY based on KIP-3 framework',
                                             target='max_apy',
@@ -695,12 +695,12 @@ layout = dbc.Container([
                                     dbc.Label('Klima Price ($)'),
                                     dbc.Input(
                                         id='klimaPrice_DCA',
-                                        placeholder='1000',
+                                        placeholder='50',
                                         type='number',
                                         min=1,
                                         step=0.001,
                                         debounce=True,
-                                        value=1000, className="input_box_number", style={'color': 'white'}),
+                                        value=50, className="input_box_number", style={'color': 'white'}),
                                     dbc.Tooltip(
                                         'Input the desired Klima price for your dollar cost averaging plans.'
                                         ' This should be a price where you will want to buy more Klima.',
@@ -717,7 +717,7 @@ layout = dbc.Container([
                                         min=1,
                                         step=0.001,
                                         debounce=True,
-                                        value=1000, className="input_box_number", style={'color': 'white'}),
+                                        value=10, className="input_box_number", style={'color': 'white'}),
                                     dbc.Tooltip(
                                         'Input the dollar value you will like to purchase. I.e if you want to buy 500'
                                         ' USDC every time the price of Klima is around 1000 USDC, then input '
@@ -1478,6 +1478,8 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     buyEpochs = buyDays * 3
     cadenceConst = sellEpochs
     cadenceConst_BUY = buyEpochs
+    sellAmount = percentSale
+    sellType = '%'
     dcaAmount = valBuy / klimaPrice_DCA
     user_apy = user_apy / 100
     minAPY = min_apy / 100
@@ -1530,8 +1532,11 @@ def klimaGrowth_Projection(growthDays, initialKlima,
             sellEpochs = sellEpochs + cadenceConst
             if switch:
                 percentSale = percentSale / 100
+                sellType = '%'
                 pA_klimaStakedGrowth = pA_totalklimas[-1] - (pA_totalklimas[-1] * percentSale)
             else:
+                sellAmount = percentSale
+                sellType = 'KLIMA'
                 pA_klimaStakedGrowth = pA_totalklimas[-1] - percentSale
         else:
             pass
@@ -1704,10 +1709,10 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     which is equivalent to a reward yield of **{reward_yield * 100} %**, and an initial **{initialKlima} KLIMA**
 
     - The (3,3) Profit adjusted ROI trend line shows you the adjusted KLIMA growth if you decide to
-    sell KLIMA every **{sellDays} days**
+    sell {sellAmount}{sellType} every **{sellDays} days**
 
     - The (3,3) Dollar cost averaging (DCA) adjusted ROI trend line shows you the adjusted KLIMA growth if you decide
-    to sell **{valBuy}** worth of KLIMA every **{buyDays}** at a unit price of **{priceKlima}**
+    to buy **{valBuy}** worth of KLIMA every **{buyDays}** days at a unit price of $ **{priceKlima}**
 
     - The Min Growth Rate shows you the estimated KLIMA growth rate if the APY
     was on the minimum APY of the current dictated KIP-3 Reward Rate Framework
@@ -1717,7 +1722,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     '''
 
     equivalency_results_explanation = f'''
-    Using the speculated KLIMA reward yield of **{reward_yield * 100} %** and speculated RFV of **{user_rfv} BCTs**
+    Using the speculated KLIMA reward yield of **{reward_yield * 100} %** and speculated RFV of **{user_rfv} CCs**
     at the end of your time frame, we can estimate that your earned KLIMA total will be equivalent to the following:
 
     - Carbon emissions from **{passenger_vehicle_annual}** cars in a year
@@ -1733,16 +1738,16 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     Using the speculated KLIMA reward yield of **{user_apy * 100} %** and initial **{initialKlima} KLIMA**,
     we can speculate the following returns:
 
-    - Daily ROI based on your input APY of **{user_apy * 100} %** : **{dailyROI_P} %**
-    which is about **{dailyKlima_raw}** KLIMA per day
+    - Daily ROI based on your input APY of **{user_apy * 100} %** : **{dailyROI_P}**
+    which is about **{dailyKlima_raw}** KLIMA per day, totalling **{dailyKlima}** KLIMA after one day
 
-    - Seven day ROI based on your input APY of **{user_apy * 100} %** : **{sevendayROI_P} %** which is
-    about **{sevendayKlima_raw}** KLIMA per week
+    - Seven day ROI based on your input APY of **{user_apy * 100} %** : **{sevendayROI_P}** which is
+    about **{sevendayKlima_raw}** KLIMA per week, totaling **{sevendayKlima}** KLIMA after one week
 
-    - One month ROI based on your input APY of **{user_apy * 100} %** : **{monthlyROI_P} %** which is about
+    - One month ROI based on your input APY of **{user_apy * 100} %** : **{monthlyROI_P}** which is about
     **{monthlyKlima_raw}** KLIMA per month
 
-    - One year ROI based on your input APY of **{user_apy * 100} %** : **{annualROI_P} %** which is
+    - One year ROI based on your input APY of **{user_apy * 100} %** : **{annualROI_P}** which is
     about **{annualKlima_raw}** KLIMA per year
     '''
 
@@ -1751,23 +1756,23 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     hold true.
 
     - It would take {forcastUSDTarget} days until you accumulate enough KLIMA worth ${desired_klima_usdc}.
-    Keep in mind that you are also predicting that the price of ohm will be ${priceKlima} on this day.
+    Keep in mind that you are also predicting that the price of KLIMA will be ${priceKlima} on this day.
 
     - It would take {forcastKlimaTarget} days until you accumulate {desired_klima_unit} KLIMA.
-    Keep in mind that this prediction is calculated based on your selected APY% of {user_apy} %
+    Keep in mind that this prediction is calculated based on your selected APY% of {user_apy * 100} %
     and an initial {initialKlima} KLIMA staked. Use the KIP-3 Framework to adjust your APY % parameter.
 
     - To start earning daily rewards of $ {desired_daily_rewards_usdc},
     you will need {requiredKlimaDailyIncooom} KLIMA, and based on the APY% you entered,
     it would take {forcastDailyIncooom} days to reach your goal.
     Remember that this prediction relies on your selected APY% of
-    {user_apy} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
+    {user_apy * 100} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
 
     - To start earning weekly reward of $ {desired_weekly_rewards_usdc},
     you will need {requiredKlimaWeeklyIncooom} KLIMA, and based on the APY% you entered,
     it would take {forcastWeeklyIncooom} days to reach your goal.
     Remember that this prediction relies on your selected APY% of
-    {user_apy} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
+    {user_apy * 100} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
     '''
 
     return klimaGrowth_Chart, dailyROI_P, dailyKlima, sevendayROI_P, sevendayKlima, monthlyROI_P, \

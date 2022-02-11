@@ -218,7 +218,7 @@ layout = dbc.Container([
                                     xs=12, sm=12, md=12, lg=12, xl=12),
                             ]),
                         ])
-                    ])
+                    ]),
                 ]),
         dbc.Tab(label='Simulator',
                 label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',

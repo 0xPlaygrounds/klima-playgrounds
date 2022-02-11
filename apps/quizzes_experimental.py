@@ -581,6 +581,170 @@ infrastructure which Klima DAO is building.
     className='emission_card_style_v2',
     style={'height': '102px'}
 )
+learn_card_13 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row([
+                    html.Button('Market Cap',
+                                id='open_learn_card_13', className='learn_card_btn')],
+                        style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('Market Cap')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+Total KLIMA Supply multiplied by Price per KLIMA.
+
+Price / KLIMA can be misleading. Market cap captures valuation better because of the high growth of KLIMA supply.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_13',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    ),
+                ],
+                    id="body_learn_card_13",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    className='emission_card_style_v2',
+    style={'height': '102px'}
+)
+learn_card_14 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row([
+                    html.Button('Circulating / Total Supply',
+                                id='open_learn_card_14', className='learn_card_btn')],
+                        style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('How does carbon offsetting fight climate change?')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+Total Supply = Total KLIMA minted to date.
+Non-Circulating Supply = KLIMA held by DAO and KLIMA yet to be vested to the bonders
+Circulating Supply = Total Supply minus Non-Circulating Supply
+
+Staking rewards are only paid to Stakers in staked KLIMA (sKLIMA).
+The DAO does not collect any of these staking rewards.
+When a user purchases a bond, KLIMA will be minted and are vested to the bonders over a five-day period.
+KLIMA that are still vesting count towards the total supply.
+This ratio helps us see what % of the supply is held by the DAO and bond contracts.
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_14',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    ),
+                ],
+                    id="body_learn_card_14",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    className='emission_card_style_v2',
+    style={'height': '102px'}
+)
+learn_card_15 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row([
+                    html.Button('Current Index',
+                                id='open_learn_card_15', className='learn_card_btn')],
+                        style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('Current Index')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+1 KLIMA staked on launch date (18 October 2021) would be equal to the value of the Current Index after all
+rebases up to present.
+
+Useful for stakers to note the index they bought in at. 
+Stakers can track their index-adjusted value by using the index they bought at vs the current index.
+
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_15',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    ),
+                ],
+                    id="body_learn_card_15",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    className='emission_card_style_v2',
+    style={'height': '102px'}
+)
+learn_card_16 = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                dbc.Row([
+                    html.Button('Percent KLIMA Staked',
+                                id='open_learn_card_16', className='learn_card_btn')],
+                        style={'justify-content': 'center', 'text-align': 'center', 'padding': '10px'}),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('Percent KLIMA Staked')),
+                    dbc.ModalBody(
+                        dcc.Markdown(
+                            '''
+Number of KLIMA staked in the protocol divided by Circulating Supply
+
+At the end of every epoch, a fixed number of KLIMA will be distributed among all stakers.
+When the % of KLIMA staked in the protocol is high, each staker will receive less KLIMA. 
+Conversely, if the % of KLIMA staked in the protocol is low, each staker will receive more KLIMA.
+
+                            '''
+                        ),
+                    ),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            'close',
+                            id='close_learn_card_16',
+                            className='ms-auto',
+                            n_clicks=0,
+                        )
+                    ),
+                ],
+                    id="body_learn_card_16",
+                    scrollable=True,
+                    is_open=False,
+                ),
+            ]
+        ),
+    ],
+    className='emission_card_style_v2',
+    style={'height': '102px'}
+)
 
 
 @app.callback(
@@ -751,6 +915,62 @@ def toggle_modal12(n1, n2, is_open):
     return is_open
 
 
+@app.callback(
+    Output('body_learn_card_13', 'is_open'),
+    [
+        Input('open_learn_card_13', 'n_clicks'),
+        Input('close_learn_card_13', 'n_clicks'),
+    ],
+    [State('body_learn_card_13', 'is_open')],
+)
+def toggle_modal13(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_14', 'is_open'),
+    [
+        Input('open_learn_card_14', 'n_clicks'),
+        Input('close_learn_card_14', 'n_clicks'),
+    ],
+    [State('body_learn_card_14', 'is_open')],
+)
+def toggle_modal14(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_15', 'is_open'),
+    [
+        Input('open_learn_card_15', 'n_clicks'),
+        Input('close_learn_card_15', 'n_clicks'),
+    ],
+    [State('body_learn_card_15', 'is_open')],
+)
+def toggle_modal15(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('body_learn_card_16', 'is_open'),
+    [
+        Input('open_learn_card_16', 'n_clicks'),
+        Input('close_learn_card_16', 'n_clicks'),
+    ],
+    [State('body_learn_card_16', 'is_open')],
+)
+def toggle_modal15(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
 layout = html.Div([
     dbc.Row([
         dbc.Col(dbc.Label('Foundations',
@@ -761,10 +981,14 @@ layout = html.Div([
             dbc.CardHeader('Learn the fundamentals of KlimaDAO', className='enclosure_card_topic'),
             dbc.CardBody([
                dbc.Row([
-                   dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-                   dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-                   dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'}),
-                   dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px', 'height': '100%'})
+                   dbc.Col(learn_card_1, xs=12, sm=12, md=12, lg=3, xl=3,
+                           style={'padding': '10px', 'height': '100%'}),
+                   dbc.Col(learn_card_2, xs=12, sm=12, md=12, lg=3, xl=3,
+                           style={'padding': '10px', 'height': '100%'}),
+                   dbc.Col(learn_card_3, xs=12, sm=12, md=12, lg=3, xl=3,
+                           style={'padding': '10px', 'height': '100%'}),
+                   dbc.Col(learn_card_4, xs=12, sm=12, md=12, lg=3, xl=3,
+                           style={'padding': '10px', 'height': '100%'})
                ])
             ])
         ]),
@@ -778,10 +1002,14 @@ layout = html.Div([
             dbc.CardHeader('Understand the principles of the Klima Protocol'),
             dbc.CardBody([
                 dbc.Row([
-                    dbc.Col(learn_card_5, xs=12, sm=12, md=12, lg=3, xl=3),
-                    dbc.Col(learn_card_6, xs=12, sm=12, md=12, lg=3, xl=3),
-                    dbc.Col(learn_card_7, xs=12, sm=12, md=12, lg=3, xl=3),
-                    dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3)
+                    dbc.Col(learn_card_5, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'padding': '10px', 'height': '100%'}),
+                    dbc.Col(learn_card_6, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'padding': '10px', 'height': '100%'}),
+                    dbc.Col(learn_card_7, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'padding': '10px', 'height': '100%'}),
+                    dbc.Col(learn_card_8, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'padding': '10px', 'height': '100%'})
                 ])
             ])
         ]),
@@ -795,12 +1023,35 @@ layout = html.Div([
             dbc.CardHeader('Get caught up on the Carbon Market and its significance'),
             dbc.CardBody([
                 dbc.Row([
-                    dbc.Col(learn_card_9, xs=12, sm=12, md=12, lg=3, xl=3, style={'height': '100%'}),
+                    dbc.Col(learn_card_9, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'padding': '10px', 'height': '100%'}),
                     dbc.Col(learn_card_10, xs=12, sm=12, md=12, lg=3, xl=3,
-                            style={'height': '100%'}),
+                            style={'padding': '10px', 'height': '100%'}),
                     dbc.Col(learn_card_11, xs=12, sm=12, md=12, lg=3, xl=3,
-                            style={'height': '100%'}),
-                    dbc.Col(learn_card_12, xs=12, sm=12, md=12, lg=3, xl=3, style={'height': '100%'})
+                            style={'padding': '10px', 'height': '100%'}),
+                    dbc.Col(learn_card_12, xs=12, sm=12, md=12, lg=3, xl=3,
+                            style={'padding': '10px', 'height': '100%'})
+                ])
+            ])
+        ]),
+    ]),
+    dbc.Row([
+        dbc.Col(dbc.Label('Dune Metrics Guide',
+                          className="page_section_topic"))
+    ]),
+    dbc.Row([
+        dbc.Card([
+            dbc.CardHeader('Important protocol metrics you should understand - by Cujo'),
+            dbc.CardBody([
+                    dbc.Row([
+                        dbc.Col(learn_card_13, xs=12, sm=12, md=12, lg=3, xl=3,
+                                style={'padding': '10px', 'height': '100%'}),
+                        dbc.Col(learn_card_14, xs=12, sm=12, md=12, lg=3, xl=3,
+                                style={'padding': '10px', 'height': '100%'}),
+                        dbc.Col(learn_card_15, xs=12, sm=12, md=12, lg=3, xl=3,
+                                style={'padding': '10px', 'height': '100%'}),
+                        dbc.Col(learn_card_16, xs=12, sm=12, md=12, lg=3, xl=3,
+                                style={'padding': '10px', 'height': '100%'})
                 ])
             ])
         ]),
