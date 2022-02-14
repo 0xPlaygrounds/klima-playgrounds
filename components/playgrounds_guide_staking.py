@@ -1,5 +1,7 @@
 from dash import dcc
 
+from config import RFV_TERM, RFV_LINK
+
 how_to_read_growth_chart_intro = dcc.Markdown(
     '''
     The KLIMA growth simulation results chart is interactive and provides a visual representation of
@@ -94,7 +96,7 @@ how_to_read_co_metrics_intro = dcc.Markdown(
     '''
 )
 how_to_read_co_metrics = dcc.Markdown(
-    '''
+    f'''
     Carbon emissions metrics are used to calculate the equivalent carbon emissions offset by your staked KLIMA
     on an annual basis. In other words, it gives real-world examples on how much you will personally offset.
 
@@ -112,13 +114,14 @@ how_to_read_co_metrics = dcc.Markdown(
 
     - Initial KLIMA
     - APY (%)
-    - RFV (BCT)
+    - [{RFV_TERM}]({RFV_LINK}) (tonnes of tokenized carbon offsets)
 
     These variables are found on the simulation controls section of the app (Right side of the chart)
 
     The calculation is as follows, the APY is used to project the growth of your initial KLIMA over a year. Once the
-    projection is complete, the calculator then takes the speculated RFV in BCT (Base Carbon Tonnes) and multiplies your
-    total accumulated KLIMA with the RFV. This shows the amount of carbon equivalent that is locked.
+    projection is complete, the calculator then takes the speculated {RFV_TERM} in tokenized carbon tonnes and
+    multiplies your total accumulated KLIMA with the {RFV_TERM}. This shows the amount of carbon equivalent that is
+    locked.
 
     Once the total carbon equivalent locked is determined, we then calculate the equivalent emissions from the average
     passenger vehicle. We used data provided by the

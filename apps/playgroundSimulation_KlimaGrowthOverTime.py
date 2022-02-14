@@ -8,10 +8,13 @@ import pandas as pd
 import numpy as np
 import math
 from millify import millify
+
 from app import app
 from components import staking_guides as s_g
 from components import playgrounds_guide_staking as p_g_s
 from components.disclaimer import short_disclaimer_row
+from config import RFV_TERM, RFV_WORDS
+
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
@@ -511,7 +514,7 @@ layout = dbc.Container([
                                        dbc.Label('Initial Klima')
                                    ),
                                    dbc.Col(
-                                       dbc.Label('RFV (CC)')
+                                       dbc.Label(RFV_TERM)
                                    )
                                 ], style={'padding-bottom': '0px'}),
                                 dbc.Row([
@@ -529,7 +532,7 @@ layout = dbc.Container([
                                         dbc.Tooltip(
                                             'Input your desired initial number of Klima for calculation. Keep in mind '
                                             'this value is also used to in the profit taking and dollar cost averaging '
-                                            'calculations',
+                                            'calculations.',
                                             target='initialKlima',
                                             placement='top',
                                         )
@@ -544,9 +547,9 @@ layout = dbc.Container([
                                             debounce=True,
                                             value=5, className="input_box_number", style={'color': 'white'}),
                                         dbc.Tooltip(
-                                            'Input an RFV for risk free value forecasting. '
-                                            'The RFV is used to speculate the minimum amount of BCT you will have '
-                                            'earned at the end of your speculated time frame',
+                                            f'Input {RFV_TERM} for {RFV_WORDS} forecasting. '
+                                            f'{RFV_TERM} is used to speculate the minimum amount of carbon offsets '
+                                            f'you will have accumulated at the end of your speculated time frame.',
                                             target='user_rfv',
                                             placement='top',
                                         )
@@ -1722,8 +1725,9 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     '''
 
     equivalency_results_explanation = f'''
-    Using the speculated KLIMA reward yield of **{reward_yield * 100} %** and speculated RFV of **{user_rfv} CCs**
-    at the end of your time frame, we can estimate that your earned KLIMA total will be equivalent to the following:
+    Using the speculated KLIMA reward yield of **{reward_yield * 100} %** and speculated {RFV_TERM} of
+    **{user_rfv} {RFV_TERM}** at the end of your time frame, we can estimate that your earned KLIMA total will be
+    equivalent to the following:
 
     - Carbon emissions from **{passenger_vehicle_annual}** cars in a year
 
