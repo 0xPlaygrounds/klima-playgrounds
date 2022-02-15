@@ -1,5 +1,7 @@
 from dash import dcc
 
+from config import RFV_TERM, RFV_WORDS
+
 what_is_staking_intro = dcc.Markdown(
     '''
     Staking is the primary mechanism for distributing KLIMA
@@ -8,14 +10,14 @@ what_is_staking_intro = dcc.Markdown(
     '''
 )
 what_is_staking = dcc.Markdown(
-    '''
+    f'''
     Staking is the primary profit distribution mechanism of the protocol.
     It is designed to be the primary mechanism of value accrual for the majority of users.
     For most, the best thing to do is to simply stake and compound the KLIMA acquired via rewards.
 
     #### How does it really work?
 
-    When the Risk Free Value (RFV) of the treasury is higher than the assets needed
+    When the {RFV_WORDS} ({RFV_TERM}) of the treasury is higher than the assets needed
     to back each KLIMA, the protocol will mint and distribute KLIMA tokens to all stakers.
 
     The amount minted and distributed is controlled by a variable called the reward rate.
