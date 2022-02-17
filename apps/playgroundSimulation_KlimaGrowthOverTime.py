@@ -1476,9 +1476,9 @@ def klimaGrowth_Projection(growthDays, initialKlima,
                            desired_weekly_rewards_usdc):
     # ===========================Variable definitions and prep===============================
     # In this section we take the input variables and do any kind of prep work
-    klimaGrowthEpochs = (growthDays * 3) + 1
-    sellEpochs = sellDays * 3
-    buyEpochs = buyDays * 3
+    klimaGrowthEpochs = (growthDays * 3.28) + 1
+    sellEpochs = sellDays * 3.28
+    buyEpochs = buyDays * 3.28
     cadenceConst = sellEpochs
     cadenceConst_BUY = buyEpochs
     sellAmount = percentSale
@@ -1488,28 +1488,28 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     minAPY = min_apy / 100
     maxAPY = max_apy / 100
     gwei = 1
-    reward_yield = ((1 + user_apy) ** (1 / float(1200))) - 1
+    reward_yield = ((1 + user_apy) ** (1 / float(1197.2))) - 1
     reward_yield = round(reward_yield, 5)
     rebase_const = 1 + reward_yield
-
+# 1200
     # In this section, we calculate the staking and unstaking fees. Not required for klima
     staking_gas_fee = 179123 * ((gwei * priceofETH) / (10 ** 9))
     staking_gas_fee_klimaAmount = staking_gas_fee / klimaPrice_DCA
     # unstaking_gas_fee = 89654 * ((gwei * priceofETH) / (10 ** 9))
 
     # In this section we calculate the reward yield from the users speculated APY
-    minOIPYield = ((1 + minAPY) ** (1 / float(1200))) - 1
-    maxOIPYield = ((1 + maxAPY) ** (1 / float(1200))) - 1
+    minOIPYield = ((1 + minAPY) ** (1 / float(1197.2))) - 1
+    maxOIPYield = ((1 + maxAPY) ** (1 / float(1197.2))) - 1
 
     # In this case let's consider 1096 Epochs which is 365 days
     klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
-    klimaGrowth_df['Days'] = klimaGrowth_df.Epochs / 3  # There are 3 Epochs per day so divide by 3 to get Days
+    klimaGrowth_df['Days'] = klimaGrowth_df.Epochs / 3.28  # There are 3 Epochs per day so divide by 3 to get Days
 
     profitAdjusted_klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
-    profitAdjusted_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3
+    profitAdjusted_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3.28
 
     dollarCostAVG_klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
-    dollarCostAVG_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3
+    dollarCostAVG_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3.28
     # ===========================Variable definitions and prep===============================
 
     # ============================ USER APY, DCA, PROFIT ADJUSTED PROJECTION =====
@@ -1590,7 +1590,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     # ============================ MAX APY PROJECTION ============================
 
     # Let's get some ROI Outputs starting with the daily
-    dailyROI = (1 + reward_yield) ** 3 - 1  # Equation to calculate your daily ROI based on reward Yield
+    dailyROI = (1 + reward_yield) ** 3.28 - 1  # Equation to calculate your daily ROI based on reward Yield
     dailyROI_P = round(dailyROI * 100, 1)  # daily ROI in Percentage
     dailyKlima = initialKlima + (dailyROI * initialKlima)
     dailyKlima_raw = '{}'.format(millify(dailyROI * initialKlima, precision=3))
@@ -1602,21 +1602,21 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     # ================================================================================
 
     # 7 day ROI
-    sevendayROI = (1 + reward_yield) ** (7 * 3) - 1  # Equation to calculate your 7 day ROI based on reward Yield
+    sevendayROI = (1 + reward_yield) ** (7 * 3.28) - 1  # Equation to calculate your 7 day ROI based on reward Yield
     sevendayROI_P = round(sevendayROI * 100, 1)  # 7 day ROI in Percentage
     sevendayKlima = initialKlima + (sevendayROI * initialKlima)
     sevendayKlima_raw = '{}'.format(millify(sevendayROI * initialKlima, precision=3))
     # ================================================================================
 
     # 30 day ROI
-    monthlyROI = (1 + reward_yield) ** (30 * 3) - 1  # Equation to calculate your 30 day ROI based on reward Yield
+    monthlyROI = (1 + reward_yield) ** (30 * 3.28) - 1  # Equation to calculate your 30 day ROI based on reward Yield
     monthlyROI_P = round(monthlyROI * 100, 1)  # 30 day ROI in Percentage
     monthlyKlima = initialKlima + (monthlyROI * initialKlima)
     monthlyKlima_raw = '{}'.format(millify(monthlyROI * initialKlima, precision=3))
     # ================================================================================
 
     # Annual ROI
-    annualROI = (1 + reward_yield) ** (365 * 3) - 1  # Equation to calculate your annual ROI based on reward Yield
+    annualROI = (1 + reward_yield) ** (365 * 3.28) - 1  # Equation to calculate your annual ROI based on reward Yield
     annualROI_P = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
     annualKlima = initialKlima + (annualROI * initialKlima)
     annualKlima_raw = '{}'.format(millify(annualROI * initialKlima, precision=3))
