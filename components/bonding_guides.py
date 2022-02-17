@@ -1,5 +1,8 @@
 from dash import dcc
 
+from config import RFV_TERM
+
+
 what_is_bonding_intro = dcc.Markdown(
     '''
     Bonding is the process of trading assets directly to the protocol for KLIMA.
@@ -55,9 +58,9 @@ why_should_treasury_bond_intro = dcc.Markdown(
     '''
 )
 why_should_treasury_bond = dcc.Markdown(
-    '''
+    f'''
     Bonding is the primary revenue stream for the treasury, providing additional reserves
-    (which increase RFV and can eventually be paid out to bondrs via rebases),
+    (which increase {RFV_TERM} and can eventually be paid out to bondrs via rebases),
     as well as additional liquidity tokens (which generate trading fees and deepen liquidity).
 
     The price that the protocol pays to accumulate these assets is “dilution” - minting new KLIMA that is *not*
