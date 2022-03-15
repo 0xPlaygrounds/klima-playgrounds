@@ -11,9 +11,7 @@ CONTENT_STYLE = {
     "position": "relative",
     "margin-right": "0rem",
     "margin-left": "0rem",
-    "background-image": "url('/assets/Homepage_2_v2.png')",
-    "background-repeat": "no-repeat",
-    "background-size": "auto",
+    "background-color": "#202020",
     "height": "100vh"
 }
 FOOTER_STYLE = {
@@ -30,12 +28,12 @@ menu_bar = dbc.DropdownMenu(
                children=[
                    dbc.DropdownMenuItem("Home Page",
                                         href="/apps/homePage"),
+                   dbc.DropdownMenuItem("Analytics",
+                                        href="/apps/quizzes_experimental"),
                    dbc.DropdownMenuItem("Staking Simulator",
                                         href="/apps/playgroundSimulation_KlimaGrowthOverTime"),
                    dbc.DropdownMenuItem("Bonding Simulator",
                                         href="/apps/playgroundsSimulation_KlimaBonding"),
-                   dbc.DropdownMenuItem("Learning Hub",
-                                        href="/apps/quizzes_experimental"),
                    dbc.DropdownMenuItem("KlimaDAO",
                                         href="https://www.klimadao.finance/#/stake"),
                    dbc.DropdownMenuItem("Learn More",
@@ -58,7 +56,7 @@ navbar = dbc.Navbar(
     dbc.Container([
         html.A(
             dbc.Row([
-                dbc.Col(html.Img(src=app.get_asset_url('Klima_logo_v2.svg'),
+                dbc.Col(html.Img(src=app.get_asset_url('klimaPGLogo.svg'),
                                  height="55px", style={'margin-left': '50px'})),
             ],
                 align="center",
@@ -102,14 +100,14 @@ def toggle_navbar_collapse(n, is_open):
 def display_page(pathname):
     if pathname == '/apps/homePage':
         return homePage.layout
+    elif pathname == '/apps/quizzes_experimental':
+        return quizzes_experimental.layout
     elif pathname == '/apps/playgroundSimulation_KlimaGrowthOverTime':
         return playgroundSimulation_KlimaGrowthOverTime.layout
     elif pathname == '/apps/playgroundsSimulation_KlimaBonding':
         return playgroundsSimulation_KlimaBonding.layout
     elif pathname == '/disclaimer':
         return disclaimerPage.layout
-    elif pathname == '/apps/quizzes_experimental':
-        return quizzes_experimental.layout
     else:
         return homePage.layout
 
