@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
-from dash import State, html
+from dash import html
 from millify import millify
 
 from subgrounds.dash_wrappers import Graph
@@ -366,7 +366,7 @@ layout = html.Div([
                     ]),
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
-    ], style={'padding': '10px'}),
+            ], style={'padding': '10px'}),
     dbc.Row([
         dbc.Col([
             dbc.Card([
