@@ -15,6 +15,8 @@ from components import playgrounds_guide_staking as p_g_s
 from components.disclaimer import short_disclaimer_row
 from config import RFV_TERM, RFV_WORDS
 
+from functions import standard_staking_simulation
+
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
@@ -447,7 +449,13 @@ layout = dbc.Container([
                     dbc.Row([
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Klima growth simulation results: Charts',
-                                           className='simulator_hub_card_topic'),
+                                           className='simulator_hub_card_topic',
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '26px',
+                                                  'font-style': 'normal'}
+                                           ),
                             dbc.CardBody([
                                 dcc.Graph(id='graph1', style={"height": "100%", "width": "auto"}),
                                 dbc.Tooltip(
@@ -458,13 +466,18 @@ layout = dbc.Container([
                                     placement='top',
                                 )
                             ], style={"height": "auto", "width": "auto"})
-                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                  'border-color': '#00cc33'}),
+                        ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "auto"}),
                             style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=8, xl=8),
                         dbc.Col(dbc.Card([
                             dbc.CardHeader('Simulation Controls',
-                                           className='simulator_hub_card_topic'),
+                                           className='simulator_hub_card_topic',
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '26px',
+                                                  'font-style': 'normal'}
+                                           ),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
@@ -747,15 +760,20 @@ layout = dbc.Container([
 
                                 ], style={'padding': '10px', 'padding-bottom': '0px'})
                             ])
-                        ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                  'border-color': '#00cc33'}),
+                        ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "auto"}),
                             style={'padding': '10px'},
                             xs=12, sm=12, md=12, lg=4, xl=4)]),
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Your current KLIMA to CO2 emissions equivalency',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='learning_hub_category_deck_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -836,15 +854,20 @@ layout = dbc.Container([
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                     ]),
                                 ])
-                            ], outline=False, color='#202020',
-                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'}),
+                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'})
                     ]),
                     dbc.Row([
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Your future KLIMA to CO2 emissions equivalency',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='learning_hub_category_deck_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -862,7 +885,7 @@ layout = dbc.Container([
                                                         dbc.Label('Cars per year',
                                                                   className="emission_card_topic")
                                                     ]),
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ], style={"height": "100%",
                                                       'width': '100%'})
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
@@ -925,15 +948,20 @@ layout = dbc.Container([
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                     ]),
                                 ])
-                            ], outline=False, color='#202020',
-                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'}),
+                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'})
                     ]),
                     dbc.Row([
                         dbc.Col([
                             dbc.Card([
                                 dbc.CardHeader('Klima growth simulation results: ROI',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='learning_hub_category_deck_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -1074,8 +1102,7 @@ layout = dbc.Container([
                                                    'justify-content': 'stretch'}),
                                     ]),
                                 ]),
-                            ], outline=False, color='#202020',
-                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})],
+                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"})],
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'}),
                     ]),
                     dbc.Row([
@@ -1086,7 +1113,13 @@ layout = dbc.Container([
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Rewards strategy results',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='learning_hub_category_deck_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -1101,7 +1134,7 @@ layout = dbc.Container([
                                                                  id='rewardsUSD'),
                                                     ),
                                                 ], className='align-self-center'),
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=6, xl=6, style={'padding': '10px'}),
                                         dbc.Col([
                                             dbc.Card([
@@ -1115,7 +1148,7 @@ layout = dbc.Container([
                                                                  id='rewardsKLIMA'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=6, xl=6, style={'padding': '10px'}),
                                     ]),
                                     dbc.Row([
@@ -1144,7 +1177,7 @@ layout = dbc.Container([
                                                                  id='requiredDaily'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=6, xl=6,
                                             style={'height': "100%", 'padding': '10px'}),
                                         dbc.Col([
@@ -1174,17 +1207,22 @@ layout = dbc.Container([
                                                                  id='requiredWeekly'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ], xs=12, sm=12, md=12, lg=6, xl=6,
                                             style={'height': "100%", 'padding': '10px'})
                                     ]),
                                 ])
-                            ], outline=False, color='#202020',
-                                style={'border-color': '#00cc33', "height": "100%", 'width': '100%'})),
+                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"})),
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Rewards strategizer controls',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='learning_hub_category_deck_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col(
@@ -1284,8 +1322,7 @@ layout = dbc.Container([
                                                 value=50000, className="input_box_number",
                                                 style={'color': 'white'})])], style={'padding': '0px'}),
                                 ])
-                            ], outline=False, color='#202020',
-                                style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=6, xl=6),
                     ]),
                     dbc.Row([
@@ -1293,7 +1330,13 @@ layout = dbc.Container([
                     ], className="learning_hub_category_topic"),
                     dbc.Row([
                         dbc.Col(dbc.Card([
-                            dbc.CardHeader('Expanded explanations', className='learning_hub_category_deck_topic'),
+                            dbc.CardHeader('Expanded explanations', className='learning_hub_category_deck_topic',
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '26px',
+                                                  'font-style': 'normal'}
+                                           ),
                             dbc.CardBody([
                                 dbc.Row([
                                     dbc.Col([
@@ -1308,7 +1351,7 @@ layout = dbc.Container([
                                                         dcc.Markdown(id='chart_results_explanation'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], className='emission_card_style_v3'),
+                                            ], className='simulator_hub_card'),
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
@@ -1319,7 +1362,7 @@ layout = dbc.Container([
                                                         dcc.Markdown(id='equivalency_results_explanation'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ]),
                                     ], xs=12, sm=12, md=12, lg=12, xl=12, style={'height': "100%",
                                                                                  'padding': '10px'}),
@@ -1337,7 +1380,7 @@ layout = dbc.Container([
                                                         dcc.Markdown(id='forecast_roi_results_explanation'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], className='emission_card_style_v3'),
+                                            ], className='simulator_hub_card'),
                                             dbc.Card([
                                                 dbc.CardBody([
                                                     dbc.Row(
@@ -1348,14 +1391,13 @@ layout = dbc.Container([
                                                         dcc.Markdown(id='strategizer_results_explanation'),
                                                     ),
                                                 ], className='align-self-center')
-                                            ], className='emission_card_style_v3')
+                                            ], className='simulator_hub_card')
                                         ]),
                                     ], xs=12, sm=12, md=12, lg=12, xl=12, style={'height': "100%",
                                                                                  'padding': '10px'}),
                                 ]),
                             ]),
-                        ], outline=False, color='#202020',
-                            style={'border-color': '#00cc33', "height": "100%", 'width': 'auto'}),
+                        ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=12, xl=12)
                     ], className="mb-5"),
                 ]),
@@ -1476,9 +1518,9 @@ def klimaGrowth_Projection(growthDays, initialKlima,
                            desired_weekly_rewards_usdc):
     # ===========================Variable definitions and prep===============================
     # In this section we take the input variables and do any kind of prep work
-    klimaGrowthEpochs = (growthDays * 3.28) + 1
-    sellEpochs = sellDays * 3.28
-    buyEpochs = buyDays * 3.28
+    klimaGrowthEpochs = (growthDays * 3.3) + 1
+    sellEpochs = sellDays * 3.3
+    buyEpochs = buyDays * 3.3
     cadenceConst = sellEpochs
     cadenceConst_BUY = buyEpochs
     sellAmount = percentSale
@@ -1488,28 +1530,28 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     minAPY = min_apy / 100
     maxAPY = max_apy / 100
     gwei = 1
-    reward_yield = ((1 + user_apy) ** (1 / float(1197.2))) - 1
+    reward_yield = ((1 + user_apy) ** (1 / float(1197))) - 1
     reward_yield = round(reward_yield, 5)
     rebase_const = 1 + reward_yield
-# 1200
+# 1200 1197.2 3.28
     # In this section, we calculate the staking and unstaking fees. Not required for klima
     staking_gas_fee = 179123 * ((gwei * priceofETH) / (10 ** 9))
     staking_gas_fee_klimaAmount = staking_gas_fee / klimaPrice_DCA
     # unstaking_gas_fee = 89654 * ((gwei * priceofETH) / (10 ** 9))
 
     # In this section we calculate the reward yield from the users speculated APY
-    minOIPYield = ((1 + minAPY) ** (1 / float(1197.2))) - 1
-    maxOIPYield = ((1 + maxAPY) ** (1 / float(1197.2))) - 1
+    minOIPYield = ((1 + minAPY) ** (1 / float(1197))) - 1
+    maxOIPYield = ((1 + maxAPY) ** (1 / float(1197))) - 1
 
     # In this case let's consider 1096 Epochs which is 365 days
     klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
-    klimaGrowth_df['Days'] = klimaGrowth_df.Epochs / 3.28  # There are 3 Epochs per day so divide by 3 to get Days
+    klimaGrowth_df['Days'] = klimaGrowth_df.Epochs / 3.3  # There are 3 Epochs per day so divide by 3 to get Days
 
     profitAdjusted_klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
-    profitAdjusted_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3.28
+    profitAdjusted_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3.3
 
     dollarCostAVG_klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
-    dollarCostAVG_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3.28
+    dollarCostAVG_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3.3
     # ===========================Variable definitions and prep===============================
 
     # ============================ USER APY, DCA, PROFIT ADJUSTED PROJECTION =====
@@ -1590,7 +1632,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     # ============================ MAX APY PROJECTION ============================
 
     # Let's get some ROI Outputs starting with the daily
-    dailyROI = (1 + reward_yield) ** 3.28 - 1  # Equation to calculate your daily ROI based on reward Yield
+    dailyROI = (1 + reward_yield) ** 3.3 - 1  # Equation to calculate your daily ROI based on reward Yield
     dailyROI_P = round(dailyROI * 100, 1)  # daily ROI in Percentage
     dailyKlima = initialKlima + (dailyROI * initialKlima)
     dailyKlima_raw = '{}'.format(millify(dailyROI * initialKlima, precision=3))
@@ -1602,21 +1644,21 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     # ================================================================================
 
     # 7 day ROI
-    sevendayROI = (1 + reward_yield) ** (7 * 3.28) - 1  # Equation to calculate your 7 day ROI based on reward Yield
+    sevendayROI = (1 + reward_yield) ** (7 * 3.3) - 1  # Equation to calculate your 7 day ROI based on reward Yield
     sevendayROI_P = round(sevendayROI * 100, 1)  # 7 day ROI in Percentage
     sevendayKlima = initialKlima + (sevendayROI * initialKlima)
     sevendayKlima_raw = '{}'.format(millify(sevendayROI * initialKlima, precision=3))
     # ================================================================================
 
     # 30 day ROI
-    monthlyROI = (1 + reward_yield) ** (30 * 3.28) - 1  # Equation to calculate your 30 day ROI based on reward Yield
+    monthlyROI = (1 + reward_yield) ** (30 * 3.3) - 1  # Equation to calculate your 30 day ROI based on reward Yield
     monthlyROI_P = round(monthlyROI * 100, 1)  # 30 day ROI in Percentage
     monthlyKlima = initialKlima + (monthlyROI * initialKlima)
     monthlyKlima_raw = '{}'.format(millify(monthlyROI * initialKlima, precision=3))
     # ================================================================================
 
     # Annual ROI
-    annualROI = (1 + reward_yield) ** (365 * 3.28) - 1  # Equation to calculate your annual ROI based on reward Yield
+    annualROI = (1 + reward_yield) ** (365 * 3.3) - 1  # Equation to calculate your annual ROI based on reward Yield
     annualROI_P = round(annualROI * 100, 1)  # Equation to calculate your annual ROI based on reward Yield
     annualKlima = initialKlima + (annualROI * initialKlima)
     annualKlima_raw = '{}'.format(millify(annualROI * initialKlima, precision=3))
@@ -1684,7 +1726,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
         go.Scatter(x=klimaGrowth_df.Days, y=klimaGrowth_df.Max_klimaGrowth, name='Max Growth Rate  ', fill=None))
 
     klimaGrowth_Chart.update_layout(autosize=True, showlegend=True, margin=dict(l=20, r=30, t=10, b=20))
-    klimaGrowth_Chart.update_layout({'paper_bgcolor': '#202020', 'plot_bgcolor': 'rgba(0, 0, 0, 0)'})
+    klimaGrowth_Chart.update_layout({'paper_bgcolor': 'rgba(0,0,0,0)', 'plot_bgcolor': 'rgba(0, 0, 0, 0)'})
     klimaGrowth_Chart.update_layout(legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01, ), xaxis_title="Days",
                                     yaxis_title="Total klimas")
     # klimaGrowth_Chart.update_layout(hovermode='x unified', hoverlabel_bgcolor='#232b2b', hoverlabel_align='auto',

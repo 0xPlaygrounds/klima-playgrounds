@@ -44,6 +44,25 @@
   color: #FFFFFF;
   justify-content: stretch;
 }
+.homepage_topic{
+  font-family: 'Poppins-SemiBold', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 45px;
+  text-align: left;
+  color: #FFFFFF;
+  justify-content: stretch;
+}
+.homepage_text{
+  font-family: 'Poppins-SemiBold', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: left;
+  color: #FFFFFF;
+  justify-content: stretch;
+  line-height: 105.5%;
+}
 .learning_hub_card{
   background: #303030;
   border: 1px solid #00CC33;
@@ -57,8 +76,8 @@
 
 /* Staking simulator section*/
 .simulator_hub_card{
-  background: #303030;
-  border: 1px solid #00CC33;
+  background: #484444;
+  /*border: 1px solid #00CC33;*/
   box-sizing: border-box;
   border-radius: 15px;
   padding: 10px;
@@ -98,7 +117,7 @@
   line-height: 96px;
   color: #FFFFFF;
 }
-/* In this section, we define the card styling for the co2 emissions equivalencie*/
+/* In this section, we define the card styling for the co2 emissions equivalency*/
 .emission_card_style_v2{
   background: #303030;
   border: 1px solid #00CC33;
@@ -247,6 +266,15 @@
   text-align: center;
   color: #FFFFFF;
 }
+.analytics_card_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 54px;
+  text-align: center;
+  color: #FFFFFF;
+}
 .bonding_roi_card_metrics_secondary{
   font-family: 'Poppins', sans-serif;
   font-style: normal;
@@ -261,6 +289,29 @@
   opacity: 1;
   border-radius: 15px;
   margin: auto;
+}
+.bonding_roi_card_metrics_secondary_v2{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 96px;
+  text-align: center;
+  color: #FFFFFF;
+  width: 213px;
+  height: 100px;
+  opacity: 1;
+  border-radius: 15px;
+  margin: auto;
+}
+.analytics_card_metric{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 54px;
+  text-align: center;
+  color: #FFFFFF;
 }
 .vl {
   border-left: 1px solid #FFFFFF;
@@ -384,8 +435,7 @@
 body{
   font-family: 'Poppins', sans-serif;
   line-height:1.2;
-  background-image:url('/assets/Homepage_2_v2.png');
-  background-repeat:no-repeat;
+  background-color: #202020;
   background-size:auto;
   background-position:center;
 }
@@ -432,22 +482,26 @@ body{
     font-style: normal;
     width: 215px;
     height: 54px;
-    color: #00CC33;
-    background: #202020;
-    border-radius: 43px;
+    color: #FFFFFF;
+    background: #02C132;
+    border-radius: 5px;
     font-size:18px;
     text-decoration:none;
     padding:10px 20px;
     margin-top:20px;
     }
+.landing_button_enter:hover{
+    background: #038523;
+;
+}
 .landing_button_enter_2{
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     width: 215px;
     height: 54px;
-    color: #00CC33;
-    background: #202020;
-    border-radius: 43px;
+    color: #FFFFFF;
+    background: #02C132;
+    border-radius: 5px;
     font-size:18px;
     text-decoration:none;
     padding:10px 20px;
@@ -493,4 +547,34 @@ body{
   font-size: 24px;
   color: #FFFFFF;
   justify-content:center;
+}
+.homepage_content_format1{
+  width: 1233px;
+  height: 386px;
+  margin-left: calc(50% - 1233px/2 - 1px);
+
+}
+.homepage_content_format2{
+  width: 1233px;
+  height: 386px;
+  margin-left: calc(50% - 1233px/2 - 1px);
+
+}
+.homepage_content_format3{
+  width: 1233px;
+  height: 386px;
+  margin-left: calc(50% - 1233px/2 - 1px);
+
+}
+
+@media only screen and (max-width: 500px) {
+  .landing_main_topic{
+    position: relative;
+    font-size:50px;
+    font-family: 'Como', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 50px;
+    color: #00CC33;
+}
 }
