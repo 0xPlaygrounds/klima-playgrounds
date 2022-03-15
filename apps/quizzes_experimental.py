@@ -1,8 +1,5 @@
-from dash import dcc
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import State, html
-from app import app
-from dash.dependencies import Input, Output
 from millify import millify
 
 from subgrounds.dash_wrappers import Graph

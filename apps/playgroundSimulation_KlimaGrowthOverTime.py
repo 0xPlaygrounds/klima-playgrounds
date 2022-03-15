@@ -15,8 +15,6 @@ from components import playgrounds_guide_staking as p_g_s
 from components.disclaimer import short_disclaimer_row
 from config import RFV_TERM, RFV_WORDS
 
-from functions import standard_staking_simulation
-
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better

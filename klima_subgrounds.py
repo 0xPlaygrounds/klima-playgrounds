@@ -1,11 +1,4 @@
 from datetime import datetime
-
-import dash
-from dash import html
-
-from subgrounds.dash_wrappers import Graph
-from subgrounds.plotly_wrappers import Figure, Scatter, Indicator
-from subgrounds.schema import TypeRef
 from subgrounds.subgraph import SyntheticField, FieldPath
 from subgrounds.subgrounds import Subgrounds
 
