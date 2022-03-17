@@ -2,7 +2,7 @@
 
 FAILING=0
 
-python index.py &
+python src/index.py &
 DASH_PID=$!
 sleep 15
 RESP_CODE=$(curl --head --location --write-out %{http_code} --silent --output /dev/null http://127.0.0.1:8050/)
