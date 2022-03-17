@@ -48,7 +48,7 @@ menu_bar = dbc.DropdownMenu(
                label="Menu",
                toggle_style={"color": "#00cc33"},
                align_end=True,
-               style={"text-align": "right", 'margin-right': '50px'},
+               style={"text-align": "right", 'margin-right': '160px'},
                className="navbar_link_topic",
            ),
 
@@ -57,19 +57,19 @@ navbar = dbc.Navbar(
         html.A(
             dbc.Row([
                 dbc.Col(html.Img(src=app.get_asset_url('klimaPGLogo.svg'),
-                                 height="55px", style={'margin-left': '50px'})),
+                                 height="55px", className='navbar_logo_mobile')),
             ],
                 align="center",
                 className="g-0",
             ),
             href="/apps/homePage"
         ),
-        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0, style={'margin-left': '160px'}),
         dbc.Collapse(
                 dbc.Nav(menu_bar, className='ms-auto', navbar=True),
                 id="navbar_collapse",
                 is_open=False,
-                navbar=True
+                navbar=True,
             ),
     ], fluid=True),
     color="#ffffff00",

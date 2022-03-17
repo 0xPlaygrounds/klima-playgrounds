@@ -767,7 +767,7 @@ layout = dbc.Container([
                                 dbc.CardHeader('Your current KLIMA to CO2 emissions equivalency',
                                                className='learning_hub_category_deck_topic',
                                                style={'color': '#FFFFFF',
-                                                      'background-color': '#2A2A2A',
+                                                      'background-color': '#202020',
                                                       'font-weight': '500',
                                                       'font-size': '26px',
                                                       'font-style': 'normal'}
@@ -852,7 +852,7 @@ layout = dbc.Container([
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                     ]),
                                 ])
-                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"}),
+                            ], outline=False, color='#202020', style={"height": "100%", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'})
                     ]),
                     dbc.Row([
@@ -861,7 +861,7 @@ layout = dbc.Container([
                                 dbc.CardHeader('Your future KLIMA to CO2 emissions equivalency',
                                                className='learning_hub_category_deck_topic',
                                                style={'color': '#FFFFFF',
-                                                      'background-color': '#2A2A2A',
+                                                      'background-color': '#202020',
                                                       'font-weight': '500',
                                                       'font-size': '26px',
                                                       'font-style': 'normal'}
@@ -946,7 +946,7 @@ layout = dbc.Container([
                                         ], xs=12, sm=12, md=12, lg=3, xl=3, style={'padding': '10px'}),
                                     ]),
                                 ])
-                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"}),
+                            ], outline=False, color='#202020', style={"height": "100%", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'})
                     ]),
                     dbc.Row([
@@ -955,7 +955,7 @@ layout = dbc.Container([
                                 dbc.CardHeader('Klima growth simulation results: ROI',
                                                className='learning_hub_category_deck_topic',
                                                style={'color': '#FFFFFF',
-                                                      'background-color': '#2A2A2A',
+                                                      'background-color': '#202020',
                                                       'font-weight': '500',
                                                       'font-size': '26px',
                                                       'font-style': 'normal'}
@@ -1100,7 +1100,7 @@ layout = dbc.Container([
                                                    'justify-content': 'stretch'}),
                                     ]),
                                 ]),
-                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"})],
+                            ], outline=False, color='#202020', style={"height": "100%", "width": "100%"})],
                             xs=12, sm=12, md=12, lg=12, xl=12, style={'padding': '10px'}),
                     ]),
                     dbc.Row([
@@ -1113,7 +1113,7 @@ layout = dbc.Container([
                                 dbc.CardHeader('Rewards strategy results',
                                                className='learning_hub_category_deck_topic',
                                                style={'color': '#FFFFFF',
-                                                      'background-color': '#2A2A2A',
+                                                      'background-color': '#202020',
                                                       'font-weight': '500',
                                                       'font-size': '26px',
                                                       'font-style': 'normal'}
@@ -1210,13 +1210,13 @@ layout = dbc.Container([
                                             style={'height': "100%", 'padding': '10px'})
                                     ]),
                                 ])
-                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"})),
+                            ], outline=False, color='#202020', style={"height": "100%", "width": "100%"})),
                         dbc.Col(
                             dbc.Card([
                                 dbc.CardHeader('Rewards strategizer controls',
                                                className='learning_hub_category_deck_topic',
                                                style={'color': '#FFFFFF',
-                                                      'background-color': '#2A2A2A',
+                                                      'background-color': '#202020',
                                                       'font-weight': '500',
                                                       'font-size': '26px',
                                                       'font-style': 'normal'}
@@ -1320,7 +1320,7 @@ layout = dbc.Container([
                                                 value=50000, className="input_box_number",
                                                 style={'color': 'white'})])], style={'padding': '0px'}),
                                 ])
-                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "100%"}),
+                            ], outline=False, color='#202020', style={"height": "100%", "width": "100%"}),
                             xs=12, sm=12, md=12, lg=6, xl=6),
                     ]),
                     dbc.Row([

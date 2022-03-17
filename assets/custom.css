@@ -53,6 +53,11 @@
   color: #FFFFFF;
   justify-content: stretch;
 }
+.homepage_topic_v2{
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+}
 .homepage_text{
   font-family: 'Poppins-SemiBold', sans-serif;
   font-style: normal;
@@ -76,7 +81,7 @@
 
 /* Staking simulator section*/
 .simulator_hub_card{
-  background: #484444;
+  background: #2A2A2A;
   /*border: 1px solid #00CC33;*/
   box-sizing: border-box;
   border-radius: 15px;
@@ -528,6 +533,14 @@ body{
     font-size: 107px;
     color: #00CC33;
 }
+.landing_main_topic_2{
+    position: relative;
+    font-size:50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 76px;
+}
 
 .landing_main_paragraph1{
     font-family: 'Poppins', sans-serif;
@@ -536,6 +549,13 @@ body{
     font-size: 36px;
     width: 434px;
     color: #FFFFFF;
+}
+.landing_main_paragraph_v2{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    color: #C4C4C4;
 }
 .learn_card_btn{
   font-family: 'Poppins', sans-serif;
@@ -551,8 +571,6 @@ body{
 .homepage_content_format1{
   width: 1233px;
   height: 386px;
-  margin-left: calc(50% - 1233px/2 - 1px);
-
 }
 .homepage_content_format2{
   width: 1233px;
@@ -563,8 +581,17 @@ body{
 .homepage_content_format3{
   width: 1233px;
   height: 386px;
-  margin-left: calc(50% - 1233px/2 - 1px);
-
+}
+.center {
+  margin: auto;
+  width: 100%;
+}
+.center_2{
+  margin: 140px
+}
+.navbar_logo_mobile{
+  height:55px;
+  margin-left: 160px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -577,4 +604,40 @@ body{
     font-size: 50px;
     color: #00CC33;
 }
+  .landing_main_topic_2{
+    position: relative;
+    font-size:50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 50px;
+}
+  .center {
+  width: 100%;
+}
+  .center_2{
+    margin: 1px
+  }
+  .homepage_topic{
+  font-family: 'Poppins-SemiBold', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 35px;
+  color: #FFFFFF;
+  justify-content: stretch;
+}
+  .homepage_content_format3{
+  width: 100%;
+  height: 100%;
+}
+  .banner_logo{
+    height:80px;
+    text-align: center;
+    justify-content: stretch;
+    padding: 10px;
+  }
+  .navbar_logo_mobile{
+    height:55px;
+    margin-left: 20px;
+  }
 }
