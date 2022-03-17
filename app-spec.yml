@@ -20,5 +20,5 @@ services:
     instance_count: 1
     instance_size_slug: basic-xxs
     name: klima-playgrounds
-    run_command: gunicorn --worker-tmp-dir /dev/shm index:server
+    run_command: gunicorn --worker-tmp-dir /dev/shm src.index:server
     source_dir: /
