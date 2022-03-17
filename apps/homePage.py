@@ -86,8 +86,8 @@ layout = dbc.Container([
                                             style={'object-fit': 'fill'}
                                         ),
                                     ]),
-                            ], style={'border-radius': '20px'}),
-                    ], className='row-eq-height'),
+                            ], style={'border-radius': '20px'})
+                            ], className='row-eq-height'),
                 ], className='center')
             ], sm=12, md=12, lg=12, xl=12)
         ], style={'padding': '20px'}),
