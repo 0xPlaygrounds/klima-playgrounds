@@ -1,0 +1,24 @@
+alerts:
+  - rule: DEPLOYMENT_FAILED
+  - rule: DOMAIN_FAILED
+domains:
+- domain: klima.playgrounds.academy
+  type: PRIMARY
+name: ${DIGITALOCEAN_APP_NAME}
+region: nyc
+services:
+  - environment_slug: python
+    image:
+      registry_type: DOCR
+      repository: klima-playgrounds
+      tag: ${GITHUB_SHA}
+    health_check:
+      http_path: /
+    http_port: 8050
+    routes:
+      - path: /
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    name: klima-playgrounds
+    run_command: gunicorn --worker-tmp-dir /dev/shm index:server
+    source_dir: /

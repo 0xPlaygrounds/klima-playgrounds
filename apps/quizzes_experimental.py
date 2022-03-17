@@ -17,8 +17,10 @@ options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRat
 
 layout = html.Div([
     dbc.Row([
-        dbc.Col(dbc.Label('Analytics',
-                          className="page_section_topic"))
+        dbc.Col(dbc.Label(
+            'Analytics (NOTE: metrics are incomplete right now and do not include all treasury assets yet)',
+            className="page_section_topic"
+        ))
     ]),
     dbc.Row([
         dbc.Col([dbc.Card([

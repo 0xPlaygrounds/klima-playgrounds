@@ -1,10 +1,10 @@
-!/bin/bash
+#!/bin/bash
 
 FAILING=0
 
 python index.py &
 DASH_PID=$!
-sleep 5
+sleep 15
 RESP_CODE=$(curl --head --location --write-out %{http_code} --silent --output /dev/null http://127.0.0.1:8050/)
 echo $RESP_CODE
 kill `lsof -w -n -i tcp:8050 | awk '$2!="PID" {print $2;}'`
