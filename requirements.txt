@@ -10,6 +10,6 @@ retrying
 pycoingecko
 dash-extensions
 
-subgrounds~=0.0.7
+subgrounds~=0.0.8
 plotly~=5.6.0
 numpy~=1.22.3
