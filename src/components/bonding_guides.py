@@ -1,6 +1,6 @@
 from dash import dcc
 
-from config import RFV_TERM
+from ..config import RFV_TERM
 
 
 what_is_bonding_intro = dcc.Markdown(

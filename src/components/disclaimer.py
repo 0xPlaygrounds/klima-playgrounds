@@ -1,7 +1,7 @@
 import dash_bootstrap_components as dbc
 from dash import html
 
-from config import PROTOCOL
+from ..config import PROTOCOL
 
 SHORT_DISCLAIMER = (
     f"{PROTOCOL} Playgrounds is for educational purposes only and is not an individualized "

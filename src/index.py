@@ -2,10 +2,10 @@ from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import State, html
 from dash.dependencies import Input, Output
-from app import app
+from .app import app
 
-from apps import playgroundSimulation_KlimaGrowthOverTime, \
-                 playgroundsSimulation_KlimaBonding, quizzes_experimental, disclaimerPage, homePage
+from .apps import playgroundSimulation_KlimaGrowthOverTime, \
+    playgroundsSimulation_KlimaBonding, quizzes_experimental, disclaimerPage, homePage
 
 CONTENT_STYLE = {
     "position": "relative",

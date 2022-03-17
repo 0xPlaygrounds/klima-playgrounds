@@ -1,6 +1,6 @@
 from dash import dcc
 
-from config import RFV_TERM, RFV_WORDS
+from ..config import RFV_TERM, RFV_WORDS
 
 what_is_staking_intro = dcc.Markdown(
     '''
