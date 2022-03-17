@@ -1,6 +1,6 @@
 from dash import dcc
 
-from config import RFV_TERM, RFV_LINK
+from ..config import RFV_TERM, RFV_LINK
 
 how_to_read_growth_chart_intro = dcc.Markdown(
     '''
