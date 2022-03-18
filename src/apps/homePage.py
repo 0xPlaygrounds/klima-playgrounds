@@ -1,15 +1,14 @@
-import dash  # pip install dash
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import html
 import base64
 
+from ..app import app
+
 url = "https://assets6.lottiefiles.com/packages/lf20_0ac4xdrp.json"
-image_filename = 'assets/Forest Playground 2.png'
+image_filename = 'src/assets/Forest Playground 2.png'
 encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
-
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 
 layout = dbc.Container([
     html.Div([
@@ -18,7 +17,7 @@ layout = dbc.Container([
                html.Div([
                    dbc.Card([
                        dbc.CardImg(
-                           src='/assets/bannerimage.jpg',
+                           src=app.get_asset_url('bannerimage.jpg'),
                            top=True,
                            style={'opacity': 0.2,
                                   'width': '100%',
@@ -81,7 +80,7 @@ layout = dbc.Container([
                                     ], style={'font-size': '24px'}),
                                     dbc.Card([
                                         dbc.CardImg(
-                                            src="/assets/analyticsimage2.jpg",
+                                            src=app.get_asset_url("analyticsimage2.jpg"),
                                             top=True,
                                             style={'object-fit': 'fill'}
                                         ),
@@ -98,7 +97,7 @@ layout = dbc.Container([
                         dbc.CardGroup([
                                 dbc.Card([
                                         dbc.CardImg(
-                                            src="/assets/simulationimage.jpg",
+                                            src=app.get_asset_url("simulationimage.jpg"),
                                         ),
                                 ]),
                                 dbc.Card([

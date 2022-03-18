@@ -5,7 +5,7 @@ from millify import millify
 from subgrounds.dash_wrappers import Graph
 from subgrounds.plotly_wrappers import Figure, Scatter
 
-from klima_subgrounds import sg, protocol_metrics_1year, last_metric, immediate
+from ..klima_subgrounds import sg, protocol_metrics_1year, last_metric, immediate
 
 # Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
 url_sunlight = "https://assets8.lottiefiles.com/packages/lf20_bknKi1.json"
@@ -17,8 +17,10 @@ options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRat
 
 layout = html.Div([
     dbc.Row([
-        dbc.Col(dbc.Label('Analytics',
-                          className="page_section_topic"))
+        dbc.Col(dbc.Label(
+            'Analytics (NOTE: metrics are incomplete right now and do not include all treasury assets yet)',
+            className="page_section_topic"
+        ))
     ]),
     dbc.Row([
         dbc.Col([dbc.Card([
