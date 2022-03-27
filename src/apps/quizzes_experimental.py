@@ -1,11 +1,9 @@
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
 from dash import html
-from millify import millify
-
 from subgrounds.dash_wrappers import Graph
 from subgrounds.plotly_wrappers import Figure, Scatter
 
-from ..klima_subgrounds import sg, protocol_metrics_1year, last_metric, immediate
+from ..klima_subgrounds import sg, protocol_metrics_1year
 
 # Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
 url_sunlight = "https://assets8.lottiefiles.com/packages/lf20_bknKi1.json"
