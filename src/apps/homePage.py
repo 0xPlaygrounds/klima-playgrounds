@@ -19,17 +19,14 @@ layout = dbc.Container([
                        dbc.CardImg(
                            src=app.get_asset_url('bannerimage.jpg'),
                            top=True,
-                           style={'opacity': 0.2,
-                                  'width': '100%',
-                                  'height': '300px',
-                                  'object-fit': 'cover'}
+                           className='landing_main_image',
                        ),
                        dbc.CardImgOverlay(
                          dbc.CardBody([
                              html.Div([
                                  html.P('WELCOME TO YOUR', className='homepage_topic',
                                         style={'text-align': 'center',
-                                               'padding-top': '20px',
+                                               'padding-top': '10px',
                                                'padding-bottom': '5px'}),
                                  html.Img(src=app.get_asset_url('Green playgrounds.svg'),
                                           height="120px",

@@ -64,12 +64,13 @@ navbar = dbc.Navbar(
             ),
             href="/apps/homePage"
         ),
-        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0, style={'margin-left': '160px'}),
+        dbc.NavbarToggler(id="navbar-toggler", n_clicks=0, style={"justify-content": "right"}),
         dbc.Collapse(
-                dbc.Nav(menu_bar, className='ms-auto', navbar=True),
+                dbc.Nav(menu_bar, navbar=True, style={"justify-content": "right"}),
                 id="navbar_collapse",
                 is_open=False,
                 navbar=True,
+                style={"justify-content": "right"}
             ),
     ], fluid=True),
     color="#ffffff00",
