@@ -33,6 +33,7 @@
   font-weight: 500;
   font-size: 24px;
   color: #FFFFFF;
+  background-color: #202020;
   border-radius: 15px 15px 15px 15px;
 }
 .learning_hub_category_card_topic{
@@ -667,5 +668,14 @@ body{
   line-height: 54px;
   text-align: right;
   color: #00CC33;
+}
+  .page_section_topic{
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  color: #FFFFFF;
+    text-align: center;
+    justify-content: stretch;
 }
 }

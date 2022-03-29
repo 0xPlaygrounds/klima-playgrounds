@@ -23,11 +23,11 @@ layout = dbc.Container([
         # Create a tab so we can have two sections for the klima growth/rewards simulation
         dbc.Tabs([
             dbc.Tab(label='Guide',
-                    label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                    label_style={'background': '#02C132',
                                  'fontSize': '20px', 'color': 'black'},
-                    tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                    tab_style={'background': '#02C132',
                                'marginLeft': 'auto'},
-                    active_tab_style={'background': '#0ba1ff', 'fontSize': '20px', 'font-weight': 'bold'},
+                    active_tab_style={'background': '#02C132', 'fontSize': '20px', 'font-weight': 'bold'},
                     active_label_style={'color': '#ffffff'},
                     tab_id='staking_guide_tab',
                     children=[
@@ -444,11 +444,11 @@ layout = dbc.Container([
                         ]),
                     ]),
             dbc.Tab(label='Simulator',
-                    label_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                    label_style={'background': '#038523',
                                  'fontSize': '20px', 'color': 'black'},
-                    tab_style={'background': 'linear-gradient(71.9deg, #00CC33 24.64%, #00771E 92.66%)',
+                    tab_style={'background': '#038523',
                                'fontSize': '20px'},
-                    active_tab_style={'background': '#0ba1ff', 'fontSize': '20px', 'font-weight': 'bold'},
+                    active_tab_style={'background': '#038523', 'fontSize': '20px', 'font-weight': 'bold'},
                     active_label_style={'color': '#ffffff'},
                     tab_id='staking_simulator_tab',
                     children=[
