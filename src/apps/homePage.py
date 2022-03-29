@@ -115,7 +115,7 @@ layout = dbc.Container([
                                         dbc.Row([
                                             dbc.Button('SIMULATIONS',
                                                        id='landing_page_learn_btn',
-                                                       href="/apps/quizzes_experimental",
+                                                       href="/apps/playgroundSimulation_KlimaGrowthOverTime",
                                                        color='#038523',
                                                        className='landing_button_enter', )
                                         ], style={'justify-content': 'right', 'padding': '20px'})
