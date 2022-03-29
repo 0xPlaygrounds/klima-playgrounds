@@ -436,18 +436,18 @@ layout = dbc.Container([
                                     This chart contains two trend lines, the simple staking Klima Growth and bond-stake
                                     strategy Klima ROI throughout the vesting period (In KlimaDAO, the vesting period is
                                     15 epochs, equivalent to 5 days).
-        
+
                                     The (4,4) ROI trend line depicts the bonding ROI based on claim/stake frequency
                                     throughout the vesting period.
-        
+
                                     For example, the highest ROI could be achieved by claiming and staking vested
                                     depending on your control parameters.
-        
+
                                     There might also be scenarios where it is not profitable to claim and stake at all.
-        
+
                                     There could be many claim and stake combinations; the chart predicts the best
                                     possible combination.
-        
+
                                     The (3,3) ROI trend line depicts plain staking ROI throughout the same
                                     vesting period.
                                                                 ''',
