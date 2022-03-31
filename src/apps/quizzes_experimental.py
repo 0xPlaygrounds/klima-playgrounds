@@ -212,7 +212,7 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('Current APY%'),
+                                dbc.Label('Current ARY%'),
                             ]),
                         ]),
                     ], style={'color': '#FFFFFF',
@@ -225,9 +225,9 @@ layout = dbc.Container([
                             subgrounds=sg,
                             traces=[
                                 Scatter(
-                                    name='Current APY%',
+                                    name='Current ARY%',
                                     x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.currentAPY,
+                                    y=protocol_metrics_1year.currentARY,
                                     line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
                                     stackgroup='one',
                                 ),
@@ -235,7 +235,7 @@ layout = dbc.Container([
                             layout={
                                 'showlegend': True,
                                 'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Current APY', 'showgrid': False},
+                                          'title': 'Current ARY', 'showgrid': False},
                                 'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
                                           'showgrid': False},
                                 'legend.font.color': 'white',

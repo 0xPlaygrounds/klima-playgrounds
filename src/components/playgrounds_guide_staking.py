@@ -54,14 +54,14 @@ how_to_simulation_controls = dcc.Markdown(
 
     1. (3,3) ROI: This is the rewards yield curve (blue colored line) over the specified number of days.
     Essentially, this curve shows you the KLIMA growth from an initial point over any number of days based on
-    your selected APY. To adjust this curve to suite your needs, do the following:
+    your selected ARY. To adjust this curve to suite your needs, do the following:
 
     - Adjust the number of days using the slider or input box found on the simulation controls section.
     - Adjust the initial KLIMA to your desired starting amount of KLIMA.
-    - Change the APY to the current APY found on KlimaDAO main site or to any speculated APY of your choice.
+    - Change the ARY to the current ARY found on KlimaDAO main site or to any speculated ARY of your choice.
 
     Making these changes will adjust the (3,3) ROI curve and help with visualizing the potential growth of your KLIMA
-    over specified number of days. Keep in mind, the APY you put in is subject to change based on the policy of
+    over specified number of days. Keep in mind, the ARY you put in is subject to change based on the policy of
     KlimaDAO and KIP-3 framework which defines the reward rate reduction at predefined circulating KLIMA milestones.
 
     2. (3,3) Profit adjusted ROI: This is the reward yield curve (orange colored line) over the specified number of days
@@ -113,12 +113,12 @@ how_to_read_co_metrics = dcc.Markdown(
     are:
 
     - Initial KLIMA
-    - APY (%)
+    - ARY (%)
     - [{RFV_TERM}]({RFV_LINK}) (tonnes of tokenized carbon offsets)
 
     These variables are found on the simulation controls section of the app (Right side of the chart)
 
-    The calculation is as follows, the APY is used to project the growth of your initial KLIMA over a year. Once the
+    The calculation is as follows, the ARY is used to project the growth of your initial KLIMA over a year. Once the
     projection is complete, the calculator then takes the speculated {RFV_TERM} in tokenized carbon tonnes and
     multiplies your total accumulated KLIMA with the {RFV_TERM}. This shows the amount of carbon equivalent that is
     locked.
