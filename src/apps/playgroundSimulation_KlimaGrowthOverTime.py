@@ -650,7 +650,7 @@ layout = dbc.Container([
                                     dbc.Row([
                                         dbc.Col([dbc.Switch(
                                             id='ptc_input_selector',
-                                            label='Amount (Fixed or % )',
+                                            label='Amount (Fxd or % )',
                                             value=True)],
                                             width='6'),
                                         dbc.Col(
@@ -1059,7 +1059,7 @@ layout = dbc.Container([
                                                         dbc.Row([
                                                             dbc.Col([
                                                                 dbc.Row([
-                                                                    dbc.Label('Monthly',
+                                                                    dbc.Label('Mth.',
                                                                               className='learning_hub_category'
                                                                                         '_card_topic'),
                                                                 ]),
@@ -1095,7 +1095,7 @@ layout = dbc.Container([
                                                         dbc.Row([
                                                             dbc.Col([
                                                                 dbc.Row([
-                                                                    dbc.Label('Annual',
+                                                                    dbc.Label('Ann.',
                                                                               className='learning_hub_category'
                                                                                         '_card_topic'),
                                                                 ]),
@@ -1181,7 +1181,7 @@ layout = dbc.Container([
                                                 dbc.Card([
                                                     dbc.CardBody([
                                                         dbc.Row(
-                                                            dbc.Label('Days to desired daily rewards',
+                                                            dbc.Label('Days to daily rwd',
                                                                       className='learning_hub_category_card_topic'),
                                                         ),
                                                         dbc.Row(
@@ -1194,7 +1194,7 @@ layout = dbc.Container([
                                                      ''')
                                                         ),
                                                         dbc.Row(
-                                                            dbc.Label('Required KLIMA for desired daily rewards',
+                                                            dbc.Label('Required KLIMA',
                                                                       className='learning_hub_category_card_topic'),
                                                         ),
                                                         dbc.Row(
@@ -1209,7 +1209,7 @@ layout = dbc.Container([
                                                 dbc.Card([
                                                     dbc.CardBody([
                                                         dbc.Row(
-                                                            dbc.Label('Days to desired weekly rewards',
+                                                            dbc.Label('Days to weekly rwd',
                                                                       className='learning_hub_category_card_topic'
                                                                       ),
                                                         ),
@@ -1223,7 +1223,7 @@ layout = dbc.Container([
                                                      ''')
                                                         ),
                                                         dbc.Row(
-                                                            dbc.Label('Required KLIMA for desired weekly rewards',
+                                                            dbc.Label('Required KLIMA',
                                                                       className='learning_hub_category_card_topic'
                                                                       ),
                                                         ),
