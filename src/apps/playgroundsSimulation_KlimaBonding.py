@@ -528,7 +528,13 @@ layout = dbc.Container([
                         dbc.Row([
                             dbc.Col(dbc.Card([
                                 dbc.CardHeader('Expanded explanations',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='learning_hub_category_deck_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -563,7 +569,7 @@ layout = dbc.Container([
                                                         ''', id='chart_results_explanation'),
                                                         ),
                                                     ], className='align-self-center')
-                                                ], className='emission_card_style_v3'),
+                                                ], className='simulator_hub_card'),
                                                 dbc.Card([
                                                     dbc.CardBody([
                                                         dbc.Row(
@@ -594,7 +600,7 @@ layout = dbc.Container([
                                                                 id='equivalency_results_explanation'),
                                                         ),
                                                     ], className='align-self-center')
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ]),
                                         ], xs=12, sm=12, md=12, lg=12, xl=12, style={'height': "100%",
                                                                                      'padding': '10px'}),
