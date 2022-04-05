@@ -26,7 +26,7 @@ layout = dbc.Container([
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
-                        html.H2('Market Cap', className='analytics_card_metric'),
+                        html.H2('Mkt Cap', className='analytics_card_metric'),
                         html.H4('$' +
                                 millify(
                                     immediate(sg, last_metric.marketCap),

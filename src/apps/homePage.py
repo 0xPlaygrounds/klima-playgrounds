@@ -72,7 +72,8 @@ layout = dbc.Container([
                                                            href="/apps/quizzes_experimental",
                                                            color='#038523',
                                                            className='landing_button_enter', )
-                                            ], style={'justify-content': 'left', 'padding': '20px'})
+                                            ], style={'justify-content': 'left', 'padding': '20px',
+                                                      'padding-bottom': '10px'})
                                         ])
                                     ], style={'font-size': '24px'}),
                                     dbc.Card([
@@ -118,7 +119,8 @@ layout = dbc.Container([
                                                        href="/apps/playgroundSimulation_KlimaGrowthOverTime",
                                                        color='#038523',
                                                        className='landing_button_enter', )
-                                        ], style={'justify-content': 'right', 'padding': '20px'})
+                                        ], style={'justify-content': 'right', 'padding': '20px',
+                                                  'padding-bottom': '10px'})
                                     ])
                                 ]),
                         ], style={'border-radius': '20px'}),

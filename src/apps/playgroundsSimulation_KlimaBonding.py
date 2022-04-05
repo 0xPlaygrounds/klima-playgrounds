@@ -302,93 +302,239 @@ layout = dbc.Container([
                                                 className="input_box_number",
                                                 style={'color': 'white'}),
                                         ])
-                                    ], style={'margin-top': '0px'}),
+                                    ], style={'padding': '10px', 'padding-bottom': '0px'}),
                                 ])
-                            ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                      'border-color': '#00cc33'})),
+                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "auto"})),
                         ], style={'padding': '10px'}),
                         dbc.Row([
                             dbc.Col(dbc.Card([
                                 dbc.CardHeader('(3,3) and (4,4) Growth comparison',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='simulator_hub_card_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
-                                    dcc.Graph(id='graph2', style={"height": "100%", "width": "100%"}),
-                                ], style={"height": "100%", "width": "100%"})
-                            ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                      'border-color': '#00cc33'}),
-                                xs=12, sm=12, md=12, lg=8, xl=8),
-                            dbc.Col(dbc.Card([
-                                dbc.CardHeader('Growth Comparison Summary',
-                                               className='learning_hub_category_deck_topic'),
-                                dbc.CardBody([
-                                    dbc.Row([
-                                        dbc.Label('Max (3,3) ROI (Klima)', className='bonding_roi_card_topic'),
-                                        html.Div(className="bonding_roi_card_metrics_secondary",
-                                                 id='max_33_growth'),
-                                    ], className='text-center'),
-                                    dbc.Row([
-                                        dbc.Label('Max (4,4) ROI (Klima)', className="bonding_roi_card_topic"),
-                                        html.Div(className="bonding_roi_card_metrics_secondary",
-                                                 id='max_44_growth'),
-                                    ], className='text-center'),
-                                    dbc.Row([
-                                        dbc.Label('Bonus Klima', className="bonding_roi_card_topic"),
-                                        html.Div(className="bonding_roi_card_metrics_secondary",
-                                                 id='bonus_gained'),
-                                    ], className='text-center')
-                                ])
-                            ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                      'border-color': '#00cc33'}))
+                                    dcc.Graph(id='graph2', style={"height": "100%", "width": "auto"}),
+                                    dbc.Tooltip(
+                                        'This chart provides a visual representation of your speculated KLIMA'
+                                        'growth over a typical bond vesting period and a speculated growth curve if'
+                                        'you decide to claim and stake vested KLIMA over the same time frame.',
+                                        target='graph2',
+                                        placement='top',
+                                    )
+                                ], style={"height": "auto", "width": "auto"})
+                            ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "auto"}),
+                                style={'padding': '10px'},
+                                xs=12, sm=12, md=12, lg=12, xl=12),
                         ], style={'padding': '10px'}),
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Card([
+                                    dbc.CardHeader('Growth Comparison Summary',
+                                                   className='learning_hub_category_deck_topic',
+                                                   style={'color': '#FFFFFF',
+                                                          'background-color': '#202020',
+                                                          'font-weight': '500',
+                                                          'font-size': '26px',
+                                                          'font-style': 'normal'}
+                                                   ),
+                                    dbc.CardBody([
+                                        dbc.Row([
+                                            dbc.Col([
+                                                dbc.Card([
+                                                    dbc.CardBody([
+                                                        dbc.Row([
+                                                            dbc.Col([
+                                                                dbc.Row([
+                                                                    dbc.Label('Max (3,3) ROI',
+                                                                              className='learning_hub_category'
+                                                                                        '_card_topic'),
+                                                                ]),
+                                                                dbc.Row([
+                                                                    html.Div(className='emission_card_metric',
+                                                                             id='max_33_growth'),
+                                                                ]),
+                                                            ]),
+                                                        ]),
+                                                    ]),
+                                                ], className='simulator_hub_card')
+                                            ], xs=12, sm=12, md=12, lg=4, xl=4,
+                                                style={'height': "100%",
+                                                       'padding': '10px',
+                                                       'justify-content': 'stretch'}),
+                                            dbc.Col([
+                                                dbc.Card([
+                                                    dbc.CardBody([
+                                                        dbc.Row([
+                                                            dbc.Col([
+                                                                dbc.Row([
+                                                                    dbc.Label('Max (4,4) ROI',
+                                                                              className='learning_hub_category'
+                                                                                        '_card_topic'),
+                                                                ]),
+                                                                dbc.Row([
+                                                                    html.Div(className='emission_card_metric',
+                                                                             id='max_44_growth'),
+                                                                ]),
+                                                            ]),
+                                                        ]),
+                                                    ]),
+                                                ], className='simulator_hub_card')
+                                            ], xs=12, sm=12, md=12, lg=4, xl=4,
+                                                style={'height': "100%",
+                                                       'padding': '10px',
+                                                       'justify-content': 'stretch'}),
+                                            dbc.Col([
+                                                dbc.Card([
+                                                    dbc.CardBody([
+                                                        dbc.Row([
+                                                            dbc.Col([
+                                                                dbc.Row([
+                                                                    dbc.Label('Bonus Klima',
+                                                                              className='learning_hub_category'
+                                                                                        '_card_topic'),
+                                                                ]),
+                                                                dbc.Row([
+                                                                    html.Div(className='emission_card_metric',
+                                                                             id='bonus_gained'),
+                                                                ]),
+                                                            ]),
+                                                        ]),
+                                                    ]),
+                                                ], className='simulator_hub_card')
+                                            ], xs=12, sm=12, md=12, lg=4, xl=4,
+                                                style={'height': "100%",
+                                                       'padding': '10px',
+                                                       'justify-content': 'stretch'})
+                                        ]),
+                                    ]),
+                                ], outline=False, color='#202020', style={"height": "100%", "width": "100%"})
+                            ]),
+                        ]),
                         dbc.Row([
                             dbc.Col(
                                 dbc.Card([
                                     dbc.CardHeader('(3,3) and (4,4) ROI Comparison',
-                                                   className='learning_hub_category_deck_topic'),
+                                                   className='simulator_hub_card_topic',
+                                                   style={'color': '#FFFFFF',
+                                                          'background-color': '#2A2A2A',
+                                                          'font-weight': '500',
+                                                          'font-size': '26px',
+                                                          'font-style': 'normal'}
+                                                   ),
                                     dbc.CardBody([
-                                        dcc.Graph(id='graph3', style={"height": "100%", "width": "100%"}),
-                                    ], style={"height": "100%", "width": "100%"})
-                                ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                          'border-color': '#00cc33'}),
-                                xs=12, sm=12, md=12, lg=8, xl=8),
+                                        dcc.Graph(id='graph3', style={"height": "100%", "width": "auto"}),
+                                        dbc.Tooltip(
+                                            'This chart provides a visual representation of your speculated KLIMA'
+                                            'growth over a typical bond vesting period and a speculated growth curve if'
+                                            'you decide to claim and stake vested KLIMA over the same time frame.',
+                                            target='graph2',
+                                            placement='top',
+                                        )
+                                    ], style={"height": "100%", "width": "auto"})
+                                ], outline=False, color='#2A2A2A', style={"height": "100%", "width": "auto"}),
+                                xs=12, sm=12, md=12, lg=12, xl=12),
+                        ], style={'padding': '10px'}),
+                        dbc.Row([
                             dbc.Col([
                                 dbc.Card([
-                                    dbc.CardHeader('(3,3) and (4,4) ROI Summary',
-                                                   className='learning_hub_category_deck_topic'),
+                                    dbc.CardHeader('Growth Comparison Summary',
+                                                   className='learning_hub_category_deck_topic',
+                                                   style={'color': '#FFFFFF',
+                                                          'background-color': '#202020',
+                                                          'font-weight': '500',
+                                                          'font-size': '26px',
+                                                          'font-style': 'normal'}
+                                                   ),
                                     dbc.CardBody([
-                                        dbc.Row(
-                                            dbc.Label('(3,3) ROI (%)', className='bonding_roi_card_topic'),
-                                        ),
-                                        dbc.Row(
-                                            html.Div(className="bonding_roi_card_metrics_secondary",
-                                                     id='33_roi'),
-                                        ),
-                                        dbc.Row(
-                                            dbc.Label('Bond ROI (%)', className="bonding_roi_card_topic"),
-                                        ),
-                                        dbc.Row(
-                                            html.Div(className="bonding_roi_card_metrics_secondary",
-                                                     id='bonding_roi'),
-                                        ),
-                                        dbc.Row(
-                                            dbc.Label('Max (4,4) ROI (%)', className="bonding_roi_card_topic"),
-                                        ),
-                                        dbc.Row(
-                                            html.Div(className="bonding_roi_card_metrics_secondary",
-                                                     id='max_44_roi'),
-                                        ),
-                                    ])
-                                ], outline=False, color='#202020', style={"height": "100%", "width": "auto",
-                                                                          'border-color': '#00cc33'})],
-                                xs=12, sm=12, md=12, lg=4, xl=4),
-                        ], style={'padding': '10px'}),
+                                        dbc.Row([
+                                            dbc.Col([
+                                                dbc.Card([
+                                                    dbc.CardBody([
+                                                        dbc.Row([
+                                                            dbc.Col([
+                                                                dbc.Row([
+                                                                    dbc.Label('(3,3) ROI (%)',
+                                                                              className='learning_hub_category'
+                                                                                        '_card_topic'),
+                                                                ]),
+                                                                dbc.Row([
+                                                                    html.Div(className='emission_card_metric',
+                                                                             id='33_roi'),
+                                                                ]),
+                                                            ]),
+                                                        ]),
+                                                    ]),
+                                                ], className='simulator_hub_card')
+                                            ], xs=12, sm=12, md=12, lg=4, xl=4,
+                                                style={'height': "100%",
+                                                       'padding': '10px',
+                                                       'justify-content': 'stretch'}),
+                                            dbc.Col([
+                                                dbc.Card([
+                                                    dbc.CardBody([
+                                                        dbc.Row([
+                                                            dbc.Col([
+                                                                dbc.Row([
+                                                                    dbc.Label('(4,4) ROI (%)',
+                                                                              className='learning_hub_category'
+                                                                                        '_card_topic'),
+                                                                ]),
+                                                                dbc.Row([
+                                                                    html.Div(className='emission_card_metric',
+                                                                             id='bonding_roi'),
+                                                                ]),
+                                                            ]),
+                                                        ]),
+                                                    ]),
+                                                ], className='simulator_hub_card')
+                                            ], xs=12, sm=12, md=12, lg=4, xl=4,
+                                                style={'height': "100%",
+                                                       'padding': '10px',
+                                                       'justify-content': 'stretch'}),
+                                            dbc.Col([
+                                                dbc.Card([
+                                                    dbc.CardBody([
+                                                        dbc.Row([
+                                                            dbc.Col([
+                                                                dbc.Row([
+                                                                    dbc.Label('Max (4,4) ROI (%)',
+                                                                              className='learning_hub_category'
+                                                                                        '_card_topic'),
+                                                                ]),
+                                                                dbc.Row([
+                                                                    html.Div(className='emission_card_metric',
+                                                                             id='max_44_roi'),
+                                                                ]),
+                                                            ]),
+                                                        ]),
+                                                    ]),
+                                                ], className='simulator_hub_card')
+                                            ], xs=12, sm=12, md=12, lg=4, xl=4,
+                                                style={'height': "100%",
+                                                       'padding': '10px',
+                                                       'justify-content': 'stretch'})
+                                        ]),
+                                    ]),
+                                ], outline=False, color='#202020', style={"height": "100%", "width": "100%"})
+                            ]),
+                        ]),
                         dbc.Row([
                             dbc.Col(dbc.Label('Results', className='learning_hub_category_topic'))
                         ], className='learning_hub_category_topic'),
                         dbc.Row([
                             dbc.Col(dbc.Card([
                                 dbc.CardHeader('Expanded explanations',
-                                               className='learning_hub_category_deck_topic'),
+                                               className='learning_hub_category_deck_topic',
+                                               style={'color': '#FFFFFF',
+                                                      'background-color': '#2A2A2A',
+                                                      'font-weight': '500',
+                                                      'font-size': '26px',
+                                                      'font-style': 'normal'}
+                                               ),
                                 dbc.CardBody([
                                     dbc.Row([
                                         dbc.Col([
@@ -423,7 +569,7 @@ layout = dbc.Container([
                                                         ''', id='chart_results_explanation'),
                                                         ),
                                                     ], className='align-self-center')
-                                                ], className='emission_card_style_v3'),
+                                                ], className='simulator_hub_card'),
                                                 dbc.Card([
                                                     dbc.CardBody([
                                                         dbc.Row(
@@ -454,7 +600,7 @@ layout = dbc.Container([
                                                                 id='equivalency_results_explanation'),
                                                         ),
                                                     ], className='align-self-center')
-                                                ], className='emission_card_style_v3')
+                                                ], className='simulator_hub_card')
                                             ]),
                                         ], xs=12, sm=12, md=12, lg=12, xl=12, style={'height': "100%",
                                                                                      'padding': '10px'}),
