@@ -642,10 +642,10 @@ def bonding_simulation(klima_price, initial_klima, bond_roi, reward_yield):
     gwei = 0
     priceofETH = 1
     # ========================================================================================
-    # Calculate the rebase rate and Current ARY (next epoch rebase pulled from hippo data source)
+    # Calculate the rebase rate and Current AKR (next epoch rebase pulled from hippo data source)
     reward_yield = reward_yield / 100
-    # rebase_const = 1 + reward_yield  # calculate a constant for use in ARY calculation
-    # user_apy = rebase_const ** 1095  # current ARY equation
+    # rebase_const = 1 + reward_yield  # calculate a constant for use in AKR calculation
+    # user_apy = rebase_const ** 1095  # current AKR equation
     # user_apy_P = user_apy * 100  # convert to %
     # ========================================================================================
     # Calculate fees

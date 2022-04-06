@@ -4,7 +4,7 @@ from subgrounds.dash_wrappers import Graph
 from subgrounds.plotly_wrappers import Figure, Scatter
 from millify import millify
 
-from ..klima_subgrounds import sg, protocol_metrics_1year, immediate, last_metric
+from ..klima_subgrounds import sg, protocol_metrics_1year, immediate, last_metric, user_aux
 
 # Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
 url_sunlight = "https://assets8.lottiefiles.com/packages/lf20_bknKi1.json"
@@ -57,7 +57,7 @@ layout = dbc.Container([
                         html.H2('Klimates', className='analytics_card_metric'),
                         html.H4(
                                 millify(
-                                    immediate(sg, last_metric.holders),
+                                    immediate(sg, user_aux.value),
                                     precision=2),
                                 style={'text-align': 'center'}
                                 ),
@@ -212,7 +212,7 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('Current ARY%'),
+                                dbc.Label('Current AKR%'),
                             ]),
                         ]),
                     ], style={'color': '#FFFFFF',
@@ -225,9 +225,9 @@ layout = dbc.Container([
                             subgrounds=sg,
                             traces=[
                                 Scatter(
-                                    name='Current ARY%',
+                                    name='Current AKR%',
                                     x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.currentARY,
+                                    y=protocol_metrics_1year.currentAKR,
                                     line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
                                     stackgroup='one',
                                 ),
@@ -235,7 +235,7 @@ layout = dbc.Container([
                             layout={
                                 'showlegend': True,
                                 'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Current ARY', 'showgrid': False},
+                                          'title': 'Current AKR', 'showgrid': False},
                                 'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
                                           'showgrid': False},
                                 'legend.font.color': 'white',
@@ -363,7 +363,7 @@ layout = dbc.Container([
                             Scatter(
                                 name='Total Reserves',
                                 x=protocol_metrics_1year.datetime,
-                                y=protocol_metrics_1year.treasuryRiskFreeValue,
+                                y=protocol_metrics_1year.treasuryCarbonCustodied,
                                 mode='lines',
                                 line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
                                 stackgroup='one',
@@ -447,7 +447,7 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('RFV/KLIMA vs KLIMA Price'),
+                                dbc.Label('CC/KLIMA vs KLIMA Price'),
                             ]),
                         ]),
                     ], style={'color': '#FFFFFF',
@@ -462,7 +462,7 @@ layout = dbc.Container([
                                 Scatter(
                                     name='Risk-Free Value per KLIMA',
                                     x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.rfv_per_klima,
+                                    y=protocol_metrics_1year.cc_per_klima,
                                     line={'width': 0.5, 'color': 'blue'},
                                     stackgroup='one',
                                 ),
@@ -477,7 +477,7 @@ layout = dbc.Container([
                             layout={
                                 'showlegend': True,
                                 'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'RFV/KLIMA and KLIMA Price', 'showgrid': False},
+                                          'title': 'CC/KLIMA and KLIMA Price', 'showgrid': False},
                                 'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
                                           'showgrid': False},
                                 'legend.font.color': 'white',
