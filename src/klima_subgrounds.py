@@ -3,7 +3,8 @@ from subgrounds.subgraph import SyntheticField, FieldPath
 from subgrounds.subgrounds import Subgrounds
 
 sg = Subgrounds()
-klimaDAO = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/cujowolf/klima-graph')
+klimaDAO = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/cujowolf/klima-protocol-metrics')
+users = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/0xaurelius/klimadao-users')
 
 
 def immediate(sg: Subgrounds, fpath: FieldPath):
@@ -31,18 +32,16 @@ klimaDAO.ProtocolMetric.staked_supply_percent = SyntheticField(
 
 klimaDAO.ProtocolMetric.unstaked_supply_percent = 100 - klimaDAO.ProtocolMetric.staked_supply_percent
 
-# Treasury RFV per klima and ratio
-klimaDAO.ProtocolMetric.rfv_per_klima = SyntheticField(
-  lambda treasury_rfv, total_supply: treasury_rfv / total_supply if treasury_rfv / total_supply > 1 else 0,
+# Treasury CC per klima and ratio
+klimaDAO.ProtocolMetric.cc_per_klima = SyntheticField(
+  lambda treasury_cc, total_supply: treasury_cc / total_supply if treasury_cc / total_supply > 1 else 0,
   SyntheticField.FLOAT,
-  [
-    klimaDAO.ProtocolMetric.treasuryRiskFreeValue,
-    klimaDAO.ProtocolMetric.totalSupply
-  ]
+  [klimaDAO.ProtocolMetric.treasuryCarbonCustodied,
+   klimaDAO.ProtocolMetric.totalSupply]
 )
 
-klimaDAO.ProtocolMetric.price_rfv_ratio = \
-    100 * klimaDAO.ProtocolMetric.klimaPrice / klimaDAO.ProtocolMetric.rfv_per_klima
+klimaDAO.ProtocolMetric.price_cc_ratio = \
+    100 * klimaDAO.ProtocolMetric.klimaPrice / klimaDAO.ProtocolMetric.cc_per_klima
 
 # Treasury market value per klima and ratio
 klimaDAO.ProtocolMetric.tmv_per_klima = \
@@ -59,5 +58,9 @@ protocol_metrics_1year = klimaDAO.Query.protocolMetrics(
 last_metric = klimaDAO.Query.protocolMetrics(
   orderBy=klimaDAO.ProtocolMetric.timestamp,
   orderDirection='desc',
+  first=1
+)
+
+user_aux = users.Query.auxes(
   first=1
 )

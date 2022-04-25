@@ -578,19 +578,19 @@ layout = dbc.Container([
                                     ], className="g-2", style={'padding-bottom': '10px', 'padding-top': '0px'}),
                                     dbc.Row([
                                         dbc.Col(
-                                            dbc.Label('Min APY(%)')
+                                            dbc.Label('Min AKR(%)')
                                         ),
                                         dbc.Col(
-                                            dbc.Label('APY(%)')
+                                            dbc.Label('AKR(%)')
                                         ),
                                         dbc.Col(
-                                            dbc.Label('Max APY(%)')
+                                            dbc.Label('Max AKR(%)')
                                         )
                                     ], style={'padding-bottom': '0px'}),
                                     dbc.Row([
                                         dbc.Col([
                                             dbc.Input(
-                                                id='min_apy',
+                                                id='min_akr',
                                                 placeholder='2000',
                                                 type='number',
                                                 min=1,
@@ -600,14 +600,14 @@ layout = dbc.Container([
                                                 className="input_box_number",
                                                 style={'color': 'white'}),
                                             dbc.Tooltip(
-                                                'Input the current or future minimum APY based on KIP-3 framework',
-                                                target='min_apy',
+                                                'Input the current or future minimum AKR based on KIP-3 framework',
+                                                target='min_akr',
                                                 placement='top',
                                             )
                                         ]),
                                         dbc.Col([
                                             dbc.Input(
-                                                id='user_apy',
+                                                id='user_akr',
                                                 placeholder='8000',
                                                 type='number',
                                                 min=1,
@@ -616,15 +616,15 @@ layout = dbc.Container([
                                                 value=8000, className="input_box_number",
                                                 style={'color': 'white'}),
                                             dbc.Tooltip(
-                                                'Input an APY for growth forecasting. APY can be current protocol APY'
-                                                ' or some future APY.',
-                                                target='user_apy',
+                                                'Input an AKR for growth forecasting. AKR can be current protocol AKR'
+                                                ' or some future AKR.',
+                                                target='user_akr',
                                                 placement='top',
                                             )
                                         ]),
                                         dbc.Col([
                                             dbc.Input(
-                                                id='max_apy',
+                                                id='max_akr',
                                                 placeholder='10000',
                                                 type='number',
                                                 min=1,
@@ -632,8 +632,8 @@ layout = dbc.Container([
                                                 debounce=True,
                                                 value=10000, className="input_box_number", style={'color': 'white'}),
                                             dbc.Tooltip(
-                                                'Input the current or future maximum APY based on KIP-3 framework',
-                                                target='max_apy',
+                                                'Input the current or future maximum AKR based on KIP-3 framework',
+                                                target='max_akr',
                                                 placement='top',
                                             )
                                         ]),
@@ -1519,9 +1519,9 @@ def generate_control_ptc(switch):
     Output(component_id='strategizer_results_explanation', component_property='children'),
     Input(component_id='growthDays', component_property='value'),
     Input(component_id='initialKlima', component_property='value'),
-    Input(component_id='user_apy', component_property='value'),
-    Input(component_id='min_apy', component_property='value'),
-    Input(component_id='max_apy', component_property='value'),
+    Input(component_id='user_akr', component_property='value'),
+    Input(component_id='min_akr', component_property='value'),
+    Input(component_id='max_akr', component_property='value'),
     Input(component_id='user_rfv', component_property='value'),
     Input(component_id='percentSale', component_property='value'),
     Input(component_id='ptc_input_selector', component_property='value'),
@@ -1538,7 +1538,7 @@ def generate_control_ptc(switch):
 ])
 # function to calculate klima growth over user specified number of days
 def klimaGrowth_Projection(growthDays, initialKlima,
-                           user_apy, min_apy, max_apy, user_rfv,
+                           user_akr, min_akr, max_akr, user_rfv,
                            percentSale, switch, sellDays, klimaPrice_DCA,
                            valBuy, buyDays,
                            priceKlima, priceofETH,
@@ -1555,11 +1555,11 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     sellAmount = percentSale
     sellType = '%'
     dcaAmount = valBuy / klimaPrice_DCA
-    user_apy = user_apy / 100
-    minAPY = min_apy / 100
-    maxAPY = max_apy / 100
+    user_akr = user_akr / 100
+    minAKR = min_akr / 100
+    maxAKR = max_akr / 100
     gwei = 1
-    reward_yield = ((1 + user_apy) ** (1 / float(1197))) - 1
+    reward_yield = ((1 + user_akr) ** (1 / float(1197))) - 1
     reward_yield = round(reward_yield, 5)
     rebase_const = 1 + reward_yield
 # 1200 1197.2 3.28
@@ -1568,9 +1568,9 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     staking_gas_fee_klimaAmount = staking_gas_fee / klimaPrice_DCA
     # unstaking_gas_fee = 89654 * ((gwei * priceofETH) / (10 ** 9))
 
-    # In this section we calculate the reward yield from the users speculated APY
-    minOIPYield = ((1 + minAPY) ** (1 / float(1197))) - 1
-    maxOIPYield = ((1 + maxAPY) ** (1 / float(1197))) - 1
+    # In this section we calculate the reward yield from the users speculated AKR
+    minOIPYield = ((1 + minAKR) ** (1 / float(1197))) - 1
+    maxOIPYield = ((1 + maxAKR) ** (1 / float(1197))) - 1
 
     # In this case let's consider 1096 Epochs which is 365 days
     klimaGrowth_df = pd.DataFrame(np.arange(klimaGrowthEpochs), columns=['Epochs'])
@@ -1583,7 +1583,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     dollarCostAVG_klimaGrowth_df['Days'] = profitAdjusted_klimaGrowth_df.Epochs / 3.3
     # ===========================Variable definitions and prep===============================
 
-    # ============================ USER APY, DCA, PROFIT ADJUSTED PROJECTION =====
+    # ============================ USER AKR, DCA, PROFIT ADJUSTED PROJECTION =====
     # we loop through the exponential klima growth equation every epoch
     totalklimas = []  # create an empty array that will hold the componded rewards
     pA_totalklimas = []
@@ -1632,9 +1632,9 @@ def klimaGrowth_Projection(growthDays, initialKlima,
                                             decimals=3)
     klimaGrowth_df.Profit_Adjusted_Total_klimas = np.around(klimaGrowth_df.Profit_Adjusted_Total_klimas, decimals=3)
     klimaGrowth_df.DCA_Adjusted_Total_klimas = np.around(klimaGrowth_df.DCA_Adjusted_Total_klimas, decimals=3)
-    # ============================ USER APY, DCA, PROFIT ADJUSTED PROJECTION =====
+    # ============================ USER AKR, DCA, PROFIT ADJUSTED PROJECTION =====
 
-    # ============================ MIN APY PROJECTION ============================
+    # ============================ MIN AKR PROJECTION ============================
     totalklimas_minOIPRate = []
     minOIPYield = round(minOIPYield, 5)
     klimaStakedGrowth_minOIPRate = initialKlima  # Initial staked klimas used to project growth over time
@@ -1645,9 +1645,9 @@ def klimaGrowth_Projection(growthDays, initialKlima,
         klimaStakedGrowth_minOIPRate = klimaStakedGrowth_minOIPRate * (
                 1 + minOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Min_klimaGrowth'] = totalklimas_minOIPRate  # Clean up and add the new array to the main data frame
-    # ============================ MIN APY PROJECTION ============================
+    # ============================ MIN AKR PROJECTION ============================
 
-    # ============================ MAX APY PROJECTION ============================
+    # ============================ MAX AKR PROJECTION ============================
     totalklimas_maxOIPRate = []
     maxOIPYield = round(maxOIPYield, 5)
     klimaStakedGrowth_maxOIPRate = initialKlima  # Initial staked klimas used to project growth over time
@@ -1658,7 +1658,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
         klimaStakedGrowth_maxOIPRate = klimaStakedGrowth_maxOIPRate * (
                 1 + maxOIPYield)  # compound the total amount of klimas
     klimaGrowth_df['Max_klimaGrowth'] = totalklimas_maxOIPRate  # Clean up and add the new array to the main data frame
-    # ============================ MAX APY PROJECTION ============================
+    # ============================ MAX AKR PROJECTION ============================
 
     # Let's get some ROI Outputs starting with the daily
     dailyROI = (1 + reward_yield) ** 3.3 - 1  # Equation to calculate your daily ROI based on reward Yield
@@ -1779,7 +1779,7 @@ def klimaGrowth_Projection(growthDays, initialKlima,
 
     chart_results_explanation = f'''
     - The chart shows your speculated Klima growth projection over **{growthDays} days**. The
-    Projection is calculated based on your selected APY of **{user_apy * 100} %**
+    Projection is calculated based on your selected AKR of **{user_akr * 100} %**
     which is equivalent to a reward yield of **{reward_yield * 100} %**, and an initial **{initialKlima} KLIMA**
 
     - The (3,3) Profit adjusted ROI trend line shows you the adjusted KLIMA growth if you decide to
@@ -1788,11 +1788,11 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     - The (3,3) Dollar cost averaging (DCA) adjusted ROI trend line shows you the adjusted KLIMA growth if you decide
     to buy **{valBuy}** worth of KLIMA every **{buyDays}** days at a unit price of $ **{priceKlima}**
 
-    - The Min Growth Rate shows you the estimated KLIMA growth rate if the APY
-    was on the minimum APY of the current dictated KIP-3 Reward Rate Framework
+    - The Min Growth Rate shows you the estimated KLIMA growth rate if the AKR
+    was on the minimum AKR of the current dictated KIP-3 Reward Rate Framework
 
-    - The Max Growth Rate shows you the estimated Klima growth rate if the APY
-    was on the maximum APY of the current dictated KIP-3 Reward Rate Framework
+    - The Max Growth Rate shows you the estimated Klima growth rate if the AKR
+    was on the maximum AKR of the current dictated KIP-3 Reward Rate Framework
     '''
 
     equivalency_results_explanation = f'''
@@ -1810,19 +1810,19 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     '''
 
     forecast_roi_results_explanation = f'''
-    Using the speculated KLIMA reward yield of **{user_apy * 100} %** and initial **{initialKlima} KLIMA**,
+    Using the speculated KLIMA reward yield of **{user_akr * 100} %** and initial **{initialKlima} KLIMA**,
     we can speculate the following returns:
 
-    - Daily ROI based on your input APY of **{user_apy * 100} %** : **{dailyROI_P}**
+    - Daily ROI based on your input AKR of **{user_akr * 100} %** : **{dailyROI_P}**
     which is about **{dailyKlima_raw}** KLIMA per day, totalling **{dailyKlima}** KLIMA after one day
 
-    - Seven day ROI based on your input APY of **{user_apy * 100} %** : **{sevendayROI_P}** which is
+    - Seven day ROI based on your input AKR of **{user_akr * 100} %** : **{sevendayROI_P}** which is
     about **{sevendayKlima_raw}** KLIMA per week, totaling **{sevendayKlima}** KLIMA after one week
 
-    - One month ROI based on your input APY of **{user_apy * 100} %** : **{monthlyROI_P}** which is about
+    - One month ROI based on your input AKR of **{user_akr * 100} %** : **{monthlyROI_P}** which is about
     **{monthlyKlima_raw}** KLIMA per month
 
-    - One year ROI based on your input APY of **{user_apy * 100} %** : **{annualROI_P}** which is
+    - One year ROI based on your input AKR of **{user_akr * 100} %** : **{annualROI_P}** which is
     about **{annualKlima_raw}** KLIMA per year
     '''
 
@@ -1834,20 +1834,20 @@ def klimaGrowth_Projection(growthDays, initialKlima,
     Keep in mind that you are also predicting that the price of KLIMA will be ${priceKlima} on this day.
 
     - It would take {forcastKlimaTarget} days until you accumulate {desired_klima_unit} KLIMA.
-    Keep in mind that this prediction is calculated based on your selected APY% of {user_apy * 100} %
-    and an initial {initialKlima} KLIMA staked. Use the KIP-3 Framework to adjust your APY % parameter.
+    Keep in mind that this prediction is calculated based on your selected AKR% of {user_akr * 100} %
+    and an initial {initialKlima} KLIMA staked. Use the KIP-3 Framework to adjust your AKR % parameter.
 
     - To start earning daily rewards of $ {desired_daily_rewards_usdc},
-    you will need {requiredKlimaDailyIncooom} KLIMA, and based on the APY% you entered,
+    you will need {requiredKlimaDailyIncooom} KLIMA, and based on the AKR% you entered,
     it would take {forcastDailyIncooom} days to reach your goal.
-    Remember that this prediction relies on your selected APY% of
-    {user_apy * 100} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
+    Remember that this prediction relies on your selected AKR% of
+    {user_akr * 100} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
 
     - To start earning weekly reward of $ {desired_weekly_rewards_usdc},
-    you will need {requiredKlimaWeeklyIncooom} KLIMA, and based on the APY% you entered,
+    you will need {requiredKlimaWeeklyIncooom} KLIMA, and based on the AKR% you entered,
     it would take {forcastWeeklyIncooom} days to reach your goal.
-    Remember that this prediction relies on your selected APY% of
-    {user_apy * 100} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
+    Remember that this prediction relies on your selected AKR% of
+    {user_akr * 100} %, initial {initialKlima} KLIMA staked, and predicated price of $ {priceKlima}/KLIMA
     '''
 
     return klimaGrowth_Chart, dailyROI_P, dailyKlima, sevendayROI_P, sevendayKlima, monthlyROI_P, \
