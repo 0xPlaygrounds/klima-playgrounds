@@ -1,16 +1,13 @@
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
+from dash import State
+from dash.dependencies import Input, Output
 from dash import html
-from subgrounds.dash_wrappers import Graph
-from subgrounds.plotly_wrappers import Figure, Scatter
 from millify import millify
+from ..app import app
+from ..klima_subgrounds import sg, immediate, last_metric
+from .data_plots import mkt_cap_plot, klimaPrice, current_runway, current_AKR, treasury_total_carbon, tmv, \
+    tCC, tmv_per_klima, cc_per_klima, staked_percent
 
-from ..klima_subgrounds import sg, protocol_metrics_1year, immediate, last_metric, user_aux
-
-# Lotties: Emil at https://github.com/thedirtyfew/dash-extensions
-url_sunlight = "https://assets8.lottiefiles.com/packages/lf20_bknKi1.json"
-url_earth = "https://assets10.lottiefiles.com/datafiles/xjh641xEDuQg4qg/data.json"
-url5 = "https://assets8.lottiefiles.com/packages/lf20_q6y5ptrh.json"
-url6 = "https://assets4.lottiefiles.com/packages/lf20_tN5Ofx.json"
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 
 
@@ -54,10 +51,10 @@ layout = dbc.Container([
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
-                        html.H2('Klimates', className='analytics_card_metric'),
-                        html.H4(
+                        html.H2('TVD', className='analytics_card_metric'),
+                        html.H4('$' +
                                 millify(
-                                    immediate(sg, user_aux.value),
+                                    immediate(sg, last_metric.totalValueLocked),
                                     precision=2),
                                 style={'text-align': 'center'}
                                 ),
@@ -86,41 +83,33 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('Market Cap'),
+                                dbc.Button('Market Cap',
+                                           id='market_cap_btn',
+                                           className='me-1',
+                                           color='link',
+                                           n_clicks=0,
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '24px',
+                                                  'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'color': '#FFFFFF',
-                              'background-color': '#2A2A2A',
-                              'font-weight': '500',
-                              'font-size': '24px',
-                              'font-style': 'normal'}),
-                    dbc.CardBody([
-                        Graph(Figure(
-                            subgrounds=sg,
-                            traces=[
-                                Scatter(
-                                    name='Market Cap',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.marketCap,
-                                    line={'width': 0.5, 'color': 'rgb(255, 0, 255)'},
-                                    stackgroup='one',
-                                ),
-                            ],
-                            layout={
-                                'showlegend': True,
-                                'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Market Cap', 'showgrid': False},
-                                'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'showgrid': False},
-                                'legend.font.color': 'white',
-                                'paper_bgcolor': 'rgba(0,0,0,0)',
-                                'plot_bgcolor': 'rgba(0,0,0,0)',
-                                'autosize': True,
-                                'margin': dict(l=20, r=30, t=10, b=20),
-                                'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                            }
-                        ))
-                    ]),
+                    ], style={'background-color': '#2A2A2A'}),
+                    dbc.CardBody([mkt_cap_plot]),
+                    dbc.Modal([
+                        dbc.ModalHeader(dbc.ModalTitle('Market Cap')),
+                        dbc.ModalBody(mkt_cap_plot),
+                        dbc.ModalFooter(
+                            dbc.Button(
+                                "Close", id="close", className="ms-auto", n_clicks=0
+                            )
+                        ),
+                    ],
+                        id='modal',
+                        is_open=False,
+                        size="xl"
+                    )
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([
@@ -128,39 +117,33 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('KLIMA Price Over Time'),
+                                dbc.Button('KLIMA Price Over Time',
+                                           id='klimaPrice_btn',
+                                           className='me-1',
+                                           color='link',
+                                           n_clicks=0,
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '24px',
+                                                  'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'color': '#FFFFFF',
-                              'background-color': '#2A2A2A',
-                              'font-weight': '500',
-                              'font-size': '24px',
-                              'font-style': 'normal'}),
-                    dbc.CardBody([
-                        Graph(Figure(
-                            subgrounds=sg,
-                            traces=[
-                                Scatter(
-                                    name='KLIMA Price',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.klimaPrice,
-                                    line={'width': 0.5, 'color': 'rgb(2, 193, 50)'},
-                                    stackgroup='one',
-                                ),
-                            ],
-                            layout={
-                                'showlegend': False,
-                                'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'KLIMA Price', 'showgrid': False},
-                                'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'showgrid': False},
-                                'paper_bgcolor': 'rgba(0,0,0,0)',
-                                'plot_bgcolor': 'rgba(0,0,0,0)',
-                                'autosize': True,
-                                'margin': dict(l=20, r=30, t=10, b=20),
-                            }
-                        ), style={'width': '100%'})
-                    ]),
+                    ], style={'background-color': '#2A2A2A'}),
+                    dbc.CardBody([klimaPrice]),
+                    dbc.Modal([
+                        dbc.ModalHeader(dbc.ModalTitle('Klima Price')),
+                        dbc.ModalBody(klimaPrice),
+                        dbc.ModalFooter(
+                            dbc.Button(
+                                "Close", id="klimaPrice_close", className="ms-auto", n_clicks=0
+                            )
+                        ),
+                    ],
+                        id='klimaPrice_modal',
+                        is_open=False,
+                        size="xl"
+                    )
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
@@ -170,41 +153,33 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('Current Runway'),
+                                dbc.Button('Current Runway',
+                                           id='current_runway_btn',
+                                           className='me-1',
+                                           color='link',
+                                           n_clicks=0,
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '24px',
+                                                  'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'color': '#FFFFFF',
-                              'background-color': '#2A2A2A',
-                              'font-weight': '500',
-                              'font-size': '24px',
-                              'font-style': 'normal'}),
-                    dbc.CardBody([
-                        Graph(Figure(
-                            subgrounds=sg,
-                            traces=[
-                                Scatter(
-                                    name='Current Runway',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.runwayCurrent,
-                                    line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
-                                    stackgroup='one',
-                                ),
-                            ],
-                            layout={
-                                'showlegend': True,
-                                'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Current Runway', 'showgrid': False},
-                                'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'showgrid': False},
-                                'legend.font.color': 'white',
-                                'paper_bgcolor': 'rgba(0,0,0,0)',
-                                'plot_bgcolor': 'rgba(0,0,0,0)',
-                                'autosize': True,
-                                'margin': dict(l=20, r=30, t=10, b=20),
-                                'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                            }
-                        ))
-                    ]),
+                    ], style={'background-color': '#2A2A2A'}),
+                    dbc.CardBody([current_runway]),
+                    dbc.Modal([
+                        dbc.ModalHeader(dbc.ModalTitle('Current Runway')),
+                        dbc.ModalBody(current_runway),
+                        dbc.ModalFooter(
+                            dbc.Button(
+                                "Close", id="current_runway_close", className="ms-auto", n_clicks=0
+                            )
+                        ),
+                    ],
+                        id='current_runway_modal',
+                        is_open=False,
+                        size="xl"
+                    )
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([
@@ -212,41 +187,33 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('Current AKR%'),
+                                dbc.Button('Current AKR%',
+                                           id='current_AKR_btn',
+                                           className='me-1',
+                                           color='link',
+                                           n_clicks=0,
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '24px',
+                                                  'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'color': '#FFFFFF',
-                              'background-color': '#2A2A2A',
-                              'font-weight': '500',
-                              'font-size': '24px',
-                              'font-style': 'normal'}),
-                    dbc.CardBody([
-                        Graph(Figure(
-                            subgrounds=sg,
-                            traces=[
-                                Scatter(
-                                    name='Current AKR%',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.currentAKR,
-                                    line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
-                                    stackgroup='one',
-                                ),
-                            ],
-                            layout={
-                                'showlegend': True,
-                                'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Current AKR', 'showgrid': False},
-                                'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'showgrid': False},
-                                'legend.font.color': 'white',
-                                'paper_bgcolor': 'rgba(0,0,0,0)',
-                                'plot_bgcolor': 'rgba(0,0,0,0)',
-                                'autosize': True,
-                                'margin': dict(l=20, r=30, t=10, b=20),
-                                'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                            }
-                        ))
-                    ]),
+                    ], style={'background-color': '#2A2A2A'}),
+                    dbc.CardBody([current_AKR]),
+                    dbc.Modal([
+                        dbc.ModalHeader(dbc.ModalTitle('Current AKR')),
+                        dbc.ModalBody(current_AKR),
+                        dbc.ModalFooter(
+                            dbc.Button(
+                                "Close", id="current_AKR_close", className="ms-auto", n_clicks=0
+                            )
+                        ),
+                    ],
+                        id='current_AKR_modal',
+                        is_open=False,
+                        size="xl"
+                    )
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
@@ -262,83 +229,66 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('Treasury Total Carbon'),
+                                dbc.Button('Treasury Total Carbon',
+                                           id='treasury_total_carbon_btn',
+                                           className='me-1',
+                                           color='link',
+                                           n_clicks=0,
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '24px',
+                                                  'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'color': '#FFFFFF',
-                              'background-color': '#2A2A2A',
-                              'font-weight': '500',
-                              'font-size': '24px',
-                              'font-style': 'normal'}),
-                    dbc.CardBody([
-                        Graph(Figure(
-                            subgrounds=sg,
-                            traces=[
-                                Scatter(
-                                    name='Treasury Total Carbon',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.treasuryCarbon,
-                                    line={'width': 0.5, 'color': 'rgb(255, 128, 64)'},
-                                    stackgroup='one',
-                                ),
-                            ],
-                            layout={
-                                'showlegend': True,
-                                'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Treasury Total Carbon', 'showgrid': False},
-                                'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'showgrid': False},
-                                'legend.font.color': 'white',
-                                'paper_bgcolor': 'rgba(0,0,0,0)',
-                                'plot_bgcolor': 'rgba(0,0,0,0)',
-                                'autosize': True,
-                                'margin': dict(l=20, r=30, t=10, b=20),
-                                'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                            }
-                        ))
-                    ]),
+                    ], style={'background-color': '#2A2A2A'}),
+                    dbc.CardBody([treasury_total_carbon]),
+                    dbc.Modal([
+                        dbc.ModalHeader(dbc.ModalTitle('Treasury Total Carbon')),
+                        dbc.ModalBody(treasury_total_carbon),
+                        dbc.ModalFooter(
+                            dbc.Button(
+                                "Close", id="treasury_total_carbon_close", className="ms-auto", n_clicks=0
+                            )
+                        ),
+                    ],
+                        id='treasury_total_carbon_modal',
+                        is_open=False,
+                        size="xl"
+                    )
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([dbc.Card([
                 dbc.CardHeader([
                     dbc.Row([
                         dbc.Col([
-                            dbc.Label('Market Value Of Treasury Assets (USD)'),
+                            dbc.Button('Mkt Value of Treasury Assets (USD)',
+                                       id='tmv_btn',
+                                       className='me-1',
+                                       color='link',
+                                       n_clicks=0,
+                                       style={'color': '#FFFFFF',
+                                              'background-color': '#2A2A2A',
+                                              'font-weight': '500',
+                                              'font-size': '24px',
+                                              'font-style': 'normal'})
                         ]),
                     ]),
-                ], style={'color': '#FFFFFF',
-                          'background-color': '#2A2A2A',
-                          'font-weight': '500',
-                          'font-size': '24px',
-                          'font-style': 'normal'}),
-                dbc.CardBody([
-                    Graph(Figure(
-                        subgrounds=sg,
-                        traces=[
-                            # Market value treasury assets
-                            Scatter(
-                                name='Total_mv',
-                                x=protocol_metrics_1year.datetime,
-                                y=protocol_metrics_1year.treasuryMarketValue,
-                                mode='lines',
-                                line={'width': 0.5, 'color': 'rgb(255, 0, 255)'},
-                                stackgroup='one',
-                            ),
-                        ],
-                        layout={
-                            'showlegend': True,
-                            'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white', 'showgrid': False},
-                            'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                      'title': 'MV of Treasury Assets', 'showgrid': False},
-                            'legend.font.color': 'white',
-                            'paper_bgcolor': 'rgba(0,0,0,0)',
-                            'plot_bgcolor': 'rgba(0,0,0,0)',
-                            'autosize': True,
-                            'margin': dict(l=20, r=30, t=10, b=20),
-                            'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                        }
-                    ))
-                ]),
+                ], style={'background-color': '#2A2A2A'}),
+                dbc.CardBody([tmv]),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('Mkt Value of Treasury Assets')),
+                    dbc.ModalBody(tmv),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            "Close", id="tmv_close", className="ms-auto", n_clicks=0
+                        )
+                    ),
+                ],
+                    id='tmv_modal',
+                    is_open=False,
+                    size="xl"
+                )
             ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
@@ -347,42 +297,33 @@ layout = dbc.Container([
                 dbc.CardHeader([
                     dbc.Row([
                         dbc.Col([
-                            dbc.Label('Backing Assets in Treasury (Carbon Base)'),
+                            dbc.Button('Backing Asstes in Treasury (Carbon Base)',
+                                       id='tCC_btn',
+                                       className='me-1',
+                                       color='link',
+                                       n_clicks=0,
+                                       style={'color': '#FFFFFF',
+                                              'background-color': '#2A2A2A',
+                                              'font-weight': '500',
+                                              'font-size': '26px',
+                                              'font-style': 'normal'})
                         ]),
                     ]),
-                ], style={'color': '#FFFFFF',
-                          'background-color': '#2A2A2A',
-                          'font-weight': '500',
-                          'font-size': '26px',
-                          'font-style': 'normal'}),
-                dbc.CardBody([
-                    Graph(Figure(
-                        subgrounds=sg,
-                        traces=[
-                            # Risk-free value treasury assets
-                            Scatter(
-                                name='Total Reserves',
-                                x=protocol_metrics_1year.datetime,
-                                y=protocol_metrics_1year.treasuryCarbonCustodied,
-                                mode='lines',
-                                line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
-                                stackgroup='one',
-                            ),
-                        ],
-                        layout={
-                            'showlegend': True,
-                            'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white', 'showgrid': False},
-                            'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                      'title': 'Total Reserves', 'showgrid': False},
-                            'legend.font.color': 'white',
-                            'paper_bgcolor': 'rgba(0,0,0,0)',
-                            'plot_bgcolor': 'rgba(0,0,0,0)',
-                            'autosize': True,
-                            'margin': dict(l=20, r=30, t=10, b=20),
-                            'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                        }
-                    ))
-                ]),
+                ], style={'background-color': '#2A2A2A'}),
+                dbc.CardBody([tCC]),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('Backing Asstes in Treasury (Carbon Base)')),
+                    dbc.ModalBody(tCC),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            "Close", id="tCC_close", className="ms-auto", n_clicks=0
+                        )
+                    ),
+                ],
+                    id='tCC_modal',
+                    is_open=False,
+                    size="xl"
+                )
             ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([
@@ -390,48 +331,33 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('TMV/KLIMA vs KLIMA Price'),
+                                dbc.Button('TMV/KLIMA vs KLIMA Price',
+                                           id='tmv_per_klima_btn',
+                                           className='me-1',
+                                           color='link',
+                                           n_clicks=0,
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '24px',
+                                                  'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'color': '#FFFFFF',
-                              'background-color': '#2A2A2A',
-                              'font-weight': '500',
-                              'font-size': '24px',
-                              'font-style': 'normal'}),
-                    dbc.CardBody([
-                        Graph(Figure(
-                            subgrounds=sg,
-                            traces=[
-                                Scatter(
-                                    name='TMV/KLIMA',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.tmv_per_klima,
-                                    line={'width': 0.5, 'color': 'rgb(255, 0, 255)'},
-                                    stackgroup='one',
-                                ),
-                                Scatter(
-                                    name='KLIMA Price',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.klimaPrice,
-                                    line={'width': 0.5, 'color': 'rgb(2, 193, 50)'},
-                                    stackgroup='one',
-                                ),
-                            ],
-                            layout={
-                                'showlegend': True,
-                                'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Treasury Market Value per KLIMA vs KLIMA Price', 'showgrid': False},
-                                'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'showgrid': False},
-                                'legend.font.color': 'white',
-                                'paper_bgcolor': 'rgba(0,0,0,0)',
-                                'plot_bgcolor': 'rgba(0,0,0,0)',
-                                'autosize': True,
-                                'margin': dict(l=20, r=30, t=10, b=20),
-                                'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                            }
-                        ))
-                    ]),
+                    ], style={'background-color': '#2A2A2A'}),
+                    dbc.CardBody([tmv_per_klima]),
+                    dbc.Modal([
+                        dbc.ModalHeader(dbc.ModalTitle('TMV/KLIMA vs KLIMA Price')),
+                        dbc.ModalBody(tmv_per_klima),
+                        dbc.ModalFooter(
+                            dbc.Button(
+                                "Close", id="tmv_per_klima_close", className="ms-auto", n_clicks=0
+                            )
+                        ),
+                    ],
+                        id='tmv_per_klima_modal',
+                        is_open=False,
+                        size="xl"
+                    )
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
@@ -447,100 +373,135 @@ layout = dbc.Container([
                     dbc.CardHeader([
                         dbc.Row([
                             dbc.Col([
-                                dbc.Label('CC/KLIMA vs KLIMA Price'),
+                                dbc.Button('CC/KLIMA vs KLIMA Price',
+                                           id='cc_per_klima_btn',
+                                           className='me-1',
+                                           color='link',
+                                           n_clicks=0,
+                                           style={'color': '#FFFFFF',
+                                                  'background-color': '#2A2A2A',
+                                                  'font-weight': '500',
+                                                  'font-size': '24px',
+                                                  'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'color': '#FFFFFF',
-                              'background-color': '#2A2A2A',
-                              'font-weight': '500',
-                              'font-size': '24px',
-                              'font-style': 'normal'}),
-                    dbc.CardBody([
-                        Graph(Figure(
-                            subgrounds=sg,
-                            traces=[
-                                Scatter(
-                                    name='Risk-Free Value per KLIMA',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.cc_per_klima,
-                                    line={'width': 0.5, 'color': 'blue'},
-                                    stackgroup='one',
-                                ),
-                                Scatter(
-                                    name='KLIMA Price',
-                                    x=protocol_metrics_1year.datetime,
-                                    y=protocol_metrics_1year.klimaPrice,
-                                    line={'width': 0.5, 'color': 'rgb(2, 193, 50)'},
-                                    stackgroup='one',
-                                ),
-                            ],
-                            layout={
-                                'showlegend': True,
-                                'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'CC/KLIMA and KLIMA Price', 'showgrid': False},
-                                'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'showgrid': False},
-                                'legend.font.color': 'white',
-                                'paper_bgcolor': 'rgba(0,0,0,0)',
-                                'plot_bgcolor': 'rgba(0,0,0,0)',
-                                'autosize': True,
-                                'margin': dict(l=20, r=30, t=10, b=20),
-                                'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                            }
-                        ))
-                    ]),
+                    ], style={'background-color': '#2A2A2A'}),
+                    dbc.CardBody([cc_per_klima]),
+                    dbc.Modal([
+                        dbc.ModalHeader(dbc.ModalTitle('CC/Klima')),
+                        dbc.ModalBody(cc_per_klima),
+                        dbc.ModalFooter(
+                            dbc.Button(
+                                "Close", id="cc_per_klima_close", className="ms-auto", n_clicks=0
+                            )
+                        ),
+                    ],
+                        id='cc_per_klima_modal',
+                        is_open=False,
+                        size="xl"
+                    )
                 ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([dbc.Card([
                 dbc.CardHeader([
                     dbc.Row([
                         dbc.Col([
-                            dbc.Label('Staked KLIMA (%): '),
+                            dbc.Button('Staked KLIMA (%): ',
+                                       id='staked_percent_btn',
+                                       className='me-1',
+                                       color='link',
+                                       n_clicks=0,
+                                       style={'color': '#FFFFFF',
+                                              'background-color': '#2A2A2A',
+                                              'font-weight': '500',
+                                              'font-size': '24px',
+                                              'font-style': 'normal'})
                         ]),
                     ]),
-                ], style={'color': '#FFFFFF',
-                          'background-color': '#2A2A2A',
-                          'font-weight': '500',
-                          'font-size': '24px',
-                          'font-style': 'normal'}),
-                dbc.CardBody([
-                    Graph(Figure(
-                        subgrounds=sg,
-                        traces=[
-                            # Risk-free value treasury assets
-                            Scatter(
-                                name='Staked_supply_percent',
-                                x=protocol_metrics_1year.datetime,
-                                y=protocol_metrics_1year.staked_supply_percent,
-                                mode='lines',
-                                line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
-                                stackgroup='one',
-                            ),
-                            Scatter(
-                                name='Unstaked_supply_percent',
-                                x=protocol_metrics_1year.datetime,
-                                y=protocol_metrics_1year.unstaked_supply_percent,
-                                mode='lines',
-                                line={'width': 0.5, 'color': 'rgb(255, 0, 0)'},
-                                stackgroup='one',
-                            )
-                        ],
-                        layout={
-                            'showlegend': True,
-                            'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white', 'showgrid': False},
-                            'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                      'title': 'Staked KLIMA(%)', 'showgrid': False},
-                            'legend.font.color': 'white',
-                            'paper_bgcolor': 'rgba(0,0,0,0)',
-                            'plot_bgcolor': 'rgba(0,0,0,0)',
-                            'autosize': True,
-                            'margin': dict(l=20, r=30, t=10, b=20),
-                            'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-                        }
-                    ))
-                ]),
+                ], style={'background-color': '#2A2A2A'}),
+                dbc.CardBody([staked_percent]),
+                dbc.Modal([
+                    dbc.ModalHeader(dbc.ModalTitle('Staked vs Unstaked Klima')),
+                    dbc.ModalBody(staked_percent),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            "Close", id="staked_percent_close", className="ms-auto", n_clicks=0
+                        )
+                    ),
+                ],
+                    id='staked_percent_modal',
+                    is_open=False,
+                    size="xl"
+                )
             ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
     ], className='center_2'),
 ], id='page_content_analytics', fluid=True)
+
+
+def toggle_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+app.callback(
+    Output("modal", "is_open"),
+    [Input("market_cap_btn", "n_clicks"), Input("close", "n_clicks")],
+    [State("modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("klimaPrice_modal", "is_open"),
+    [Input("klimaPrice_btn", "n_clicks"), Input("klimaPrice_close", "n_clicks")],
+    [State("klimaPrice_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("current_runway_modal", "is_open"),
+    [Input("current_runway_btn", "n_clicks"), Input("current_runway_close", "n_clicks")],
+    [State("current_runway_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("current_AKR_modal", "is_open"),
+    [Input("current_AKR_btn", "n_clicks"), Input("current_AKR_close", "n_clicks")],
+    [State("current_AKR_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("treasury_total_carbon_modal", "is_open"),
+    [Input("treasury_total_carbon_btn", "n_clicks"), Input("treasury_total_carbon_close", "n_clicks")],
+    [State("treasury_total_carbon_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("tmv_modal", "is_open"),
+    [Input("tmv_btn", "n_clicks"), Input("tmv_close", "n_clicks")],
+    [State("tmv_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("tCC_modal", "is_open"),
+    [Input("tCC_btn", "n_clicks"), Input("tCC_close", "n_clicks")],
+    [State("tCC_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("tmv_per_klima_modal", "is_open"),
+    [Input("tmv_per_klima_btn", "n_clicks"), Input("tmv_per_klima_close", "n_clicks")],
+    [State("tmv_per_klima_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("cc_per_klima_modal", "is_open"),
+    [Input("cc_per_klima_btn", "n_clicks"), Input("cc_per_klima_close", "n_clicks")],
+    [State("cc_per_klima_modal", "is_open")],
+)(toggle_modal)
+
+app.callback(
+    Output("staked_percent_modal", "is_open"),
+    [Input("staked_percent_btn", "n_clicks"), Input("staked_percent_close", "n_clicks")],
+    [State("staked_percent_modal", "is_open")],
+)(toggle_modal)
