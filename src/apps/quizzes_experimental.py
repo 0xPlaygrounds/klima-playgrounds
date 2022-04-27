@@ -1,12 +1,12 @@
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
-from dash import html, State
+from dash import State
 from dash.dependencies import Input, Output
 from dash import html
 from millify import millify
 from ..app import app
-from ..klima_subgrounds import sg, protocol_metrics_1year, immediate, last_metric
+from ..klima_subgrounds import sg, immediate, last_metric
 from .data_plots import mkt_cap_plot, klimaPrice, current_runway, current_AKR, treasury_total_carbon, tmv, \
-    tCC, tmv_klima, tmv_per_klima, cc_per_klima, staked_percent
+    tCC, tmv_per_klima, cc_per_klima, staked_percent
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 

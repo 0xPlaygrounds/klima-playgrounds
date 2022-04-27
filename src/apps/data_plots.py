@@ -1,12 +1,6 @@
-import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
-from dash import html, State
-from dash.dependencies import Input, Output
-from dash import html
 from subgrounds.dash_wrappers import Graph
 from subgrounds.plotly_wrappers import Figure, Scatter
-from millify import millify
-from ..app import app
-from ..klima_subgrounds import sg, protocol_metrics_1year, immediate, last_metric
+from ..klima_subgrounds import sg, protocol_metrics_1year
 
 
 mkt_cap_plot = Graph(Figure(
