@@ -4,7 +4,7 @@ from subgrounds.subgrounds import Subgrounds
 
 sg = Subgrounds()
 klimaDAO = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/cujowolf/klima-protocol-metrics')
-#users = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/0xaurelius/klimadao-users')
+# users = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/0xaurelius/klimadao-users')
 
 
 def immediate(sg: Subgrounds, fpath: FieldPath):
@@ -61,6 +61,3 @@ last_metric = klimaDAO.Query.protocolMetrics(
   first=1
 )
 
-#user_aux = users.Query.auxes(
-  #first=1
-#)
