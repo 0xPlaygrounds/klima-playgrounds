@@ -26,19 +26,19 @@ layout = dbc.Container([
                              html.Div([
                                  html.P('WELCOME TO YOUR', className='homepage_topic',
                                         style={'text-align': 'center',
-                                               'padding-top': '10px',
+                                               'padding-top': '5px',
                                                'padding-bottom': '5px'}),
                                  html.Img(src=app.get_asset_url('Green playgrounds.svg'),
-                                          height="120px",
+                                          height="140px",
                                           className='banner_logo',
-                                          style={'text-align': 'center', 'padding-bottom': '20px'}),
+                                          style={'text-align': 'center', 'padding-bottom': '5px'}),
                                  html.Div([
                                      html.Span(
                                          'An on-chain data analytics, education,'
                                          ' and simulation environment for ',
                                          className='landing_main_paragraph_v2'),
-                                     html.Span('KlimaDAO', style={'font-weight': 'bold'}),
-                                 ], style={'font-size': '20px', 'text-align': 'center'}),
+                                     html.Span('KlimaDAO', style={'font-weight': 'bold', 'padding-bottom': '20px'}),
+                                 ], style={'font-size': '20px', 'text-align': 'center', 'padding-bottom': '30px'}),
                              ], style={'text-align': 'center'}),
                          ]),
                        )
@@ -102,17 +102,16 @@ layout = dbc.Container([
                                     dbc.CardBody([
                                         dbc.Row([
                                             html.P('SIMULATIONS',
-                                                   className="landing_main_topic_2",
-                                                   style={'text-align': 'right'}),
+                                                   className="landing_main_topic_2"),
                                             html.P(
                                                 'Klima Playgrounds provides a powerful'
                                                 ' simulation environment to forecast KLIMA rewards'
                                                 ' growth over time and your equivalent carbon'
                                                 ' offsets from holding and staking KLIMA',
                                                 className='landing_main_paragraph_v2',
-                                                style={'text-align': 'right'}
+                                                style={'text-align': 'right', 'padding': '10px'}
                                             )
-                                        ], style={'padding': '10px'}),
+                                        ]),
                                         dbc.Row([
                                             dbc.Button('SIMULATIONS',
                                                        id='landing_page_learn_btn',
