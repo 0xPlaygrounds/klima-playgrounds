@@ -60,4 +60,3 @@ last_metric = klimaDAO.Query.protocolMetrics(
   orderDirection='desc',
   first=1
 )
-
