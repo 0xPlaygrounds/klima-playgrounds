@@ -95,8 +95,8 @@ layout = dbc.Container([
                                                   'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'background-color': '#2A2A2A'}),
-                    dbc.CardBody([mkt_cap_plot]),
+                    ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                    dbc.CardBody([mkt_cap_plot], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Market Cap')),
                         dbc.ModalBody(mkt_cap_plot),
@@ -108,9 +108,9 @@ layout = dbc.Container([
                     ],
                         id='modal',
                         is_open=False,
-                        size="xl"
+                        size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                     )
-                ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
+                ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([
                 dbc.Card([
@@ -129,8 +129,8 @@ layout = dbc.Container([
                                                   'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'background-color': '#2A2A2A'}),
-                    dbc.CardBody([klimaPrice]),
+                    ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                    dbc.CardBody([klimaPrice], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Klima Price')),
                         dbc.ModalBody(klimaPrice),
@@ -142,9 +142,9 @@ layout = dbc.Container([
                     ],
                         id='klimaPrice_modal',
                         is_open=False,
-                        size="xl"
+                        size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                     )
-                ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
+                ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
         dbc.Row([
@@ -165,8 +165,8 @@ layout = dbc.Container([
                                                   'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'background-color': '#2A2A2A'}),
-                    dbc.CardBody([current_runway]),
+                    ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                    dbc.CardBody([current_runway], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Current Runway')),
                         dbc.ModalBody(current_runway),
@@ -178,9 +178,9 @@ layout = dbc.Container([
                     ],
                         id='current_runway_modal',
                         is_open=False,
-                        size="xl"
+                        size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                     )
-                ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
+                ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([
                 dbc.Card([
@@ -199,8 +199,8 @@ layout = dbc.Container([
                                                   'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'background-color': '#2A2A2A'}),
-                    dbc.CardBody([current_AKR]),
+                    ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                    dbc.CardBody([current_AKR], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Current AKR')),
                         dbc.ModalBody(current_AKR),
@@ -212,9 +212,9 @@ layout = dbc.Container([
                     ],
                         id='current_AKR_modal',
                         is_open=False,
-                        size="xl"
+                        size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                     )
-                ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
+                ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
         dbc.Row([
@@ -241,8 +241,8 @@ layout = dbc.Container([
                                                   'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'background-color': '#2A2A2A'}),
-                    dbc.CardBody([treasury_total_carbon]),
+                    ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                    dbc.CardBody([treasury_total_carbon], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Treasury Total Carbon')),
                         dbc.ModalBody(treasury_total_carbon),
@@ -254,9 +254,9 @@ layout = dbc.Container([
                     ],
                         id='treasury_total_carbon_modal',
                         is_open=False,
-                        size="xl"
+                        size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                     )
-                ], style={'height': '100%'}, color='#2A2A2A', inverse=True)
+                ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True)
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([dbc.Card([
                 dbc.CardHeader([
@@ -274,8 +274,8 @@ layout = dbc.Container([
                                               'font-style': 'normal'})
                         ]),
                     ]),
-                ], style={'background-color': '#2A2A2A'}),
-                dbc.CardBody([tmv]),
+                ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                dbc.CardBody([tmv], style={'font-size': '20px', 'border-radius': '20px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Mkt Value of Treasury Assets')),
                     dbc.ModalBody(tmv),
@@ -287,9 +287,9 @@ layout = dbc.Container([
                 ],
                     id='tmv_modal',
                     is_open=False,
-                    size="xl"
+                    size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                 )
-            ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
+            ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
         dbc.Row([
@@ -309,8 +309,8 @@ layout = dbc.Container([
                                               'font-style': 'normal'})
                         ]),
                     ]),
-                ], style={'background-color': '#2A2A2A'}),
-                dbc.CardBody([tCC]),
+                ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                dbc.CardBody([tCC], style={'font-size': '20px', 'border-radius': '20px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Backing Asstes in Treasury (Carbon Base)')),
                     dbc.ModalBody(tCC),
@@ -322,9 +322,9 @@ layout = dbc.Container([
                 ],
                     id='tCC_modal',
                     is_open=False,
-                    size="xl"
+                    size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                 )
-            ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
+            ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([
                 dbc.Card([
@@ -343,8 +343,8 @@ layout = dbc.Container([
                                                   'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'background-color': '#2A2A2A'}),
-                    dbc.CardBody([tmv_per_klima]),
+                    ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                    dbc.CardBody([tmv_per_klima], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('TMV/KLIMA vs KLIMA Price')),
                         dbc.ModalBody(tmv_per_klima),
@@ -356,9 +356,9 @@ layout = dbc.Container([
                     ],
                         id='tmv_per_klima_modal',
                         is_open=False,
-                        size="xl"
+                        size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                     )
-                ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
+                ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
         dbc.Row([
@@ -385,8 +385,8 @@ layout = dbc.Container([
                                                   'font-style': 'normal'})
                             ]),
                         ]),
-                    ], style={'background-color': '#2A2A2A'}),
-                    dbc.CardBody([cc_per_klima]),
+                    ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                    dbc.CardBody([cc_per_klima], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('CC/Klima')),
                         dbc.ModalBody(cc_per_klima),
@@ -398,9 +398,9 @@ layout = dbc.Container([
                     ],
                         id='cc_per_klima_modal',
                         is_open=False,
-                        size="xl"
+                        size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                     )
-                ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
+                ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([dbc.Card([
                 dbc.CardHeader([
@@ -418,8 +418,8 @@ layout = dbc.Container([
                                               'font-style': 'normal'})
                         ]),
                     ]),
-                ], style={'background-color': '#2A2A2A'}),
-                dbc.CardBody([staked_percent]),
+                ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
+                dbc.CardBody([staked_percent], style={'font-size': '20px', 'border-radius': '20px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Staked vs Unstaked Klima')),
                     dbc.ModalBody(staked_percent),
@@ -431,9 +431,9 @@ layout = dbc.Container([
                 ],
                     id='staked_percent_modal',
                     is_open=False,
-                    size="xl"
+                    size="xl", style={'font-size': '20px', 'border-radius': '20px'}
                 )
-            ], style={'height': '100%'}, color='#2A2A2A', inverse=True),
+            ], style={'height': '100%', 'border-radius': '20px'}, color='#2A2A2A', inverse=True),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
     ], className='center_2'),

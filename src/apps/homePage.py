@@ -50,79 +50,55 @@ layout = dbc.Container([
             dbc.Col([
                 html.Div([
                     dbc.Row([
-                            dbc.CardGroup([
-                                    dbc.Card([
-                                        dbc.CardBody([
-                                            dbc.Row([
-                                                html.P('ANALYTICS',
-                                                       className="landing_main_topic_2",
-                                                       style={'text-align': 'left'}),
-                                                html.P(
-                                                    'Klima Playgrounds provides a powerful on-chain data analytics '
-                                                    'environment powered by Subgrounds, an on-chain data extraction, '
-                                                    'transformation and visualization engine designed '
-                                                    'to interface with The Graph Network',
-                                                    className='landing_main_paragraph_v2',
-                                                    style={'text-align': 'left'}
-                                                )
-                                            ], style={'padding': '10px'}),
-                                            dbc.Row([
-                                                dbc.Button('ANALYTICS',
-                                                           id='landing_page_learn_btn',
-                                                           href="/apps/quizzes_experimental",
-                                                           color='#038523',
-                                                           className='landing_button_enter', )
-                                            ], style={'justify-content': 'left', 'padding': '20px',
-                                                      'padding-bottom': '10px'})
-                                        ])
-                                    ], style={'font-size': '24px'}),
-                                    dbc.Card([
-                                        dbc.CardImg(
-                                            src=app.get_asset_url("analyticsimage2.jpg"),
-                                            top=True,
-                                            style={'object-fit': 'fill'}
-                                        ),
-                                    ]),
-                            ], style={'border-radius': '20px'})
-                            ], className='row-eq-height'),
-                ], className='center')
-            ], sm=12, md=12, lg=12, xl=12)
-        ], style={'padding': '20px'}),
-        dbc.Row([
-            dbc.Col([
-                html.Div([
-                    dbc.Row([
-                        dbc.CardGroup([
-                                dbc.Card([
-                                        dbc.CardImg(
-                                            src=app.get_asset_url("simulationimage.jpg"),
-                                        ),
-                                ]),
-                                dbc.Card([
-                                    dbc.CardBody([
-                                        dbc.Row([
-                                            html.P('SIMULATIONS',
-                                                   className="landing_main_topic_2"),
-                                            html.P(
-                                                'Klima Playgrounds provides a powerful'
-                                                ' simulation environment to forecast KLIMA rewards'
-                                                ' growth over time and your equivalent carbon'
-                                                ' offsets from holding and staking KLIMA',
-                                                className='landing_main_paragraph_v2',
-                                                style={'text-align': 'right', 'padding': '10px'}
-                                            )
-                                        ]),
-                                        dbc.Row([
-                                            dbc.Button('SIMULATIONS',
-                                                       id='landing_page_learn_btn',
-                                                       href="/apps/playgroundSimulation_KlimaGrowthOverTime",
-                                                       color='#038523',
-                                                       className='landing_button_enter', )
-                                        ], style={'justify-content': 'right', 'padding': '20px',
-                                                  'padding-bottom': '10px'})
-                                    ])
-                                ]),
-                        ], style={'border-radius': '20px'}),
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardBody([
+                                    dbc.Row([
+                                        html.P('ANALYTICS',
+                                               className="homepage_topic",
+                                               style={'text-align': 'left'}),
+                                        html.P(
+                                            'Access on-chain data analytics powered by '
+                                            'Playgrounds and The Graph Network ',
+                                            className='landing_main_paragraph_v2',
+                                            style={'text-align': 'left'}
+                                        )
+                                    ], style={'padding': '10px'}),
+                                    dbc.Row([
+                                        dbc.Button('ANALYTICS',
+                                                   id='landing_page_learn_btn',
+                                                   href="/apps/quizzes_experimental",
+                                                   color='#038523',
+                                                   className='landing_button_enter',
+                                                   style={'text-align': 'center'})
+                                    ], style={'justify-content': 'left', 'padding': '20px',
+                                              'padding-bottom': '10px'})
+                                ])
+                            ], style={'font-size': '20px', 'border-radius': '20px'}),
+                        ], sm=12, md=12, lg=6, xl=6),
+                        dbc.Col([
+                            dbc.Card([
+                                dbc.CardBody([
+                                    dbc.Row([
+                                        html.P('SIMULATIONS',
+                                               className="homepage_topic"),
+                                        html.P(
+                                            'Gain insight on protcol interactions using the built in simulation tool',
+                                            className='landing_main_paragraph_v2',
+                                            style={'text-align': 'left'}
+                                        )
+                                    ], style={'padding': '10px'}),
+                                    dbc.Row([
+                                        dbc.Button('SIMULATIONS',
+                                                   id='landing_page_learn_btn',
+                                                   href="/apps/playgroundSimulation_KlimaGrowthOverTime",
+                                                   color='#038523',
+                                                   className='landing_button_enter', )
+                                    ], style={'justify-content': 'left', 'padding': '20px',
+                                              'padding-bottom': '10px'})
+                                ])
+                            ], style={'font-size': '20px', 'border-radius': '20px'}),
+                        ], sm=12, md=12, lg=6, xl=6),
                     ], className='row-eq-height'),
                 ], className='center')
             ], sm=12, md=12, lg=12, xl=12)
