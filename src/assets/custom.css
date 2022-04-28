@@ -116,7 +116,7 @@
   color: #FFFFFF;
 }
 .page_section_topic{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins-SemiBold', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 64px;
@@ -273,10 +273,10 @@
   color: #FFFFFF;
 }
 .analytics_card_topic{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins-SemiBold', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 26px;
+  font-size: 40px;
   line-height: 54px;
   text-align: center;
   color: #FFFFFF;
@@ -311,10 +311,10 @@
   margin: auto;
 }
 .analytics_card_metric{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 26px;
   line-height: 54px;
   text-align: center;
   color: #FFFFFF;
@@ -599,7 +599,6 @@ body{
   height: 300px;
   object-fit: cover
 }
-
 @media only screen and (max-width: 500px) {
   .landing_main_image{
     opacity: 0.2;
@@ -694,11 +693,20 @@ body{
     font-size: 15px;
     color: #C4C4C4;
 }
-  .analytics_card_metric{
-  font-family: 'Poppins', sans-serif;
+  .analytics_card_topic{
+  font-family: 'Poppins-SemiBold', sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 40px;
+  line-height: 54px;
+  text-align: center;
+  color: #FFFFFF;
+}
+  .analytics_card_metric{
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
   line-height: 54px;
   text-align: center;
   color: #FFFFFF;
