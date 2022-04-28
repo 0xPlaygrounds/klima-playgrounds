@@ -29,7 +29,15 @@ mkt_cap_plot = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-    }
+        'newshape_line_color': '#00CC33',
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
+    },
 ))
 
 klimaPrice = Graph(Figure(
@@ -57,6 +65,15 @@ klimaPrice = Graph(Figure(
         'plot_bgcolor': 'rgba(0,0,0,0)',
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
+        'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'newshape_line_color': '#00CC33',
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ), style={'width': '100%'})
 
@@ -87,6 +104,14 @@ current_runway = Graph(Figure(
                                 'autosize': True,
                                 'margin': dict(l=20, r=30, t=10, b=20),
                                 'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+                                'newshape_line_color': '#00CC33',
+                                'modebar_add': ['drawline',
+                                                'drawopenpath',
+                                                'drawclosedpath',
+                                                'drawcircle',
+                                                'drawrect',
+                                                'eraseshape'
+                                                ],
                             }
                         ))
 
@@ -117,6 +142,13 @@ current_AKR = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
 
@@ -147,6 +179,13 @@ treasury_total_carbon = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
 
@@ -178,6 +217,13 @@ tmv = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
 
@@ -209,6 +255,13 @@ tCC = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
 
@@ -246,6 +299,13 @@ tmv_klima = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
 
@@ -283,6 +343,13 @@ tmv_per_klima = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
 
@@ -320,6 +387,13 @@ cc_per_klima = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
 
@@ -359,5 +433,12 @@ staked_percent = Graph(Figure(
         'autosize': True,
         'margin': dict(l=20, r=30, t=10, b=20),
         'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+        'modebar_add': ['drawline',
+                        'drawopenpath',
+                        'drawclosedpath',
+                        'drawcircle',
+                        'drawrect',
+                        'eraseshape'
+                        ],
     }
 ))
