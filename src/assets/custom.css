@@ -34,7 +34,7 @@
   font-size: 24px;
   color: #FFFFFF;
   background-color: #202020;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 20px 20px 20px 20px;
 }
 .learning_hub_category_card_topic{
   font-family: 'Poppins-SemiBold', sans-serif;
@@ -73,7 +73,7 @@
   background: #303030;
   border: 1px solid #00CC33;
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 10px;
   justify-content:center;
 }
@@ -85,7 +85,7 @@
   background: #2A2A2A;
   /*border: 1px solid #00CC33;*/
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 10px;
   justify-content:center;
 }
@@ -95,7 +95,7 @@
   font-weight: 500;
   font-size: 24px;
   color: #FFFFFF;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 20px 20px 20px 20px;
 }
 .simulator_hub_co2_metric_topic{
   font-family: 'Poppins-Semibold', sans-serif;
@@ -128,7 +128,7 @@
   background: #303030;
   border: 1px solid #00CC33;
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 10px;
   justify-content:center;
 }
@@ -136,7 +136,7 @@
   background: #303030;
   border: 2px solid #00CC33;
   box-sizing: border-box;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 .emission_card_topic{
   font-family: 'Inter', sans-serif;
@@ -177,19 +177,19 @@
   font-weight: 500;
   font-size: 24px;
   color: #FFFFFF;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 20px 20px 20px 20px;
 }
 .enclosure_card_style{
   background: #232b2b;
   mix-blend-mode: normal;
   border-color: #00CC33;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 /* Rectangle 20 */
 
 .roi_card_style{
   background: linear-gradient(103.71deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 98.83%);
-  border-radius: 15px;
+  border-radius: 20px;
 }
 .roi_card_topic{
   font-family: 'Inter', sans-serif;
@@ -252,7 +252,7 @@
   background: #202020;
   mix-blend-mode: normal;
   box-shadow: 0px 0px 10px 3px #00CC33;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 .bonding_roi_card_metrics{
   font-family: 'Poppins', sans-serif;
@@ -293,7 +293,7 @@
   height: 100px;
   background: #4A4A4A;
   opacity: 1;
-  border-radius: 15px;
+  border-radius: 20px;
   margin: auto;
 }
 .bonding_roi_card_metrics_secondary_v2{
@@ -307,7 +307,7 @@
   width: 213px;
   height: 100px;
   opacity: 1;
-  border-radius: 15px;
+  border-radius: 20px;
   margin: auto;
 }
 .analytics_card_metric{
@@ -350,7 +350,7 @@
   height: 280px;
   width: 200px;
   background-color: #17141d;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: -1rem 0 3rem #000;
 /*   margin-left: -50px; */
   transition: 0.4s ease-out;
@@ -470,7 +470,7 @@ body{
   color:#926239;
   border:#926239 1px solid;
   padding:10px 20px;
-  border-radius:10px;
+  border-radius:20px;
   margin-top:20px;
   width: 215px;
   height: 54px;
@@ -487,14 +487,14 @@ body{
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     width: 215px;
-    height: 54px;
     color: #FFFFFF;
     background: #02C132;
     border-radius: 5px;
     font-size:18px;
     text-decoration:none;
-    padding:10px 20px;
-    margin-top:20px;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
     }
 .landing_button_enter:hover{
     background: #038523;
@@ -510,8 +510,6 @@ body{
     border-radius: 5px;
     font-size:18px;
     text-decoration:none;
-    padding:10px 20px;
-    margin-top:20px;
     }
 
 .landing_welcome_topic{
