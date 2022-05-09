@@ -2,6 +2,7 @@ from dash import dcc
 import dash_bootstrap_components as dbc
 from dash import html
 from dash.dependencies import Input, Output
+from dash.exceptions import PreventUpdate
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
@@ -631,8 +632,11 @@ layout = dbc.Container([
     Input(component_id='bond_roi', component_property='value'),
     Input(component_id='reward_yield', component_property='value'),
 ])
-# region Description: Function to calculate Klima growth over time
 def bonding_simulation(klima_price, initial_klima, bond_roi, reward_yield):
+    for arg in locals().values():
+        if arg is None:
+            raise PreventUpdate
+
     # Protocol and Klima calcs:
     usd_bonded = klima_price * initial_klima
     bond_roi = (bond_roi / 100)
