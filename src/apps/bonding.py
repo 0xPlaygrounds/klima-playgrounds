@@ -10,6 +10,7 @@ import numpy as np
 from ..app import app
 from ..components import bonding_guides as b_g
 from ..components.disclaimer import short_disclaimer_row
+from ..klima_subgrounds import sg, immediate, last_metric
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
@@ -257,7 +258,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=800,
+                                                value=round(immediate(sg, last_metric.klimaPrice), 1),
                                                 className="input_box_number",
                                                 style={'color': 'white'})]),
                                         dbc.Col([
