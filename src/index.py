@@ -4,8 +4,7 @@ from dash import State, html
 from dash.dependencies import Input, Output
 from .app import app
 
-from .apps import playgroundSimulation_KlimaGrowthOverTime, \
-    playgroundsSimulation_KlimaBonding, quizzes_experimental, disclaimerPage, homePage
+from .apps import staking, bonding, analytics, disclaimer, home
 
 CONTENT_STYLE = {
     "position": "relative",
@@ -27,15 +26,15 @@ FOOTER_STYLE = {
 menu_bar = dbc.DropdownMenu(
                children=[
                    dbc.DropdownMenuItem("Home Page",
-                                        href="/apps/homePage"),
+                                        href="/apps/home"),
                    dbc.DropdownMenuItem("Analytics",
-                                        href="/apps/quizzes_experimental"),
+                                        href="/apps/analytics"),
                    dbc.DropdownMenuItem("Staking Simulator",
-                                        href="/apps/playgroundSimulation_KlimaGrowthOverTime"),
+                                        href="/apps/staking"),
                    dbc.DropdownMenuItem("Bonding Simulator",
-                                        href="/apps/playgroundsSimulation_KlimaBonding"),
+                                        href="/apps/bonding"),
                    dbc.DropdownMenuItem("KlimaDAO",
-                                        href="https://www.klimadao.finance/#/stake"),
+                                        href="https://www.klimadao.finance/"),
                    dbc.DropdownMenuItem("Learn More",
                                         href="https://docs.klimadao.finance/"),
                    dbc.DropdownMenuItem("Feedback",
@@ -62,7 +61,7 @@ navbar = dbc.Navbar(
                 align="center",
                 className="g-0",
             ),
-            href="/apps/homePage"
+            href="/apps/home"
         ),
         dbc.NavbarToggler(id="navbar-toggler", n_clicks=0, style={"justify-content": "right"}),
         dbc.Collapse(
@@ -99,18 +98,18 @@ def toggle_navbar_collapse(n, is_open):
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
-    if pathname == '/apps/homePage':
-        return homePage.layout
-    elif pathname == '/apps/quizzes_experimental':
-        return quizzes_experimental.layout
-    elif pathname == '/apps/playgroundSimulation_KlimaGrowthOverTime':
-        return playgroundSimulation_KlimaGrowthOverTime.layout
-    elif pathname == '/apps/playgroundsSimulation_KlimaBonding':
-        return playgroundsSimulation_KlimaBonding.layout
+    if pathname == '/apps/home':
+        return home.layout
+    elif pathname == '/apps/analytics':
+        return analytics.layout
+    elif pathname == '/apps/staking':
+        return staking.layout
+    elif pathname == '/apps/bonding':
+        return bonding.layout
     elif pathname == '/disclaimer':
-        return disclaimerPage.layout
+        return disclaimer.layout
     else:
-        return homePage.layout
+        return home.layout
 
 
 # For Gunicorn to reference

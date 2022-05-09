@@ -8,10 +8,11 @@ import pandas as pd
 import numpy as np
 import math
 from millify import millify
+from dash.exceptions import PreventUpdate
 
 from ..app import app
 from ..components import staking_guides as s_g
-from ..components import playgrounds_guide_staking as p_g_s
+from ..components import playgrounds_staking_guide as p_g_s
 from ..components.disclaimer import short_disclaimer_row
 from ..config import RFV_TERM, RFV_WORDS
 
@@ -1545,6 +1546,9 @@ def klimaGrowth_Projection(growthDays, initialKlima,
                            desired_klima_usdc, desired_klima_unit,
                            desired_daily_rewards_usdc,
                            desired_weekly_rewards_usdc):
+    for arg in locals().values():
+        if arg is None:
+            raise PreventUpdate
     # ===========================Variable definitions and prep===============================
     # In this section we take the input variables and do any kind of prep work
     klimaGrowthEpochs = (growthDays * 3.3) + 1

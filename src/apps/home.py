@@ -4,7 +4,6 @@ import base64
 
 from ..app import app
 
-url = "https://assets6.lottiefiles.com/packages/lf20_0ac4xdrp.json"
 image_filename = 'src/assets/Forest Playground 2.png'
 encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 
@@ -67,7 +66,7 @@ layout = dbc.Container([
                                     dbc.Row([
                                         dbc.Button('ANALYTICS',
                                                    id='landing_page_learn_btn',
-                                                   href="/apps/quizzes_experimental",
+                                                   href="/apps/analytics",
                                                    color='#038523',
                                                    className='landing_button_enter',
                                                    style={'text-align': 'center'})
@@ -91,7 +90,7 @@ layout = dbc.Container([
                                     dbc.Row([
                                         dbc.Button('SIMULATIONS',
                                                    id='landing_page_learn_btn',
-                                                   href="/apps/playgroundSimulation_KlimaGrowthOverTime",
+                                                   href="/apps/staking",
                                                    color='#038523',
                                                    className='landing_button_enter', )
                                     ], style={'justify-content': 'left', 'padding': '20px',
