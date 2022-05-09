@@ -5,7 +5,7 @@ from dash import html
 from millify import millify
 from ..app import app
 from ..klima_subgrounds import sg, last_metric
-from .data_plots import mkt_cap_plot, klima_price, current_runway, current_AKR, treasury_total_carbon, tmv, \
+from .data import mkt_cap_plot, klima_price, current_runway, current_AKR, treasury_total_carbon, tmv, \
     tCC, tmv_per_klima, cc_per_klima, staked_percent
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
