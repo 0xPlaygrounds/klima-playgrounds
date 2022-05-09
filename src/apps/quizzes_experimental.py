@@ -4,8 +4,8 @@ from dash.dependencies import Input, Output
 from dash import html
 from millify import millify
 from ..app import app
-from ..klima_subgrounds import sg, immediate, last_metric
-from .data_plots import mkt_cap_plot, klimaPrice, current_runway, current_AKR, treasury_total_carbon, tmv, \
+from ..klima_subgrounds import sg, last_metric
+from .data_plots import mkt_cap_plot, klima_price, current_runway, current_AKR, treasury_total_carbon, tmv, \
     tCC, tmv_per_klima, cc_per_klima, staked_percent
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
@@ -26,7 +26,7 @@ layout = dbc.Container([
                         html.H2('Mkt Cap', className='analytics_card_topic'),
                         html.H4('$' +
                                 millify(
-                                    immediate(sg, last_metric.marketCap),
+                                    sg.query(last_metric.marketCap),
                                     precision=2),
                                 style={'text-align': 'center'},
                                 className='analytics_card_metric'
@@ -41,7 +41,7 @@ layout = dbc.Container([
                         html.H2('Price', className='analytics_card_topic'),
                         html.H4('$' +
                                 millify(
-                                    immediate(sg, last_metric.klimaPrice),
+                                    sg.query(last_metric.klimaPrice),
                                     precision=2),
                                 style={'text-align': 'center'},
                                 className='analytics_card_metric'
@@ -56,7 +56,7 @@ layout = dbc.Container([
                         html.H2('TVD', className='analytics_card_topic'),
                         html.H4('$' +
                                 millify(
-                                    immediate(sg, last_metric.totalValueLocked),
+                                    sg.query(last_metric.totalValueLocked),
                                     precision=2),
                                 style={'text-align': 'center'}, className='analytics_card_metric'
                                 ),
@@ -70,7 +70,7 @@ layout = dbc.Container([
                         html.H2('Runway', className='analytics_card_topic'),
                         html.H4(
                             millify(
-                                immediate(sg, last_metric.runwayCurrent),
+                                sg.query(last_metric.runwayCurrent),
                                 precision=2) + ' days',
                             style={'text-align': 'center'}, className='analytics_card_metric'
                         ),
@@ -98,10 +98,10 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([mkt_cap_plot], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody([mkt_cap_plot()], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Market Cap')),
-                        dbc.ModalBody(mkt_cap_plot),
+                        dbc.ModalBody(mkt_cap_plot()),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="close", className="ms-auto", n_clicks=0
@@ -132,10 +132,10 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([klimaPrice], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody([klima_price()], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Klima Price', className='analytics_card_topic')),
-                        dbc.ModalBody(klimaPrice),
+                        dbc.ModalBody(klima_price()),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="klimaPrice_close", className="ms-auto", n_clicks=0
@@ -168,10 +168,10 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([current_runway], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody([current_runway()], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Current Runway', className='analytics_card_topic')),
-                        dbc.ModalBody(current_runway),
+                        dbc.ModalBody(current_runway()),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="current_runway_close", className="ms-auto", n_clicks=0
@@ -202,10 +202,10 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([current_AKR], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody([current_AKR()], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Current AKR', className='analytics_card_topic')),
-                        dbc.ModalBody(current_AKR),
+                        dbc.ModalBody(current_AKR()),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="current_AKR_close", className="ms-auto", n_clicks=0
@@ -244,10 +244,10 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([treasury_total_carbon], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody([treasury_total_carbon()], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Treasury Total Carbon', className='analytics_card_topic')),
-                        dbc.ModalBody(treasury_total_carbon),
+                        dbc.ModalBody(treasury_total_carbon()),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="treasury_total_carbon_close", className="ms-auto", n_clicks=0
@@ -277,10 +277,10 @@ layout = dbc.Container([
                         ]),
                     ]),
                 ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                dbc.CardBody([tmv], style={'font-size': '20px', 'border-radius': '20px'}),
+                dbc.CardBody([tmv()], style={'font-size': '20px', 'border-radius': '20px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Mkt Value of Treasury Assets', className='analytics_card_topic')),
-                    dbc.ModalBody(tmv),
+                    dbc.ModalBody(tmv()),
                     dbc.ModalFooter(
                         dbc.Button(
                             "Close", id="tmv_close", className="ms-auto", n_clicks=0
@@ -312,11 +312,11 @@ layout = dbc.Container([
                         ]),
                     ]),
                 ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                dbc.CardBody([tCC], style={'font-size': '20px', 'border-radius': '20px'}),
+                dbc.CardBody([tCC()], style={'font-size': '20px', 'border-radius': '20px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Backing Asstes in Treasury (Carbon Base)',
                                                    className='analytics_card_topic')),
-                    dbc.ModalBody(tCC),
+                    dbc.ModalBody(tCC()),
                     dbc.ModalFooter(
                         dbc.Button(
                             "Close", id="tCC_close", className="ms-auto", n_clicks=0
@@ -347,10 +347,10 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([tmv_per_klima], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody([tmv_per_klima()], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('TMV/KLIMA vs KLIMA Price', className='analytics_card_topic')),
-                        dbc.ModalBody(tmv_per_klima),
+                        dbc.ModalBody(tmv_per_klima()),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="tmv_per_klima_close", className="ms-auto", n_clicks=0
@@ -389,10 +389,10 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([cc_per_klima], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody([cc_per_klima()], style={'font-size': '20px', 'border-radius': '20px'}),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('CC/Klima', className='analytics_card_topic')),
-                        dbc.ModalBody(cc_per_klima),
+                        dbc.ModalBody(cc_per_klima()),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="cc_per_klima_close", className="ms-auto", n_clicks=0
@@ -422,10 +422,10 @@ layout = dbc.Container([
                         ]),
                     ]),
                 ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                dbc.CardBody([staked_percent], style={'font-size': '20px', 'border-radius': '20px'}),
+                dbc.CardBody([staked_percent()], style={'font-size': '20px', 'border-radius': '20px'}),
                 dbc.Modal([
                     dbc.ModalHeader(dbc.ModalTitle('Staked vs Unstaked Klima'), className='analytics_card_topic'),
-                    dbc.ModalBody(staked_percent),
+                    dbc.ModalBody(staked_percent()),
                     dbc.ModalFooter(
                         dbc.Button(
                             "Close", id="staked_percent_close", className="ms-auto", n_clicks=0

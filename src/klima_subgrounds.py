@@ -2,14 +2,14 @@ from datetime import datetime
 from subgrounds.subgraph import SyntheticField, FieldPath
 from subgrounds.subgrounds import Subgrounds
 
+import logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='subgrounds.log', level=logging.INFO)
+logger = logging.getLogger('subgrounds')
+logger.setLevel(logging.DEBUG)
+
 sg = Subgrounds()
 klimaDAO = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/cujowolf/klima-protocol-metrics')
 # users = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/0xaurelius/klimadao-users')
-
-
-def immediate(sg: Subgrounds, fpath: FieldPath):
-    data = sg.execute(sg.mk_request([fpath]))
-    return fpath.extract_data(data)[0]
 
 
 # Define useful synthetic fields
