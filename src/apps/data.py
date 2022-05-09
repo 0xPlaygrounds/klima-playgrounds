@@ -1,9 +1,8 @@
-from subgrounds.dash_wrappers import Graph
+from subgrounds.dash_wrappers import AutoUpdate, Graph
 from subgrounds.plotly_wrappers import Figure, Scatter
 from ..klima_subgrounds import sg, protocol_metrics_1year
-
+from ..app import app
 import time
-
 from functools import cache
 
 
@@ -19,6 +18,16 @@ def time_cache(seconds=3600):
 
         return wrapper
 
+    return decorator
+
+
+def wrap_autoupdate(seconds=300):
+    def decorator(func):
+        def wrapper():
+            return AutoUpdate(app, sec_interval=seconds, children=[func()])
+
+        return wrapper
+    
     return decorator
 
 
@@ -61,6 +70,7 @@ def mkt_cap_plot():
         },
     ))
 
+
 @time_cache(seconds=30)
 def klima_price():
     return Graph(Figure(
@@ -99,6 +109,7 @@ def klima_price():
                             ],
         }
     ), style={'width': '100%'})
+
 
 @time_cache(seconds=30)
 def current_runway():
@@ -140,6 +151,7 @@ def current_runway():
         }
     ))
 
+
 @time_cache(seconds=30)
 def current_AKR():
     return Graph(Figure(
@@ -179,6 +191,7 @@ def current_AKR():
         }
     ))
 
+
 @time_cache(seconds=30)
 def treasury_total_carbon():
     return Graph(Figure(
@@ -217,6 +230,7 @@ def treasury_total_carbon():
                             ],
         }
     ))
+
 
 @time_cache(seconds=30)
 def tmv():
@@ -258,6 +272,7 @@ def tmv():
         }
     ))
 
+
 @time_cache(seconds=30)
 def tCC():
     return Graph(Figure(
@@ -297,6 +312,7 @@ def tCC():
                             ],
         }
     ))
+
 
 @time_cache(seconds=30)
 def tmv_klima():
@@ -344,6 +360,7 @@ def tmv_klima():
         }
     ))
 
+
 @time_cache(seconds=30)
 def tmv_per_klima():
     return Graph(Figure(
@@ -390,6 +407,7 @@ def tmv_per_klima():
         }
     ))
 
+
 @time_cache(seconds=30)
 def cc_per_klima():
     return Graph(Figure(
@@ -435,6 +453,7 @@ def cc_per_klima():
                             ],
         }
     ))
+
 
 @time_cache(seconds=30)
 def staked_percent():
