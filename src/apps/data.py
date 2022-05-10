@@ -31,7 +31,7 @@ def wrap_autoupdate(seconds=300):
     return decorator
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def mkt_cap_plot():
     return Graph(Figure(
         subgrounds=sg,
@@ -71,7 +71,7 @@ def mkt_cap_plot():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def klima_price():
     return Graph(Figure(
         subgrounds=sg,
@@ -111,7 +111,7 @@ def klima_price():
     ), style={'width': '100%'})
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def current_runway():
     return Graph(Figure(
         subgrounds=sg,
@@ -152,7 +152,7 @@ def current_runway():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def current_AKR():
     return Graph(Figure(
         subgrounds=sg,
@@ -192,7 +192,7 @@ def current_AKR():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def treasury_total_carbon():
     return Graph(Figure(
         subgrounds=sg,
@@ -232,7 +232,7 @@ def treasury_total_carbon():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def tmv():
     return Graph(Figure(
         subgrounds=sg,
@@ -273,7 +273,7 @@ def tmv():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def tCC():
     return Graph(Figure(
         subgrounds=sg,
@@ -314,7 +314,7 @@ def tCC():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def tmv_klima():
     return Graph(Figure(
         subgrounds=sg,
@@ -361,7 +361,7 @@ def tmv_klima():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def tmv_per_klima():
     return Graph(Figure(
         subgrounds=sg,
@@ -408,7 +408,7 @@ def tmv_per_klima():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def cc_per_klima():
     return Graph(Figure(
         subgrounds=sg,
@@ -455,7 +455,7 @@ def cc_per_klima():
     ))
 
 
-@time_cache(seconds=30)
+# @wrap_autoupdate(seconds=21600)
 def staked_percent():
     return Graph(Figure(
         subgrounds=sg,

@@ -1,8 +1,11 @@
-import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
+import dash_bootstrap_components as dbc
+from dash import dcc
 from dash import State
-from dash.dependencies import Input, Output
-from dash import html
+# from dash.dependencies import Input, Output
+from dash_extensions.enrich import DashBlueprint, ServersideOutput, Output, Input, Trigger, html
+# from dash import html
 from millify import millify
+from subgrounds.dash_wrappers import Graph
 from ..app import app
 from ..klima_subgrounds import sg, last_metric
 from .data import mkt_cap_plot, klima_price, current_runway, current_AKR, treasury_total_carbon, tmv, \
@@ -11,7 +14,27 @@ from .data import mkt_cap_plot, klima_price, current_runway, current_AKR, treasu
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 
 
+def analytics_card_metric(
+    name: str,
+    id: str,
+) -> dbc.CardBody:
+    # Note: children (i.e.: data) is left intentionally blank as it 
+    # is set in the `set_data` callback
+    return dbc.CardBody([
+        html.H2(name, className='analytics_card_topic'),
+        html.H4(
+            style={'text-align': 'center'},
+            className='analytics_card_metric', 
+            id=id
+        ),
+    ])
+
+
+
+
 layout = dbc.Container([
+    dcc.Store(id="data_store"),
+    html.Div(id='onload'),
     html.Div([
         dbc.Row([
             dbc.Col(dbc.Label(
@@ -21,61 +44,27 @@ layout = dbc.Container([
         ]),
         dbc.Row([
             dbc.Col([
-                dbc.Card([
-                    dbc.CardBody([
-                        html.H2('Mkt Cap', className='analytics_card_topic'),
-                        html.H4('$' +
-                                millify(
-                                    sg.query(last_metric.marketCap),
-                                    precision=2),
-                                style={'text-align': 'center'},
-                                className='analytics_card_metric'
-                                ),
-                    ]),
-                ], className='simulator_hub_card',
+                dbc.Card(
+                    [analytics_card_metric('Mkt Cap', 'mkt_cap_indicator')],
+                    className='simulator_hub_card',
                     style={'height': '100%', 'width': '100%'}, inverse=True),
             ], xs=12, sm=12, md=12, lg=3, xl=3),
             dbc.Col([
-                dbc.Card([
-                    dbc.CardBody([
-                        html.H2('Price', className='analytics_card_topic'),
-                        html.H4('$' +
-                                millify(
-                                    sg.query(last_metric.klimaPrice),
-                                    precision=2),
-                                style={'text-align': 'center'},
-                                className='analytics_card_metric'
-                                ),
-                    ]),
-                ], className='simulator_hub_card',
+                dbc.Card(
+                    [analytics_card_metric('Price', 'price_indicator')],
+                    className='simulator_hub_card',
                     style={'height': '100%', 'width': '100%'}, inverse=True),
             ], xs=12, sm=12, md=12, lg=3, xl=3),
             dbc.Col([
-                dbc.Card([
-                    dbc.CardBody([
-                        html.H2('TVD', className='analytics_card_topic'),
-                        html.H4('$' +
-                                millify(
-                                    sg.query(last_metric.totalValueLocked),
-                                    precision=2),
-                                style={'text-align': 'center'}, className='analytics_card_metric'
-                                ),
-                    ]),
-                ], className='simulator_hub_card',
+                dbc.Card(
+                    [analytics_card_metric('TVD', 'TVD_indicator')],
+                    className='simulator_hub_card',
                     style={'height': '100%', 'width': '100%'}, inverse=True),
             ], xs=12, sm=12, md=12, lg=3, xl=3),
             dbc.Col([
-                dbc.Card([
-                    dbc.CardBody([
-                        html.H2('Runway', className='analytics_card_topic'),
-                        html.H4(
-                            millify(
-                                sg.query(last_metric.runwayCurrent),
-                                precision=2) + ' days',
-                            style={'text-align': 'center'}, className='analytics_card_metric'
-                        ),
-                    ]),
-                ], className='simulator_hub_card',
+                dbc.Card(
+                    [analytics_card_metric('Runway', 'runway_indicator')],
+                    className='simulator_hub_card',
                     style={'height': '100%', 'width': '100%'}, inverse=True),
             ], xs=12, sm=12, md=12, lg=3, xl=3),
         ]),
@@ -98,10 +87,13 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([mkt_cap_plot()], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody(
+                        style={'font-size': '20px', 'border-radius': '20px'},
+                        id='mkt_cap_plot'
+                    ),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Market Cap')),
-                        dbc.ModalBody(mkt_cap_plot()),
+                        dbc.ModalBody(id='mkt_cap_plot_modal'),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="close", className="ms-auto", n_clicks=0
@@ -132,10 +124,13 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([klima_price()], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody(
+                        style={'font-size': '20px', 'border-radius': '20px'},
+                        id='klima_price_plot'
+                    ),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Klima Price', className='analytics_card_topic')),
-                        dbc.ModalBody(klima_price()),
+                        dbc.ModalBody(id='klima_price_plot_modal'),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="klimaPrice_close", className="ms-auto", n_clicks=0
@@ -168,10 +163,13 @@ layout = dbc.Container([
                             ]),
                         ]),
                     ], style={'background-color': '#2A2A2A', 'border-radius': '20px'}),
-                    dbc.CardBody([current_runway()], style={'font-size': '20px', 'border-radius': '20px'}),
+                    dbc.CardBody(
+                        style={'font-size': '20px', 'border-radius': '20px'},
+                        id='current_runway_plot'
+                    ),
                     dbc.Modal([
                         dbc.ModalHeader(dbc.ModalTitle('Current Runway', className='analytics_card_topic')),
-                        dbc.ModalBody(current_runway()),
+                        dbc.ModalBody(id='current_runway_plot_modal'),
                         dbc.ModalFooter(
                             dbc.Button(
                                 "Close", id="current_runway_close", className="ms-auto", n_clicks=0
@@ -508,3 +506,74 @@ app.callback(
     [Input("staked_percent_btn", "n_clicks"), Input("staked_percent_close", "n_clicks")],
     [State("staked_percent_modal", "is_open")],
 )(toggle_modal)
+
+# @app.callback([
+#     Output('mkt_cap_indicator', 'children'),
+#     Output('price_indicator', 'children'),
+#     Output('TVD_indicator', 'children'),
+#     Output('runway_indicator', 'children'),
+#     Input('interval-component', 'n_intervals')
+# ])
+# def indicators_callback(n):
+#     return [
+#         '$' + millify(sg.query(last_metric.marketCap), precision=2),
+#         '$' + millify(sg.query(last_metric.klimaPrice), precision=2),
+#         '$' + millify(sg.query(last_metric.totalValueLocked), precision=2),
+#         millify(sg.query(last_metric.runwayCurrent), precision=2) + ' days'
+#     ]
+
+@app.callback(ServersideOutput("data_store", "data"), Trigger("onload", "children"))
+def query_data():
+    print('Querying data')
+    return {
+        'mkt_cap': sg.query([last_metric.marketCap]),
+        'klima_price': sg.query([last_metric.klimaPrice]),
+        'TVD': sg.query([last_metric.totalValueLocked]),
+        'runway': sg.query([last_metric.runwayCurrent]),
+        'mkt_cap_plot': mkt_cap_plot(),
+        'klima_price_plot': klima_price(),
+        'current_runway_plot': current_runway(),
+        # 'current_AKR_plot': current_AKR(),
+        # 'treasury_total_carbon_plot': treasury_total_carbon(),
+        # 'tmv_plot': tmv(),
+        # 'tCC_plot': tCC(),
+        # 'tmv_per_klima_plot': tmv_per_klima(),
+        # 'cc_per_klima_plot': cc_per_klima(),
+        # 'staked_percent_plot': staked_percent()
+    }
+
+@app.callback([
+    Output('mkt_cap_indicator', 'children'),
+    Output('price_indicator', 'children'),
+    Output('TVD_indicator', 'children'),
+    Output('runway_indicator', 'children'),
+    Output('mkt_cap_plot', 'children'),
+    Output('mkt_cap_plot_modal', 'children'),
+    Output('klima_price_plot', 'children'),
+    Output('klima_price_plot_modal', 'children'),
+    Output('current_runway_plot', 'children'),
+    Output('current_runway_plot_modal', 'children'),
+    Input("data_store", "data")
+])
+def set_data(data: dict[str, float | Graph]):
+    return [
+        '$' + millify(data['mkt_cap'], precision=2),
+        '$' + millify(data['klima_price'], precision=2),
+        '$' + millify(data['TVD'], precision=2),
+        millify(data['runway'], precision=2) + ' days',
+        data['mkt_cap_plot'],
+        data['mkt_cap_plot'],
+        data['klima_price_plot'],
+        data['klima_price_plot'],
+        data['current_runway_plot'],
+        data['current_runway_plot'],
+        # data['current_AKR_plot'],
+        # data['current_AKR_plot'],
+        # data['treasury_total_carbon_plot'],
+        # data['treasury_total_carbon_plot'],
+        # data['tmv_plot'],
+        # data['tCC_plot'],
+        # data['tmv_per_klima_plot'],
+        # data['cc_per_klima_plot'],
+        # data['staked_percent_plot'],
+    ]

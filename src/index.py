@@ -1,9 +1,7 @@
 from dash import dcc
 import dash_bootstrap_components as dbc
-from dash import State, html
-from dash.dependencies import Input, Output
+from dash_extensions.enrich import Input, Output, State, html
 from .app import app
-
 from .apps import staking, bonding, analytics, disclaimer, home
 
 CONTENT_STYLE = {

@@ -1,8 +1,7 @@
 # Import all required packages for this page
 from dash import dcc
 import dash_bootstrap_components as dbc
-from dash import html, State
-from dash.dependencies import Input, Output
+from dash_extensions.enrich import html, State, Input, Output
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
@@ -548,7 +547,8 @@ layout = dbc.Container([
                                                 debounce=True,
                                                 value=1,
                                                 className="input_box_number",
-                                                style={'color': 'white'}),
+                                                # style={'color': 'white'}
+                                            ),
                                             dbc.Tooltip(
                                                 'Input your desired initial number of Klima for calculation. '
                                                 'Keep in mind '

@@ -4,7 +4,11 @@ from subgrounds.subgrounds import Subgrounds
 
 # Uncomment to get logs into `subgrounds.log` WARNING! This generates a LOOOT of logs
 # import logging
-# logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', filename='subgrounds.log', level=logging.INFO)
+# logging.basicConfig(
+#     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+#     filename='subgrounds.log',
+#     level=logging.INFO
+# )
 # logger = logging.getLogger('subgrounds')
 # logger.setLevel(logging.DEBUG)
 
