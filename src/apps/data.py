@@ -191,6 +191,50 @@ def current_AKR():
         }
     ).figure
 
+def cc_per_klima():
+    return Figure(
+        subgrounds=sg,
+        traces=[
+            Scatter(
+                name='CC per KLIMA',
+                x=protocol_metrics_1year.datetime,
+                y=protocol_metrics_1year.cc_per_klima,
+                line={'width': 0.5, 'color': 'blue'},
+                stackgroup='one',
+            ),
+            Scatter(
+                name='KLIMA Price',
+                x=protocol_metrics_1year.datetime,
+                y=protocol_metrics_1year.klimaPrice,
+                line={'width': 0.5, 'color': 'rgb(2, 193, 50)'},
+                stackgroup='one',
+            ),
+        ],
+        layout={
+            'showlegend': True,
+            'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
+                    'title': 'CC/KLIMA and KLIMA Price', 'showgrid': False, 'mirror': True,
+                    'showspikes': True, 'spikesnap': 'cursor',
+                    'spikemode': 'across', 'spikethickness': 0.5},
+            'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
+                    'showgrid': False, 'mirror': True,
+                    'showspikes': True, 'spikesnap': 'cursor',
+                    'spikemode': 'across', 'spikethickness': 0.5},
+            'legend.font.color': 'white',
+            'paper_bgcolor': 'rgba(0,0,0,0)',
+            'plot_bgcolor': 'rgba(0,0,0,0)',
+            'autosize': True,
+            'margin': dict(l=20, r=30, t=10, b=20),
+            'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+            'modebar_add': ['drawline',
+                            'drawopenpath',
+                            'drawclosedpath',
+                            'drawcircle',
+                            'drawrect',
+                            'eraseshape'
+                            ],
+        }
+    ).figure
 
 # @wrap_autoupdate(seconds=21600)
 def treasury_total_carbon():
