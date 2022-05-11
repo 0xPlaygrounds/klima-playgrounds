@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc  # pip install dash-bootstrap-components
-from dash import html
+from dash_extensions.enrich import html
 import base64
 
 from ..app import app
