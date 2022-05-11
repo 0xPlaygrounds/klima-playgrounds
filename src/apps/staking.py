@@ -1,7 +1,7 @@
 # Import all required packages for this page
 from dash import dcc
 import dash_bootstrap_components as dbc
-from dash_extensions.enrich import html, State, Input, Output
+from dash_extensions.enrich import html, State, Input, Output, Trigger, ServersideOutput
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
@@ -20,6 +20,8 @@ from ..config import RFV_TERM, RFV_WORDS
 # Container looks better
 layout = dbc.Container([
     html.Div([
+        html.Div(id=f'staking_onload'),
+        dcc.Store(id=f'staking_store'),
         # Create a tab so we can have two sections for the klima growth/rewards simulation
         dbc.Tabs([
             dbc.Tab(label='Guide',
@@ -1434,6 +1436,18 @@ layout = dbc.Container([
         html.Footer(short_disclaimer_row(), className='footer_style', style={'background-color': '#202020'})
     ], className='center_2'),
 ], id='page_content', fluid=True)  # Responsive ui control
+
+
+# @bp.callback(ServersideOutput(f'{id}_store', "data"), Trigger(f'{id}_onload', "children"))
+# @time_cache(seconds=60)
+# def query_data():
+#     print(f'Querying metric {label}')
+#     return sg.query([value])
+
+
+# @bp.callback(Output(id, 'children'), Input(f'{id}_store', "data"))
+# def display_data(data):
+#     return format_data(data)
 
 
 @app.callback(
