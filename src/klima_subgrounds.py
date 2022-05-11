@@ -3,7 +3,7 @@ from subgrounds.subgraph import SyntheticField, FieldPath
 from subgrounds.subgrounds import Subgrounds
 
 sg = Subgrounds()
-klimaDAO = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/cujowolf/klima-protocol-metrics')
+klimaDAO = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/klimadao/klimadao-protocol-metrics')
 # users = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/0xaurelius/klimadao-users')
 
 

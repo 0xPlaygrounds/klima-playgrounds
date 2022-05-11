@@ -357,7 +357,7 @@ cc_per_klima = Graph(Figure(
     subgrounds=sg,
     traces=[
         Scatter(
-            name='Risk-Free Value per KLIMA',
+            name='CC per KLIMA',
             x=protocol_metrics_1year.datetime,
             y=protocol_metrics_1year.cc_per_klima,
             line={'width': 0.5, 'color': 'blue'},
