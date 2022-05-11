@@ -258,7 +258,7 @@ layout = dbc.Container([
         dbc.Row([
             dbc.Col([
                 data_plot(
-                    label='Backing Asstes in Treasury (Carbon Base)',
+                    label='Backing Assets in Treasury (Carbon Custodied)',
                     id='tCC',
                     mk_figure=tCC
                 ),
