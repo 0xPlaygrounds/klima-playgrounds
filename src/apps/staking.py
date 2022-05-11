@@ -14,6 +14,7 @@ from ..components import staking_guides as s_g
 from ..components import playgrounds_staking_guide as p_g_s
 from ..components.disclaimer import short_disclaimer_row
 from ..config import RFV_TERM, RFV_WORDS
+from ..klima_subgrounds import sg, immediate, last_metric
 
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
@@ -599,7 +600,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=2000,
+                                                value=round(immediate(sg, last_metric.currentAKR), 1) / 2,
                                                 className="input_box_number",
                                                 style={'color': 'white'}),
                                             dbc.Tooltip(
@@ -616,7 +617,8 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=8000, className="input_box_number",
+                                                value=round(immediate(sg, last_metric.currentAKR), 1),
+                                                className="input_box_number",
                                                 style={'color': 'white'}),
                                             dbc.Tooltip(
                                                 'Input an AKR for growth forecasting. AKR can be current protocol AKR'
@@ -633,7 +635,8 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=10000, className="input_box_number", style={'color': 'white'}),
+                                                value=round(immediate(sg, last_metric.currentAKR), 1) * 2,
+                                                className="input_box_number", style={'color': 'white'}),
                                             dbc.Tooltip(
                                                 'Input the current or future maximum AKR based on KIP-3 framework',
                                                 target='max_akr',
@@ -728,7 +731,8 @@ layout = dbc.Container([
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=50, className="input_box_number", style={'color': 'white'}),
+                                            value=round(immediate(sg, last_metric.klimaPrice), 1),
+                                            className="input_box_number", style={'color': 'white'}),
                                         dbc.Tooltip(
                                             'Input the desired Klima price for your dollar cost averaging plans.'
                                             ' This should be a price where you will want to buy more Klima.',
@@ -1269,7 +1273,7 @@ layout = dbc.Container([
                                                     min=1,
                                                     step=0.001,
                                                     debounce=True,
-                                                    value=1000,
+                                                    value=round(immediate(sg, last_metric.klimaPrice), 1),
                                                     className="input_box_number", style={'color': 'white'}),
                                                 dbc.Tooltip(
                                                     'Input speculated price of Klima for rewards calculations',
