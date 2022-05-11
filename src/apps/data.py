@@ -33,7 +33,7 @@ def wrap_autoupdate(seconds=300):
 
 # @wrap_autoupdate(seconds=21600)
 def mkt_cap_plot():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -68,12 +68,12 @@ def mkt_cap_plot():
                             'eraseshape'
                             ],
         },
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def klima_price():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -108,12 +108,12 @@ def klima_price():
                             'eraseshape'
                             ],
         }
-    ), style={'width': '100%'})
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def current_runway():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -149,12 +149,12 @@ def current_runway():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def current_AKR():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -189,12 +189,12 @@ def current_AKR():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def treasury_total_carbon():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -229,12 +229,12 @@ def treasury_total_carbon():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def tmv():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             # Market value treasury assets
@@ -270,12 +270,12 @@ def tmv():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def tCC():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             # Risk-free value treasury assets
@@ -311,12 +311,12 @@ def tCC():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def tmv_klima():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -358,12 +358,12 @@ def tmv_klima():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def tmv_per_klima():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -405,12 +405,12 @@ def tmv_per_klima():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def cc_per_klima():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
@@ -452,12 +452,12 @@ def cc_per_klima():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure
 
 
 # @wrap_autoupdate(seconds=21600)
 def staked_percent():
-    return Graph(Figure(
+    return Figure(
         subgrounds=sg,
         traces=[
             # Risk-free value treasury assets
@@ -501,4 +501,4 @@ def staked_percent():
                             'eraseshape'
                             ],
         }
-    ))
+    ).figure

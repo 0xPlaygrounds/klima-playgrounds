@@ -547,7 +547,7 @@ layout = dbc.Container([
                                                 debounce=True,
                                                 value=1,
                                                 className="input_box_number",
-                                                # style={'color': 'white'}
+                                                style={'color': 'white'}
                                             ),
                                             dbc.Tooltip(
                                                 'Input your desired initial number of Klima for calculation. '
