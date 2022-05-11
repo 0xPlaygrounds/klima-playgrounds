@@ -2,7 +2,7 @@ alerts:
   - rule: DEPLOYMENT_FAILED
   - rule: DOMAIN_FAILED
 domains:
-- domain: klima.playgrounds.academy
+- domain: ${DIGITALOCEAN_APP_DOMAIN}
   type: PRIMARY
 name: ${DIGITALOCEAN_APP_NAME}
 region: nyc
