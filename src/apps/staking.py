@@ -14,7 +14,8 @@ from ..components import staking_guides as s_g
 from ..components import playgrounds_staking_guide as p_g_s
 from ..components.disclaimer import short_disclaimer_row
 from ..config import RFV_TERM, RFV_WORDS
-from ..klima_subgrounds import sg, immediate, last_metric
+from ..klima_subgrounds import sg, last_metric
+from ..apps.data import time_cache
 
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
@@ -600,7 +601,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=round(immediate(sg, last_metric.currentAKR), 1) / 2,
+                                                # value=round(sg.query(last_metric.currentAKR), 1) / 2,
                                                 className="input_box_number",
                                                 style={'color': 'white'}),
                                             dbc.Tooltip(
@@ -617,7 +618,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=round(immediate(sg, last_metric.currentAKR), 1),
+                                                # value=round(sg.query(last_metric.currentAKR), 1),
                                                 className="input_box_number",
                                                 style={'color': 'white'}),
                                             dbc.Tooltip(
@@ -635,7 +636,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=round(immediate(sg, last_metric.currentAKR), 1) * 2,
+                                                # value=round(sg.query(last_metric.currentAKR), 1) * 2,
                                                 className="input_box_number", style={'color': 'white'}),
                                             dbc.Tooltip(
                                                 'Input the current or future maximum AKR based on KIP-3 framework',
@@ -731,7 +732,7 @@ layout = dbc.Container([
                                             min=1,
                                             step=0.001,
                                             debounce=True,
-                                            value=round(immediate(sg, last_metric.klimaPrice), 1),
+                                            # value=round(sg.query(last_metric.klimaPrice), 1),
                                             className="input_box_number", style={'color': 'white'}),
                                         dbc.Tooltip(
                                             'Input the desired Klima price for your dollar cost averaging plans.'
@@ -1273,7 +1274,7 @@ layout = dbc.Container([
                                                     min=1,
                                                     step=0.001,
                                                     debounce=True,
-                                                    value=round(immediate(sg, last_metric.klimaPrice), 1),
+                                                    # value=round(sg.query(last_metric.klimaPrice), 1),
                                                     className="input_box_number", style={'color': 'white'}),
                                                 dbc.Tooltip(
                                                     'Input speculated price of Klima for rewards calculations',
@@ -1442,16 +1443,31 @@ layout = dbc.Container([
 ], id='page_content', fluid=True)  # Responsive ui control
 
 
-# @bp.callback(ServersideOutput(f'{id}_store', "data"), Trigger(f'{id}_onload', "children"))
-# @time_cache(seconds=60)
-# def query_data():
-#     print(f'Querying metric {label}')
-#     return sg.query([value])
+@app.callback(ServersideOutput(f'staking_store', "data"), Trigger(f'staking_onload', "children"))
+@time_cache(seconds=60)
+def query_data():
+    return {
+        'current_akr': round(sg.query([last_metric.currentAKR]), 1),
+        'klima_price': round(sg.query([last_metric.klimaPrice]), 1),
+    }
 
 
-# @bp.callback(Output(id, 'children'), Input(f'{id}_store', "data"))
-# def display_data(data):
-#     return format_data(data)
+@app.callback([
+    Output('min_akr', 'value'),
+    Output('user_akr', 'value'),
+    Output('max_akr', 'value'),
+    Output('klimaPrice_DCA', 'value'),
+    Output('priceKlima', 'value'),
+    Input(f'staking_store', "data")
+])
+def display_data(data):
+    return [
+        data['current_akr'] / 2,
+        data['current_akr'],
+        data['current_akr'] * 2,
+        data['klima_price'],
+        data['klima_price'],
+    ]
 
 
 @app.callback(

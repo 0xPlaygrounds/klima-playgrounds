@@ -10,7 +10,7 @@ from dash_extensions.enrich import DashBlueprint, ServersideOutput, Output, Inpu
 from millify import millify
 from subgrounds.subgraph import FieldPath
 from ..app import app
-from ..klima_subgrounds import sg, last_metric, protocol_metrics_1year
+from ..klima_subgrounds import sg, last_metric
 from .data import mkt_cap_plot, klima_price, current_runway, current_AKR, time_cache, treasury_total_carbon, tmv, \
     tCC, tmv_per_klima, cc_per_klima, staked_percent
 
