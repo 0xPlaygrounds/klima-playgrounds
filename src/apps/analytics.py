@@ -299,7 +299,7 @@ layout = dbc.Container([
                 dbc.CardHeader([
                     dbc.Row([
                         dbc.Col([
-                            dbc.Button('Backing Asstes in Treasury (Carbon Base)',
+                            dbc.Button('Backing Assets in Treasury (Carbon Custodied)',
                                        id='tCC_btn',
                                        className='analytics_card_topic',
                                        color='link',

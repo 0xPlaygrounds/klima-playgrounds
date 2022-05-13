@@ -17,7 +17,7 @@ mkt_cap_plot = Graph(Figure(
     layout={
         'showlegend': True,
         'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                  'title': 'Market Cap', 'showgrid': False, 'mirror': True,
+                  'title': 'Market Cap ($)', 'showgrid': False, 'mirror': True,
                   'showspikes': True, 'spikesnap': 'cursor',
                   'spikemode': 'across', 'spikethickness': 0.5},
         'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
@@ -54,7 +54,7 @@ klimaPrice = Graph(Figure(
     layout={
         'showlegend': False,
         'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                  'title': 'KLIMA Price', 'showgrid': False, 'mirror': True,
+                  'title': 'KLIMA Price ($)', 'showgrid': False, 'mirror': True,
                   'showspikes': True, 'spikesnap': 'cursor',
                   'spikemode': 'across', 'spikethickness': 0.5},
         'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
@@ -91,7 +91,7 @@ current_runway = Graph(Figure(
                             layout={
                                 'showlegend': True,
                                 'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                                          'title': 'Current Runway', 'showgrid': False, 'mirror': True,
+                                          'title': 'Current Runway (Days)', 'showgrid': False, 'mirror': True,
                                           'showspikes': True, 'spikesnap': 'cursor',
                                           'spikemode': 'across', 'spikethickness': 0.5},
                                 'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
@@ -129,7 +129,7 @@ current_AKR = Graph(Figure(
     layout={
         'showlegend': True,
         'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                  'title': 'Current AKR', 'showgrid': False, 'mirror': True,
+                  'title': 'Current AKR (%)', 'showgrid': False, 'mirror': True,
                   'showspikes': True, 'spikesnap': 'cursor',
                   'spikemode': 'across', 'spikethickness': 0.5},
         'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
@@ -208,7 +208,7 @@ tmv = Graph(Figure(
                   'showspikes': True, 'spikesnap': 'cursor',
                   'spikemode': 'across', 'spikethickness': 0.5},
         'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                  'title': 'MV of Treasury Assets', 'showgrid': False, 'mirror': True,
+                  'title': 'MV of Treasury Assets ($)', 'showgrid': False, 'mirror': True,
                   'showspikes': True, 'spikesnap': 'cursor',
                   'spikemode': 'across', 'spikethickness': 0.5},
         'legend.font.color': 'white',
