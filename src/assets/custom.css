@@ -233,6 +233,10 @@
   height: 0rem;
   background-color: #202020;
 }
+.input_box_number:focus {
+  border-radius: 5px;
+  background-color: #202020;
+}
 .input_box_number{
   border-radius: 5px;
   background-color: #484444;

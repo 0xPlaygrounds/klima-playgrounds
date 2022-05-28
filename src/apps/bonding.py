@@ -1,7 +1,7 @@
 from dash import dcc
 import dash_bootstrap_components as dbc
-from dash import html
-from dash.dependencies import Input, Output
+from dash_extensions.enrich import html, Input, Output, ServersideOutput, Trigger
+# from dash.dependencies import Input, Output
 from dash.exceptions import PreventUpdate
 import plotly.graph_objects as go
 import pandas as pd
@@ -10,12 +10,15 @@ import numpy as np
 from ..app import app
 from ..components import bonding_guides as b_g
 from ..components.disclaimer import short_disclaimer_row
-from ..klima_subgrounds import sg, immediate, last_metric
+from ..klima_subgrounds import sg, last_metric
+from ..apps.data import time_cache
 
 # Build the layout for the app. Using dash bootstrap container here instead of the standard html div.
 # Container looks better
 layout = dbc.Container([
     html.Div([
+        html.Div(id='bonding_onload'),
+        dcc.Store(id='bonding_store'),
         dbc.Tabs([
             dbc.Tab(label='Guide',
                     label_style={'background': '#02C132',
@@ -258,7 +261,7 @@ layout = dbc.Container([
                                                 min=1,
                                                 step=0.001,
                                                 debounce=True,
-                                                value=round(immediate(sg, last_metric.klimaPrice), 1),
+                                                # value=round(sg.query([last_metric.klimaPrice]), 1),
                                                 className="input_box_number",
                                                 style={'color': 'white'})]),
                                         dbc.Col([
@@ -617,6 +620,22 @@ layout = dbc.Container([
         html.Footer(short_disclaimer_row(), className='footer_style', style={'background-color': '#202020'})
     ], className='center_2'),
 ], id='page_content', fluid=True)  # Responsive ui control
+
+
+@app.callback(ServersideOutput('bonding_store', "data"), Trigger('bonding_onload', "children"))
+@time_cache(seconds=60)
+def query_data():
+    return {
+        'klima_price': round(sg.query([last_metric.klimaPrice]), 1),
+    }
+
+
+@app.callback([
+    Output('klima_price', 'value'),
+    Input('bonding_store', "data")
+])
+def display_data(data):
+    return data['klima_price']
 
 
 @app.callback([
