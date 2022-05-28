@@ -9,7 +9,7 @@ app = DashProxy(
     title="Klima Playgrounds",
     transforms=[
         TriggerTransform(),
-        ServersideOutputTransform(),
+        ServersideOutputTransform()],
     meta_tags=[
         {
             'name': 'viewport',

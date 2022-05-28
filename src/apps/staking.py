@@ -22,8 +22,8 @@ from ..apps.data import time_cache
 # Container looks better
 layout = dbc.Container([
     html.Div([
-        html.Div(id=f'staking_onload'),
-        dcc.Store(id=f'staking_store'),
+        html.Div(id='staking_onload'),
+        dcc.Store(id='staking_store'),
         # Create a tab so we can have two sections for the klima growth/rewards simulation
         dbc.Tabs([
             dbc.Tab(label='Guide',
@@ -1443,7 +1443,7 @@ layout = dbc.Container([
 ], id='page_content', fluid=True)  # Responsive ui control
 
 
-@app.callback(ServersideOutput(f'staking_store', "data"), Trigger(f'staking_onload', "children"))
+@app.callback(ServersideOutput('staking_store', "data"), Trigger('staking_onload', "children"))
 @time_cache(seconds=60)
 def query_data():
     return {
@@ -1458,7 +1458,7 @@ def query_data():
     Output('max_akr', 'value'),
     Output('klimaPrice_DCA', 'value'),
     Output('priceKlima', 'value'),
-    Input(f'staking_store', "data")
+    Input('staking_store', "data")
 ])
 def display_data(data):
     return [

@@ -1,4 +1,3 @@
-import pandas as pd
 from typing import Callable
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
@@ -16,8 +15,10 @@ from .data import mkt_cap_plot, klima_price, current_runway, current_AKR, time_c
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 
+
 def identity(x):
     return x
+
 
 def analytics_card_metric(
     label: str,
@@ -44,7 +45,7 @@ def analytics_card_metric(
     def query_data():
         print(f'Querying metric {label}')
         return sg.query([value])
-    
+
     @bp.callback(Output(id, 'children'), Input(f'{id}_store', "data"))
     def display_data(data):
         return format_data(data)
@@ -53,40 +54,45 @@ def analytics_card_metric(
 
     return bp.layout
 
+
 def fmt_dollar_value(value):
     return '$' + millify(value, precision=2)
 
+
 def fmt_days_value(value):
     return millify(value, precision=2) + ' days'
+
 
 def data_plot(
     label: str,
     id: str,
     mk_figure: Callable[[], go.Figure]
 ) -> DashBlueprint:
-    placeholder_figure = go.Figure(layout={
-        'showlegend': True,
-        'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white', 'showgrid': False, 'mirror': True,
-                'showspikes': True, 'spikesnap': 'cursor',
-                'spikemode': 'across', 'spikethickness': 0.5},
-        'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                'title': 'Staked KLIMA(%)', 'showgrid': False, 'mirror': True,
-                'showspikes': True, 'spikesnap': 'cursor',
-                'spikemode': 'across', 'spikethickness': 0.5},
-        'legend.font.color': 'white',
-        'paper_bgcolor': 'rgba(0,0,0,0)',
-        'plot_bgcolor': 'rgba(0,0,0,0)',
-        'autosize': True,
-        'margin': dict(l=20, r=30, t=10, b=20),
-        'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-        'modebar_add': ['drawline',
-                        'drawopenpath',
-                        'drawclosedpath',
-                        'drawcircle',
-                        'drawrect',
-                        'eraseshape'
-                        ],
-    })
+    placeholder_figure = go.Figure(
+        layout={
+            'showlegend': True,
+            'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white', 'showgrid': False, 'mirror': True,
+                      'showspikes': True, 'spikesnap': 'cursor',
+                      'spikemode': 'across', 'spikethickness': 0.5},
+            'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
+                      'title': 'Staked KLIMA(%)', 'showgrid': False, 'mirror': True,
+                      'showspikes': True, 'spikesnap': 'cursor',
+                      'spikemode': 'across', 'spikethickness': 0.5},
+            'legend.font.color': 'white',
+            'paper_bgcolor': 'rgba(0,0,0,0)',
+            'plot_bgcolor': 'rgba(0,0,0,0)',
+            'autosize': True,
+            'margin': dict(l=20, r=30, t=10, b=20),
+            'legend': dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
+            'modebar_add': ['drawline',
+                            'drawopenpath',
+                            'drawclosedpath',
+                            'drawcircle',
+                            'drawrect',
+                            'eraseshape'
+                            ],
+        }
+    )
 
     bp = DashBlueprint()
     bp.layout = dbc.Card([
@@ -156,6 +162,7 @@ def data_plot(
     bp.register_callbacks(app)
 
     return bp.layout
+
 
 layout = dbc.Container([
     dcc.Store(id="data_store"),
@@ -252,7 +259,7 @@ layout = dbc.Container([
                     label='Mkt Value of Treasury Assets (USD)',
                     id='tmv',
                     mk_figure=tmv
-                ),                
+                ),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
         dbc.Row([
