@@ -5,8 +5,8 @@ name = "pypi"
 
 [packages]
 ansi2html = "*"
-dash = "==2.0.0"
-dash-bootstrap-components = "==1.0.0"
+dash = "==2.3.1"
+dash-bootstrap-components = "*"
 gunicorn = "*"
 lottie = "*"
 millify = "*"
@@ -14,8 +14,8 @@ pandas = "==1.3.4"
 requests = "*"
 retrying = "*"
 pycoingecko = "*"
-dash-extensions = "*"
 subgrounds = "*"
+dash-extensions = "*"
 
 [dev-packages]
 
