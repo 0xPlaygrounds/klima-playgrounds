@@ -1,6 +1,6 @@
 # import dash
 import dash_bootstrap_components as dbc
-from dash_extensions.enrich import DashProxy, TriggerTransform, ServersideOutputTransform, PrefixIdTransform
+from dash_extensions.enrich import DashProxy, TriggerTransform, ServersideOutputTransform
 
 app = DashProxy(
     __name__,
