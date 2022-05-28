@@ -1,6 +1,19 @@
 # klima-playgrounds
 Deployment of Playgrounds application for KlimaDAO
 
+# CI/CD Setup
+
+Opening a pull request will automatically trigger a GitHub Actions pipeline to lint and smoketest your changes.
+
+Changes merged to the following branches will be deployed to the corresponding URLs:
+- `staging` => https://staging-klima.playgrounds.academy
+- `main` => https://klima.playgrounds.academy
+
+Please make sure you always open a PR when merging to either `staging` or `main` on the primary repo, so you can be
+sure that your changes pass the lint and smoketest before merging them onto a deployed branch.
+
+We require basic flake8 linting style to be adhered to in all Python code, or else the linter check will fail.
+
 # Local Development with Docker
 
 To run a local development environment using Docker, follow these steps.
