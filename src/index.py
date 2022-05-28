@@ -36,7 +36,7 @@ menu_bar = dbc.DropdownMenu(
                    dbc.DropdownMenuItem("Learn More",
                                         href="https://docs.klimadao.finance/"),
                    dbc.DropdownMenuItem("Feedback",
-                                        href="https://forms.gle/UTyj7HvCfBNa1rt17"),
+                                        href="https://github.com/0xPlaygrounds/klima-playgrounds/issues"),
                    dbc.DropdownMenuItem("Disclaimer",
                                         href="/disclaimer"),
                ],
