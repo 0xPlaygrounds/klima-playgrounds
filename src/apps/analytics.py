@@ -11,7 +11,7 @@ from subgrounds.subgraph import FieldPath
 from ..app import app
 from ..klima_subgrounds import sg, last_metric
 from .data import mkt_cap_plot, klima_price, current_runway, current_AKR, time_cache, treasury_total_carbon, tmv, \
-    tCC, tmv_per_klima, cc_per_klima, staked_percent
+    tCC, tmv_per_klima, cc_per_klima, klima_alloc
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 
@@ -295,9 +295,9 @@ layout = dbc.Container([
             ], xs=12, sm=12, md=12, lg=6, xl=6),
             dbc.Col([
                 data_plot(
-                    label='Staked KLIMA (%)',
-                    id='staked_percent',
-                    mk_figure=staked_percent
+                    label='KLIMA Token Status Breakdown (%)',
+                    id='klima_alloc',
+                    mk_figure=klima_alloc
                 ),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),

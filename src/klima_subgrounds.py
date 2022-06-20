@@ -1,6 +1,10 @@
-from datetime import datetime
-from subgrounds.subgraph import SyntheticField
-from subgrounds.subgrounds import Subgrounds
+from textwrap import fill
+from more_itertools import strip
+import src.apps.subgraph_data.protocol_metrics as protocol_metrics
+import src.apps.subgraph_data.vesting_metrics as vesting_metrics
+
+#Charts are dependent on protocol metric Subgraph
+sg = protocol_metrics.sg
 
 # Uncomment to get logs into `subgrounds.log` WARNING! This generates a LOOOT of logs
 # import logging
@@ -12,56 +16,21 @@ from subgrounds.subgrounds import Subgrounds
 # logger = logging.getLogger('subgrounds')
 # logger.setLevel(logging.DEBUG)
 
-sg = Subgrounds()
-klimaDAO = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/klimadao/klimadao-protocol-metrics')
-# users = sg.load_subgraph('https://api.thegraph.com/subgraphs/name/0xaurelius/klimadao-users')
+# Protocol metric Subgraph data
+protocol_metrics_1year = protocol_metrics.protocol_metrics_1year
+last_metric = protocol_metrics.last_metric
 
+# Vesting Metric Subgraph data
+# Create Filler DF from Staking DF that will be used to expand Vesting metrics
+staked_metrics_df = protocol_metrics.staked_metrics_df
+vesting_filler_df = staked_metrics_df.rename(
+  columns={"protocolMetrics_datetime": "vestingMetrics_datetime", "protocolMetrics_staked_supply_percent": "vestingMetrics_locked_percentage"})
+vesting_filler_df = vesting_filler_df.assign(vestingMetrics_locked_percentage=0)
 
-# Define useful synthetic fields
-klimaDAO.ProtocolMetric.datetime = SyntheticField(
-  lambda timestamp: str(datetime.fromtimestamp(timestamp)),
-  SyntheticField.STRING,
-  klimaDAO.ProtocolMetric.timestamp,
-)
+expanded_co2_compound_df = vesting_metrics.expand_vesting_metrics(vesting_filler_df, vesting_metrics.co2_compound_df)
+expanded_c3_df = vesting_metrics.expand_vesting_metrics(vesting_filler_df, vesting_metrics.c3_df)
 
-klimaDAO.ProtocolMetric.staked_supply_percent = SyntheticField(
-  lambda sklima_supply, total_supply: 100 * sklima_supply / total_supply,
-  SyntheticField.FLOAT,
-  [
-    klimaDAO.ProtocolMetric.sKlimaCirculatingSupply,
-    klimaDAO.ProtocolMetric.totalSupply
-  ],
-  default=100.0
-)
+#Subtract Staking locked percentage and total vested lock percentage via expanded DF
+staked_metrics_df.set_index('protocolMetrics_datetime', inplace=True, drop=False)
+vesting_metrics.subtract_vested_from_stake(staked_metrics_df, [expanded_c3_df, expanded_co2_compound_df])
 
-
-klimaDAO.ProtocolMetric.unstaked_supply_percent = 100 - klimaDAO.ProtocolMetric.staked_supply_percent
-
-# Treasury CC per klima and ratio
-klimaDAO.ProtocolMetric.cc_per_klima = SyntheticField(
-  lambda treasury_cc, total_supply: treasury_cc / total_supply if treasury_cc / total_supply > 1 else 0,
-  SyntheticField.FLOAT,
-  [klimaDAO.ProtocolMetric.treasuryCarbonCustodied,
-   klimaDAO.ProtocolMetric.totalSupply]
-)
-
-klimaDAO.ProtocolMetric.price_cc_ratio = \
-    100 * klimaDAO.ProtocolMetric.klimaPrice / klimaDAO.ProtocolMetric.cc_per_klima
-
-# Treasury market value per klima and ratio
-klimaDAO.ProtocolMetric.tmv_per_klima = \
-    klimaDAO.ProtocolMetric.treasuryMarketValue / klimaDAO.ProtocolMetric.totalSupply
-klimaDAO.ProtocolMetric.price_tmv_ratio = \
-    100 * klimaDAO.ProtocolMetric.klimaPrice / klimaDAO.ProtocolMetric.tmv_per_klima
-
-protocol_metrics_1year = klimaDAO.Query.protocolMetrics(
-  orderBy=klimaDAO.ProtocolMetric.timestamp,
-  orderDirection='desc',
-  first=365
-)
-
-last_metric = klimaDAO.Query.protocolMetrics(
-  orderBy=klimaDAO.ProtocolMetric.timestamp,
-  orderDirection='desc',
-  first=1
-)

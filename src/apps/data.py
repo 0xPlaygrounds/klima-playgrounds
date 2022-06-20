@@ -1,6 +1,6 @@
 from subgrounds.dash_wrappers import AutoUpdate
 from subgrounds.plotly_wrappers import Figure, Scatter
-from ..klima_subgrounds import sg, protocol_metrics_1year
+from ..klima_subgrounds import sg, protocol_metrics_1year, expanded_c3_df, expanded_co2_compound_df, staked_metrics_df
 from ..app import app
 import time
 from functools import cache
@@ -454,23 +454,46 @@ def cc_per_klima():
         }
     ).figure
 
-
 # @wrap_autoupdate(seconds=21600)
-def staked_percent():
+def klima_alloc():
     return Figure(
         subgrounds=sg,
         traces=[
-            # Risk-free value treasury assets
             Scatter(
-                name='Staked_supply_percent',
-                x=protocol_metrics_1year.datetime,
-                y=protocol_metrics_1year.staked_supply_percent,
+                name='NFT Locked',
+                x=expanded_co2_compound_df.vestingMetrics_datetime,
+                y=expanded_co2_compound_df.vestingMetrics_locked_percentage,
+                mode='lines',
+                line={'width': 0.5, 'color': '#eff542'},
+                stackgroup='one',
+            ),
+            Scatter(
+                name='C3 Locked',
+                x=expanded_c3_df.vestingMetrics_datetime,
+                y=expanded_c3_df.vestingMetrics_locked_percentage,
+                mode='lines',
+                line={'width': 0.5, 'color': '#FC8A04'},
+                stackgroup='one',
+            ),
+            Scatter(
+                name='Staked',
+                x=staked_metrics_df.protocolMetrics_datetime,
+                y=staked_metrics_df.protocolMetrics_staked_supply_percent,
                 mode='lines',
                 line={'width': 0.5, 'color': 'rgb(0, 128, 255)'},
                 stackgroup='one',
             ),
             Scatter(
-                name='Unstaked_supply_percent',
+                name='In LP',
+                x=protocol_metrics_1year.datetime,
+                y=protocol_metrics_1year.klima_in_lp_percent,
+                mode='lines',
+                line={'width': 0.5, 'color': 'rgb(0, 255, 128)'},
+                stackgroup='one',
+            ),
+
+            Scatter(
+                name='Unstaked',
                 x=protocol_metrics_1year.datetime,
                 y=protocol_metrics_1year.unstaked_supply_percent,
                 mode='lines',
@@ -484,7 +507,7 @@ def staked_percent():
                       'showspikes': True, 'spikesnap': 'cursor',
                       'spikemode': 'across', 'spikethickness': 0.5},
             'yaxis': {'type': 'linear', 'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white',
-                      'title': 'Staked KLIMA(%)', 'showgrid': False, 'mirror': True,
+                      'title': 'KLIMA(%)', 'showgrid': False, 'mirror': True,
                       'showspikes': True, 'spikesnap': 'cursor',
                       'spikemode': 'across', 'spikethickness': 0.5},
             'legend.font.color': 'white',
