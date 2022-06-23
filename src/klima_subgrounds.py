@@ -23,9 +23,9 @@ last_metric = protocol_metrics.last_metric
 # Vesting Metric Subgraph data
 # Create Filler DF from Staking DF that will be used to expand Vesting metrics
 staked_metrics_df = protocol_metrics.staked_metrics_df
-vesting_filler_df = staked_metrics_df.rename(
-  columns={"protocolMetrics_datetime": "vestingMetrics_datetime", "protocolMetrics_staked_supply_percent": "vestingMetrics_locked_percentage"})
-vesting_filler_df = vesting_filler_df.assign(vestingMetrics_locked_percentage=0)
+
+vesting_filler_df = protocol_metrics.supply_and_index_metrics.rename(
+  columns={"protocolMetrics_datetime": "vestingMetrics_datetime"})
 
 expanded_co2_compound_df = vesting_metrics.expand_vesting_metrics(vesting_filler_df, vesting_metrics.co2_compound_df)
 expanded_c3_df = vesting_metrics.expand_vesting_metrics(vesting_filler_df, vesting_metrics.c3_df)

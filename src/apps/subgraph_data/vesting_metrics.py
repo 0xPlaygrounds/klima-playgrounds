@@ -62,8 +62,14 @@ co2Compound_vesting_metrics_1_year = vesting_metric_subgraph.Query.vestingMetric
   first=365
 )
 
-co2_compound_df = sg.query_df([co2Compound_vesting_metrics_1_year.datetime, co2Compound_vesting_metrics_1_year.locked_percentage])
-c3_df = sg.query_df([c3_vesting_metrics_1_year.datetime, c3_vesting_metrics_1_year.locked_percentage])
+co2_compound_df = sg.query_df([co2Compound_vesting_metrics_1_year.datetime,
+ co2Compound_vesting_metrics_1_year.totalAmountLocked,
+ co2Compound_vesting_metrics_1_year.locked_percentage])
+
+c3_df = sg.query_df([c3_vesting_metrics_1_year.datetime,
+ c3_vesting_metrics_1_year.totalAmountLocked,
+ c3_vesting_metrics_1_year.locked_percentage])
+
 
 
 # Functions used for modifying data 
@@ -72,27 +78,33 @@ def expand_vesting_metrics(filler_df, vesting_metric_df):
     Modify Vesting Metric chart in order to be compatible with Protocol Metric chart
     '''
     expanded_vesting_metric_df = filler_df.append(vesting_metric_df, ignore_index = True).sort_values(by=['vestingMetrics_datetime'])
-    replace_df_zero_values(expanded_vesting_metric_df, 'vestingMetrics_locked_percentage')
+    fill_vesting_df(expanded_vesting_metric_df)
     expanded_vesting_metric_df.set_index('vestingMetrics_datetime', inplace=True, drop=False)
     expanded_vesting_metric_df = expanded_vesting_metric_df.groupby(expanded_vesting_metric_df.index).first()
     return expanded_vesting_metric_df
 
 
 
-def replace_df_zero_values(vesting_metrics_df, row_name):
+def fill_vesting_df(vesting_metrics_df):
     '''
-    Fills zero values with the previous non zero value
+    Fills EMPTY values with the previous non zero value
     This is required since vesting DF is merged with staking dataframe
     which may have datetimes that are not maintained within Vesting DF
-    therefore we would be having 0 locked percentage for such datetimes
+    therefore we would be having 0 locked amount for such datetimes
     this function fixes that issue
     '''
-    init_value = 0
+    EMPTY = 'EMPTY'
+    vesting_metrics_df.fillna(EMPTY, inplace=True)
+    current_value = 0
     for index, row in vesting_metrics_df.iterrows():
-        if row[row_name] == 0:
-            vesting_metrics_df.at[index, row_name] = init_value
+        if row["vestingMetrics_totalAmountLocked"] == EMPTY:
+            vesting_metrics_df.at[index, "vestingMetrics_totalAmountLocked"] = current_value
         else:
-            init_value = row[row_name]
+            current_value = row["vestingMetrics_totalAmountLocked"]
+        if row['vestingMetrics_locked_percentage'] == EMPTY:
+            vesting_metrics_df.at[index, "vestingMetrics_locked_percentage"] = \
+            ((row["vestingMetrics_totalAmountLocked"]*row["protocolMetrics_klimaIndex"]) / row["protocolMetrics_totalSupply"]) * 100
+
 
 def subtract_vested_from_stake(staking_df, dataframes):
       for index, row in staking_df.iterrows():
