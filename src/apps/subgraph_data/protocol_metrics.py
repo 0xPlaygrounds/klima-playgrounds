@@ -68,3 +68,10 @@ last_metric = protocol_metrics_subgraph.Query.protocolMetrics(
 
 staked_metrics_df = sg.query_df([protocol_metrics_1year.datetime, protocol_metrics_1year.staked_supply_percent])
 supply_and_index_metrics = sg.query_df([protocol_metrics_1year.datetime, protocol_metrics_1year.totalSupply, protocol_metrics_1year.klimaIndex])
+
+def get_protocol_metrics_1_year():
+  return protocol_metrics_subgraph.Query.protocolMetrics(
+    orderBy=protocol_metrics_subgraph.ProtocolMetric.timestamp,
+    orderDirection='desc',
+    first=365
+  )

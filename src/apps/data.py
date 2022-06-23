@@ -1,6 +1,6 @@
 from subgrounds.dash_wrappers import AutoUpdate
 from subgrounds.plotly_wrappers import Figure, Scatter
-from ..klima_subgrounds import sg, protocol_metrics_1year, expanded_c3_df, expanded_co2_compound_df, staked_metrics_df
+from ..klima_subgrounds import sg, protocol_metrics_1year, get_klima_breakdown_df
 from ..app import app
 import time
 from functools import cache
@@ -456,21 +456,23 @@ def cc_per_klima():
 
 # @wrap_autoupdate(seconds=21600)
 def klima_alloc():
+
+    staked_metrics_df, c3_df, co2_compound_df = get_klima_breakdown_df()
     return Figure(
         subgrounds=sg,
         traces=[
             Scatter(
                 name='NFT Locked',
-                x=expanded_co2_compound_df.vestingMetrics_datetime,
-                y=expanded_co2_compound_df.vestingMetrics_locked_percentage,
+                x=co2_compound_df.vestingMetrics_datetime,
+                y=co2_compound_df.vestingMetrics_locked_percentage,
                 mode='lines',
                 line={'width': 0.5, 'color': '#eff542'},
                 stackgroup='one',
             ),
             Scatter(
                 name='C3 Locked',
-                x=expanded_c3_df.vestingMetrics_datetime,
-                y=expanded_c3_df.vestingMetrics_locked_percentage,
+                x=c3_df.vestingMetrics_datetime,
+                y=c3_df.vestingMetrics_locked_percentage,
                 mode='lines',
                 line={'width': 0.5, 'color': '#FC8A04'},
                 stackgroup='one',
