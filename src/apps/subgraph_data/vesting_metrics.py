@@ -2,7 +2,7 @@ from subgrounds.subgrounds import Subgrounds
 from subgrounds.subgraph import SyntheticField
 
 from src.apps.util.constants import KLIMA_VESTING_SUBGRAPH, \
-   VESTING_PLATFORM_C02_COMPOUND, VESTING_PLATFORM_C3
+   VESTING_PLATFORM_CO2, VESTING_PLATFORM_C3
 from src.apps.util.time_util import get_date_timestamp_string
 
 sg = Subgrounds()
@@ -36,7 +36,8 @@ vesting_metric_subgraph.VestingMetric.total_locked_amount_in_klima = \
     default=100.0)
 
 vesting_metric_subgraph.VestingMetric.locked_percentage = SyntheticField(
-  lambda total_amount_locked, total_supply: 100 * total_amount_locked / total_supply,
+  lambda total_amount_locked, total_supply:
+  100 * total_amount_locked / total_supply,
   SyntheticField.FLOAT,
   [
     vesting_metric_subgraph.VestingMetric.total_locked_amount_in_klima,
@@ -45,25 +46,26 @@ vesting_metric_subgraph.VestingMetric.locked_percentage = SyntheticField(
   default=100.0
 )
 
-#C3 Vesting metrics
+# C3 Vesting metrics
 c3_vesting_metrics_1_year = vesting_metric_subgraph.Query.vestingMetrics(
   where=[
-    vesting_metric_subgraph.VestingMetric.inFuture == False,
+    vesting_metric_subgraph.VestingMetric.inFuture == False,  # noqa: E712
     vesting_metric_subgraph.VestingMetric.platform == VESTING_PLATFORM_C3],
   orderBy=vesting_metric_subgraph.VestingMetric.timestamp,
   orderDirection='asc',
   first=365
 )
 
-#C02 Compound Vesting metrics
-co2Compound_vesting_metrics_1_year = vesting_metric_subgraph.Query.vestingMetrics(
-  where=[
-    vesting_metric_subgraph.VestingMetric.inFuture == False,
-    vesting_metric_subgraph.VestingMetric.platform == VESTING_PLATFORM_C02_COMPOUND],
-  orderBy=vesting_metric_subgraph.VestingMetric.timestamp,
-  orderDirection='asc',
-  first=365
-)
+# C02 Compound Vesting metrics
+co2Compound_vesting_metrics_1_year = \
+  vesting_metric_subgraph.Query.vestingMetrics(
+    where=[
+      vesting_metric_subgraph.VestingMetric.inFuture == False,  # noqa: E712
+      vesting_metric_subgraph.VestingMetric.platform == VESTING_PLATFORM_CO2],
+    orderBy=vesting_metric_subgraph.VestingMetric.timestamp,
+    orderDirection='asc',
+    first=365
+  )
 
 co2_compound_df = sg.query_df([
   co2Compound_vesting_metrics_1_year.datetime,
@@ -115,9 +117,12 @@ def fill_vesting_df(vesting_metrics_df):
         else:
             current_value = row["vestingMetrics_totalAmountLocked"]
         if row['vestingMetrics_locked_percentage'] == EMPTY:
+            # LOCKED_PERC = (TOT_AMOUNT_LOCKED * INDEX) * 100
             vesting_metrics_df.at[
               index, "vestingMetrics_locked_percentage"] = \
-            ((row["vestingMetrics_totalAmountLocked"]*row["protocolMetrics_klimaIndex"]) / row["protocolMetrics_totalSupply"]) * 100
+              ((row["vestingMetrics_totalAmountLocked"] *
+               row["protocolMetrics_klimaIndex"])
+               / row["protocolMetrics_totalSupply"]) * 100
 
 
 def subtract_vested_from_stake(staking_df, dataframes):
