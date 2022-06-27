@@ -454,6 +454,7 @@ def cc_per_klima():
         }
     ).figure
 
+
 # @wrap_autoupdate(seconds=21600)
 def klima_alloc():
 
