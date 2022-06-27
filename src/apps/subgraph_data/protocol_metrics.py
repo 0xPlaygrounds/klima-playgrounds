@@ -49,13 +49,17 @@ protocol_metrics_subgraph.ProtocolMetric.cc_per_klima = \
      protocol_metrics_subgraph.ProtocolMetric.totalSupply])
 
 protocol_metrics_subgraph.ProtocolMetric.price_cc_ratio = \
-    100 * protocol_metrics_subgraph.ProtocolMetric.klimaPrice / protocol_metrics_subgraph.ProtocolMetric.cc_per_klima
+    100 * protocol_metrics_subgraph.ProtocolMetric.klimaPrice \
+    / protocol_metrics_subgraph.ProtocolMetric.cc_per_klima
 
 # Treasury market value per klima and ratio
 protocol_metrics_subgraph.ProtocolMetric.tmv_per_klima = \
-    protocol_metrics_subgraph.ProtocolMetric.treasuryMarketValue / protocol_metrics_subgraph.ProtocolMetric.totalSupply
+    protocol_metrics_subgraph.ProtocolMetric.treasuryMarketValue \
+    / protocol_metrics_subgraph.ProtocolMetric.totalSupply
+
 protocol_metrics_subgraph.ProtocolMetric.price_tmv_ratio = \
-    100 * protocol_metrics_subgraph.ProtocolMetric.klimaPrice / protocol_metrics_subgraph.ProtocolMetric.tmv_per_klima
+    100 * protocol_metrics_subgraph.ProtocolMetric.klimaPrice \
+    / protocol_metrics_subgraph.ProtocolMetric.tmv_per_klima
 
 protocol_metrics_1year = protocol_metrics_subgraph.Query.protocolMetrics(
   orderBy=protocol_metrics_subgraph.ProtocolMetric.timestamp,
