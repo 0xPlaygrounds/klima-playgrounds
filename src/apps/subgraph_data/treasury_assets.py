@@ -39,7 +39,6 @@ class TreasuryAssetWrapper:
 
         self.asset_data = treasuryAssetData
 
-
     def create_scatters(self):
         scatters = []
         for single_asset_data in self.asset_data:
@@ -54,9 +53,8 @@ class TreasuryAssetWrapper:
                         single_asset_data,
                         single_asset_data.carbon_custodied)
                     scatters.append(scatter)
-                     
-        return scatters
 
+        return scatters
 
     def create_scatter(self, single_asset_data, y_data):
         return Scatter(
@@ -88,4 +86,3 @@ class SingleAssetData:
             self.formatted_market_value = dataframe.treasuryAssets_formatted_market_value
             self.carbon_custodied = dataframe.treasuryAssets_carbonCustodied
         print(self.name + " is initialized")
-
