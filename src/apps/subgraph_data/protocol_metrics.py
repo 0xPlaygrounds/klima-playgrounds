@@ -2,7 +2,7 @@ from subgrounds.subgrounds import Subgrounds
 from subgrounds.subgraph import SyntheticField
 from src.apps.util.cache import time_cache
 
-from src.apps.util.constants import BCT_ERC20_CONTRACT, KLIMA_PROTOCOL_SUBGRAPH, MCO2_ERC20_CONTRACT, NBO_ERC20_CONTRACT, NCT_ERC20_CONTRACT, UBO_ERC20_CONTRACT, USDC_ERC20_CONTRACT
+from src.apps.util.constants import BCT_ERC20_CONTRACT, KLIMA_PROTOCOL_SUBGRAPH
 from src.apps.util.time_util import get_date_timestamp_string
 
 sg = Subgrounds()
