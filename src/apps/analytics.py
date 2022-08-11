@@ -10,7 +10,9 @@ from millify import millify
 from subgrounds.subgraph import FieldPath
 from ..app import app
 from ..klima_subgrounds import sg, last_metric
-from .data import dao_wallet_balances, mkt_cap_plot, klima_price, current_runway, current_AKR, time_cache, treasury_carbon_custodied, treasury_total_carbon, tmv, \
+from .data import dao_wallet_balances, mkt_cap_plot, klima_price, \
+    current_runway, current_AKR, time_cache, \
+    treasury_carbon_custodied, treasury_total_carbon, tmv, \
     tCC, tmv_per_klima, cc_per_klima, klima_alloc, treasury_value_in_usd
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))

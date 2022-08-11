@@ -532,6 +532,7 @@ def klima_alloc():
         }
     ).figure
 
+
 # @wrap_autoupdate(seconds=21600)
 def treasury_value_in_usd():
     treasury_asset_wrapper = TreasuryAssetWrapper(MODE_ASSET_VALUE_IN_USD)
@@ -563,6 +564,7 @@ def treasury_value_in_usd():
         }
     ).figure
 
+
 # @wrap_autoupdate(seconds=21600)
 def treasury_carbon_custodied():
     treasury_asset_wrapper = TreasuryAssetWrapper(MODE_CARBON_CUSTODIED)
@@ -593,6 +595,7 @@ def treasury_carbon_custodied():
                             ],
         }
     ).figure
+
 
 # @wrap_autoupdate(seconds=21600)
 def dao_wallet_balances():
