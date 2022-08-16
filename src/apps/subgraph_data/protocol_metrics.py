@@ -128,13 +128,3 @@ def get_treasury_df():
         treasury_assets.token,
         treasury_assets.carbonCustodied,
         treasury_assets.formatted_market_value])
-
-
-@time_cache(600)
-def get_bct_treasury():
-    return protocol_metrics_subgraph.Query.treasuryAssets(
-        where=[protocol_metrics_subgraph.TreasuryAsset.token == BCT_ERC20_CONTRACT],
-        orderBy=protocol_metrics_subgraph.TreasuryAsset.timestamp,
-        orderDirection='asc',
-        first=10000000
-    )

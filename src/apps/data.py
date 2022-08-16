@@ -1,5 +1,6 @@
 from subgrounds.dash_wrappers import AutoUpdate
 from subgrounds.plotly_wrappers import Figure, Scatter
+import plotly.graph_objects as go
 
 from src.apps.subgraph_data.treasury_assets import MODE_ASSET_VALUE_IN_USD, MODE_CARBON_CUSTODIED, TreasuryAssetWrapper
 
@@ -536,9 +537,8 @@ def klima_alloc():
 # @wrap_autoupdate(seconds=21600)
 def treasury_value_in_usd():
     treasury_asset_wrapper = TreasuryAssetWrapper(MODE_ASSET_VALUE_IN_USD)
-    return Figure(
-        subgrounds=sg,
-        traces=treasury_asset_wrapper.create_scatters(),
+    return go.Figure(
+        data=treasury_asset_wrapper.create_scatters(),
         layout={
             'showlegend': True,
             'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white', 'showgrid': False, 'mirror': True,
@@ -562,15 +562,14 @@ def treasury_value_in_usd():
                             'eraseshape'
                             ],
         }
-    ).figure
+    )
 
 
 # @wrap_autoupdate(seconds=21600)
 def treasury_carbon_custodied():
     treasury_asset_wrapper = TreasuryAssetWrapper(MODE_CARBON_CUSTODIED)
-    return Figure(
-        subgrounds=sg,
-        traces=treasury_asset_wrapper.create_scatters(),
+    return go.Figure(
+        data=treasury_asset_wrapper.create_scatters(),
         layout={
             'showlegend': True,
             'xaxis': {'linewidth': 0.1, 'linecolor': '#31333F', 'color': 'white', 'showgrid': False, 'mirror': True,
@@ -594,7 +593,7 @@ def treasury_carbon_custodied():
                             'eraseshape'
                             ],
         }
-    ).figure
+    )
 
 
 # @wrap_autoupdate(seconds=21600)
