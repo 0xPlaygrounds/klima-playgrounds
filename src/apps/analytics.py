@@ -10,8 +10,10 @@ from millify import millify
 from subgrounds.subgraph import FieldPath
 from ..app import app
 from ..klima_subgrounds import sg, last_metric
-from .data import mkt_cap_plot, klima_price, current_runway, current_AKR, time_cache, treasury_total_carbon, tmv, \
-    tCC, tmv_per_klima, cc_per_klima, klima_alloc
+from .data import dao_wallet_balances, mkt_cap_plot, klima_price, \
+    current_runway, current_AKR, time_cache, \
+    treasury_carbon_custodied, treasury_total_carbon, tmv, \
+    tCC, tmv_per_klima, cc_per_klima, klima_alloc, treasury_value_in_usd
 
 options = dict(loop=True, autoplay=True, rendererSettings=dict(preserveAspectRatio='xMidYMid slice'))
 
@@ -298,6 +300,31 @@ layout = dbc.Container([
                     label='KLIMA Token Status Breakdown (%)',
                     id='klima_alloc',
                     mk_figure=klima_alloc
+                ),
+            ], xs=12, sm=12, md=12, lg=6, xl=6),
+        ], style={'padding': '10px'}),
+        dbc.Row([
+            dbc.Col([
+                data_plot(
+                    label='Market value of treasury assets in USD',
+                    id='treasury_alloc',
+                    mk_figure=treasury_value_in_usd
+                ),
+            ], xs=12, sm=12, md=12, lg=6, xl=6),
+            dbc.Col([
+                data_plot(
+                    label='Carbon holdings',
+                    id='carbon_holdings',
+                    mk_figure=treasury_carbon_custodied
+                ),
+            ], xs=12, sm=12, md=12, lg=6, xl=6),
+        ], style={'padding': '10px'}),
+        dbc.Row([
+            dbc.Col([
+                data_plot(
+                    label='DAO wallet holdings',
+                    id='dao_wallet_holdings',
+                    mk_figure=dao_wallet_balances
                 ),
             ], xs=12, sm=12, md=12, lg=6, xl=6),
         ], style={'padding': '10px'}),
