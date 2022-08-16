@@ -26,7 +26,7 @@ class TreasuryAssetWrapper:
         treasuryAssetData.append(SingleAssetData(
             "MCO2", MCO2_ERC20_CONTRACT, "#93c47d", True))
         treasuryAssetData.append(SingleAssetData(
-            "KLIMA MCO2 LP", KLIMA_MCO2_PAIR, "#6aa84f", True))
+            "KLIMA MCO2 LP", KLIMA_MCO2_PAIR, "#6aa84f", False))
         treasuryAssetData.append(SingleAssetData(
             "USDC", USDC_ERC20_CONTRACT, "#e06666", False))
         treasuryAssetData.append(SingleAssetData(
